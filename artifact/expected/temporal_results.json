@@ -1,0 +1,266 @@
+{
+  "scenarios": [
+    {
+      "name": "independent_share_refresh",
+      "states": 21,
+      "transitions": 32,
+      "checked_states": 16,
+      "private_states": 16,
+      "all_checked_states_private": true,
+      "shortest_privacy_counterexample": null,
+      "shortest_linear_reconstruction_counterexample": null,
+      "scope": "declared linear observations and symbolic opens; privacy conditioned on other seed values"
+    },
+    {
+      "name": "correlated_refresh_randomness",
+      "states": 21,
+      "transitions": 32,
+      "checked_states": 16,
+      "private_states": 10,
+      "all_checked_states_private": false,
+      "shortest_privacy_counterexample": {
+        "trace": [
+          "Publish(epoch=0,generation=0)",
+          "Refresh(epoch=0,generation=1)",
+          "CopyShare(pair:0:0:1); attacker retains copy",
+          "CopyShare(pair:0:1:2); attacker retains copy"
+        ],
+        "known_seed_atoms": [
+          "seed:0"
+        ],
+        "observation_atoms": [
+          "commit:0:0:0",
+          "commit:0:0:1",
+          "commit:0:1:0",
+          "commit:0:1:1",
+          "obs:A:0:0:1",
+          "obs:A:0:1:2",
+          "obs:B:0:0:1",
+          "obs:B:0:1:2"
+        ]
+      },
+      "shortest_linear_reconstruction_counterexample": {
+        "trace": [
+          "Publish(epoch=0,generation=0)",
+          "Refresh(epoch=0,generation=1)",
+          "CopyShare(pair:0:0:1); attacker retains copy",
+          "CopyShare(pair:0:1:2); attacker retains copy"
+        ],
+        "known_seed_atoms": [
+          "seed:0"
+        ]
+      },
+      "scope": "declared linear observations and symbolic opens; privacy conditioned on other seed values"
+    },
+    {
+      "name": "fresh_seed_stolen_future_bank",
+      "states": 21,
+      "transitions": 32,
+      "checked_states": 7,
+      "private_states": 4,
+      "all_checked_states_private": false,
+      "shortest_privacy_counterexample": {
+        "trace": [
+          "Publish(old epoch=0)",
+          "CopyBank(bank-copy:old:1); attacker retains copy",
+          "CopyBank(bank-copy:old:2); attacker retains copy",
+          "Publish(fresh epoch=1)"
+        ],
+        "known_seed_atoms": [
+          "seed:0",
+          "seed:1"
+        ],
+        "observation_atoms": [
+          "commit:0:0:0",
+          "commit:0:0:1",
+          "commit:1:0:0",
+          "commit:1:0:1",
+          "obs:A:0:0:1",
+          "obs:A:0:0:2",
+          "obs:A:1:0:1",
+          "obs:A:1:0:2",
+          "obs:B:0:0:1",
+          "obs:B:0:0:2",
+          "obs:B:1:0:1",
+          "obs:B:1:0:2"
+        ]
+      },
+      "shortest_linear_reconstruction_counterexample": {
+        "trace": [
+          "Publish(old epoch=0)",
+          "CopyBank(bank-copy:old:1); attacker retains copy",
+          "CopyBank(bank-copy:old:2); attacker retains copy",
+          "Publish(fresh epoch=1)"
+        ],
+        "known_seed_atoms": [
+          "seed:0",
+          "seed:1"
+        ]
+      },
+      "scope": "declared linear observations and symbolic opens; privacy conditioned on other seed values"
+    },
+    {
+      "name": "renewed_recipient_bank",
+      "states": 21,
+      "transitions": 32,
+      "checked_states": 7,
+      "private_states": 7,
+      "all_checked_states_private": true,
+      "shortest_privacy_counterexample": null,
+      "shortest_linear_reconstruction_counterexample": null,
+      "scope": "declared linear observations and symbolic opens; privacy conditioned on other seed values"
+    },
+    {
+      "name": "threshold_lowered_with_reused_recipients",
+      "states": 21,
+      "transitions": 32,
+      "checked_states": 7,
+      "private_states": 4,
+      "all_checked_states_private": false,
+      "shortest_privacy_counterexample": {
+        "trace": [
+          "Publish(threshold=3)",
+          "CopyBank(bank-copy:old:1); attacker retains copy",
+          "CopyBank(bank-copy:old:2); attacker retains copy",
+          "Refresh(threshold=2)"
+        ],
+        "known_seed_atoms": [
+          "seed:0"
+        ],
+        "observation_atoms": [
+          "commit:0:0:0",
+          "commit:0:0:1",
+          "commit:0:0:2",
+          "commit:0:1:0",
+          "commit:0:1:1",
+          "obs:A:0:0:1",
+          "obs:A:0:0:2",
+          "obs:A:0:1:1",
+          "obs:A:0:1:2",
+          "obs:B:0:0:1",
+          "obs:B:0:0:2",
+          "obs:B:0:1:1",
+          "obs:B:0:1:2"
+        ]
+      },
+      "shortest_linear_reconstruction_counterexample": {
+        "trace": [
+          "Publish(threshold=3)",
+          "CopyBank(bank-copy:old:1); attacker retains copy",
+          "CopyBank(bank-copy:old:2); attacker retains copy",
+          "Refresh(threshold=2)"
+        ],
+        "known_seed_atoms": [
+          "seed:0"
+        ]
+      },
+      "scope": "declared linear observations and symbolic opens; privacy conditioned on other seed values"
+    },
+    {
+      "name": "known_seed_not_revoked_by_refresh",
+      "states": 5,
+      "transitions": 4,
+      "checked_states": 2,
+      "private_states": 1,
+      "all_checked_states_private": false,
+      "shortest_privacy_counterexample": {
+        "trace": [
+          "Publish(generation=0)",
+          "CompromiseRecoveredClient(client-copy:0); attacker retains copy",
+          "Refresh(independent bank and masks)"
+        ],
+        "known_seed_atoms": [
+          "seed:0"
+        ],
+        "observation_atoms": [
+          "commit:0:0:0",
+          "commit:0:0:1",
+          "commit:0:1:0",
+          "commit:0:1:1"
+        ]
+      },
+      "shortest_linear_reconstruction_counterexample": {
+        "trace": [
+          "Publish(generation=0)",
+          "CompromiseRecoveredClient(client-copy:0); attacker retains copy",
+          "Refresh(independent bank and masks)"
+        ],
+        "known_seed_atoms": [
+          "seed:0"
+        ]
+      },
+      "scope": "declared linear observations and symbolic opens; privacy conditioned on other seed values"
+    },
+    {
+      "name": "recovered_client_exposure",
+      "states": 4,
+      "transitions": 3,
+      "checked_states": 2,
+      "private_states": 1,
+      "all_checked_states_private": false,
+      "shortest_privacy_counterexample": {
+        "trace": [
+          "Publish(epoch=0)",
+          "Publish(epoch=1)",
+          "CompromiseRecoveredClient(client-copy:1); attacker retains copy"
+        ],
+        "known_seed_atoms": [
+          "seed:1"
+        ],
+        "observation_atoms": [
+          "commit:0:0:0",
+          "commit:0:0:1",
+          "commit:1:0:0",
+          "commit:1:0:1"
+        ]
+      },
+      "shortest_linear_reconstruction_counterexample": {
+        "trace": [
+          "Publish(epoch=0)",
+          "Publish(epoch=1)",
+          "CompromiseRecoveredClient(client-copy:1); attacker retains copy"
+        ],
+        "known_seed_atoms": [
+          "seed:1"
+        ]
+      },
+      "scope": "declared linear observations and symbolic opens; privacy conditioned on other seed values"
+    },
+    {
+      "name": "archive_after_ordinary_erasure",
+      "states": 6,
+      "transitions": 7,
+      "checked_states": 2,
+      "private_states": 1,
+      "all_checked_states_private": false,
+      "shortest_privacy_counterexample": {
+        "trace": [
+          "Publish(epoch=0)",
+          "Complete ordinary-path erasure; retain archive capsule",
+          "CompromiseArchiveAuthority(archive-key:0); attacker retains copy"
+        ],
+        "known_seed_atoms": [
+          "seed:0"
+        ],
+        "observation_atoms": [
+          "commit:0:0:0",
+          "commit:0:0:1"
+        ]
+      },
+      "shortest_linear_reconstruction_counterexample": {
+        "trace": [
+          "Publish(epoch=0)",
+          "Complete ordinary-path erasure; retain archive capsule",
+          "CompromiseArchiveAuthority(archive-key:0); attacker retains copy"
+        ],
+        "known_seed_atoms": [
+          "seed:0"
+        ]
+      },
+      "scope": "declared linear observations and symbolic opens; privacy conditioned on other seed values"
+    }
+  ],
+  "total_states": 120,
+  "total_transitions": 174,
+  "shortest_traces": "BFS, unit-cost named actions, each run separately"
+}

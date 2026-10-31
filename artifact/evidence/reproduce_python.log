@@ -1,0 +1,46 @@
+PASS: check_algebra.py exactly matches expected/algebra_results.json
+PASS: explore_temporal.py exactly matches expected/temporal_results.json
+PASS: check_parameters.py exactly matches expected/parameter_results.json
+PASS: model_checks.py matches model_results.json
+PASS: extended_model.py matches extended_results.json
+test_copy_budget_boundary (test_extended_model.LifecycleTests.test_copy_budget_boundary) ... ok
+test_independent_refresh_view (test_extended_model.LifecycleTests.test_independent_refresh_view) ... ok
+test_persistent_slot_closure (test_extended_model.LifecycleTests.test_persistent_slot_closure) ... ok
+test_reconstruction_and_field_validation (test_extended_model.LifecycleTests.test_reconstruction_and_field_validation) ... ok
+test_two_fault_availability (test_extended_model.LifecycleTests.test_two_fault_availability) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
+test_fresh_future_bank_conditioned_on_old_seed (test_revision.CapabilityTests.test_fresh_future_bank_conditioned_on_old_seed) ... ok
+test_joint_relation_is_leakage_without_linear_seed_recovery (test_revision.CapabilityTests.test_joint_relation_is_leakage_without_linear_seed_recovery) ... ok
+test_known_seed_is_not_revoked (test_revision.CapabilityTests.test_known_seed_is_not_revoked) ... ok
+test_no_ordinary_graph_or_semantics (test_revision.CapabilityTests.test_no_ordinary_graph_or_semantics) ... ok
+test_byzantine_refusal_does_not_create_fail_open (test_revision.LifecycleTests.test_byzantine_refusal_does_not_create_fail_open) ... ok
+test_changed_recipient_or_request_fields (test_revision.LifecycleTests.test_changed_recipient_or_request_fields) ... ok
+test_configuration_change_cancels_queued_old_work (test_revision.LifecycleTests.test_configuration_change_cancels_queued_old_work) ... ok
+test_core_deterministic_cbor_vector_and_schema_limits (test_revision.LifecycleTests.test_core_deterministic_cbor_vector_and_schema_limits) ... ok
+test_crash_at_each_durable_expiry_stage (test_revision.LifecycleTests.test_crash_at_each_durable_expiry_stage) ... ok
+test_duplicate_requests_idempotent_but_not_new_votes (test_revision.LifecycleTests.test_duplicate_requests_idempotent_but_not_new_votes) ... ok
+test_expiry_at_every_owned_response_stage (test_revision.LifecycleTests.test_expiry_at_every_owned_response_stage) ... ok
+test_identity_only_compromise_and_genuine_false_quorum (test_revision.LifecycleTests.test_identity_only_compromise_and_genuine_false_quorum) ... ok
+test_incomplete_log_commit_survives_crash_without_activation (test_revision.LifecycleTests.test_incomplete_log_commit_survives_crash_without_activation) ... ok
+test_interrupted_send_after_first_byte_is_counted_as_disclosure (test_revision.LifecycleTests.test_interrupted_send_after_first_byte_is_counted_as_disclosure) ... ok
+test_mandatory_hold_after_immediate_approval (test_revision.LifecycleTests.test_mandatory_hold_after_immediate_approval) ... ok
+test_monotone_clock_failure_closes_release (test_revision.LifecycleTests.test_monotone_clock_failure_closes_release) ... ok
+test_old_disk_snapshot_rejected_even_before_floor_advances (test_revision.LifecycleTests.test_old_disk_snapshot_rejected_even_before_floor_advances) ... ok
+test_pending_barrier_is_not_committed_floor (test_revision.LifecycleTests.test_pending_barrier_is_not_committed_floor) ... ok
+test_queued_buffer_logically_overwritten_before_receipt (test_revision.LifecycleTests.test_queued_buffer_logically_overwritten_before_receipt) ... ok
+test_real_thread_expiry_during_decryption (test_revision.LifecycleTests.test_real_thread_expiry_during_decryption) ... ok
+test_receipt_requires_prior_cleanup (test_revision.LifecycleTests.test_receipt_requires_prior_cleanup) ... ok
+test_replayed_certificate_rejected (test_revision.LifecycleTests.test_replayed_certificate_rejected) ... ok
+test_stale_checkpoint (test_revision.LifecycleTests.test_stale_checkpoint) ... ok
+test_two_generations_require_both_barriers_before_epoch_floor (test_revision.LifecycleTests.test_two_generations_require_both_barriers_before_epoch_floor) ... ok
+test_unknown_or_unverified_approval_rejected (test_revision.LifecycleTests.test_unknown_or_unverified_approval_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.003s
+
+OK
+PASS: all Python checks, 5 baseline tests and 25 revision tests

@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+artifact/.tools/
+artifact/reproduced/
+artifact/baseline/baseline_reproduced.json
+artifact/baseline/extended_reproduced.json
+artifact/baseline/test_reproduced.txt
+manuscript/*.aux
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.fls
+manuscript/*.fdb_latexmk
+manuscript/*.log
+manuscript/*.out
+manuscript/*.pdf
+states/
+.DS_Store

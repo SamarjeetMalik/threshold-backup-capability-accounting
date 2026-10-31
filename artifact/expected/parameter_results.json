@@ -1,0 +1,9 @@
+{
+  "n_range": [
+    1,
+    20
+  ],
+  "parameter_configurations": 28335,
+  "joint_feasible": 1914,
+  "all_equivalences_pass": true
+}

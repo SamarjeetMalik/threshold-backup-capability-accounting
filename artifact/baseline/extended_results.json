@@ -1,0 +1,160 @@
+{
+  "scope": "finite quotient-state exploration, symbolic slot closure, exact finite-field rank checks",
+  "deletion_exploration": [
+    {
+      "n": 4,
+      "t": 3,
+      "qd": 3,
+      "copy_budget": 1,
+      "states": 32,
+      "transitions": 60,
+      "barrier_states": 16,
+      "unsafe_barrier_states": 6,
+      "shortest_counterexample": {
+        "trace": [
+          "erase(1)",
+          "copy_slot(2); release device; retain adversary copy",
+          "erase(2)",
+          "false receipt by 0; commit barrier; snapshot remaining slots"
+        ],
+        "erased": [
+          1,
+          2
+        ],
+        "copies": [
+          2
+        ],
+        "useful_indices": [
+          0,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "t": 4,
+      "qd": 4,
+      "copy_budget": 1,
+      "states": 80,
+      "transitions": 192,
+      "barrier_states": 25,
+      "unsafe_barrier_states": 0,
+      "shortest_counterexample": null
+    },
+    {
+      "n": 5,
+      "t": 4,
+      "qd": 4,
+      "copy_budget": 2,
+      "states": 176,
+      "transitions": 480,
+      "barrier_states": 55,
+      "unsafe_barrier_states": 12,
+      "shortest_counterexample": {
+        "trace": [
+          "erase(1)",
+          "copy_slot(2); release device; retain adversary copy",
+          "erase(2)",
+          "copy_slot(3); release device; retain adversary copy",
+          "erase(3)",
+          "false receipt by 0; commit barrier; snapshot remaining slots"
+        ],
+        "erased": [
+          1,
+          2,
+          3
+        ],
+        "copies": [
+          2,
+          3
+        ],
+        "useful_indices": [
+          0,
+          2,
+          3,
+          4
+        ]
+      }
+    }
+  ],
+  "capsule_attacks": {
+    "mobile_trace": [
+      {
+        "active_corruptions": 1,
+        "holder": 1,
+        "retained_slot_copies": 1
+      },
+      {
+        "active_corruptions": 1,
+        "holder": 2,
+        "retained_slot_copies": 2
+      },
+      {
+        "active_corruptions": 1,
+        "holder": 3,
+        "retained_slot_copies": 3
+      },
+      {
+        "active_corruptions": 1,
+        "holder": 4,
+        "retained_slot_copies": 4
+      }
+    ],
+    "old_secret_recovered": 42,
+    "same_slot_refresh_secret_recovered": 42,
+    "independent_future_secret_under_stolen_bank_recovered": 67,
+    "fresh_bank_exposed_shares": 0,
+    "old_secret_still_recovered_after_bank_replacement": 42
+  },
+  "refresh": {
+    "field": 101,
+    "n": 4,
+    "t": 3,
+    "generations": 2,
+    "exposure_set_pairs": 121,
+    "all_sharing_views_hide_secret": true,
+    "excludes": "recipient slots, commitments, malicious refresh, transitions, reconstructor compromise"
+  },
+  "availability": [
+    {
+      "n": 4,
+      "t": 3,
+      "all_survivor_subsets": {
+        "0": 1,
+        "1": 4,
+        "2": 6,
+        "3": 4,
+        "4": 1
+      },
+      "recoverable_subset_count": 5,
+      "one_byzantine_withholds_plus_one_honest_offline": false
+    },
+    {
+      "n": 5,
+      "t": 4,
+      "all_survivor_subsets": {
+        "0": 1,
+        "1": 5,
+        "2": 10,
+        "3": 10,
+        "4": 5,
+        "5": 1
+      },
+      "recoverable_subset_count": 6,
+      "one_byzantine_withholds_plus_one_honest_offline": false
+    }
+  ],
+  "authorization": {
+    "genuine_false_quorum_releases_after_hold": true,
+    "honest_false_approvals_needed_with_one_byzantine": 3,
+    "hold_outlasts_retention_causes_unrecoverable_request": true,
+    "atomicity_obligation_witness": [
+      "check SEALED and unexpired",
+      "decrypt into queued response",
+      "Expire; erase slot; sign receipt",
+      "send stale queued response"
+    ],
+    "witness_scope": "unsafe refinement if Expire does not cancel every queued buffer; dossier requires cleanup"
+  }
+}

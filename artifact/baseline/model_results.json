@@ -1,0 +1,33 @@
+{
+  "scope": "finite safety/algebra models; no production crypto or performance claims",
+  "deletion": {
+    "enumerated_adversary_cases": 14714,
+    "threshold_configurations": 2150,
+    "four_node_counterexample_indices": [
+      0,
+      1,
+      3
+    ],
+    "five_node_worst_exposed_shares": 3
+  },
+  "sharing": {
+    "joint_view_assignments": 15625,
+    "all_secret_joint_distributions_identical": true,
+    "mixed_two_generation_accidental_reconstruction": "5/25"
+  },
+  "authorization": {
+    "authorization_time_cases": 320,
+    "mutated_binding_fields_rejected": 7,
+    "single_malicious_deny_blocks_honest_quorum": false,
+    "request_extends_retention": false,
+    "minimum_false_honest_approvals_for_attacker": 3
+  },
+  "retention": {
+    "retention_state_cases": 39,
+    "static_capsule_key_erasure_bypass_found": true,
+    "five_guardian_loss_subsets": {
+      "recoverable_subsets": 6,
+      "unrecoverable_subsets": 26
+    }
+  }
+}

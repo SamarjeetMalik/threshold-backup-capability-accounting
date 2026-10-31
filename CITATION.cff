@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying manuscript when using this research artifact."
+type: software
+title: "Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery"
+authors:
+  - family-names: Malik
+    given-names: Samarjeet
+    affiliation: Ashoka University
+  - family-names: Singh
+    given-names: Shaurya Pratap
+    affiliation: Indian Institute of Science
+version: 2.0.0
+date-released: 2026-11-01
+repository-code: "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting"
+url: "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting/releases/tag/v2.0.0"
+abstract: "Formal capability and affine-view accounting, temporal exposure exploration, checked lifecycle models and a critical-path reference kernel."

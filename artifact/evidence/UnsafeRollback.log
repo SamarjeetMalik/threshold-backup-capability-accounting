@@ -1,0 +1,197 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 0 and seed 1 with 1 worker on 10 cores with 1820MB heap and 64MB offheap memory [pid: 21980] (Mac OS X 26.5.1 aarch64, Eclipse Adoptium 17.0.21 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/samar/Downloads/Claude/output/stebr-capability-revision-v2/artifact/RecoveryLifecycle.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/Naturals.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/TLC.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/Sequences.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module RecoveryLifecycle
+Starting... (2026-11-01 02:46:02)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-11-01 02:46:02.
+Error: Invariant FloorMonotone is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ phase = (<<0, 0>> :> "sealed")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"idle">>
+/\ tomb = {}
+/\ pending = {}
+/\ endpoint = <<0>>
+/\ cert = <<0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 2: <BeginExpiry line 101, col 19 to line 111, col 62 of module RecoveryLifecycle>
+/\ phase = (<<0, 0>> :> "expiring")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"idle">>
+/\ tomb = {<<0, 0>>}
+/\ pending = {}
+/\ endpoint = <<0>>
+/\ cert = <<0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 3: <Erase line 113, col 13 to line 117, col 66 of module RecoveryLifecycle>
+/\ phase = (<<0, 0>> :> "expiring")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {}
+/\ delivered = {}
+/\ stage = <<"idle">>
+/\ tomb = {<<0, 0>>}
+/\ pending = {}
+/\ endpoint = <<0>>
+/\ cert = <<0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 4: <SignReceipt line 119, col 19 to line 125, col 85 of module RecoveryLifecycle>
+/\ phase = (<<0, 0>> :> "expiring")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {}
+/\ delivered = {}
+/\ stage = <<"idle">>
+/\ tomb = {<<0, 0>>}
+/\ pending = {}
+/\ endpoint = <<0>>
+/\ cert = <<0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0>>
+/\ held = {}
+/\ receipts = {<<0, 0>>}
+/\ badExpiry = FALSE
+
+State 5: <Propose line 127, col 15 to line 131, col 68 of module RecoveryLifecycle>
+/\ phase = (<<0, 0>> :> "expiring")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {}
+/\ delivered = {}
+/\ stage = <<"idle">>
+/\ tomb = {<<0, 0>>}
+/\ pending = {<<0, 0>>}
+/\ endpoint = <<0>>
+/\ cert = <<0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0>>
+/\ held = {}
+/\ receipts = {<<0, 0>>}
+/\ badExpiry = FALSE
+
+State 6: <Commit line 133, col 14 to line 140, col 94 of module RecoveryLifecycle>
+/\ phase = (<<0, 0>> :> "erased")
+/\ badBinding = FALSE
+/\ highwater = 1
+/\ floor = 1
+/\ slots = {}
+/\ delivered = {}
+/\ stage = <<"idle">>
+/\ tomb = {<<0, 0>>}
+/\ pending = {}
+/\ endpoint = <<0>>
+/\ cert = <<0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {<<0, 0>>}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0>>
+/\ held = {}
+/\ receipts = {<<0, 0>>}
+/\ badExpiry = FALSE
+
+State 7: <Crash line 155, col 10 to line 159, col 103 of module RecoveryLifecycle>
+/\ phase = (<<0, 0>> :> "erased")
+/\ badBinding = FALSE
+/\ highwater = 1
+/\ floor = 1
+/\ slots = {}
+/\ delivered = {}
+/\ stage = <<"idle">>
+/\ tomb = {<<0, 0>>}
+/\ pending = {}
+/\ endpoint = <<0>>
+/\ cert = <<0>>
+/\ config = 0
+/\ crashed = TRUE
+/\ buffers = {}
+/\ committed = {<<0, 0>>}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0>>
+/\ held = {}
+/\ receipts = {<<0, 0>>}
+/\ badExpiry = FALSE
+
+State 8: <RollbackRestart line 168, col 20 to line 175, col 63 of module RecoveryLifecycle>
+/\ phase = (<<0, 0>> :> "sealed")
+/\ badBinding = FALSE
+/\ highwater = 1
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"idle">>
+/\ tomb = {}
+/\ pending = {}
+/\ endpoint = <<0>>
+/\ cert = <<0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {<<0, 0>>}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0>>
+/\ held = {}
+/\ receipts = {<<0, 0>>}
+/\ badExpiry = FALSE
+
+1159 states generated, 581 distinct states found, 166 states left on queue.
+The depth of the complete state graph search is 8.
+The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 8 and the 95th percentile is 4).
+Finished in 00s at (2026-11-01 02:46:02)

@@ -1,0 +1,54 @@
+{
+  "scope": "exact finite-field and declared symbolic-rule checks",
+  "rank": {
+    "field": 3,
+    "matrices": 7407,
+    "distribution_and_fiber_checks_pass": true,
+    "relation_only_example": {
+      "rows": [
+        [
+          1,
+          1
+        ]
+      ],
+      "neither_seed_linearly_recovered": true,
+      "joint_privacy": false
+    }
+  },
+  "generations": {
+    "independent_threshold_pattern_pairs": 256,
+    "reused_randomness_subthreshold_per_generation_leaks": true
+  },
+  "cuts": {
+    "minimal_witnesses": [
+      [
+        "archive-key:0"
+      ],
+      [
+        "bank-copy:old:1",
+        "bank-copy:old:2"
+      ],
+      [
+        "bank-copy:old:1",
+        "bank-copy:old:3"
+      ],
+      [
+        "bank-copy:old:2",
+        "bank-copy:old:3"
+      ]
+    ],
+    "minimum_deletion_size": 3,
+    "cut_equivalence_checks": 28,
+    "immutable_archive_makes_erasure_impossible": true,
+    "relation_only_cut": {
+      "privacy_deletions": [
+        [
+          "sum"
+        ]
+      ],
+      "linear_reconstruction_deletions": [
+        []
+      ]
+    }
+  }
+}

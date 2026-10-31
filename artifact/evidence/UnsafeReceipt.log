@@ -1,0 +1,87 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 0 and seed 1 with 1 worker on 10 cores with 1820MB heap and 64MB offheap memory [pid: 21979] (Mac OS X 26.5.1 aarch64, Eclipse Adoptium 17.0.21 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/samar/Downloads/Claude/output/stebr-capability-revision-v2/artifact/RecoveryLifecycle.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/Naturals.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/TLC.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/Sequences.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module RecoveryLifecycle
+Starting... (2026-11-01 02:46:01)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-11-01 02:46:01.
+Error: Invariant ReceiptAfterCleanup is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ phase = (<<0, 0>> :> "sealed")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"idle">>
+/\ tomb = {}
+/\ pending = {}
+/\ endpoint = <<0>>
+/\ cert = <<0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 2: <BeginExpiry line 101, col 19 to line 111, col 62 of module RecoveryLifecycle>
+/\ phase = (<<0, 0>> :> "expiring")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"idle">>
+/\ tomb = {<<0, 0>>}
+/\ pending = {}
+/\ endpoint = <<0>>
+/\ cert = <<0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 3: <SignReceipt line 119, col 19 to line 125, col 85 of module RecoveryLifecycle>
+/\ phase = (<<0, 0>> :> "expiring")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"idle">>
+/\ tomb = {<<0, 0>>}
+/\ pending = {}
+/\ endpoint = <<0>>
+/\ cert = <<0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0>>
+/\ held = {}
+/\ receipts = {<<0, 0>>}
+/\ badExpiry = FALSE
+
+16 states generated, 16 distinct states found, 12 states left on queue.
+The depth of the complete state graph search is 3.
+The average outdegree of the complete state graph is 7 (minimum is 5, the maximum 8 and the 95th percentile is 8).
+Finished in 00s at (2026-11-01 02:46:01)

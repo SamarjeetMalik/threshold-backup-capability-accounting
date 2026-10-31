@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "date": "2026-11-01",
+  "repository": "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting",
+  "release": "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting/releases/tag/v2.0.0",
+  "python": "CPython 3.12.14; standard library only",
+  "java": "Temurin 17.0.21+9",
+  "tlc": "TLC2 2.19, official release v1.7.4",
+  "tlc_jar_sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
+  "latex": "pdfLaTeX, TeX Live 2026, pdfTeX 1.40.29; BibTeX; latexmk 4.87",
+  "desktop_compile": "success",
+  "pdf_pages": 25,
+  "pdf_sha256": "602f7d8019338286cacdf431be4584f4e54bef4d1f11161f9fd74ed095fa39e3",
+  "validation": {
+    "python_regression_tests": 30,
+    "matrices": 7407,
+    "parameter_configurations": 28335,
+    "safe_tlc_states_across_four_runs": 316332,
+    "expected_unsafe_tlc_runs": 4,
+    "visual_qa": "all 25 rendered pages inspected; focused equation, figure and table inspection",
+    "tex_errors_undefined_references_overfull_boxes": 0
+  },
+  "scope": "declared symbolic/affine analysis and finite lifecycle safety; no complete concrete-client theorem or physical-erasure certification"
+}

@@ -1,0 +1,112 @@
+{
+  "scope": "finite explicit-state safety checking; no liveness or cryptographic proof",
+  "tlc_version": "TLC2 2.19, release v1.7.4",
+  "jar_sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
+  "java_version": "openjdk version \"17.0.21\" 2026-10-20\nOpenJDK Runtime Environment Temurin-17.0.21+9 (build 17.0.21+9)\nOpenJDK 64-Bit Server VM Temurin-17.0.21+9 (build 17.0.21+9, mixed mode, sharing)\n",
+  "runs": [
+    {
+      "config": "SafeOneEpoch",
+      "exit_code": 0,
+      "expected_violation": null,
+      "states_generated": 66503,
+      "distinct_states": 26448,
+      "counterexample_actions": [],
+      "raw_log": "SafeOneEpoch.log"
+    },
+    {
+      "config": "SafeTwoEpoch",
+      "exit_code": 0,
+      "expected_violation": null,
+      "states_generated": 14571,
+      "distinct_states": 5444,
+      "counterexample_actions": [],
+      "raw_log": "SafeTwoEpoch.log"
+    },
+    {
+      "config": "SafeCombined",
+      "exit_code": 0,
+      "expected_violation": null,
+      "states_generated": 372031,
+      "distinct_states": 132232,
+      "counterexample_actions": [],
+      "raw_log": "SafeCombined.log"
+    },
+    {
+      "config": "SafeGenerations",
+      "exit_code": 0,
+      "expected_violation": null,
+      "states_generated": 428289,
+      "distinct_states": 152208,
+      "counterexample_actions": [],
+      "raw_log": "SafeGenerations.log"
+    },
+    {
+      "config": "UnsafeQueue",
+      "exit_code": 12,
+      "expected_violation": "NoPostExpiryRelease",
+      "states_generated": 1797,
+      "distinct_states": 766,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Request line 39, col 15 to line 44, col 61 of module RecoveryLifecycle",
+        "HoldCompletes line 56, col 21 to line 60, col 87 of module RecoveryLifecycle",
+        "OfferCertificate line 49, col 26 to line 54, col 69 of module RecoveryLifecycle",
+        "BeginDecrypt line 68, col 20 to line 73, col 86 of module RecoveryLifecycle",
+        "FinishDecrypt line 75, col 21 to line 81, col 79 of module RecoveryLifecycle",
+        "StartSend line 83, col 17 to line 87, col 78 of module RecoveryLifecycle",
+        "BeginExpiry line 101, col 19 to line 111, col 62 of module RecoveryLifecycle",
+        "Transfer line 91, col 16 to line 99, col 96 of module RecoveryLifecycle"
+      ],
+      "raw_log": "UnsafeQueue.log"
+    },
+    {
+      "config": "UnsafeReceipt",
+      "exit_code": 12,
+      "expected_violation": "ReceiptAfterCleanup",
+      "states_generated": 16,
+      "distinct_states": 16,
+      "counterexample_actions": [
+        "Initial predicate",
+        "BeginExpiry line 101, col 19 to line 111, col 62 of module RecoveryLifecycle",
+        "SignReceipt line 119, col 19 to line 125, col 85 of module RecoveryLifecycle"
+      ],
+      "raw_log": "UnsafeReceipt.log"
+    },
+    {
+      "config": "UnsafeRollback",
+      "exit_code": 12,
+      "expected_violation": "FloorMonotone",
+      "states_generated": 1159,
+      "distinct_states": 581,
+      "counterexample_actions": [
+        "Initial predicate",
+        "BeginExpiry line 101, col 19 to line 111, col 62 of module RecoveryLifecycle",
+        "Erase line 113, col 13 to line 117, col 66 of module RecoveryLifecycle",
+        "SignReceipt line 119, col 19 to line 125, col 85 of module RecoveryLifecycle",
+        "Propose line 127, col 15 to line 131, col 68 of module RecoveryLifecycle",
+        "Commit line 133, col 14 to line 140, col 94 of module RecoveryLifecycle",
+        "Crash line 155, col 10 to line 159, col 103 of module RecoveryLifecycle",
+        "RollbackRestart line 168, col 20 to line 175, col 63 of module RecoveryLifecycle"
+      ],
+      "raw_log": "UnsafeRollback.log"
+    },
+    {
+      "config": "UnsafeBinding",
+      "exit_code": 12,
+      "expected_violation": "ExactRequestBinding",
+      "states_generated": 1076,
+      "distinct_states": 529,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Request line 39, col 15 to line 44, col 61 of module RecoveryLifecycle",
+        "HoldCompletes line 56, col 21 to line 60, col 87 of module RecoveryLifecycle",
+        "OfferCertificate line 49, col 26 to line 54, col 69 of module RecoveryLifecycle",
+        "BeginDecrypt line 68, col 20 to line 73, col 86 of module RecoveryLifecycle",
+        "FinishDecrypt line 75, col 21 to line 81, col 79 of module RecoveryLifecycle",
+        "StartSend line 83, col 17 to line 87, col 78 of module RecoveryLifecycle",
+        "Transfer line 91, col 16 to line 99, col 96 of module RecoveryLifecycle"
+      ],
+      "raw_log": "UnsafeBinding.log"
+    }
+  ]
+}
