@@ -1,0 +1,150 @@
+PASS: check_algebra.py exactly matches expected/algebra_results.json
+PASS: explore_temporal.py exactly matches expected/temporal_results.json
+PASS: check_parameters.py exactly matches expected/parameter_results.json
+PASS: model_checks.py matches model_results.json
+PASS: extended_model.py matches extended_results.json
+test_copy_budget_boundary (test_extended_model.LifecycleTests.test_copy_budget_boundary) ... ok
+test_independent_refresh_view (test_extended_model.LifecycleTests.test_independent_refresh_view) ... ok
+test_persistent_slot_closure (test_extended_model.LifecycleTests.test_persistent_slot_closure) ... ok
+test_reconstruction_and_field_validation (test_extended_model.LifecycleTests.test_reconstruction_and_field_validation) ... ok
+test_two_fault_availability (test_extended_model.LifecycleTests.test_two_fault_availability) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
+test_fresh_future_bank_conditioned_on_old_seed (test_revision.CapabilityTests.test_fresh_future_bank_conditioned_on_old_seed) ... ok
+test_joint_relation_is_leakage_without_linear_seed_recovery (test_revision.CapabilityTests.test_joint_relation_is_leakage_without_linear_seed_recovery) ... ok
+test_known_seed_is_not_revoked (test_revision.CapabilityTests.test_known_seed_is_not_revoked) ... ok
+test_no_ordinary_graph_or_semantics (test_revision.CapabilityTests.test_no_ordinary_graph_or_semantics) ... ok
+test_byzantine_refusal_does_not_create_fail_open (test_revision.LifecycleTests.test_byzantine_refusal_does_not_create_fail_open) ... ok
+test_changed_recipient_or_request_fields (test_revision.LifecycleTests.test_changed_recipient_or_request_fields) ... ok
+test_configuration_change_cancels_queued_old_work (test_revision.LifecycleTests.test_configuration_change_cancels_queued_old_work) ... ok
+test_core_deterministic_cbor_vector_and_schema_limits (test_revision.LifecycleTests.test_core_deterministic_cbor_vector_and_schema_limits) ... ok
+test_crash_at_each_durable_expiry_stage (test_revision.LifecycleTests.test_crash_at_each_durable_expiry_stage) ... ok
+test_duplicate_requests_idempotent_but_not_new_votes (test_revision.LifecycleTests.test_duplicate_requests_idempotent_but_not_new_votes) ... ok
+test_expiry_at_every_owned_response_stage (test_revision.LifecycleTests.test_expiry_at_every_owned_response_stage) ... ok
+test_identity_only_compromise_and_genuine_false_quorum (test_revision.LifecycleTests.test_identity_only_compromise_and_genuine_false_quorum) ... ok
+test_incomplete_log_commit_survives_crash_without_activation (test_revision.LifecycleTests.test_incomplete_log_commit_survives_crash_without_activation) ... ok
+test_interrupted_send_after_first_byte_is_counted_as_disclosure (test_revision.LifecycleTests.test_interrupted_send_after_first_byte_is_counted_as_disclosure) ... ok
+test_mandatory_hold_after_immediate_approval (test_revision.LifecycleTests.test_mandatory_hold_after_immediate_approval) ... ok
+test_monotone_clock_failure_closes_release (test_revision.LifecycleTests.test_monotone_clock_failure_closes_release) ... ok
+test_old_disk_snapshot_rejected_even_before_floor_advances (test_revision.LifecycleTests.test_old_disk_snapshot_rejected_even_before_floor_advances) ... ok
+test_pending_barrier_is_not_committed_floor (test_revision.LifecycleTests.test_pending_barrier_is_not_committed_floor) ... ok
+test_queued_buffer_logically_overwritten_before_receipt (test_revision.LifecycleTests.test_queued_buffer_logically_overwritten_before_receipt) ... ok
+test_real_thread_expiry_during_decryption (test_revision.LifecycleTests.test_real_thread_expiry_during_decryption) ... ok
+test_receipt_requires_prior_cleanup (test_revision.LifecycleTests.test_receipt_requires_prior_cleanup) ... ok
+test_replayed_certificate_rejected (test_revision.LifecycleTests.test_replayed_certificate_rejected) ... ok
+test_stale_checkpoint (test_revision.LifecycleTests.test_stale_checkpoint) ... ok
+test_two_generations_require_both_barriers_before_epoch_floor (test_revision.LifecycleTests.test_two_generations_require_both_barriers_before_epoch_floor) ... ok
+test_unknown_or_unverified_approval_rejected (test_revision.LifecycleTests.test_unknown_or_unverified_approval_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.002s
+
+OK
+PASS: all Python checks, 5 baseline tests and 25 revision tests
+PASS: v3 mathematical checks exactly match expected/v3_results.json
+test_abandoned_worker_releases_receipt (test_v3.InflightWorkerTests.test_abandoned_worker_releases_receipt) ... ok
+test_crash_ends_workers (test_v3.InflightWorkerTests.test_crash_ends_workers) ... ok
+test_inflight_on_other_path_does_not_block_receipt (test_v3.InflightWorkerTests.test_inflight_on_other_path_does_not_block_receipt) ... ok
+test_receipt_waits_for_cancelled_worker (test_v3.InflightWorkerTests.test_receipt_waits_for_cancelled_worker) ... ok
+test_unknown_nonce_is_rejection_not_crash (test_v3.InflightWorkerTests.test_unknown_nonce_is_rejection_not_crash) ... ok
+test_v2_kernel_signed_receipt_with_worker_running (test_v3.InflightWorkerTests.test_v2_kernel_signed_receipt_with_worker_running)
+Documents the v2 defect: the receipt precedes the worker's return. ... ok
+test_committee_closed_form (test_v3.MathematicalChecks.test_committee_closed_form) ... ok
+test_healing_classification (test_v3.MathematicalChecks.test_healing_classification) ... ok
+test_leakage_subspace_theorem (test_v3.MathematicalChecks.test_leakage_subspace_theorem) ... ok
+test_partial_openings_count_indices_not_pairs (test_v3.MathematicalChecks.test_partial_openings_count_indices_not_pairs) ... ok
+test_privacy_is_blockwise_reconstruction_is_not (test_v3.MathematicalChecks.test_privacy_is_blockwise_reconstruction_is_not) ... ok
+test_read_once_erasure_is_exact (test_v3.MathematicalChecks.test_read_once_erasure_is_exact) ... ok
+test_reused_bank_erasure_is_vertex_cover (test_v3.MathematicalChecks.test_reused_bank_erasure_is_vertex_cover) ... ok
+test_shared_root_breaks_treewise_evaluation (test_v3.MathematicalChecks.test_shared_root_breaks_treewise_evaluation) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.084s
+
+OK
+PASS: v2 evidence, v3 checks and 14 v3 tests
+PASS: v4 checks exactly match expected/v4_results.json
+test_authorize_rejected_after_cancellation (test_v4.KernelV4.test_authorize_rejected_after_cancellation) ... ok
+test_certificate_cannot_be_replaced (test_v4.KernelV4.test_certificate_cannot_be_replaced) ... ok
+test_commit_requires_earlier_epochs (test_v4.KernelV4.test_commit_requires_earlier_epochs) ... ok
+test_duplicate_completion_does_not_cancel_queued_work (test_v4.KernelV4.test_duplicate_completion_does_not_cancel_queued_work) ... ok
+test_refinement_conformance_v4_kernel (test_v4.KernelV4.test_refinement_conformance_v4_kernel) ... ok
+test_stale_abandon_does_not_cancel_later_work (test_v4.KernelV4.test_stale_abandon_does_not_cancel_later_work) ... ok
+test_acceptance_must_be_transcript_measurable (test_v4.MathV4.test_acceptance_must_be_transcript_measurable) ... ok
+test_domain_corruption (test_v4.MathV4.test_domain_corruption) ... ok
+test_fixed_generation_algorithm (test_v4.MathV4.test_fixed_generation_algorithm) ... ok
+test_guessing_space_covers_reachable_patterns (test_v4.MathV4.test_guessing_space_covers_reachable_patterns) ... ok
+test_marginal_conditional_leakage (test_v4.MathV4.test_marginal_conditional_leakage) ... ok
+test_random_histories (test_v4.MathV4.test_random_histories) ... ok
+test_selection_and_weighted_thresholds (test_v4.MathV4.test_selection_and_weighted_thresholds) ... ok
+test_transcription_matches_tlc_small (test_v4.MathV4.test_transcription_matches_tlc_small) ... ok
+test_uniform_masks_are_necessary (test_v4.MathV4.test_uniform_masks_are_necessary) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.291s
+
+OK
+PASS: v2/v3 evidence, v4 and v4.0.1 checks and v4 tests
+SafeOneEpoch 26448 all invariants hold
+SafeTwoEpoch 5444 all invariants hold
+SafeCombined 132232 all invariants hold
+SafeGenerations 152208 all invariants hold
+UnsafeQueue 766 NoPostExpiryRelease
+UnsafeReceipt 16 ReceiptAfterCleanup
+UnsafeRollback 581 FloorMonotone
+UnsafeBinding 529 ExactRequestBinding
+PASS: TLC state counts, invariants and counterexample action sequences match expected results
+V3SafeOneEpoch 27888 pass
+V3SafeTwoEpoch 5584 pass
+V3SafeCombined 140356 pass
+V3SafeGenerations 160984 pass
+V3V2GuardsOnly 149844 pass
+V3UnsafeInflight 520 invariant ReceiptAfterWorkers
+MGSafe 4325 pass
+MGSafeTwoFaults 21987 pass
+MGSafeOutage 146706 pass
+MGUnsafeQuorum 3086 invariant ErasureSafe
+MGUnsafeReceipt 4103 invariant ErasureSafe
+MGNoProgress 1120 temporal
+MGUnrecoverable None invariant RecoverableBeforeBarrier
+PASS: v3 TLC outcomes, state counts and counterexample actions match expected
+V4SafeOneEpoch 27904 pass
+V4SafeTwoEpoch 5584 pass
+V4SafeCombined 140404 pass
+V4SafeGenerations 161032 pass
+V4LiveExpiry 27904 pass
+V4LiveNoWorkerFairness 27904 temporal
+MGRenew 775 pass
+MGReuse 84 invariant GenPrivate
+MGRenewKeepOld 116 invariant GenPrivate
+V401WorkerWF 27904 pass
+V401AllWF 27904 temporal
+V401NoErase 27904 temporal
+V401NoReceipt 27904 temporal
+V401NoRestart 27904 temporal
+V401NoWorkerMin 1084 temporal
+PASS: the 9 v4.0.0 TLC runs reproduce identically; 6 v4.0.1 runs added
+V4SafeOneEpoch 27904 pass
+V4SafeTwoEpoch 5584 pass
+V4SafeCombined 140404 pass
+V4SafeGenerations 161032 pass
+V4LiveExpiry 27904 pass
+V4LiveNoWorkerFairness 27904 temporal
+MGRenew 775 pass
+MGReuse 84 invariant GenPrivate
+MGRenewKeepOld 116 invariant GenPrivate
+V401WorkerWF 27904 pass
+V401AllWF 27904 temporal
+V401NoErase 27904 temporal
+V401NoReceipt 27904 temporal
+V401NoRestart 27904 temporal
+V401NoWorkerMin 1084 temporal
+PASS: v4 TLC outcomes, state counts and counterexample actions match expected
+EXIT 0
+openjdk version "26.0.2.1" 2026-08-18
+OpenJDK Runtime Environment Homebrew (build 26.0.2.1)
+OpenJDK 64-Bit Server VM Homebrew (build 26.0.2.1, mixed mode, sharing)
+Python 3.12.14

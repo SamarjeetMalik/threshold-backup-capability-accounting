@@ -1,0 +1,25 @@
+test_abandoned_creation_retries_under_fresh_identifier (test_datalayer.DataLayerTests.test_abandoned_creation_retries_under_fresh_identifier) ... ok
+test_counts_match_theorem_quantities (test_datalayer.DataLayerTests.test_counts_match_theorem_quantities) ... ok
+test_forced_derived_key_collision_is_caught_at_key_byte_level (test_datalayer.DataLayerTests.test_forced_derived_key_collision_is_caught_at_key_byte_level) ... ok
+test_identifier_collision_is_resampled (test_datalayer.DataLayerTests.test_identifier_collision_is_resampled) ... ok
+test_memoized_key_and_empty_open (test_datalayer.DataLayerTests.test_memoized_key_and_empty_open) ... ok
+test_reordered_and_cross_object_chunks_fail (test_datalayer.DataLayerTests.test_reordered_and_cross_object_chunks_fail) ... ok
+test_roundtrip_sizes_and_chunk_counts (test_datalayer.DataLayerTests.test_roundtrip_sizes_and_chunk_counts) ... ok
+test_tampered_chunk_fails_and_is_counted (test_datalayer.DataLayerTests.test_tampered_chunk_fails_and_is_counted) ... ok
+test_truncation_detected_only_with_final_flag (test_datalayer.DataLayerTests.test_truncation_detected_only_with_final_flag) ... ok
+test_chunk_after_final (test_datalayer_v404.CompletenessTests.test_chunk_after_final) ... ok
+test_duplicate_chunk_index (test_datalayer_v404.CompletenessTests.test_duplicate_chunk_index) ... ok
+test_duplicate_final_marker (test_datalayer_v404.CompletenessTests.test_duplicate_final_marker) ... ok
+test_empty_object_round_trip (test_datalayer_v404.CompletenessTests.test_empty_object_round_trip) ... ok
+test_final_chunk_deletion (test_datalayer_v404.CompletenessTests.test_final_chunk_deletion) ... ok
+test_missing_final_marker (test_datalayer_v404.CompletenessTests.test_missing_final_marker) ... ok
+test_partial_failure_releases_no_plaintext (test_datalayer_v404.CompletenessTests.test_partial_failure_releases_no_plaintext) ... ok
+test_context_aliasing (test_datalayer_v404.MalformedAndAliasTests.test_context_aliasing) ... ok
+test_identifier_retry_never_reuses_nonce (test_datalayer_v404.MalformedAndAliasTests.test_identifier_retry_never_reuses_nonce) ... ok
+test_malformed_records_rejected_before_derivation (test_datalayer_v404.MalformedAndAliasTests.test_malformed_records_rejected_before_derivation) ... ok
+test_nonce_reuse_under_equal_key_bytes_is_refused (test_datalayer_v404.MalformedAndAliasTests.test_nonce_reuse_under_equal_key_bytes_is_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.004s
+
+OK

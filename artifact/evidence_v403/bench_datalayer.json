@@ -1,0 +1,78 @@
+{
+  "environment": {
+    "python": "3.12.14",
+    "machine": "arm64",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "cryptography": "50.0.2",
+    "openssl": "OpenSSL 4.0.3 29 Sep 2026"
+  },
+  "method": "median wall-clock of repetitions after one warm-up; time.perf_counter",
+  "primitives": {
+    "hmac_derivation_us": 0.875,
+    "chunk_4096": {
+      "encrypt_us": 2.29,
+      "decrypt_us": 2.27,
+      "encrypt_MiB_per_s": 1705.0
+    },
+    "chunk_65536": {
+      "encrypt_us": 29.21,
+      "decrypt_us": 29.35,
+      "encrypt_MiB_per_s": 2139.8
+    },
+    "chunk_1048576": {
+      "encrypt_us": 452.56,
+      "decrypt_us": 463.44,
+      "encrypt_MiB_per_s": 2209.6
+    }
+  },
+  "objects": [
+    {
+      "object_bytes": 1048576,
+      "chunk_bytes": 65536,
+      "chunks": 16,
+      "store_ms": 0.73,
+      "recover_ms": 0.87,
+      "recover_MiB_per_s": 1146.1,
+      "ciphertext_overhead_bytes": 256,
+      "overhead_analytical_bytes": 256,
+      "open_peak_python_heap_MiB": 2.0,
+      "detect_tampered_last_chunk_ms": 0.88
+    },
+    {
+      "object_bytes": 16777216,
+      "chunk_bytes": 1048576,
+      "chunks": 16,
+      "store_ms": 8.07,
+      "recover_ms": 8.05,
+      "recover_MiB_per_s": 1987.4,
+      "ciphertext_overhead_bytes": 256,
+      "overhead_analytical_bytes": 256,
+      "open_peak_python_heap_MiB": 32.0,
+      "detect_tampered_last_chunk_ms": 7.57
+    },
+    {
+      "object_bytes": 67108864,
+      "chunk_bytes": 1048576,
+      "chunks": 64,
+      "store_ms": 35.66,
+      "recover_ms": 31.14,
+      "recover_MiB_per_s": 2055.3,
+      "ciphertext_overhead_bytes": 1024,
+      "overhead_analytical_bytes": 1024,
+      "open_peak_python_heap_MiB": 128.01,
+      "detect_tampered_last_chunk_ms": 37.05
+    },
+    {
+      "object_bytes": 16777216,
+      "chunk_bytes": 65536,
+      "chunks": 256,
+      "store_ms": 15.43,
+      "recover_ms": 9.98,
+      "recover_MiB_per_s": 1603.7,
+      "ciphertext_overhead_bytes": 4096,
+      "overhead_analytical_bytes": 4096,
+      "open_peak_python_heap_MiB": 32.03,
+      "detect_tampered_last_chunk_ms": 9.9
+    }
+  ]
+}

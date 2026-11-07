@@ -1,0 +1,203 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 0 and seed 1 with 1 worker on 10 cores with 1820MB heap and 64MB offheap memory [pid: 17489] (Mac OS X 26.5.1 aarch64, Homebrew 26.0.2.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/samar/Downloads/Claude/output/v401work/capability-accounting-v4.0.1/artifact/RecoveryLifecycleV4.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/Naturals.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/TLC.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/Sequences.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module RecoveryLifecycleV4
+Starting... (2026-11-05 12:02:49)
+Implied-temporal checking--satisfiability problem has 1 branches.
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-11-05 12:02:50.
+Progress(23) at 2026-11-05 12:02:50: 72,207 states generated, 27,904 distinct states found, 0 states left on queue.
+Checking temporal properties for the complete state space with 27904 total distinct states at (2026-11-05 12:02:50)
+Error: Temporal properties were violated.
+
+Error: The following behavior constitutes a counter-example:
+
+State 1: <Initial predicate>
+/\ phase = (<<0, 0>> :> "sealed")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"idle", "idle">>
+/\ tomb = {}
+/\ pending = {}
+/\ endpoint = <<0, 0>>
+/\ cert = <<0, 0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0, 0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 2: <Request line 43, col 15 to line 48, col 61 of module RecoveryLifecycleV4>
+/\ phase = (<<0, 0>> :> "sealed")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"holding", "idle">>
+/\ tomb = {}
+/\ pending = {}
+/\ endpoint = <<0, 0>>
+/\ cert = <<0, 0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0, 0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 3: <OfferCertificate line 53, col 26 to line 58, col 69 of module RecoveryLifecycleV4>
+/\ phase = (<<0, 0>> :> "sealed")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"holding", "idle">>
+/\ tomb = {}
+/\ pending = {}
+/\ endpoint = <<0, 0>>
+/\ cert = <<1, 0>>
+/\ config = 0
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0, 0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 4: <ConfigUpdate line 164, col 17 to line 170, col 60 of module RecoveryLifecycleV4>
+/\ phase = (<<0, 0>> :> "sealed")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"cancelled", "idle">>
+/\ tomb = {}
+/\ pending = {}
+/\ endpoint = <<0, 0>>
+/\ cert = <<1, 0>>
+/\ config = 1
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = FALSE
+/\ requestConfig = <<0, 0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 5: <IdentityCompromise line 172, col 23 to line 175, col 83 of module RecoveryLifecycleV4>
+/\ phase = (<<0, 0>> :> "sealed")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"cancelled", "idle">>
+/\ tomb = {}
+/\ pending = {}
+/\ endpoint = <<0, 0>>
+/\ cert = <<1, 0>>
+/\ config = 1
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = TRUE
+/\ requestConfig = <<0, 0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 6: <BeginExpiry line 120, col 19 to line 130, col 62 of module RecoveryLifecycleV4>
+/\ phase = (<<0, 0>> :> "expiring")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {<<0, 0>>}
+/\ delivered = {}
+/\ stage = <<"cancelled", "idle">>
+/\ tomb = {<<0, 0>>}
+/\ pending = {}
+/\ endpoint = <<0, 0>>
+/\ cert = <<1, 0>>
+/\ config = 1
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = TRUE
+/\ requestConfig = <<0, 0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 7: <Erase line 132, col 13 to line 136, col 66 of module RecoveryLifecycleV4>
+/\ phase = (<<0, 0>> :> "expiring")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {}
+/\ delivered = {}
+/\ stage = <<"cancelled", "idle">>
+/\ tomb = {<<0, 0>>}
+/\ pending = {}
+/\ endpoint = <<0, 0>>
+/\ cert = <<1, 0>>
+/\ config = 1
+/\ crashed = FALSE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = TRUE
+/\ requestConfig = <<0, 0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+State 8: <Crash line 178, col 10 to line 182, col 103 of module RecoveryLifecycleV4>
+/\ phase = (<<0, 0>> :> "expiring")
+/\ badBinding = FALSE
+/\ highwater = 0
+/\ floor = 0
+/\ slots = {}
+/\ delivered = {}
+/\ stage = <<"cancelled", "idle">>
+/\ tomb = {<<0, 0>>}
+/\ pending = {}
+/\ endpoint = <<0, 0>>
+/\ cert = <<1, 0>>
+/\ config = 1
+/\ crashed = TRUE
+/\ buffers = {}
+/\ committed = {}
+/\ identityCompromised = TRUE
+/\ requestConfig = <<0, 0>>
+/\ held = {}
+/\ receipts = {}
+/\ badExpiry = FALSE
+
+Back to state 7: <Restart line 184, col 12 to line 187, col 65 of module RecoveryLifecycleV4>
+
+Finished checking temporal properties in 00s at 2026-11-05 12:02:50
+72207 states generated, 27904 distinct states found, 0 states left on queue.
+Finished in 00s at (2026-11-05 12:02:50)

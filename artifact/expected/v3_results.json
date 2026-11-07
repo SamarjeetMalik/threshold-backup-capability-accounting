@@ -1,0 +1,254 @@
+{
+  "v3_leakage": {
+    "leakage": {
+      "field": 3,
+      "random_instances": 4000,
+      "arbitrary_domain_instances": 4000,
+      "nonproduct_private_despite_rank_failure": {
+        "A": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "B": [
+          [],
+          [],
+          []
+        ],
+        "domain": [
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "nonlinear_decoding_on_restricted_domain": {
+        "A": [
+          [
+            1,
+            2
+          ]
+        ],
+        "p": 5,
+        "domain": "{0,1}^2",
+        "S0_determined": true,
+        "e0_in_U": false
+      }
+    },
+    "partial_openings": {
+      "field": 11,
+      "beta": 3,
+      "patterns": 375,
+      "patterns_where_v2_pair_count_mispredicts": 150,
+      "half_opening_counterexample": {
+        "t": 2,
+        "disclosed": "B(x1) only, A(x2) only",
+        "complete_pairs": 0,
+        "private": false
+      },
+      "aggregate_response_is_not_index_countable": {
+        "t": 2,
+        "disclosed": "A(x1)+A(x2)",
+        "touched_indices": 2,
+        "private": true
+      }
+    },
+    "block_lemma": {
+      "field": 3,
+      "instances": 3000,
+      "joint_only_reconstruction_cases": 404,
+      "two_seed_example": {
+        "generation_1": "S0+S1",
+        "generation_2": "S0-S1 (p=3)",
+        "S0_from_one_generation": false,
+        "S0_from_both": true
+      }
+    }
+  },
+  "v3_erasure": {
+    "read_once": {
+      "formulas": 2500,
+      "total_roots": 8946,
+      "instances_where_erasure_impossible": 436
+    },
+    "shared_roots": {
+      "formula": "OR(AND(key,cap1), AND(key,cap2)), recorded capsules immutable",
+      "treewise_value": 2,
+      "true_minimum": 1,
+      "true_minimum_capsules_immutable": 1
+    },
+    "vertex_cover": {
+      "random_graphs": 300,
+      "claim": "minimum reused-bank erasure equals minimum vertex cover"
+    },
+    "renewed_credentials": {
+      "random_graphs": 300,
+      "minimum": "one root per generation"
+    }
+  },
+  "v3_temporal": {
+    "healing": [
+      {
+        "scenario": "pair disclosures, no refresh",
+        "target_private": false
+      },
+      {
+        "scenario": "pair disclosures, share refresh",
+        "target_private": true
+      },
+      {
+        "scenario": "copied bank, refresh under same bank",
+        "target_private": false
+      },
+      {
+        "scenario": "copied bank, refresh under renewed bank",
+        "target_private": true
+      },
+      {
+        "scenario": "copied bank, re-encrypt same generation",
+        "target_private": false
+      },
+      {
+        "scenario": "old seed after two copied roots",
+        "target_private": false
+      },
+      {
+        "scenario": "fresh seed under copied bank",
+        "target_private": false
+      },
+      {
+        "scenario": "fresh seed under renewed bank",
+        "target_private": true
+      },
+      {
+        "scenario": "disclosed seed, then refresh + renewal",
+        "target_private": false
+      },
+      {
+        "scenario": "disclosed old seed, fresh seed",
+        "target_private": true
+      },
+      {
+        "scenario": "copied archive root, fresh seed same archive",
+        "target_private": false
+      },
+      {
+        "scenario": "copied archive root, fresh seed renewed archive",
+        "target_private": true
+      },
+      {
+        "scenario": "copied archive root, old seed",
+        "target_private": false
+      }
+    ],
+    "committees": {
+      "holder_configurations": 5427,
+      "holder_feasible": 491,
+      "closed_form_conservative_cases": 0,
+      "minimum_sizes": [
+        {
+          "f": 1,
+          "c": 0,
+          "u": 0,
+          "k": 1,
+          "min_holders": 4,
+          "min_approvers": 3,
+          "min_log": 4,
+          "shared_committee": 4
+        },
+        {
+          "f": 1,
+          "c": 1,
+          "u": 1,
+          "k": 1,
+          "min_holders": 7,
+          "min_approvers": 4,
+          "min_log": 6,
+          "shared_committee": 7
+        },
+        {
+          "f": 2,
+          "c": 1,
+          "u": 1,
+          "k": 1,
+          "min_holders": 10,
+          "min_approvers": 6,
+          "min_log": 9,
+          "shared_committee": 10
+        },
+        {
+          "f": 2,
+          "c": 2,
+          "u": 2,
+          "k": 2,
+          "min_holders": 13,
+          "min_approvers": 8,
+          "min_log": 11,
+          "shared_committee": 13
+        },
+        {
+          "f": 3,
+          "c": 1,
+          "u": 0,
+          "k": 2,
+          "min_holders": 11,
+          "min_approvers": 8,
+          "min_log": 10,
+          "shared_committee": 11
+        }
+      ]
+    },
+    "deadline": [
+      {
+        "D": 1,
+        "C": 2,
+        "H": 5,
+        "tau": 3,
+        "rho": 0.1,
+        "P": 1,
+        "v2": 14,
+        "v3_sharper": 14,
+        "hold_starts_after_certificate": 17.666667
+      },
+      {
+        "D": 2,
+        "C": 1,
+        "H": 1,
+        "tau": 9,
+        "rho": 0.2,
+        "P": 0,
+        "v2": 23.5,
+        "v3_sharper": 22.5,
+        "hold_starts_after_certificate": 24.5
+      },
+      {
+        "D": 1,
+        "C": 1,
+        "H": 20,
+        "tau": 2,
+        "rho": 0.0,
+        "P": 1,
+        "v2": 27,
+        "v3_sharper": 27,
+        "hold_starts_after_certificate": 29.0
+      }
+    ]
+  }
+}

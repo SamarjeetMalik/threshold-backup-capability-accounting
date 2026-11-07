@@ -1,0 +1,23 @@
+test_authorize_rejected_after_cancellation (test_v4.KernelV4.test_authorize_rejected_after_cancellation) ... ok
+test_certificate_cannot_be_replaced (test_v4.KernelV4.test_certificate_cannot_be_replaced) ... ok
+test_commit_requires_earlier_epochs (test_v4.KernelV4.test_commit_requires_earlier_epochs) ... ok
+test_duplicate_completion_does_not_cancel_queued_work (test_v4.KernelV4.test_duplicate_completion_does_not_cancel_queued_work) ... ok
+test_refinement_conformance_v4_kernel (test_v4.KernelV4.test_refinement_conformance_v4_kernel) ... ok
+test_stale_abandon_does_not_cancel_later_work (test_v4.KernelV4.test_stale_abandon_does_not_cancel_later_work) ... ok
+test_acceptance_must_be_transcript_measurable (test_v4.MathV4.test_acceptance_must_be_transcript_measurable) ... ok
+test_domain_corruption (test_v4.MathV4.test_domain_corruption) ... ok
+test_exact_reused_bank_count_partial_publication (test_v4.MathV4.test_exact_reused_bank_count_partial_publication) ... ok
+test_fixed_generation_algorithm (test_v4.MathV4.test_fixed_generation_algorithm) ... ok
+test_guessing_space_covers_reachable_patterns (test_v4.MathV4.test_guessing_space_covers_reachable_patterns) ... ok
+test_marginal_conditional_leakage (test_v4.MathV4.test_marginal_conditional_leakage) ... ok
+test_object_versus_chunk_accounting (test_v4.MathV4.test_object_versus_chunk_accounting) ... ok
+test_random_histories (test_v4.MathV4.test_random_histories) ... ok
+test_reused_bank_pattern_closed_form (test_v4.MathV4.test_reused_bank_pattern_closed_form) ... ok
+test_selection_and_weighted_thresholds (test_v4.MathV4.test_selection_and_weighted_thresholds) ... ok
+test_transcription_matches_tlc_small (test_v4.MathV4.test_transcription_matches_tlc_small) ... ok
+test_uniform_masks_are_necessary (test_v4.MathV4.test_uniform_masks_are_necessary) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.487s
+
+OK

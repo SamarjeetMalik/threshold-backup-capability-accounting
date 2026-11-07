@@ -1,0 +1,18 @@
+% Figure 3: leakage subspace (finite-field linear algebra, no geometry implied)
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[node] (S) at (0,1.2) {seed $S\in D\subseteq\mathbb F_p^k$};
+\node[neut] (R) at (0,0) {mask $R\sim\mathrm{Unif}(\mathbb F_p^r)$};
+\node[node] (A) at (2.6,1.2) {$A\in\mathbb F_p^{m\times k}$};
+\node[neut] (B) at (2.6,0) {$B\in\mathbb F_p^{m\times r}$};
+\node[node,minimum width=8mm] (Y) at (4.6,0.6) {$Y$};
+\draw[flow] (S)--(A); \draw[flow,cslate] (R)--(B);
+\draw[flow] (A)--(Y); \draw[flow,cslate] (B)--(Y);
+\node[font=\figtiny,text=cslate] at (4.6,1.1) {$Y=AS+BR$};
+\node[node,text width=30mm] (lam) at (7.3,1.2) {left kernel of $B$:\\$\lambda B=0$};
+\node[node,text width=30mm] (MS) at (7.3,0) {$\lambda Y=\lambda A\,S=u\cdot S$,\ $u\in U$};
+\draw[flow] (Y)--(lam); \draw[flow] (lam)--(MS);
+\node[neut,text width=46mm,anchor=north west,align=left] at (5.6,-0.6) {$Y\mid S{=}s$ is uniform on the coset $As+\operatorname{im}B$; the view reveals exactly $MS$ (rows of $M$ span $U$); $I(S;Y)=H(MS)\le(\mathrm{rk}[A\,B]-\mathrm{rk}B)\log_2p$.};
+% example panel
+\node[anchor=west,font=\figfont\bfseries,text=cburg] at (-0.9,-1.0) {Example: leakage without reconstruction};
+\node[adv,text width=50mm,anchor=north west,align=left] at (-0.9,-1.25) {$Y=S_0+S_1$ (no mask): $A=[1\ 1]$, $B$ empty.\\$U=\operatorname{span}\{(1,1)\}$, so $e_0,e_1\notin U$: neither seed is reconstructible, yet $\dim U=1$ and $I(S;Y)=\log_2p$ bits for uniform $S$.};
+\end{tikzpicture}

@@ -1,0 +1,22 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 0 and seed 1 with 1 worker on 10 cores with 1820MB heap and 64MB offheap memory [pid: 3889] (Mac OS X 26.5.1 aarch64, Homebrew 26.0.2.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/samar/Downloads/Claude/output/v3work/capability-accounting-v3/artifact/MultiGuardianErasure.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/Naturals.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/Sequences.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module MultiGuardianErasure
+Starting... (2026-11-05 04:44:32)
+Computing initial states...
+Error: Invariant RecoverableBeforeBarrier is violated by the initial state:
+/\ slot = 1..5
+/\ started = FALSE
+/\ byz = {1}
+/\ off = {2}
+/\ committed = FALSE
+/\ receipt = {}
+/\ copied = {}
+
+Finished in 00s at (2026-11-05 04:44:32)

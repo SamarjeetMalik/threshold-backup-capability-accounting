@@ -1,0 +1,280 @@
+{
+  "v4_leakage": {
+    "marginal_conditional": {
+      "field": 3,
+      "instances": 1500,
+      "conditional_strictly_larger": 504
+    },
+    "nonuniform_mask": {
+      "rank_test_private": true,
+      "supports_differ": true
+    },
+    "subspace_masks": {
+      "field": 3,
+      "instances": 1000
+    },
+    "acceptance": {
+      "mask_dependent_acceptance_leaks": true,
+      "transcript_predicate_Y_nonzero_equal_masses": true
+    }
+  },
+  "v4_erasure": {
+    "selection": {
+      "formulas": 2500,
+      "agrees_with_sorting_recurrence": true
+    },
+    "weighted_threshold": {
+      "instances": 2000,
+      "subset_sum_gadget_optimum": 8
+    },
+    "fixed_generations": {
+      "instances": 400,
+      "impossible": 93
+    }
+  },
+  "v4_temporal": {
+    "random_histories": {
+      "independent_targets": 5388,
+      "independent_private": 3002,
+      "correlated_targets": 639,
+      "correlated_disagreements": 5,
+      "correlated_pred_private_but_leaks": 5
+    }
+  },
+  "v4_quorum": {
+    "domains": {
+      "instances": 3000,
+      "feasible": 877
+    },
+    "guessing_loss": [
+      {
+        "generations": [
+          [
+            3,
+            2
+          ]
+        ],
+        "L": 4
+      },
+      {
+        "generations": [
+          [
+            5,
+            3
+          ]
+        ],
+        "L": 16
+      },
+      {
+        "generations": [
+          [
+            7,
+            5
+          ]
+        ],
+        "L": 99
+      },
+      {
+        "generations": [
+          [
+            10,
+            7
+          ]
+        ],
+        "L": 848
+      },
+      {
+        "generations": [
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "L": 256
+      },
+      {
+        "generations": [
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            5
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        "L": 970299
+      }
+    ]
+  },
+  "v4_refinement": {
+    "state_counts": {
+      "1-1-1": 1084,
+      "2-1-1": 5584,
+      "1-1-2": 27904
+    },
+    "kernel_v4": {
+      "schedules": 2000,
+      "kernel_steps": 80000,
+      "divergence_causes": {},
+      "stutter_steps": 69987,
+      "one_step": 9987,
+      "two_step": 26,
+      "three_step": 0,
+      "divergent_schedules": 0,
+      "examples": []
+    },
+    "kernel_v3": {
+      "schedules": 2000,
+      "kernel_steps": 77126,
+      "divergence_causes": {
+        "abandon": 1,
+        "authorize": 212,
+        "commit": 1,
+        "finish": 1
+      },
+      "stutter_steps": 67289,
+      "one_step": 9588,
+      "two_step": 34,
+      "three_step": 0,
+      "divergent_schedules": 215,
+      "examples": [
+        {
+          "schedule": 6,
+          "after": [
+            "authorize",
+            "restart",
+            "finish",
+            "finish",
+            "propose_config",
+            "authorize"
+          ],
+          "changed": "{'cert': ({1: 0, 2: 0}, {1: 1, 2: 0})}"
+        },
+        {
+          "schedule": 36,
+          "after": [
+            "commit_config",
+            "transfer",
+            "tick",
+            "begin",
+            "register",
+            "authorize"
+          ],
+          "changed": "{'cert': ({1: 0, 2: 0}, {1: 1, 2: 0})}"
+        },
+        {
+          "schedule": 38,
+          "after": [
+            "expire",
+            "commit",
+            "propose_config",
+            "commit",
+            "register",
+            "authorize"
+          ],
+          "changed": "{'cert': ({1: 0, 2: 1}, {1: 1, 2: 1})}"
+        },
+        {
+          "schedule": 43,
+          "after": [
+            "erase",
+            "transfer",
+            "propose_config",
+            "send",
+            "receipt",
+            "authorize"
+          ],
+          "changed": "{'cert': ({1: 0, 2: 0}, {1: 1, 2: 0})}"
+        },
+        {
+          "schedule": 53,
+          "after": [
+            "restart",
+            "abandon",
+            "begin",
+            "tick",
+            "restart",
+            "authorize"
+          ],
+          "changed": "{'cert': ({1: 0, 2: 0}, {1: 0, 2: 1})}"
+        }
+      ]
+    }
+  },
+  "v401_patterns": {
+    "policies": 300,
+    "reachable_strictly_smaller_than_L": 143,
+    "reachable_equal_to_L": 157,
+    "min_reachable_fraction": 0.0167,
+    "reuse_example": {
+      "policy": "two 2-of-2 generations, same slots",
+      "L": 9,
+      "reachable": 5
+    }
+  },
+  "v402_checks": {
+    "accounting": {
+      "workloads": 300,
+      "D_exceeds_r": 234,
+      "hmac_below_q_plus_r": 207
+    },
+    "reuse": {
+      "closed_form_cases": 200,
+      "renewed_cases": 100,
+      "partial_publication_cases": 100,
+      "table": [
+        {
+          "n": 2,
+          "t": 2,
+          "G": 2,
+          "reachable": 5,
+          "L": 9
+        },
+        {
+          "n": 5,
+          "t": 3,
+          "G": 2,
+          "reachable": 51,
+          "L": 256
+        },
+        {
+          "n": 7,
+          "t": 5,
+          "G": 3,
+          "reachable": 3991,
+          "L": 970299
+        },
+        {
+          "n": 10,
+          "t": 7,
+          "G": 3,
+          "reachable": 235012,
+          "L": 609800192
+        }
+      ]
+    }
+  },
+  "v403_checks": {
+    "cases": 300,
+    "unequal_threshold_cases": 113,
+    "example": {
+      "n": 5,
+      "t": [
+        4,
+        2,
+        2
+      ],
+      "partial_publication_exact": 36,
+      "v4.0.2_all_published_t_min": 16
+    }
+  }
+}

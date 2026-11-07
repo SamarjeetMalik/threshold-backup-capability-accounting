@@ -1,0 +1,16 @@
+% Figure 8: feasible thresholds t for n = 13 (Proposition 17), three scenarios
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=3 by 1,horizontal sep=0.5cm,yticklabels at=edge left},width=0.36\linewidth,height=4.6cm,
+  xlabel={Byzantine $f$},xtick={0,...,4},ytick={1,3,...,13},xmin=-0.5,xmax=4.5,ymin=0.5,ymax=13.5,
+  tick label style={font=\figfont},label style={font=\figfont},title style={font=\figfont},grid=major,grid style={clightgray}]
+\nextgroupplot[title={$c=0,u=0$},ylabel={threshold $t$}]
+\addplot[only marks,mark=square*,mark size=2.2pt,cnavy] table[x=f,y=t,restrict expr to domain={\thisrow{scenario}*10+\thisrow{ok}}{1:1}]{data/feasible.dat};
+\addplot[only marks,mark=square,mark size=2.2pt,cburg!60] table[x=f,y=t,restrict expr to domain={\thisrow{scenario}*10+\thisrow{ok}}{0:0}]{data/feasible.dat};
+\nextgroupplot[title={$c=1,u=1$}]
+\addplot[only marks,mark=square*,mark size=2.2pt,cnavy] table[x=f,y=t,restrict expr to domain={\thisrow{scenario}*10+\thisrow{ok}}{11:11}]{data/feasible.dat};
+\addplot[only marks,mark=square,mark size=2.2pt,cburg!60] table[x=f,y=t,restrict expr to domain={\thisrow{scenario}*10+\thisrow{ok}}{10:10}]{data/feasible.dat};
+\nextgroupplot[title={$c=2,u=2$}]
+\addplot[only marks,mark=square*,mark size=2.2pt,cnavy] table[x=f,y=t,restrict expr to domain={\thisrow{scenario}*10+\thisrow{ok}}{21:21}]{data/feasible.dat};
+\addplot[only marks,mark=square,mark size=2.2pt,cburg!60] table[x=f,y=t,restrict expr to domain={\thisrow{scenario}*10+\thisrow{ok}}{20:20}]{data/feasible.dat};
+\end{groupplot}
+\end{tikzpicture}

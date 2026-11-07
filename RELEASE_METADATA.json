@@ -1,24 +1,44 @@
 {
-  "version": "2.0.0",
-  "date": "2026-11-01",
+  "version": "4.0.5",
+  "date": "2026-11-06",
+  "status": "public release v4.0.5 (GitHub tag v4.0.5); manuscript not submitted",
+  "supersedes": "4.0.4 (preserved unchanged in Capability_Exposure_Accounting_Artifact_v4.0.4.zip)",
   "repository": "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting",
-  "release": "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting/releases/tag/v2.0.0",
   "python": "CPython 3.12.14; standard library only",
-  "java": "Temurin 17.0.21+9",
+  "java": "OpenJDK 26.0.2.1 (Homebrew); v2 counts identical to the Temurin 17.0.21+9 record",
   "tlc": "TLC2 2.19, official release v1.7.4",
   "tlc_jar_sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
-  "latex": "pdfLaTeX, TeX Live 2026, pdfTeX 1.40.29; BibTeX; latexmk 4.87",
-  "desktop_compile": "success",
-  "pdf_pages": 25,
-  "pdf_sha256": "602f7d8019338286cacdf431be4584f4e54bef4d1f11161f9fd74ed095fa39e3",
+  "latex": "pdfLaTeX via latexmk, -halt-on-error; 0 overfull boxes, 0 undefined references",
+  "pdf_pages": 45,
+  "pdf_sha256": "bb3b2a28787f0c486848bcf9f297647a928d73fb823f507dabfb0272f35a987d",
   "validation": {
-    "python_regression_tests": 30,
-    "matrices": 7407,
-    "parameter_configurations": 28335,
-    "safe_tlc_states_across_four_runs": 316332,
-    "expected_unsafe_tlc_runs": 4,
-    "visual_qa": "all 25 rendered pages inspected; focused equation, figure and table inspection",
-    "tex_errors_undefined_references_overfull_boxes": 0
+    "python_tests": {
+      "v2_baseline": 5,
+      "v2_revision": 25,
+      "v3": 14,
+      "v4": 18,
+      "data_layer": 20
+    },
+    "tlc_runs": {
+      "v2": 8,
+      "v3": 13,
+      "v4": 15
+    },
+    "transcription_state_counts_equal_tlc": [
+      5584,
+      27904
+    ],
+    "conformance": {
+      "v4_kernel_calls": 80000,
+      "v4_divergences": 0,
+      "v3_divergent_schedules": 215
+    },
+    "random_histories": 3000,
+    "guessing_space_policies": 300,
+    "single_command": "artifact/reproduce_all.py"
   },
-  "scope": "declared symbolic/affine analysis and finite lifecycle safety; no complete concrete-client theorem or physical-erasure certification"
+  "scope": "declared symbolic/affine analysis; restricted-adaptive composition (guessing loss L, exponential in renewed generations; NOT full adaptive security); finite lifecycle, barrier and renewal checking; bounded refinement-conformance testing; no full adaptive theorem, refinement proof or physical-erasure certification",
+  "python_dependencies": "cryptography==50.0.2 (data layer only), see artifact/requirements.txt",
+  "pdf_submission_sha256": "569e6cd98593c86e94a358a58385997c574100e7ae937a01b991219ffcefea0a",
+  "benchmark_machine": "Apple M5, 24 GiB, macOS 26.5.1"
 }

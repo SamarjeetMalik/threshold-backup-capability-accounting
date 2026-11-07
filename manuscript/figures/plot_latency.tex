@@ -1,0 +1,13 @@
+% Plots 3 and 6: per-chunk encryption latency, median with IQR (measured)
+\begin{tikzpicture}
+\begin{axis}[width=0.62\linewidth,height=4.8cm,xmode=log,ymode=log,log basis x=2,
+  xlabel={chunk size (KiB)},ylabel={encryption time ($\mu$s)},xtick={1,4,16,64,256,1024},
+  xticklabels={1,4,16,64,256,1024},grid=major,grid style={clightgray},tick label style={font=\scriptsize},
+  label style={font=\scriptsize},legend style={font=\tiny,draw=none,at={(0.02,0.98)},anchor=north west}]
+\addplot[cnavy,thick,mark=*,mark size=1.2pt,error bars/.cd,y dir=both,y explicit]
+  table[x=kib,y=enc_med,y error plus expr=\thisrow{enc_q3}-\thisrow{enc_med},y error minus expr=\thisrow{enc_med}-\thisrow{enc_q1}]{data/bench_chacha.dat};
+\addplot[cburg,thick,mark=square*,mark size=1.2pt,error bars/.cd,y dir=both,y explicit]
+  table[x=kib,y=enc_med,y error plus expr=\thisrow{enc_q3}-\thisrow{enc_med},y error minus expr=\thisrow{enc_med}-\thisrow{enc_q1}]{data/bench_aes.dat};
+\legend{ChaCha20-Poly1305 (profile),AES-256-GCM (comparison)}
+\end{axis}
+\end{tikzpicture}

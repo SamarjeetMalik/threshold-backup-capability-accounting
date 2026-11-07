@@ -57,7 +57,7 @@ class Request:
     recipient: bytes
     manifest: bytes
     bank: int = 0
-    domain: str = "ceab/ordinary-recovery/v2"
+    domain: str = "ceab/ordinary-recovery/v2"  # wire label unchanged in v3
 
     @property
     def digest(self):
@@ -127,6 +127,10 @@ class ReferenceKernel:
         self.jobs={}
         self.delivered=[]
         self.crashed=False
+        # v3: decryption workers that have begun and not yet returned. A worker
+        # cancelled by expiry may still hold decrypted pair material, so a
+        # receipt for its path waits until it returns (finish or abandon).
+        self.inflight={}
 
     def _available(self):
         if self.crashed:
@@ -177,10 +181,21 @@ class ReferenceKernel:
             self.jobs[request.nonce]=job
             return job
 
+    def _job(self, nonce):
+        if nonce not in self.jobs:
+            raise Rejected("unknown request")
+        return self.jobs[nonce]
+
     def authorize(self, nonce, certificate):
         with self.lock:
             self._available()
-            job=self.jobs[nonce]
+            job=self._job(nonce)
+            if job.stage not in ("holding","decrypting","queued","sending"):
+                raise Rejected("request no longer active")  # v4: matches TLA OfferCertificate
+            if job.certificate is not None:
+                if job.certificate==certificate:
+                    return
+                raise Rejected("certificate already bound")
             self._certificate(certificate,job.request)
             job.certificate=certificate
 
@@ -201,18 +216,23 @@ class ReferenceKernel:
 
     def begin_decrypt(self, nonce, checkpoint):
         with self.lock:
-            job=self.jobs[nonce]
+            job=self._job(nonce)
             self._guard(job,checkpoint)
             if job.stage!="holding":
                 raise Rejected("not holding")
             job.stage="decrypting"
             job.work_revision=self.anchor.revision
-            return (nonce,job.request.digest,job.work_revision)
+            token=(nonce,job.request.digest,job.work_revision)
+            self.inflight[token]=(job.request.epoch,job.request.generation)
+            return token
 
     def finish_decrypt(self, token, pair_bytes):
         with self.lock:
             nonce,digest,revision=token
-            job=self.jobs[nonce]
+            if token not in self.inflight:
+                return False  # v4: duplicate or stale completion must not touch the job
+            del self.inflight[token]
+            job=self._job(nonce)
             try:
                 if job.stage!="decrypting" or digest!=job.request.digest or revision!=self.anchor.revision:
                     raise Rejected("invalidated work")
@@ -224,9 +244,19 @@ class ReferenceKernel:
             job.stage="queued"
             return True
 
+    def abandon_decrypt(self, token):
+        """A worker that fails or is torn down reports that it holds no output."""
+        with self.lock:
+            if token not in self.inflight:
+                return  # v4: a stale abandon must not cancel later work
+            del self.inflight[token]
+            job=self.jobs.get(token[0])
+            if job is not None:
+                self._cancel(job)
+
     def begin_send(self, nonce, checkpoint):
         with self.lock:
-            job=self.jobs[nonce]
+            job=self._job(nonce)
             self._guard(job,checkpoint)
             if job.stage!="queued" or job.buffer is None:
                 raise Rejected("nothing queued")
@@ -239,7 +269,7 @@ class ReferenceKernel:
         cannot interleave the final guard and this modeled ownership transfer.
         """
         with self.lock:
-            job=self.jobs[nonce]
+            job=self._job(nonce)
             self._guard(job,checkpoint)
             if job.stage!="sending" or job.buffer is None:
                 raise Rejected("send cancelled")
@@ -290,6 +320,8 @@ class ReferenceKernel:
                 raise Rejected("cleanup incomplete")
             if any(j.buffer is not None and (j.request.epoch,j.request.generation)==key for j in self.jobs.values()):
                 raise Rejected("target buffer remains")
+            if key in self.inflight.values():
+                raise Rejected("decryption worker for this path has not returned")
             e.receipt=True
             self.anchor.revision+=1
 
@@ -309,6 +341,8 @@ class ReferenceKernel:
             e=self.anchor.epochs[key]
             if not e.proposed or not e.receipt or e.slot:
                 raise Rejected("barrier prerequisites")
+            if any(not v.committed for (x,g),v in self.anchor.epochs.items() if x<key[0]):
+                raise Rejected("earlier birth epochs not committed")  # v4: matches TLA Commit
             e.committed=True
             e.phase="erased"
             self.anchor.revision+=1
@@ -343,6 +377,7 @@ class ReferenceKernel:
     def crash(self):
         with self.lock:
             self.crashed=True
+            self.inflight.clear()  # process crash ends workers; not a RAM claim
             for job in self.jobs.values():
                 self._cancel(job)
 

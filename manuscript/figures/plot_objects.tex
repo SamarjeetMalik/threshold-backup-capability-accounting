@@ -1,0 +1,18 @@
+% Plot 5: object store/open time and peak heap (measured, 1 MiB chunks)
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.5cm},width=0.47\linewidth,height=4.6cm,
+  xmode=log,log basis x=2,xtick={1,4,16,64,256},xticklabels={1,4,16,64,256},xlabel={object size (MiB)},
+  grid=major,grid style={clightgray},tick label style={font=\scriptsize},label style={font=\scriptsize},
+  legend style={font=\tiny,draw=none,at={(0.02,0.98)},anchor=north west}]
+\nextgroupplot[ymode=log,ylabel={time (ms)}]
+\addplot[cnavy,thick,mark=*,mark size=1.2pt,error bars/.cd,y dir=both,y explicit] table[x=mib,y=store_med,
+  y error plus expr=\thisrow{store_q3}-\thisrow{store_med},y error minus expr=\thisrow{store_med}-\thisrow{store_q1}]{data/bench_objects.dat};
+\addplot[cburg,thick,mark=square*,mark size=1.2pt,error bars/.cd,y dir=both,y explicit] table[x=mib,y=open_med,
+  y error plus expr=\thisrow{open_q3}-\thisrow{open_med},y error minus expr=\thisrow{open_med}-\thisrow{open_q1}]{data/bench_objects.dat};
+\legend{Store,Open}
+\nextgroupplot[ymode=log,ylabel={peak heap (MiB)}]
+\addplot[cslate,thick,mark=triangle*,mark size=1.4pt] table[x=mib,y=peak_mib]{data/bench_objects.dat};
+\addplot[cslate,dashed,domain=1:256,samples=2] {2*x};
+\legend{measured,$2\times$ object size}
+\end{groupplot}
+\end{tikzpicture}

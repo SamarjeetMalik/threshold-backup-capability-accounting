@@ -1,0 +1,102 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 0 and seed 1 with 1 worker on 10 cores with 1820MB heap and 64MB offheap memory [pid: 3885] (Mac OS X 26.5.1 aarch64, Homebrew 26.0.2.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/samar/Downloads/Claude/output/v3work/capability-accounting-v3/artifact/MultiGuardianErasure.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/Naturals.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/FiniteSets.tla
+Parsing file /private/var/folders/2w/68m8138x543cgwktg8l141jr0000gn/T/Sequences.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module MultiGuardianErasure
+Starting... (2026-11-05 04:44:30)
+Computing initial states...
+Computed 2 initial states...
+Computed 4 initial states...
+Finished computing initial states: 5 distinct states generated at 2026-11-05 04:44:30.
+Error: Invariant ErasureSafe is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ slot = 1..5
+/\ started = FALSE
+/\ byz = {1}
+/\ off = {}
+/\ committed = FALSE
+/\ receipt = {}
+/\ copied = {}
+
+State 2: <Start line 27, col 10 to line 28, col 68 of module MultiGuardianErasure>
+/\ slot = 1..5
+/\ started = TRUE
+/\ byz = {1}
+/\ off = {}
+/\ committed = FALSE
+/\ receipt = {}
+/\ copied = {}
+
+State 3: <ByzantineReceipt line 44, col 24 to line 46, col 82 of module MultiGuardianErasure>
+/\ slot = 1..5
+/\ started = TRUE
+/\ byz = {1}
+/\ off = {}
+/\ committed = FALSE
+/\ receipt = {1}
+/\ copied = {}
+
+State 4: <Copy line 30, col 12 to line 33, col 71 of module MultiGuardianErasure>
+/\ slot = 1..5
+/\ started = TRUE
+/\ byz = {1}
+/\ off = {}
+/\ committed = FALSE
+/\ receipt = {1}
+/\ copied = {2}
+
+State 5: <Erase line 35, col 13 to line 37, col 74 of module MultiGuardianErasure>
+/\ slot = {1, 3, 4, 5}
+/\ started = TRUE
+/\ byz = {1}
+/\ off = {}
+/\ committed = FALSE
+/\ receipt = {1}
+/\ copied = {2}
+
+State 6: <HonestReceipt line 39, col 21 to line 42, col 79 of module MultiGuardianErasure>
+/\ slot = {1, 3, 4, 5}
+/\ started = TRUE
+/\ byz = {1}
+/\ off = {}
+/\ committed = FALSE
+/\ receipt = {1, 2}
+/\ copied = {2}
+
+State 7: <Erase line 35, col 13 to line 37, col 74 of module MultiGuardianErasure>
+/\ slot = {1, 4, 5}
+/\ started = TRUE
+/\ byz = {1}
+/\ off = {}
+/\ committed = FALSE
+/\ receipt = {1, 2}
+/\ copied = {2}
+
+State 8: <HonestReceipt line 39, col 21 to line 42, col 79 of module MultiGuardianErasure>
+/\ slot = {1, 4, 5}
+/\ started = TRUE
+/\ byz = {1}
+/\ off = {}
+/\ committed = FALSE
+/\ receipt = {1, 2, 3}
+/\ copied = {2}
+
+State 9: <Commit line 48, col 11 to line 50, col 67 of module MultiGuardianErasure>
+/\ slot = {1, 4, 5}
+/\ started = TRUE
+/\ byz = {1}
+/\ off = {}
+/\ committed = TRUE
+/\ receipt = {1, 2, 3}
+/\ copied = {2}
+
+9531 states generated, 3086 distinct states found, 859 states left on queue.
+The depth of the complete state graph search is 9.
+The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 9 and the 95th percentile is 4).
+Finished in 00s at (2026-11-05 04:44:30)

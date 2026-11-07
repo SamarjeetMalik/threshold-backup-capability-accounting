@@ -1,0 +1,11 @@
+% Figure: truncation experiment (executed test, not a probability)
+\begin{tikzpicture}[x=1cm,y=1cm,ch/.style={draw=cnavy,fill=cpaleblue,font=\figtiny,minimum width=14mm,minimum height=5mm},chx/.style={draw=cslate,dashed,font=\figtiny,minimum width=14mm,minimum height=5mm,text=cslate}]
+\node[layer,anchor=west] at (-0.7,1.0) {(a) AD without final flag (v4.0.2 profile)};
+\node[ch] at (0,0.4) {$c_0$}; \node[ch] at (1.6,0.4) {$c_1$};
+\node[chx] at (3.2,0.4) {$c_2$ removed}; \node[chx] at (4.8,0.4) {$c_3$ removed};
+\node[adv,font=\figtiny,anchor=west] at (5.8,0.4) {accepted: 20 of 40 bytes, no error};
+\node[layer,anchor=west] at (-0.7,-0.35) {(b) AD with final flag (v4.0.3 and later)};
+\node[ch] at (0,-0.95) {$c_0$}; \node[ch] at (1.6,-0.95) {$c_1$};
+\node[chx] at (3.2,-0.95) {$c_2$ removed}; \node[chx] at (4.8,-0.95) {$c_3$ removed};
+\node[node,font=\figtiny,anchor=west] at (5.8,-0.95) {rejected: $c_1$ was sealed with final $=0$};
+\end{tikzpicture}

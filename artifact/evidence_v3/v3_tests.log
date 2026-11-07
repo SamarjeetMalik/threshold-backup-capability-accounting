@@ -1,0 +1,20 @@
+test_abandoned_worker_releases_receipt (test_v3.InflightWorkerTests.test_abandoned_worker_releases_receipt) ... ok
+test_crash_ends_workers (test_v3.InflightWorkerTests.test_crash_ends_workers) ... ok
+test_inflight_on_other_path_does_not_block_receipt (test_v3.InflightWorkerTests.test_inflight_on_other_path_does_not_block_receipt) ... ok
+test_receipt_waits_for_cancelled_worker (test_v3.InflightWorkerTests.test_receipt_waits_for_cancelled_worker) ... ok
+test_unknown_nonce_is_rejection_not_crash (test_v3.InflightWorkerTests.test_unknown_nonce_is_rejection_not_crash) ... ok
+test_v2_kernel_signed_receipt_with_worker_running (test_v3.InflightWorkerTests.test_v2_kernel_signed_receipt_with_worker_running)
+Documents the v2 defect: the receipt precedes the worker's return. ... ok
+test_committee_closed_form (test_v3.MathematicalChecks.test_committee_closed_form) ... ok
+test_healing_classification (test_v3.MathematicalChecks.test_healing_classification) ... ok
+test_leakage_subspace_theorem (test_v3.MathematicalChecks.test_leakage_subspace_theorem) ... ok
+test_partial_openings_count_indices_not_pairs (test_v3.MathematicalChecks.test_partial_openings_count_indices_not_pairs) ... ok
+test_privacy_is_blockwise_reconstruction_is_not (test_v3.MathematicalChecks.test_privacy_is_blockwise_reconstruction_is_not) ... ok
+test_read_once_erasure_is_exact (test_v3.MathematicalChecks.test_read_once_erasure_is_exact) ... ok
+test_reused_bank_erasure_is_vertex_cover (test_v3.MathematicalChecks.test_reused_bank_erasure_is_vertex_cover) ... ok
+test_shared_root_breaks_treewise_evaluation (test_v3.MathematicalChecks.test_shared_root_breaks_treewise_evaluation) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.097s
+
+OK

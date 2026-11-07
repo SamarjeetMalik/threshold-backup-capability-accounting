@@ -1,0 +1,147 @@
+{
+  "scope": "finite explicit-state checking; liveness only under the declared weak fairness",
+  "tlc_version": "TLC2 2.19, release v1.7.4",
+  "jar_sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
+  "runs": [
+    {
+      "module": "RecoveryLifecycleV3",
+      "config": "V3SafeOneEpoch",
+      "outcome": "pass",
+      "states_generated": 71519,
+      "distinct_states": 27888,
+      "counterexample_actions": []
+    },
+    {
+      "module": "RecoveryLifecycleV3",
+      "config": "V3SafeTwoEpoch",
+      "outcome": "pass",
+      "states_generated": 15153,
+      "distinct_states": 5584,
+      "counterexample_actions": []
+    },
+    {
+      "module": "RecoveryLifecycleV3",
+      "config": "V3SafeCombined",
+      "outcome": "pass",
+      "states_generated": 407173,
+      "distinct_states": 140356,
+      "counterexample_actions": []
+    },
+    {
+      "module": "RecoveryLifecycleV3",
+      "config": "V3SafeGenerations",
+      "outcome": "pass",
+      "states_generated": 466205,
+      "distinct_states": 160984,
+      "counterexample_actions": []
+    },
+    {
+      "module": "RecoveryLifecycleV3",
+      "config": "V3V2GuardsOnly",
+      "outcome": "pass",
+      "states_generated": 452345,
+      "distinct_states": 149844,
+      "counterexample_actions": []
+    },
+    {
+      "module": "RecoveryLifecycleV3",
+      "config": "V3UnsafeInflight",
+      "outcome": "invariant ReceiptAfterWorkers",
+      "states_generated": 1025,
+      "distinct_states": 520,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Request",
+        "HoldCompletes",
+        "OfferCertificate",
+        "BeginDecrypt",
+        "BeginExpiry",
+        "Erase",
+        "SignReceipt"
+      ]
+    },
+    {
+      "module": "MultiGuardianErasure",
+      "config": "MGSafe",
+      "outcome": "pass",
+      "states_generated": 14450,
+      "distinct_states": 4325,
+      "counterexample_actions": []
+    },
+    {
+      "module": "MultiGuardianErasure",
+      "config": "MGSafeTwoFaults",
+      "outcome": "pass",
+      "states_generated": 92862,
+      "distinct_states": 21987,
+      "counterexample_actions": []
+    },
+    {
+      "module": "MultiGuardianErasure",
+      "config": "MGSafeOutage",
+      "outcome": "pass",
+      "states_generated": 610218,
+      "distinct_states": 146706,
+      "counterexample_actions": []
+    },
+    {
+      "module": "MultiGuardianErasure",
+      "config": "MGUnsafeQuorum",
+      "outcome": "invariant ErasureSafe",
+      "states_generated": 9531,
+      "distinct_states": 3086,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Start",
+        "ByzantineReceipt",
+        "Copy",
+        "Erase",
+        "HonestReceipt",
+        "Erase",
+        "HonestReceipt",
+        "Commit"
+      ]
+    },
+    {
+      "module": "MultiGuardianErasure",
+      "config": "MGUnsafeReceipt",
+      "outcome": "invariant ErasureSafe",
+      "states_generated": 13300,
+      "distinct_states": 4103,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Start",
+        "ByzantineReceipt",
+        "HonestReceipt",
+        "HonestReceipt",
+        "HonestReceipt",
+        "Commit"
+      ]
+    },
+    {
+      "module": "MultiGuardianErasure",
+      "config": "MGNoProgress",
+      "outcome": "temporal",
+      "states_generated": 2760,
+      "distinct_states": 1120,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Start",
+        "Erase",
+        "Erase",
+        "HonestReceipt",
+        "Erase",
+        "HonestReceipt",
+        "HonestReceipt"
+      ]
+    },
+    {
+      "module": "MultiGuardianErasure",
+      "config": "MGUnrecoverable",
+      "outcome": "invariant RecoverableBeforeBarrier",
+      "states_generated": null,
+      "distinct_states": null,
+      "counterexample_actions": []
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "scope": "finite explicit-state checking; liveness only under the declared weak fairness",
+  "tlc_version": "TLC2 2.19, release v1.7.4",
+  "jar_sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
+  "runs": [
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V4SafeOneEpoch",
+      "outcome": "pass",
+      "states_generated": 72207,
+      "distinct_states": 27904,
+      "counterexample_actions": []
+    },
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V4SafeTwoEpoch",
+      "outcome": "pass",
+      "states_generated": 15193,
+      "distinct_states": 5584,
+      "counterexample_actions": []
+    },
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V4SafeCombined",
+      "outcome": "pass",
+      "states_generated": 409577,
+      "distinct_states": 140404,
+      "counterexample_actions": []
+    },
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V4SafeGenerations",
+      "outcome": "pass",
+      "states_generated": 468773,
+      "distinct_states": 161032,
+      "counterexample_actions": []
+    },
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V4LiveExpiry",
+      "outcome": "pass",
+      "states_generated": 72207,
+      "distinct_states": 27904,
+      "counterexample_actions": []
+    },
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V4LiveNoWorkerFairness",
+      "outcome": "temporal",
+      "states_generated": 72207,
+      "distinct_states": 27904,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Request",
+        "ChangeRecipient",
+        "IdentityCompromise",
+        "OfferCertificate",
+        "ConfigUpdate",
+        "Request",
+        "OfferCertificate",
+        "HoldCompletes",
+        "BeginDecrypt",
+        "BeginExpiry",
+        "Erase"
+      ]
+    },
+    {
+      "module": "MultiGenerationRenewal",
+      "config": "MGRenew",
+      "outcome": "pass",
+      "states_generated": 775,
+      "distinct_states": 775,
+      "counterexample_actions": []
+    },
+    {
+      "module": "MultiGenerationRenewal",
+      "config": "MGReuse",
+      "outcome": "invariant GenPrivate",
+      "states_generated": 85,
+      "distinct_states": 84,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Copy",
+        "Refresh",
+        "Copy"
+      ]
+    },
+    {
+      "module": "MultiGenerationRenewal",
+      "config": "MGRenewKeepOld",
+      "outcome": "invariant GenPrivate",
+      "states_generated": 117,
+      "distinct_states": 116,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Copy",
+        "Refresh",
+        "Copy"
+      ]
+    },
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V401WorkerWF",
+      "outcome": "pass",
+      "states_generated": 72207,
+      "distinct_states": 27904,
+      "counterexample_actions": []
+    },
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V401AllWF",
+      "outcome": "temporal",
+      "states_generated": 72207,
+      "distinct_states": 27904,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Request",
+        "OfferCertificate",
+        "ConfigUpdate",
+        "IdentityCompromise",
+        "BeginExpiry",
+        "Erase",
+        "Crash"
+      ]
+    },
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V401NoErase",
+      "outcome": "temporal",
+      "states_generated": 72207,
+      "distinct_states": 27904,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Request",
+        "ChangeRecipient",
+        "IdentityCompromise",
+        "OfferCertificate",
+        "BeginExpiry",
+        "ConfigUpdate"
+      ]
+    },
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V401NoReceipt",
+      "outcome": "temporal",
+      "states_generated": 72207,
+      "distinct_states": 27904,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Request",
+        "ChangeRecipient",
+        "IdentityCompromise",
+        "OfferCertificate",
+        "BeginExpiry",
+        "Erase",
+        "ConfigUpdate"
+      ]
+    },
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V401NoRestart",
+      "outcome": "temporal",
+      "states_generated": 72207,
+      "distinct_states": 27904,
+      "counterexample_actions": [
+        "Initial predicate",
+        "Request",
+        "OfferCertificate",
+        "ConfigUpdate",
+        "IdentityCompromise",
+        "BeginExpiry",
+        "Crash"
+      ]
+    },
+    {
+      "module": "RecoveryLifecycleV4",
+      "config": "V401NoWorkerMin",
+      "outcome": "temporal",
+      "states_generated": 2517,
+      "distinct_states": 1084,
+      "counterexample_actions": [
+        "Initial predicate",
+        "ConfigUpdate",
+        "Request",
+        "HoldCompletes",
+        "OfferCertificate",
+        "BeginDecrypt",
+        "ChangeRecipient",
+        "IdentityCompromise",
+        "BeginExpiry",
+        "Erase"
+      ]
+    }
+  ]
+}
