@@ -1,9 +1,10 @@
 % Plot 2: derived-key collision bad-event bound (not an observed frequency)
 \begin{tikzpicture}
-\begin{axis}[width=0.62\linewidth,height=4.4cm,xlabel={$\log_2K$ (key instances)},ylabel={$\log_2$ of $K(K-1)/2^{257}$},
-  grid=major,grid style={clightgray},tick label style={font=\scriptsize},label style={font=\scriptsize},xmin=1,xmax=64]
+\begin{axis}[width=0.9\linewidth,height=4.4cm,xlabel={$\log_2K_{\mathrm{key}}$ (key instances)},ylabel={$\log_2$ of $K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{257}$},
+  grid=major,grid style={clightgray},tick label style={font=\footnotesize},label style={font=\footnotesize},xmin=1,xmax=64]
 \addplot[cburg,thick] table[x=log2K,y=log2bound]{data/keycoll.dat};
 \addplot[cslate,dashed] coordinates {(28,-260) (28,-120)};
-\node[font=\tiny,text=cslate,anchor=west] at (axis cs:29,-215) {$K=2^{28}$: $<2^{-201}$};
+\addplot[only marks,mark=*,mark size=1.6pt,cburg] coordinates {(28,-201.0)};
+\node[font=\footnotesize,text=cslate,anchor=west,align=left] at (axis cs:30,-205) {$K_{\mathrm{key}}=2^{28}$:\\ bound $<2^{-201}$};
 \end{axis}
 \end{tikzpicture}

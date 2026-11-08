@@ -1,0 +1,285 @@
+{
+ "method": "v4.1.0 memory measurement of the reference data layer's Open.\n\nMethod: for every object size (1 MiB chunks) and every trial, a fresh child\nprocess stores a seeded object (SHAKE-256 of the seed) and writes the record\nto a temporary file; a second fresh child process loads the record, starts\ntracemalloc, opens the object once, and reports\n  * the tracemalloc peak during Open (Python-managed allocations), and\n  * the process's peak resident set size (getrusage ru_maxrss), which also\n    contains the interpreter, the imported modules and the loaded record.\nAn idle child that only imports the same modules gives the RSS baseline.\nSeven trials per size; outputs raw JSON and a CSV of median, min and max.\nThese are single-machine observations; they enter no proof.\n",
+ "python": "3.12.14",
+ "platform": "macOS-26.5.1-arm64-arm-64bit",
+ "machine": "arm64",
+ "cryptography": "50.0.2",
+ "trials": 7,
+ "idle_maxrss_bytes": [
+  29884416,
+  30015488,
+  30081024,
+  29917184,
+  30097408,
+  30162944,
+  30113792
+ ],
+ "objects": [
+  {
+   "object_MiB": 1,
+   "samples": [
+    {
+     "bytes": 1048576,
+     "tracemalloc_peak": 1049608,
+     "maxrss": 32620544
+    },
+    {
+     "bytes": 1048576,
+     "tracemalloc_peak": 1049608,
+     "maxrss": 32686080
+    },
+    {
+     "bytes": 1048576,
+     "tracemalloc_peak": 1049608,
+     "maxrss": 32964608
+    },
+    {
+     "bytes": 1048576,
+     "tracemalloc_peak": 1049608,
+     "maxrss": 32849920
+    },
+    {
+     "bytes": 1048576,
+     "tracemalloc_peak": 1049608,
+     "maxrss": 32997376
+    },
+    {
+     "bytes": 1048576,
+     "tracemalloc_peak": 1049608,
+     "maxrss": 32702464
+    },
+    {
+     "bytes": 1048576,
+     "tracemalloc_peak": 1049608,
+     "maxrss": 32817152
+    }
+   ],
+   "tracemalloc_MiB": {
+    "median": 1.0009841918945312,
+    "min": 1.0009841918945312,
+    "max": 1.0009841918945312,
+    "n": 7
+   },
+   "maxrss_MiB": {
+    "median": 31.296875,
+    "min": 31.109375,
+    "max": 31.46875,
+    "n": 7
+   }
+  },
+  {
+   "object_MiB": 4,
+   "samples": [
+    {
+     "bytes": 4194304,
+     "tracemalloc_peak": 8389557,
+     "maxrss": 43614208
+    },
+    {
+     "bytes": 4194304,
+     "tracemalloc_peak": 8389557,
+     "maxrss": 43614208
+    },
+    {
+     "bytes": 4194304,
+     "tracemalloc_peak": 8389557,
+     "maxrss": 43417600
+    },
+    {
+     "bytes": 4194304,
+     "tracemalloc_peak": 8389557,
+     "maxrss": 43483136
+    },
+    {
+     "bytes": 4194304,
+     "tracemalloc_peak": 8389557,
+     "maxrss": 43417600
+    },
+    {
+     "bytes": 4194304,
+     "tracemalloc_peak": 8389557,
+     "maxrss": 43319296
+    },
+    {
+     "bytes": 4194304,
+     "tracemalloc_peak": 8389557,
+     "maxrss": 43319296
+    }
+   ],
+   "tracemalloc_MiB": {
+    "median": 8.00090503692627,
+    "min": 8.00090503692627,
+    "max": 8.00090503692627,
+    "n": 7
+   },
+   "maxrss_MiB": {
+    "median": 41.40625,
+    "min": 41.3125,
+    "max": 41.59375,
+    "n": 7
+   }
+  },
+  {
+   "object_MiB": 16,
+   "samples": [
+    {
+     "bytes": 16777216,
+     "tracemalloc_peak": 33557153,
+     "maxrss": 81756160
+    },
+    {
+     "bytes": 16777216,
+     "tracemalloc_peak": 33557153,
+     "maxrss": 81870848
+    },
+    {
+     "bytes": 16777216,
+     "tracemalloc_peak": 33557153,
+     "maxrss": 81739776
+    },
+    {
+     "bytes": 16777216,
+     "tracemalloc_peak": 33557153,
+     "maxrss": 81838080
+    },
+    {
+     "bytes": 16777216,
+     "tracemalloc_peak": 33557153,
+     "maxrss": 81805312
+    },
+    {
+     "bytes": 16777216,
+     "tracemalloc_peak": 33557153,
+     "maxrss": 81788928
+    },
+    {
+     "bytes": 16777216,
+     "tracemalloc_peak": 33557153,
+     "maxrss": 81870848
+    }
+   ],
+   "tracemalloc_MiB": {
+    "median": 32.00259494781494,
+    "min": 32.00259494781494,
+    "max": 32.00259494781494,
+    "n": 7
+   },
+   "maxrss_MiB": {
+    "median": 78.015625,
+    "min": 77.953125,
+    "max": 78.078125,
+    "n": 7
+   }
+  },
+  {
+   "object_MiB": 64,
+   "samples": [
+    {
+     "bytes": 67108864,
+     "tracemalloc_peak": 134226257,
+     "maxrss": 234766336
+    },
+    {
+     "bytes": 67108864,
+     "tracemalloc_peak": 134226257,
+     "maxrss": 234635264
+    },
+    {
+     "bytes": 67108864,
+     "tracemalloc_peak": 134226257,
+     "maxrss": 234930176
+    },
+    {
+     "bytes": 67108864,
+     "tracemalloc_peak": 134226257,
+     "maxrss": 234749952
+    },
+    {
+     "bytes": 67108864,
+     "tracemalloc_peak": 134226257,
+     "maxrss": 234799104
+    },
+    {
+     "bytes": 67108864,
+     "tracemalloc_peak": 134226257,
+     "maxrss": 234930176
+    },
+    {
+     "bytes": 67108864,
+     "tracemalloc_peak": 134226257,
+     "maxrss": 234766336
+    }
+   ],
+   "tracemalloc_MiB": {
+    "median": 128.00813388824463,
+    "min": 128.00813388824463,
+    "max": 128.00813388824463,
+    "n": 7
+   },
+   "maxrss_MiB": {
+    "median": 223.890625,
+    "min": 223.765625,
+    "max": 224.046875,
+    "n": 7
+   }
+  },
+  {
+   "object_MiB": 256,
+   "samples": [
+    {
+     "bytes": 268435456,
+     "tracemalloc_peak": 536902769,
+     "maxrss": 847167488
+    },
+    {
+     "bytes": 268435456,
+     "tracemalloc_peak": 536902769,
+     "maxrss": 847134720
+    },
+    {
+     "bytes": 268435456,
+     "tracemalloc_peak": 536902769,
+     "maxrss": 847495168
+    },
+    {
+     "bytes": 268435456,
+     "tracemalloc_peak": 536902769,
+     "maxrss": 847446016
+    },
+    {
+     "bytes": 268435456,
+     "tracemalloc_peak": 536902769,
+     "maxrss": 847331328
+    },
+    {
+     "bytes": 268435456,
+     "tracemalloc_peak": 536902769,
+     "maxrss": 847085568
+    },
+    {
+     "bytes": 268435456,
+     "tracemalloc_peak": 536902769,
+     "maxrss": 847183872
+    }
+   ],
+   "tracemalloc_MiB": {
+    "median": 512.0303812026978,
+    "min": 512.0303812026978,
+    "max": 512.0303812026978,
+    "n": 7
+   },
+   "maxrss_MiB": {
+    "median": 807.9375,
+    "min": 807.84375,
+    "max": 808.234375,
+    "n": 7
+   }
+  }
+ ],
+ "idle_maxrss_MiB": {
+  "median": 28.6875,
+  "min": 28.5,
+  "max": 28.765625,
+  "n": 7
+ }
+}

@@ -1,6 +1,33 @@
-# Reproduction artifact, v4.0.7
+# Reproduction artifact, v4.1.1
 
-Archived on Zenodo: https://doi.org/10.5281/zenodo.24048192. v4.0.6 added licences and v4.0.7 the DOI; code, tests and evidence are those of v4.0.4/v4.0.5.
+Zenodo DOI 10.5281/zenodo.24060229 (this version); GitHub tag v4.1.1.
+
+v4.1.1 changes:
+- `worker_supervisor.py`: a lifeline pipe makes a worker exit if its supervising process dies abruptly.
+- New `test_worker_supervisor_v411.py` (4 tests, with `_parent_crash_helper.py`): SIGKILL of the supervising process, descriptor inheritance, output discarded after expiry, stale and duplicate completions.
+- New `bench_supervisor_v411.py`: direct vs process-supervised decryption.
+- New evidence in `evidence_v411/`:
+  - `mac_m5`: timings, re-run with `bench_v404.py`;
+  - `mac_m5_memory`: memory, re-run with `bench_memory_v410.py`;
+  - `mac_m5_supervisor`: supervision cost.
+- `make_plot_data.py` now reads from `evidence_v411` by default.
+- 99 tests in total.
+
+No kernel, data-layer, model or expectation file changed.
+
+v4.1.0 adds:
+- `worker_supervisor.py`: process-isolated decryption workers for the reference kernel. Each decryption runs in its own OS process (spawn) that receives only its key and ciphertext. A hung worker is terminated, and the kernel is told to abandon it only after the process exit has been observed.
+- `test_worker_supervisor.py`: 6 tests, run by `reproduce_all.py`.
+- `bench_memory_v410.py`: peak Python heap (`tracemalloc`) and peak RSS during Open, 7 independent trials per object size, in fresh processes. Raw output is in `evidence_v410/`; `make_plot_data.py` copies the summary to `manuscript/data/bench_memory.dat`.
+
+No kernel, data-layer, model, expectation or v4.0.4 evidence file changed. Full run: see `../REPRODUCIBILITY.md`.
+
+v4.0.9 adds `test_datalayer_v409.py` (seven data-layer regression tests: truncation of one to three final chunks; every chunk removed versus the legitimate empty object; a modified header; a forged final chunk in a non-final position and a non-final chunk in the final position; 40 objects stored from eight threads; the per-instance scope of the key/nonce guard) and runs it from `reproduce_all.py`. No other code, model, expectation or evidence file changed. Full run on 8 Nov 2026: 89 tests (5 + 25 + 14 + 18 + 27) and every TLC configuration pass (CPython 3.12.14, cryptography 50.0.2 / OpenSSL 4.0.3, TLC2 2.19, OpenJDK 26.0.2.1). Exact commands and hashes: `../REPRODUCIBILITY.md`.
+
+The v4.0.7 artifact is archived on Zenodo: https://doi.org/10.5281/zenodo.24048192 (GitHub tag v4.0.7, commit 80d40a8c83b13e25712839327de45b144de83b52).
+
+
+v4.0.7 (archived above). v4.0.6 added licences and v4.0.7 the DOI; code, tests and evidence are those of v4.0.4/v4.0.5.
 
 v4.0.5 changes manuscript text only (restricted-adaptive qualification); the artifact code, tests and evidence are those of v4.0.4.
 

@@ -1,6 +1,6 @@
 {
   "title": "Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery: research artifact",
-  "version": "4.0.7",
+  "version": "4.1.1",
   "upload_type": "software",
   "creators": [
     {
@@ -12,7 +12,7 @@
       "affiliation": "Indian Institute of Science"
     }
   ],
-  "description": "Manuscript source, Python checkers and reference kernel, unit tests, TLA+ models and TLC configurations, a reference data layer, benchmark samples and plotting scripts. The composition theorem is restricted-adaptive (guessing factor L, exponential in renewed generations), not fully adaptive.",
+  "description": "Manuscript source, Python checkers and reference kernel, a process-isolated worker supervisor, 99 unit tests, TLA+ models and TLC configurations, a reference data layer, benchmark scripts with raw measurements (evidence_v411) and plotting scripts; artifact/reproduce_all.py reruns all checks. The composition theorem is restricted-adaptive (guessing factor L, exponential in renewed generations), not fully adaptive. No physical erasure, refinement proof or production readiness is claimed. Measurements come from one machine and enter no proof. Source: https://github.com/SamarjeetMalik/threshold-backup-capability-accounting (tag v4.1.1). Previous version: 10.5281/zenodo.24048192 (v4.0.7).",
   "notes": "Code and artifact (artifact/) under MIT; the manuscript, figures and plot data under CC BY 4.0. Springer class and style files keep their upstream terms.",
   "keywords": [
     "threshold cryptography",

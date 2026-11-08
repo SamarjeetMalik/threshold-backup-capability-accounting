@@ -11,7 +11,7 @@
 \node[font=\figtiny,text=cnavy] at (7.0,-0.85) {final $=1$ only on the last chunk};
 \node[adv] (k2) at (10.2,1.7) {$K_{o'}=K_o$\\for $\mathit{ctx}'\neq\mathit{ctx}$};
 \draw[dflow] (k2.west) -- (k.east);
-\node[font=\figtiny,text=cburg] at (8.4,2.15) {prob.\ $\le K(K{-}1)/2^{257}$};
+\node[font=\figtiny,text=cburg] at (8.4,2.15) {prob.\ $\le K_{\mathrm{key}}(K_{\mathrm{key}}{-}1)/2^{257}$};
 \draw[dflow] (k2.south) |- (10.2,-1.25) -| (c0.south);
 \node[font=\figtiny,text=cburg,fill=white,inner sep=1pt] at (5.4,-1.25) {same key bytes and the same nonce for chunk 0 in both objects};
 \end{tikzpicture}

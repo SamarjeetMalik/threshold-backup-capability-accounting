@@ -19,7 +19,7 @@ def general_L(n, ts):
     return L
 
 
-def main(out, bench):
+def main(out, bench, memory=None):
     out.mkdir(parents=True, exist_ok=True)
     # Plot 1a: equal thresholds
     with open(out / "guess_equal.dat", "w") as f:
@@ -61,9 +61,17 @@ def main(out, bench):
     for cipher, fname in (("chacha20poly1305", "bench_chacha.dat"), ("aes256gcm", "bench_aes.dat")):
         lines = ["kib enc_med enc_q1 enc_q3 dec_med gibps"] + [" ".join(r.split()[1:]) for r in rows[1:] if r.split()[0] == cipher]
         (out / fname).write_text("\n".join(lines) + "\n")
+    # v4.1.0: repeated memory measurement (bench_memory_v410.py), copied verbatim
+    if memory is not None:
+        shutil.copy(memory / "bench_memory.csv", out / "bench_memory.dat")
+    # v4.1.1: process-supervised versus direct decryption (bench_supervisor_v411.py)
+    sup = Path(__file__).resolve().parent / "evidence_v411" / "mac_m5_supervisor" / "bench_supervisor.csv"
+    if sup.exists():
+        shutil.copy(sup, out / "bench_supervisor.dat")
     print("wrote", sorted(p.name for p in out.iterdir()))
 
 
 if __name__ == "__main__":
     root = Path(__file__).resolve().parent
-    main(root.parent / "manuscript" / "data", Path(sys.argv[1]) if len(sys.argv) > 1 else root / "reproduced" / "bench_v404")
+    main(root.parent / "manuscript" / "data", Path(sys.argv[1]) if len(sys.argv) > 1 else root / "evidence_v411" / "mac_m5",
+         Path(sys.argv[2]) if len(sys.argv) > 2 else root / "evidence_v411" / "mac_m5_memory")

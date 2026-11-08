@@ -2,7 +2,7 @@
 
 **Samarjeet Malik**, Ashoka University; **Shaurya Pratap Singh**, Indian Institute of Science.
 
-Version **4.0.7**, 8 November 2026 (released as tag `v4.0.7` and archived on Zenodo, DOI [10.5281/zenodo.24048192](https://doi.org/10.5281/zenodo.24048192); v4.0.6 added licences to v4.0.5, which superseded v2.0.0; versions 3.0.0 to 4.0.4 were not released separately). Two PDFs from one source: `manuscript/main.tex` (styled) and `manuscript/main_submission.tex` (submission-safe). Environment: `ENVIRONMENT.md`. Changes: `CHANGELOG.md`. Springer Nature journal LaTeX (`sn-jnl`, numerical math/physics references), with an Overleaf-ready source archive and compiled PDF provided as release assets.
+Version **4.1.1**, 9 November 2026 (Zenodo DOI [10.5281/zenodo.24060229](https://doi.org/10.5281/zenodo.24060229), tag `v4.1.1`): release for IJIS (see `REVISION_V4.1.1.md`; reproduction in `REPRODUCIBILITY.md`). Not yet submitted. Version 4.0.7 was released as tag `v4.0.7` and archived on Zenodo, DOI [10.5281/zenodo.24048192](https://doi.org/10.5281/zenodo.24048192) (v4.0.6 added licences to v4.0.5, which superseded v2.0.0; versions 3.0.0 to 4.0.4 were not released separately). Two PDFs from one source: `manuscript/main.tex` (styled) and `manuscript/main_submission.tex` (submission-safe). Environment: `ENVIRONMENT.md`. Changes: `CHANGELOG.md`. Springer Nature journal LaTeX (`sn-jnl`, numerical math/physics references), with an Overleaf-ready source archive and compiled PDF provided as release assets.
 
 This formal security-analysis paper models surviving backup-recovery capabilities using typed conjunctive derivation rules and finite-field observations. It separates reconstruction from information leakage, characterizes permitted erasure through minimal witness supports, and analyzes independently refreshed generations, copied delivery credentials and alternate recovery routes. A checked lifecycle and Python reference exercise release, expiry, queue cancellation, crashes and rollback contracts.
 
@@ -13,6 +13,11 @@ The claims are relative to declared operations and affine views. The paper delib
 - `manuscript/main.tex`: complete single-file Springer manuscript.
 - `manuscript/references.bib`: bibliography; official class/style files are included.
 - `artifact/README.md`: exact commands, dependencies, outputs and finite model scope.
+- `REVISION_V4.1.1.md`: v4.1.0 → v4.1.1 changes, Theorem 25 audit, runs, open items, checklist.
+- `REVISION_V4.1.0.md`: v4.0.9 → v4.1.0 changes, executed runs, unreproduced claims, author steps.
+- `REVISION_V4.0.9.md`: v4.0.8 → v4.0.9 audit, changes, figure log, placeholders, IJIS/TOPS checklists.
+- `REPRODUCIBILITY.md`: versions, commands, recorded runs, data provenance and hashes.
+- `REVISION_V4.0.8.md`: v4.0.7 → v4.0.8 IJIS formatting; lists the author-supplied placeholders.
 - `REVISION_V4.0.7.md`: v4.0.6 → v4.0.7 Zenodo DOI.
 - `REVISION_V4.0.6.md`: v4.0.5 → v4.0.6 licensing (MIT code, CC BY 4.0 paper).
 - `REVISION_V4.0.5.md`: v4.0.4 → v4.0.5 restricted-adaptive qualification pass (text only).

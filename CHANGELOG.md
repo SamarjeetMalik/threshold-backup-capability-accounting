@@ -1,5 +1,41 @@
 # Changelog
 
+## 4.1.1 (9 November 2026)
+- Release-consistency pass; details, Theorem 25 audit record and open items in REVISION_V4.1.1.md. Previous text preserved as manuscript/main_v4.1.0.tex.
+- Related work re-checked against the full texts of CKS, standard-model CKS and GKP. The GKP sentence was corrected (its security is selective only). CRYPTO and TCC proceedings citations.
+- Timings re-run on the Apple M5. Memory re-run (7 trials). New measurement of supervision cost.
+- Supervisor: lifeline pipe, so a worker exits when its supervising process is SIGKILLed. 4 new tests (10 supervisor, 99 in total).
+- Notation K_key and D_dec. Definition 22 states label-specific decryption exclusion and no challenges under corrupted keys.
+- Abstract and contribution list tightened; nonce-scope table; limitations regrouped; Fig. C1 placed before the References.
+- rc2: supervision trade-off (3.8x at 64 MiB; fixed ~47 ms dominates at 1 MiB; combined RSS not measured); "target seeds" used consistently.
+
+## 4.1.0 (9 November 2026)
+- Finalisation pass; details in REVISION_V4.1.0.md. No theorem, bound or earlier result changed. Previous text preserved as manuscript/main_v4.0.9.tex.
+- Notation: 𝒦_root (root set), 𝓔 (erasure set), Φ(X), T_rt/T_log/T_app/T_loc (Proposition 20). K and D now each have one meaning.
+- Proposition 11 described as XP, not FPT. New paragraphs: what Theorem 14 establishes; operational reading of Corollary 16; reading Table 10 in log2 L.
+- Corrected a false v4.0.9 statement that the kernel runs workers as threads. Added a process-isolated worker supervisor with 6 tests (§9.4). 95 tests pass.
+- Memory re-measured with 7 trials per size: heap and process RSS (evidence_v410). Fig. 13 and Table 11 updated.
+- Declarations completed from the corresponding author's answers. One placeholder remains: the v4.1.0 artifact DOI and tag.
+- Fig. 8 labels enlarged; the stranded last reference is gone.
+
+## 4.0.9 (8 November 2026)
+- Reviewer-objection pass; details and audit in REVISION_V4.0.9.md. No new theorem, claim or measurement. Previous text preserved as manuscript/main_v4.0.8.tex.
+- Corrected an overclaim: the Python transcription matches TLC by state counts, not by reachable sets. Explained the conformance step bound (max observed distance 2 of 3).
+- Notation: L_floor, M_U, 𝒦, T̄, 𝒟, 𝒜′; Table 2 (notation).
+- New tables: rank-test applicability (4), guessing factor with log2 L (10), recorded measurements (11), symbolic failure budget (12), assumptions and scope (15).
+- New text: motivating example; three primary contributions; building A and B; what §5 adds over attack trees; worked vertex-cover instance; ideal-to-real bridge; non-vacuity condition for Theorem 25; empty object and nonce-guard scope.
+- Figures: new Fig. 4 (worked history, derived); Fig. 6 bounds; Fig. 7 operating point; Fig. 9 legend and labels; Fig. 11 release rule; latency and throughput merged (Fig. 12); committee-size heatmap moved to Appendix C; every float cited.
+- Artifact: test_datalayer_v409.py (7 tests), run by reproduce_all.py: 89 tests pass. The archived v4.0.7 artifact re-runs to 82/82 from a fresh unpack. REPRODUCIBILITY.md and reproduction_logs_v409/ added.
+- "Corresponding author" in the singular (title-block patch; class unchanged). Declarations: version relationship and a fifth placeholder (v4.0.9 artifact DOI).
+
+## 4.0.8 (8 November 2026)
+- Manuscript formatted for the International Journal of Information Security (IJIS). Only presentation, front matter and declarations change; no theorem, proof, number, test or artifact file changed. Previous text preserved as manuscript/main_v4.0.7.tex.
+- Abstract cut from about 396 to 234 words. It keeps the restricted-adaptive qualification, the sentence "it does not provide full adaptive security", the loss factor L and the receiver selective-opening remark. Dropped from the abstract (still in the body): the L = 16 example, the 3,991 vs 970,299 reused-bank count, the advantage-convention and key-coincidence sentence, the data-layer and measurement sentences, and the 2,000-schedule detail.
+- Keywords cut from 9 to 6: Capability exposure, encrypted backup, threshold recovery, cryptographic erasure, restricted-adaptive security, TLA+. Removed: linear secret sharing, selective opening, refinement.
+- `twocolumn` sn-jnl option. Tables 1, 3, 8 and 9 and Figs. 2, 3, 4 and 11 moved to `table*`/`figure*`; column widths of Tables 2, 5 and 6 adjusted and Table 4 set in footnotesize; plot widths of Figs. 7, 12 and 13 set relative to the column; 11 displayed equations broken across lines (no change to their content); bibliography URLs made breakable (`\burl` routed through xurl's `\url`). 0 overfull boxes in both builds.
+- `\bmhead{Declarations}` replaced by a "Statements and Declarations" section: competing interests, funding, author contributions and LLM use as author-supplied placeholders; ethics; data and code availability (DOI 10.5281/zenodo.24048192, MIT / CC BY 4.0); preprint disclosure.
+- Corresponding author: Samarjeet Malik, samarjeet.malik_tf@ashoka.edu.in (underscore escaped in `\email`).
+
 ## 4.0.7 (8 November 2026)
 - Zenodo DOI 10.5281/zenodo.24048192 (reserved for this version) added to the declarations, README, CITATION.cff and artifact README. No other change. Previous text preserved as manuscript/main_v4.0.6.tex.
 

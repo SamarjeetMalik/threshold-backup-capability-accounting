@@ -33,14 +33,15 @@ def main():
     except ImportError:
         raise SystemExit("NOT RUN: data-layer tests need pyca/cryptography; "
                          "run with the venv from requirements.txt")
-    print("== test_datalayer.py, test_datalayer_v404.py", flush=True)
-    r = subprocess.run([sys.executable, "-m", "unittest", "-v", "test_datalayer", "test_datalayer_v404"], cwd=root,
+    print("== test_datalayer.py, test_datalayer_v404.py, test_datalayer_v409.py, test_worker_supervisor.py, test_worker_supervisor_v411.py", flush=True)
+    r = subprocess.run([sys.executable, "-m", "unittest", "-v", "test_datalayer", "test_datalayer_v404", "test_datalayer_v409",
+                        "test_worker_supervisor", "test_worker_supervisor_v411"], cwd=root,
                        text=True, capture_output=True)
     (root / "reproduced" / "datalayer_tests.log").write_text(r.stdout + r.stderr)
     print(r.stdout + r.stderr, end="")
     if r.returncode:
-        raise SystemExit("FAILED: test_datalayer.py")
-    print("PASS: all Python evidence, all tests (including the data layer) and all TLC configurations match expectations")
+        raise SystemExit("FAILED: data-layer or supervisor tests")
+    print("PASS: all Python evidence, all tests (including the data layer and worker supervisor) and all TLC configurations match expectations")
 
 
 if __name__ == "__main__":
