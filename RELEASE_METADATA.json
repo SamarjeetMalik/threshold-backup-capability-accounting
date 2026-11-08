@@ -1,8 +1,8 @@
 {
-  "version": "4.0.5",
-  "date": "2026-11-06",
-  "status": "public release v4.0.5 (GitHub tag v4.0.5); manuscript not submitted",
-  "supersedes": "4.0.4 (preserved unchanged in Capability_Exposure_Accounting_Artifact_v4.0.4.zip)",
+  "version": "4.0.6",
+  "date": "2026-11-07",
+  "status": "public release v4.0.6 (GitHub tag v4.0.6); manuscript not submitted",
+  "supersedes": "4.0.5 (public release, tag v4.0.5)",
   "repository": "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting",
   "python": "CPython 3.12.14; standard library only",
   "java": "OpenJDK 26.0.2.1 (Homebrew); v2 counts identical to the Temurin 17.0.21+9 record",
@@ -10,7 +10,7 @@
   "tlc_jar_sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
   "latex": "pdfLaTeX via latexmk, -halt-on-error; 0 overfull boxes, 0 undefined references",
   "pdf_pages": 45,
-  "pdf_sha256": "bb3b2a28787f0c486848bcf9f297647a928d73fb823f507dabfb0272f35a987d",
+  "pdf_sha256": "688d1de528f961e77f5cb08884a6c71a9061882d254a96c35747c6b6a61aba34",
   "validation": {
     "python_tests": {
       "v2_baseline": 5,
@@ -39,6 +39,11 @@
   },
   "scope": "declared symbolic/affine analysis; restricted-adaptive composition (guessing loss L, exponential in renewed generations; NOT full adaptive security); finite lifecycle, barrier and renewal checking; bounded refinement-conformance testing; no full adaptive theorem, refinement proof or physical-erasure certification",
   "python_dependencies": "cryptography==50.0.2 (data layer only), see artifact/requirements.txt",
-  "pdf_submission_sha256": "569e6cd98593c86e94a358a58385997c574100e7ae937a01b991219ffcefea0a",
-  "benchmark_machine": "Apple M5, 24 GiB, macOS 26.5.1"
+  "pdf_submission_sha256": "3621354b3a52169230af0cc576c428bd796f3972642c8629f082fe06fbcd609d",
+  "benchmark_machine": "Apple M5, 24 GiB, macOS 26.5.1",
+  "license": {
+    "artifact": "MIT",
+    "manuscript": "CC-BY-4.0",
+    "excluded": "manuscript/sn-jnl.cls, manuscript/sn-mathphys-num.bst (upstream terms)"
+  }
 }

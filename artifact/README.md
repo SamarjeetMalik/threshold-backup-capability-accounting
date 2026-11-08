@@ -1,4 +1,6 @@
-# Reproduction artifact, v4.0.5
+# Reproduction artifact, v4.0.6
+
+v4.0.6 adds licences only; code, tests and evidence are those of v4.0.4/v4.0.5.
 
 v4.0.5 changes manuscript text only (restricted-adaptive qualification); the artifact code, tests and evidence are those of v4.0.4.
 
@@ -166,4 +168,4 @@ Deadlock/liveness checking is disabled. The model assumes verified certificate/l
 - `expected/`: saved semantic outputs; `evidence/`: original run logs.
 - Root `SHA256SUMS`: every curated release file except the checksum file itself and Git metadata. Verify before running, since generated outputs can change after reproduction.
 
-The official Springer class and bibliography style retain their upstream notices. No new license grant for the authors' material is asserted here. Source availability does not itself establish deployment suitability.
+The artifact is licensed under MIT (`../LICENSE`); the manuscript under CC BY 4.0 (`../LICENSE-CC-BY-4.0.txt`). The official Springer class and bibliography style retain their upstream notices. Source availability does not itself establish deployment suitability.

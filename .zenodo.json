@@ -1,0 +1,13 @@
+{
+  "title": "Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery: research artifact",
+  "version": "4.0.6",
+  "upload_type": "software",
+  "creators": [
+    {"name": "Malik, Samarjeet", "affiliation": "Ashoka University"},
+    {"name": "Singh, Shaurya Pratap", "affiliation": "Indian Institute of Science"}
+  ],
+  "description": "Manuscript source, Python checkers and reference kernel, unit tests, TLA+ models and TLC configurations, a reference data layer, benchmark samples and plotting scripts. The composition theorem is restricted-adaptive (guessing factor L, exponential in renewed generations), not fully adaptive.",
+  "notes": "Code and artifact (artifact/) under MIT; the manuscript, figures and plot data under CC BY 4.0. Springer class and style files keep their upstream terms.",
+  "keywords": ["threshold cryptography", "encrypted backup", "erasure", "TLA+", "restricted-adaptive security"],
+  "license": "MIT"
+}

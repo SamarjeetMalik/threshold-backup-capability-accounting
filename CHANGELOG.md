@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.0.6 (7 November 2026)
+- Licences: MIT for everything under artifact/ (`LICENSE`); CC BY 4.0 for the manuscript, figures, plot data and reports (`LICENSE-CC-BY-4.0.txt`, official legal code from creativecommons.org). Springer class/style files keep their upstream terms.
+- Declarations name tag v4.0.6 and the licences. No other change. Previous text preserved as manuscript/main_v4.0.5.tex.
 ## 4.0.5 (6 November 2026)
 - Restricted-adaptive qualification made explicit everywhere it matters: abstract ("it does not provide full adaptive security", with L = 1 / 16 / exponential), keywords, contribution 5, the Theorem 15 note, the Section 8 title, a warning box directly after Theorem 25 ("Restricted, not full, adaptive security": L = 970,299 for three renewed 5-of-7 generations; the bound is vacuous when L is large; removing L would need receiver selective-opening security that HPKE is not known to have), and the conclusion.
 - No theorem, proof, number, test or artifact code changed. Previous text preserved as manuscript/main_v4.0.4.tex.
