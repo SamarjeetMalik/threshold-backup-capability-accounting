@@ -2,7 +2,7 @@
 
 **Samarjeet Malik**, Ashoka University; **Shaurya Pratap Singh**, Indian Institute of Science.
 
-Version **4.0.6**, 7 November 2026 (released as tag `v4.0.6`; it adds licences to v4.0.5, which superseded v2.0.0; versions 3.0.0 to 4.0.4 were not released separately). Two PDFs from one source: `manuscript/main.tex` (styled) and `manuscript/main_submission.tex` (submission-safe). Environment: `ENVIRONMENT.md`. Changes: `CHANGELOG.md`. Springer Nature journal LaTeX (`sn-jnl`, numerical math/physics references), with an Overleaf-ready source archive and compiled PDF provided as release assets.
+Version **4.0.7**, 8 November 2026 (released as tag `v4.0.7` and archived on Zenodo, DOI [10.5281/zenodo.24048192](https://doi.org/10.5281/zenodo.24048192); v4.0.6 added licences to v4.0.5, which superseded v2.0.0; versions 3.0.0 to 4.0.4 were not released separately). Two PDFs from one source: `manuscript/main.tex` (styled) and `manuscript/main_submission.tex` (submission-safe). Environment: `ENVIRONMENT.md`. Changes: `CHANGELOG.md`. Springer Nature journal LaTeX (`sn-jnl`, numerical math/physics references), with an Overleaf-ready source archive and compiled PDF provided as release assets.
 
 This formal security-analysis paper models surviving backup-recovery capabilities using typed conjunctive derivation rules and finite-field observations. It separates reconstruction from information leakage, characterizes permitted erasure through minimal witness supports, and analyzes independently refreshed generations, copied delivery credentials and alternate recovery routes. A checked lifecycle and Python reference exercise release, expiry, queue cancellation, crashes and rollback contracts.
 
@@ -13,6 +13,7 @@ The claims are relative to declared operations and affine views. The paper delib
 - `manuscript/main.tex`: complete single-file Springer manuscript.
 - `manuscript/references.bib`: bibliography; official class/style files are included.
 - `artifact/README.md`: exact commands, dependencies, outputs and finite model scope.
+- `REVISION_V4.0.7.md`: v4.0.6 → v4.0.7 Zenodo DOI.
 - `REVISION_V4.0.6.md`: v4.0.5 → v4.0.6 licensing (MIT code, CC BY 4.0 paper).
 - `REVISION_V4.0.5.md`: v4.0.4 → v4.0.5 restricted-adaptive qualification pass (text only).
 - `REVISION_V4.0.4.md`: v4.0.3 → v4.0.4 audit, data-layer fixes, benchmarks, figures, reviews, scores.
@@ -46,7 +47,7 @@ python3 artifact/run_tlc_v4.py --java java --jar artifact/.tools/tla2tools.jar
 
 One command, `artifact/.venv/bin/python artifact/reproduce_all.py --java java --jar artifact/.tools/tla2tools.jar` (venv from `artifact/requirements.txt`), runs everything. All 82 Python tests pass (5 baseline, 25 v2, 14 v3, 18 v4, 20 data layer); the v3 and v4 checkers match `expected/v3_results.json` and `expected/v4_results.json`; the 8 v2, 13 v3 and 15 v4 TLC configurations (9 from v4.0.0, 6 fairness-map runs added in v4.0.1) reproduce their recorded outcomes and counts.
 
-No DOI or journal acceptance is claimed. Public source availability does not establish novelty or production readiness. Springer class/style notices remain intact; see the licence section below.
+The artifact DOI is 10.5281/zenodo.24048192. No journal acceptance is claimed. Public source availability does not establish novelty or production readiness. Springer class/style notices remain intact; see the licence section below.
 
 ## Licence
 

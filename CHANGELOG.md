@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.0.7 (8 November 2026)
+- Zenodo DOI 10.5281/zenodo.24048192 (reserved for this version) added to the declarations, README, CITATION.cff and artifact README. No other change. Previous text preserved as manuscript/main_v4.0.6.tex.
+
 ## 4.0.6 (7 November 2026)
 - Licences: MIT for everything under artifact/ (`LICENSE`); CC BY 4.0 for the manuscript, figures, plot data and reports (`LICENSE-CC-BY-4.0.txt`, official legal code from creativecommons.org). Springer class/style files keep their upstream terms.
 - Declarations name tag v4.0.6 and the licences. No other change. Previous text preserved as manuscript/main_v4.0.5.tex.

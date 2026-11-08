@@ -1,6 +1,6 @@
-# Reproduction artifact, v4.0.6
+# Reproduction artifact, v4.0.7
 
-v4.0.6 adds licences only; code, tests and evidence are those of v4.0.4/v4.0.5.
+Archived on Zenodo: https://doi.org/10.5281/zenodo.24048192. v4.0.6 added licences and v4.0.7 the DOI; code, tests and evidence are those of v4.0.4/v4.0.5.
 
 v4.0.5 changes manuscript text only (restricted-adaptive qualification); the artifact code, tests and evidence are those of v4.0.4.
 
