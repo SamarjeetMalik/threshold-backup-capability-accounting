@@ -1,5 +1,9 @@
 # Builds the reproduction container (Dockerfile) and runs the full artifact check inside it:
 # 99 tests and every TLC configuration, each compared with its saved expected output.
+# The container runs with --init (tini as PID 1). Without an init, a worker orphaned by the
+# supervisor-SIGKILL test is reparented to the Python process at PID 1, which never reaps it;
+# the exited worker stays a zombie and os.kill(pid, 0) still succeeds. The diagnostic step
+# records the worker's /proc state in both configurations.
 name: container-reproduction
 on:
   workflow_dispatch:
@@ -17,10 +21,28 @@ jobs:
         run: |
           set -o pipefail
           docker build -t cea-artifact . 2>&1 | tee build.log
-      - name: Run reproduce_all.py inside the container
+      - name: Diagnostic - worker state after the supervisor is killed, without and with --init
+        run: |
+          cat > diag.py <<'PY'
+          import os, pickle, signal, subprocess, sys, tempfile, time
+          from pathlib import Path
+          st = Path(tempfile.mkdtemp()) / "s.pkl"
+          p = subprocess.Popen([sys.executable, "_parent_crash_helper.py", str(st)], stdout=subprocess.PIPE, text=True)
+          assert p.stdout.readline().strip() == "READY"
+          pid = pickle.loads(st.read_bytes())["worker_pid"]
+          os.kill(p.pid, signal.SIGKILL); p.wait(timeout=10); time.sleep(3)
+          try:
+              state = open(f"/proc/{pid}/stat").read().split()[2]
+          except FileNotFoundError:
+              state = "gone (reaped)"
+          print("PID 1 is", open("/proc/1/comm").read().strip(), "| worker state 3 s after supervisor SIGKILL:", state)
+          PY
+          { echo "== without --init"; docker run --rm -v "$PWD/diag.py:/work/artifact/diag.py:ro" cea-artifact python diag.py
+            echo "== with --init";    docker run --rm --init -v "$PWD/diag.py:/work/artifact/diag.py:ro" cea-artifact python diag.py; } 2>&1 | tee diagnostic.log
+      - name: Run reproduce_all.py inside the container (with --init)
         run: |
           set -o pipefail
-          docker run --rm cea-artifact 2>&1 | tee reproduce.log
+          docker run --rm --init cea-artifact 2>&1 | tee reproduce.log
           grep -q "PASS: all Python evidence, all tests" reproduce.log
       - name: Record environment
         if: always()
@@ -32,5 +54,6 @@ jobs:
           name: container-reproduction-logs
           path: |
             build.log
+            diagnostic.log
             reproduce.log
             environment.log
