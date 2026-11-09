@@ -1,0 +1,19 @@
+% Restricted-adaptive game sequence (composition theorem, Theorem 24 from v4.1.12). 8 pt sans, natural size.
+% v4.1.13: simplified. One chain; each hop's replacement and loss sit under its own arrow (the separate hop table,
+% the query line and the forward-ordered box are gone: the theorem statement and the caption carry them).
+% Hop 1 is multiplicative (red), hops 2-6 are additive (navy).
+\begin{tikzpicture}[x=1cm,y=1cm,
+  g/.style={draw=cnavy,line width=0.6pt,fill=white,rounded corners=1pt,font=\figfont,minimum width=9mm,minimum height=6mm},
+  hl/.style={font=\figfont,align=center,text width=17mm,anchor=north,inner sep=0pt}]
+\foreach \n/\x/\lab in {G0/0/G_0,G1/1.95/G_1,G2/3.9/G_2,G2p/5.85/G_2',G3/7.8/G_3,G4/9.75/G_4,G5/11.7/G_5}{\node[g] (\n) at (\x,0) {$\lab$};}
+\draw[aflow] (G0) -- (G1);
+\foreach \a/\b in {G1/G2,G2/G2p,G2p/G3,G3/G4,G4/G5} \draw[flow] (\a) -- (\b);
+\node[hl,text=cburg] at (0.975,-0.45) {guess pattern $\Gamma$\\[1pt]$\times L$};
+\node[hl] at (2.925,-0.45) {zero capsules\\[1pt]$\varepsilon_{\mathrm{mu}}(N,M)$};
+\node[hl] at (4.875,-0.45) {decouple seed\\[1pt]$0$};
+\node[hl] at (6.825,-0.45) {PRF\\[1pt]$\varepsilon_{\mathrm{prf}}(q{+}r)$};
+\node[hl] at (8.775,-0.45) {identifiers\\[1pt]$q(q{-}1)/2^{257}$};
+\node[hl] at (10.725,-0.45) {AEAD\\[1pt]$\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}$};
+\node[font=\figfont,text=cslate,anchor=south] at ([yshift=1pt]G5.north) {$\Pr=\tfrac12$};
+\node[font=\figfont,text=cnavy,anchor=north] at (5.85,-1.3) {$\mathrm{Adv}(\mathcal A)\le L\cdot\big[\varepsilon_{\mathrm{mu}}+\varepsilon_{\mathrm{prf}}+q(q{-}1)/2^{257}+\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}\big]$};
+\end{tikzpicture}

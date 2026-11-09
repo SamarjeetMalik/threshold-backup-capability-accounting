@@ -1,0 +1,38 @@
+% Figure 2: end-to-end capability-exposure architecture (four layers). 8 pt sans, natural size.
+% v4.1.13: simplified. Short source labels; the erasure outcome (Fig. 4's subject) removed; three outcomes fed
+% through one bus; colour legend dropped (stated once in the introduction).
+\begin{tikzpicture}[x=1cm,y=1cm,src/.style={text width=25mm,minimum height=7mm}]
+\node[layer] at (1.4,5.35) {1. Sources};
+\node[layer] at (5.35,5.35) {2. Derivation};
+\node[layer] at (8.3,5.35) {3. Affine analysis};
+\node[layer] at (11.6,5.35) {4. Outcome};
+% sources
+\node[node,src] (slot) at (1.4,4.55) {honest slot};
+\node[adv,src]  (root) at (1.4,3.7) {copied bank root};
+\node[neut,src] (cap)  at (1.4,2.85) {recorded capsule};
+\node[adv,src]  (pair) at (1.4,1.85) {cached pair or\\partial disclosure};
+\node[neut,src] (env)  at (1.4,0.85) {archive envelope};
+\node[adv,src]  (akey) at (1.4,0.0) {compromised\\archive key};
+\node[andgate] (a1) at (3.4,3.7) {AND};
+\node[andgate] (a2) at (3.4,0.425) {AND};
+\draw[flow] (slot.east) -- (a1); \draw[aflow] (root.east) -- (a1); \draw[flow,cslate] (cap.east) -- (a1);
+\draw[flow,cslate] (env.east) -- (a2); \draw[aflow] (akey.east) -- (a2);
+% derivation
+\node[node] (coord) at (5.35,3.7) {coordinates\\of $(e,g,x)$\\become rows};
+\node[adv] (seedr) at (5.35,0.425) {seed route:\\an $e_{S_e}$ row};
+\draw[flow] (a1) -- (coord); \draw[aflow] (a2) -- (seedr);
+\draw[aflow] (pair.east) -- (3.95,1.85) |- ([yshift=-2mm]coord.west);
+% affine analysis
+\node[node,minimum width=28mm] (rows) at (8.3,3.7) {$Y=AS+BR$};
+\node[node,minimum width=28mm] (U) at (8.3,2.2) {$U=\{\lambda A:\lambda B=0\}$\\$\dim U=\mathrm{rk}[A\;B]-\mathrm{rk}\,B$};
+\draw[flow] (coord) -- (rows); \draw[flow] (rows) -- (U);
+\draw[aflow] (seedr.east) -| (U.south);
+% outcomes, fed through one bus
+\node[adv,minimum width=22mm]  (o1) at (11.6,3.55) {reconstruction:\\$e_i\in U$};
+\node[adv,minimum width=22mm]  (o2) at (11.6,2.2) {partial leakage:\\$U\neq0$};
+\node[node,minimum width=22mm] (o3) at (11.6,0.85) {privacy:\\$U=0$};
+\coordinate (bus) at (10.2,2.2);
+\draw[cnavy,thick] (U.east) -- (bus);
+\draw[aflow] (bus) |- (o1.west); \draw[aflow] (bus) -- (o2.west); \draw[flow] (bus) |- (o3.west);
+\node[font=\figfont,text=cslate,anchor=north west] at (-0.05,-0.55) {AND: every premise is needed (a hyperedge), unlike edge reachability.};
+\end{tikzpicture}

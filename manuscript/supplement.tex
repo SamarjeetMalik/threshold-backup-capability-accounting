@@ -1,5 +1,6 @@
 % Online Resource 1 (electronic supplementary material) for "Capability Exposure Accounting for
-% Threshold-Based Encrypted Backup Recovery", manuscript version 4.1.12. Compiler: pdfLaTeX.
+% Threshold-Based Encrypted Backup Recovery", manuscript version 4.1.14. Compiler: pdfLaTeX.
+% v4.1.14: the supplement has its own reference list (its proofs cite works the paper no longer cites).
 % Build main_submission.tex first: references to the paper (M-...) are read from main_submission.aux (xr).
 \def\submissionmode{1}
 \PassOptionsToPackage{table}{xcolor}
@@ -513,5 +514,7 @@ Summing the hops bounds $\Adv_1$, and $\Adv_0=L\cdot\Adv_1$. Under forward-order
 \begin{proof}
 With one slot per holder, holder $x$ is characterized by the time of its slot's exposure: never, just before the $k$-th publication, or after the last. Its index is late-exposed in generation $g$ iff the exposure follows the $g$-th publication. With $\ell_x$ the number of generations published before the exposure (or $0$ if never exposed), $\Lambda_g=\{x:\ell_x\ge g\}$. The map $\ell\mapsto\Lambda$ is injective, because $\ell_x=\max\{g:x\in\Lambda_g\}$ or $0$. Every $x$ with $\ell_x\ge1$ is touched in every published generation. So when all $G$ generations are published, freshness forces $|\{x:\ell_x\ge1\}|<t_{\min}$. Conversely, any set $J$ of fewer than $t_{\min}$ holders with any levels in $\{1,\dots,G\}$ is realized by exposing exactly those slots at the corresponding times, which touches exactly $J$ in every generation, so the run is fresh. Counting by $|J|=j$ gives $\sum_{j<t_{\min}}\binom njG^j$ when all generations are published. Now let a run publish the first $G'$ generations. Every level satisfies $\ell_x\le G'$, and freshness requires $|J|<\tau_{G'}$. A pattern with maximum level $m\ge1$ is therefore realizable iff $|J|<\tau_{G'}$ for some $G'\ge m$, iff $|J|<\tau_m$, because $\tau$ is non-increasing; stopping after the $m$-th publication realizes it. Counting by maximum level $m$ and support size $j$, the level vectors on a fixed $J$ with values in $\{1,\dots,m\}$ and maximum exactly $m$ number $m^j-(m-1)^j$. Adding the empty pattern gives $L_{\mathrm{reuse}}$, and the common-threshold sum telescopes. Disclosures only enlarge the touched sets, so they cannot create new patterns. The theorem allows any covering pattern set. With disjoint slots the exposure times of different generations' slots are independent, so every $\Lambda\in\mathcal P$ is realized by exposing exactly its indices after the corresponding publications.
 \end{proof}
+
+\bibliography{references}
 
 \end{document}

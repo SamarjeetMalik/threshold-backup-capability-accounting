@@ -1,0 +1,21 @@
+% Guessing-space size (exact values from eq. (L) and Proposition 27). v4.1.5: 8 pt sans, decade ticks, aligned legend.
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.2cm},width=0.46\linewidth,height=5.0cm,
+  ymode=log,ymin=0.4,xlabel={target generations $G$},xtick={1,...,6},xmin=0.7,xmax=6.3,grid=major,grid style={cgrid,line width=0.3pt},
+  legend style={draw=none,fill=none,at={(1.1,-0.28)},anchor=north,legend columns=3,legend cell align=left,
+    /tikz/every even column/.append style={column sep=12pt}}]
+\nextgroupplot[title={(a) Equal thresholds},clip=false,ylabel={guessing factor},ymax=3e13,ytick={1,1e3,1e6,1e9,1e12}]
+\addplot[cburg,mark=square*,mark size=1.6pt,thick] table[x=G,y=L75]{data/guess_equal.dat};
+\addplot[cnavy,mark=*,mark size=1.6pt,thick] table[x=G,y=R75]{data/guess_equal.dat};
+\addplot[cslate,densely dotted,very thick,domain=1:6,samples=2] {1};
+\addplot[cburg,mark=square*,mark size=1.4pt,mark options={fill=white,solid},dashed,thick] table[x=G,y=L53]{data/guess_equal.dat};
+\addplot[cnavy,mark=*,mark size=1.4pt,mark options={fill=white,solid},dashed,thick] table[x=G,y=R53]{data/guess_equal.dat};
+\legend{general $L$ (5-of-7),$L_{\mathrm{reuse}}$ (5-of-7),forward-ordered $L=1$,general $L$ (3-of-5),$L_{\mathrm{reuse}}$ (3-of-5)}
+\draw[cburg,line width=0.4pt] (axis cs:3,970299) -- (axis cs:2.2,8e8) node[anchor=south,text=cburg,inner sep=1.5pt] {$L$ = 970,299};
+\draw[cnavy,line width=0.4pt] (axis cs:3,3991) -- (axis cs:3.55,12) node[anchor=west,text=cnavy,inner sep=1.5pt] {$L_{\mathrm{reuse}}$ = 3,991};
+\nextgroupplot[title={(b) Thresholds $6,5,4,4,3,3$ ($n=7$)},ymax=3e11,ytick={1,1e3,1e6,1e9}]
+\addplot[cburg,mark=square*,mark size=1.6pt,thick] table[x=G,y=L]{data/guess_unequal.dat};
+\addplot[cnavy,mark=*,mark size=1.6pt,thick] table[x=G,y=R]{data/guess_unequal.dat};
+\addplot[cslate,densely dotted,very thick,domain=1:6,samples=2] {1};
+\end{groupplot}
+\end{tikzpicture}

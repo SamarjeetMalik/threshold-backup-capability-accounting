@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.14 (10 November 2026), Fig. 3 simplified; Online Resource 1 reference list; artifact remains v4.1.1
+- Fig. 3 (leakage subspace): one chain (seed and mask → view → mask-cancelling λ → exposed u·S); A and B folded into the view node; the "What the view reveals" panel, which restated Theorem 1(2),(5), removed; the red leakage-without-reconstruction example kept in two lines. Natural size (344.2 of 372 pt), grayscale-safe.
+- Fix: Online Resource 1 has its own reference list. Since v4.1.12 its Section S6 erasure-complexity proofs cited Karp 1972, Dinur-Safra 2005 and Alimonti-Kann 2000 without a bibliography, so v4.1.12 and v4.1.13 print "[? ]" in three places.
+- 39 pp., Online Resource 1 21 pp.; numbering unchanged (Theorem 24). Previous sources: manuscript/figures_v4.1.13/, manuscript/main_v4.1.13.tex, manuscript/supplement_v4.1.13.tex.
+- Approved by both authors 10 Nov 2026; released as tag v4.1.14, Zenodo DOI 10.5281/zenodo.24093096.
+
 ## 4.1.13 (10 November 2026), Figs. 2 and 6 simplified; artifact remains v4.1.1
 - Fig. 2 (capability exposure):
   - source labels shortened ("honest slot", "compromised archive key"); two of the six now take two lines;

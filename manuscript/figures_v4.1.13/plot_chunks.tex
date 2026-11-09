@@ -1,0 +1,22 @@
+% v4.1.5: one shared legend below the panels (it covered data in v4.1.4). v4.0.9: per-chunk latency and throughput in one figure (measured; data/bench_chacha.dat, data/bench_aes.dat).
+% Throughput bars map the time quartiles q1, q3 through GiB/s = KiB * 1e6 / (t_us * 2^20).
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.6cm},width=0.47\linewidth,height=5cm,
+  xmode=log,log basis x=2,xtick={1,4,16,64,256,1024},xticklabels={1,4,16,64,256,1024},xlabel={chunk size (KiB)},
+  grid=major,grid style={cgrid,line width=0.3pt},tick label style={font=\figfont},label style={font=\figfont},
+  legend style={draw=none,fill=none,at={(1.12,-0.3)},anchor=north,legend columns=2,/tikz/every even column/.append style={column sep=14pt}}]
+\nextgroupplot[title={(a) Encryption time per chunk},ymode=log,ylabel={time ($\mu$s)},ymin=0.4,ymax=1000]
+\addplot[cnavy,thick,mark=*,mark size=1.4pt,error bars/.cd,y dir=both,y explicit]
+  table[x=kib,y=enc_med,y error plus expr=\thisrow{enc_q3}-\thisrow{enc_med},y error minus expr=\thisrow{enc_med}-\thisrow{enc_q1}]{data/bench_chacha.dat};
+\addplot[cburg,thick,mark=square*,mark size=1.4pt,error bars/.cd,y dir=both,y explicit]
+  table[x=kib,y=enc_med,y error plus expr=\thisrow{enc_q3}-\thisrow{enc_med},y error minus expr=\thisrow{enc_med}-\thisrow{enc_q1}]{data/bench_aes.dat};
+\legend{ChaCha20-Poly1305 (profile),AES-256-GCM (comparison)}
+\nextgroupplot[title={(b) Throughput},ylabel={GiB/s},ymin=0,ymax=10]
+\addplot[cnavy,thick,mark=*,mark size=1.4pt,error bars/.cd,y dir=both,y explicit]
+  table[x=kib,y=gibps,y error plus expr=\thisrow{kib}*1000000/(\thisrow{enc_q1}*1048576)-\thisrow{gibps},
+        y error minus expr=\thisrow{gibps}-\thisrow{kib}*1000000/(\thisrow{enc_q3}*1048576)]{data/bench_chacha.dat};
+\addplot[cburg,thick,mark=square*,mark size=1.4pt,error bars/.cd,y dir=both,y explicit]
+  table[x=kib,y=gibps,y error plus expr=\thisrow{kib}*1000000/(\thisrow{enc_q1}*1048576)-\thisrow{gibps},
+        y error minus expr=\thisrow{gibps}-\thisrow{kib}*1000000/(\thisrow{enc_q3}*1048576)]{data/bench_aes.dat};
+\end{groupplot}
+\end{tikzpicture}

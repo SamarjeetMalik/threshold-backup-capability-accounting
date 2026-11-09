@@ -1,0 +1,16 @@
+% Concrete data layer, with the key-collision bad event. v4.1.5: 8 pt sans, natural size.
+\begin{tikzpicture}[x=1cm,y=1cm,chunk/.style={node,minimum width=29mm,align=center}]
+\node[neut] (ctx) at (3.75,3.25) {$\mathit{ctx}$: domain, account, configuration,\\epoch, 32-byte identifier, header};
+\node[node] (seed) at (0.95,1.8) {epoch seed $S_e$\\(32 bytes)};
+\node[node] (h) at (3.75,1.8) {HMAC-SHA256\\$(S_e,\mathrm{CBOR}(\mathit{ctx}))$};
+\node[node] (k) at (6.6,1.8) {key instance\\$K_o\in\{0,1\}^{256}$};
+\draw[flow] (seed)--(h); \draw[flow] (h)--(k); \draw[flow,cslate] (ctx)--(h);
+\node[adv] (k2) at (10.15,1.8) {bad event: $K_{o'}=K_o$\\for some $\mathit{ctx}'\neq\mathit{ctx}$;\\probability $\le K_{\mathrm{key}}(K_{\mathrm{key}}{-}1)/2^{257}$};
+\draw[dflow] (k2.west) -- (k.east);
+\foreach \i/\x/\fin in {0/1.45/0,1/4.5/0,2/7.55/0,3/10.6/1}{
+  \node[chunk] (c\i) at (\x,0) {nonce $0^{32}\Vert\,\mathrm{u64}(\i)$\\AD $(\mathrm{H}(\mathit{ctx}),\i,\fin)$\\$\to$ ct$_{\i}\Vert$tag$_{\i}$};
+  \draw[flow] (k.south) -- (c\i.north);}
+\node[anchor=north,text=cnavy,font=\figfont] at ([yshift=-2pt]c3.south) {$\mathit{final}=1$ only on the last chunk};
+\draw[dflow] (k2.east) -- ++(0.25,0) |- (5.4,-1.55) -| (c0.south);
+\node[anchor=north,text=cburg,font=\figfont] at (5.4,-1.62) {same key bytes and the same nonce for chunk 0 in both objects};
+\end{tikzpicture}
