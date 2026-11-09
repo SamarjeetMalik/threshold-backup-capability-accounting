@@ -1,12 +1,12 @@
-# Reproducibility manifest: manuscript v4.1.7, artifact v4.1.1 (9 November 2026)
+# Reproducibility manifest: manuscript v4.1.8, artifact v4.1.1 (9 November 2026)
 
-Every result in manuscript v4.1.7 comes from the version 4.1.1 artifact. Manuscript versions 4.1.2 to 4.1.7 changed wording, layout and figures only; `artifact/` has not changed since v4.1.1.
+Every result in manuscript v4.1.8 comes from the version 4.1.1 artifact. Manuscript versions 4.1.2 to 4.1.8 changed wording, layout and figures only; `artifact/` has not changed since v4.1.1.
 
 ## Versions and identifiers
 | Item | Value |
 |---|---|
-| Manuscript | v4.1.7, `manuscript/main.tex` (SHA-256 `d7451bb9b131a37d2b995a26d0a40a38155deb5cb1a8cdaf5aeec0b283e03c59`) |
-| Compiled PDFs | v4.1.7: styled `a21772b64c8fc78bce10416a56dbbf28c3f75e645978340279a3a86df01febf6`; submission `70eb4ff9d2eadc06087e145c8ee423401b43e9e67527ea0d10847437c184b11c` (also in `REVISION_V4.1.7.md`). Published v4.1.6 PDFs: GitHub release v4.1.6 and Zenodo 10.5281/zenodo.24084300. Published v4.1.1 PDFs: full hashes in the v4.1.1 SHA256SUMS. |
+| Manuscript | v4.1.8, `manuscript/main.tex` (SHA-256 `3fb98994b21e5143382c93bf892c8928dcba6be3e9bdafeb306fdd741bdc9938`) |
+| Compiled PDFs | v4.1.8: styled `99ec23a970ae07e8bc66c5a26c547576b3a43221d8e941426b7b3d099e9ec82c`; submission `8b2ce86b3068ba231e38f9a3c8a6c382a81d5ac6d051f00ca8c70f3430aae393` (also in `REVISION_V4.1.8.md`). Published v4.1.7 PDFs: GitHub release v4.1.7 and Zenodo 10.5281/zenodo.24088767. Published v4.1.6 PDFs: GitHub release v4.1.6 and Zenodo 10.5281/zenodo.24084300. Published v4.1.1 PDFs: full hashes in the v4.1.1 SHA256SUMS. |
 | Artifact (source of all results) | v4.1.1: Zenodo DOI 10.5281/zenodo.24060229 (published 9 Nov 2026; its artifact zip has MD5 688235160ab9ef19731d4810e034152c); GitHub tag `v4.1.1`. The v4.1.6 release archives the same `artifact/` byte for byte. |
 | Archived predecessor | v4.0.7: Zenodo DOI 10.5281/zenodo.24048192; GitHub tag `v4.0.7` → commit `80d40a8c83b13e25712839327de45b144de83b52` |
 | All versions | Zenodo concept DOI 10.5281/zenodo.24048191 |

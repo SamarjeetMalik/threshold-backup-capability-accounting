@@ -1,6 +1,6 @@
-% Capability Exposure Accounting, version 4.1.7 (layout revision of 4.1.6: Fig. 15 anchored in Appendix C; artifact v4.1.1). Compiler: pdfLaTeX; bibliography: BibTeX.
+% Capability Exposure Accounting, version 4.1.8 (layout revision of 4.1.7: single-column sn-jnl, as in the official Springer Nature sample; artifact v4.1.1). Compiler: pdfLaTeX; bibliography: BibTeX.
 \PassOptionsToPackage{table}{xcolor}
-\documentclass[pdflatex,sn-mathphys-num,twocolumn]{sn-jnl}
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% single column, as in the official Springer Nature template sample
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsfonts}
@@ -103,7 +103,7 @@ Minimum-cost attacks on tree-structured AND/OR attack trees are computed bottom-
 \caption{Comparison of problem scope. Entries describe the cited interfaces as inspected; ``this paper'' entries are relative to declared operations and affine views.}\label{tab:comparison}
 \centering\footnotesize
 \altrows
-\begin{tabularx}{\linewidth}{@{}p{.15\linewidth}YYYY@{}}\toprule
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.15\linewidth}YYYY@{}}\toprule
 \thead{Work} & \thead{Problem} & \thead{Threat model} & \thead{Key evolution / erasure} & \thead{Evidence}\\\midrule
 Boneh--Lipton; Perlman & Revocable backup; assured delete & Later key-holder compromise & Destroy encrypting keys & Design\\
 Cachin et al. & Policy-based deletion & Cryptographic deletion game & DAG policy over erasable keys & Proofs; filesystem prototype\\
@@ -244,9 +244,9 @@ Part~(4) corrects a dimensional imprecision in the v2.0.0 statement. The target 
 
 \begin{corollary}[Marginal and conditional leakage]\label{cor:condleak}
 Let the seeds be independent and uniform on $\F_p^k$, split into a target block $T$ and the rest $\bar T$. Let $\pi_T$ be the coordinate projection onto $T$, and let $U_{T}=\{u\in U:u_{\bar T}=0\}$. Then
-\begin{gather*}
- I(S_T;Y)=\dim U_T\cdot\log_2p,\\ I(S_T;Y\mid S_{\bar T})=\dim\pi_T(U)\cdot\log_2p,
-\end{gather*}
+\[
+ I(S_T;Y)=\dim U_T\cdot\log_2p,\qquad I(S_T;Y\mid S_{\bar T})=\dim\pi_T(U)\cdot\log_2p,
+\]
 and $\dim U=\dim\pi_T(U)+\dim\{u\in U:u_T=0\}$, which is the chain rule $I(S;Y)=I(S_{\bar T};Y)+I(S_T;Y\mid S_{\bar T})$.
 \end{corollary}
 \begin{proof}
@@ -366,10 +366,8 @@ Consequently, a per-generation counting rule is exact for privacy of a single se
 \subsection{Corrected joint-generation theorem}
 For epoch $e$, generation $g$ uses threshold $t_g$, distinct nonzero indices $X_g$, and independently sampled polynomials
 \begin{equation}\label{eq:sharing}
-\begin{gathered}
- A_g(X)=S_e+\sum_{i=1}^{t_g-1}a_{g,i}X^i,\\
+ A_g(X)=S_e+\sum_{i=1}^{t_g-1}a_{g,i}X^i,\qquad
  B_g(X)=\sum_{i=0}^{t_g-1}b_{g,i}X^i,
-\end{gathered}
 \end{equation}
 with Pedersen commitments $C_{g,i}=g_0^{a_{g,i}}h_0^{b_{g,i}}$, $a_{g,0}=S_e$, $h_0=g_0^\beta$, $\beta\ne0$. We analyze the exponent view $E_{g,i}=a_{g,i}+\beta b_{g,i}$, which determines the commitments. Hiding it suffices to hide them. The analysis is information-theoretic: it uses $\beta$, which no party can compute.
 
@@ -444,7 +442,7 @@ Theorem~\ref{thm:temporal} is stated for arbitrary finite histories, and v4 test
 \begin{table*}[t]
 \caption{Healing classification. Each row is decided by the exact rank test of Theorem~\ref{thm:leakage} on the Pedersen exponent view ($p=101$, three holders, $t=2$); the artifact asserts every entry.}\label{tab:healing}
 \centering\footnotesize
-\begin{tabularx}{\linewidth}{@{}p{.36\linewidth}p{.33\linewidth}Y@{}}\toprule
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.36\linewidth}>{\raggedright\arraybackslash}p{.33\linewidth}Y@{}}\toprule
 Exposure & Operation & Target private?\\\midrule
 One pair per period, two periods & None & No\\
 One pair per period, two periods & Share refresh & Yes\\
@@ -539,11 +537,8 @@ At most $f_a$ identities can account for Byzantine signatures in a $q_a$-signer 
 Consider this serial schedule: a nonce-bound checkpoint in one round trip $T_{\mathrm{rt}}$; package fetch in one $T_{\mathrm{rt}}$; the request committed and delivered to participating honest parties within one log call $T_{\mathrm{log}}$; approvals available within $T_{\mathrm{app}}$ of request observation; the approval certificate committed within one further $T_{\mathrm{log}}$; a bound channel in one $T_{\mathrm{rt}}$; responses in one $T_{\mathrm{rt}}$; local work $T_{\mathrm{loc}}$. Assume clock rates in $[1-\rho,1+\rho]$ with $0\le\rho<1$, and that each guardian's hold of $(1+\rho)\tau$ local units starts when it observes the committed request. Then
 \begin{equation}\label{eq:deadline}
 \begin{split}
- &T_{\mathrm{restore}}\\
- &\ \le4T_{\mathrm{rt}}+T_{\mathrm{log}}+T_{\mathrm{loc}}\\
- &\qquad+\max\!\left\{T_{\mathrm{app}}+T_{\mathrm{log}},\ \tfrac{1+\rho}{1-\rho}\tau\right\}\\
- &\ \le4T_{\mathrm{rt}}+2T_{\mathrm{log}}+T_{\mathrm{loc}}\\
- &\qquad+\max\!\left\{T_{\mathrm{app}},\ \tfrac{1+\rho}{1-\rho}\tau\right\}.
+ T_{\mathrm{restore}}&\le4T_{\mathrm{rt}}+T_{\mathrm{log}}+T_{\mathrm{loc}}+\max\!\left\{T_{\mathrm{app}}+T_{\mathrm{log}},\ \tfrac{1+\rho}{1-\rho}\tau\right\}\\
+ &\le4T_{\mathrm{rt}}+2T_{\mathrm{log}}+T_{\mathrm{loc}}+\max\!\left\{T_{\mathrm{app}},\ \tfrac{1+\rho}{1-\rho}\tau\right\}.
 \end{split}
 \end{equation}
 If instead the hold starts at certificate observation, the bound is $4T_{\mathrm{rt}}+2T_{\mathrm{log}}+T_{\mathrm{app}}+\frac{1+\rho}{1-\rho}\tau+T_{\mathrm{loc}}$. If the checkpoint and package fetches run concurrently, one $T_{\mathrm{rt}}$ can be removed from each bound.
@@ -635,14 +630,16 @@ Summing the $M$ hops gives the lemma. Keys, capsules and generations are not cou
 \end{proof}
 
 \begin{lemma}[Key instances versus key bytes]\label{lem:keycoll}
-For all $K_{\mathrm{key}},C,D_{\mathrm{dec}}$, $\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}(K_{\mathrm{key}},C,D_{\mathrm{dec}})\le\varepsilon^{\mathrm{dist}}_{\mathrm{ae}}(K_{\mathrm{key}},C,D_{\mathrm{dec}})+K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{257}$.
+For all $K_{\mathrm{key}},C,D_{\mathrm{dec}}$,
+\[
+ \varepsilon^{\mathrm{iid}}_{\mathrm{ae}}(K_{\mathrm{key}},C,D_{\mathrm{dec}})\le\varepsilon^{\mathrm{dist}}_{\mathrm{ae}}(K_{\mathrm{key}},C,D_{\mathrm{dec}})+K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{257}.
+\]
 \end{lemma}
 \begin{proof}
 Fix a distinguisher $\mathcal A'$ and write $p^{\mathrm{iid}}_{\mathrm{real}}$, $p^{\mathrm{dist}}_{\mathrm{real}}$ and $p_{\mathrm{ideal}}$ for its probabilities of outputting $1$. The ideal world answers encryptions with fresh uniform strings and decryptions with $\bot$, per instance index. Its behaviour therefore does not depend on the key values, and it is the same distribution in both games. Let $\mathrm{Col}$ be the event that two of the $K_{\mathrm{key}}$ i.i.d.\ instances are equal, with probability $\delta=1-\prod_{i<K_{\mathrm{key}}}(1-i/2^{256})\le K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{257}$. Conditioned on $\neg\mathrm{Col}$, the i.i.d.\ tuple is uniform over tuples of distinct keys, which is exactly the distinct-key game. Writing $p^{\mathrm{col}}_{\mathrm{real}}$ for the real-world probability conditioned on $\mathrm{Col}$, the common mixture gives
-\begin{multline*}
- p^{\mathrm{iid}}_{\mathrm{real}}-p_{\mathrm{ideal}}=(1-\delta)\big(p^{\mathrm{dist}}_{\mathrm{real}}-p_{\mathrm{ideal}}\big)\\
- +\delta\big(p^{\mathrm{col}}_{\mathrm{real}}-p_{\mathrm{ideal}}\big),
-\end{multline*}
+\[
+ p^{\mathrm{iid}}_{\mathrm{real}}-p_{\mathrm{ideal}}=(1-\delta)\big(p^{\mathrm{dist}}_{\mathrm{real}}-p_{\mathrm{ideal}}\big)+\delta\big(p^{\mathrm{col}}_{\mathrm{real}}-p_{\mathrm{ideal}}\big),
+\]
 where $p_{\mathrm{ideal}}$ is split by the same weights because it does not depend on the keys. The last bracket has absolute value at most $1$, so $|p^{\mathrm{iid}}_{\mathrm{real}}-p_{\mathrm{ideal}}|\le(1-\delta)\,|p^{\mathrm{dist}}_{\mathrm{real}}-p_{\mathrm{ideal}}|+\delta\le\varepsilon^{\mathrm{dist}}_{\mathrm{ae}}+\delta$. Taking the supremum over $\mathcal A'$ proves the lemma. Bounding the real and ideal probabilities separately would have given $2\delta$; the mixture avoids that. In the i.i.d.\ game a coincidence lets two instances, each nonce-respecting by index, use the same key bytes with the same nonce (chunk index $0$). That event is part of $\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}$, not something it excludes.
 \end{proof}
 
@@ -660,8 +657,7 @@ HMAC outputs for distinct contexts are distinct only with high probability. Two 
 \begin{theorem}[Restricted-adaptive composition]\label{thm:adaptive}
 Let $N$ be the number of recipient slots and $M\le\sum_gn_g$ the number of target capsules. For the target epoch, let $q$ be the number of honest object contexts, that is, $\mathsf{Store}$ calls including the challenge and abandoned creations. Let $r$ be the number of $\mathsf{Open}$ requests not consisting solely of honest chunk ciphertexts for their context. Let $C$ be the total number of chunk encryptions and $D_{\mathrm{dec}}$ the total number of chunk decryptions of ciphertexts that are not honest outputs. Then the number of HMAC evaluations is $Q_{\mathrm{PRF}}\le q+r$, the number of derived-key \emph{instances} (one per distinct context, not necessarily distinct byte strings) is $K_{\mathrm{key}}\le q+r$, and in the game of Definition~\ref{def:adaptivegame}
 \begin{multline}\label{eq:adaptive}
- \Adv(\mathcal A)\le L\cdot\Big[\varepsilon_{\mathrm{mu}}(N,M)\\
- +\varepsilon_{\mathrm{prf}}(q+r)+\frac{q(q-1)}{2^{257}}\\
+ \Adv(\mathcal A)\le L\cdot\Big[\varepsilon_{\mathrm{mu}}(N,M)+\varepsilon_{\mathrm{prf}}(q+r)+\frac{q(q-1)}{2^{257}}\\
  +\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}(K_{\mathrm{key}},C,D_{\mathrm{dec}})\Big],
 \end{multline}
 with $L=|\mathcal P|$ as in~\eqref{eq:L}. More generally, $L$ may be replaced by the size of any set of patterns that contains every pattern a fresh run can produce; under forward-ordered exposure this gives $L=1$.
@@ -718,12 +714,10 @@ Summing the hops bounds $\Adv_1$, and $\Adv_0=L\cdot\Adv_1$. Under forward-order
 
 \begin{corollary}[Concrete loss]\label{cor:loss}
 With Lemmas~\ref{lem:mu} and~\ref{lem:keycoll},
-\begin{align*}
- &\Adv(\mathcal A)\le L\cdot\Big[N\,M\,\varepsilon_{\mathrm{cca}}+\varepsilon_{\mathrm{prf}}(q+r)\\
- &\quad+\frac{q(q-1)}{2^{257}}+\frac{K_{\mathrm{key}}(K_{\mathrm{key}}-1)}{2^{257}}\\
- &\quad+\varepsilon^{\mathrm{dist}}_{\mathrm{ae}}(K_{\mathrm{key}},C,D_{\mathrm{dec}})\Big],\\
- &K_{\mathrm{key}}\le q+r.
-\end{align*}
+\begin{multline*}
+ \Adv(\mathcal A)\le L\cdot\Big[N\,M\,\varepsilon_{\mathrm{cca}}+\varepsilon_{\mathrm{prf}}(q+r)+\frac{q(q-1)}{2^{257}}\\
+ +\frac{K_{\mathrm{key}}(K_{\mathrm{key}}-1)}{2^{257}}+\varepsilon^{\mathrm{dist}}_{\mathrm{ae}}(K_{\mathrm{key}},C,D_{\mathrm{dec}})\Big],\qquad K_{\mathrm{key}}\le q+r.
+\end{multline*}
 The last two terms may be replaced by $\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}(K_{\mathrm{key}},C,D_{\mathrm{dec}})$ whenever the AE bound used is proved for i.i.d.\ instances with per-instance nonce respect. The collision term is negligible in practice: for $K_{\mathrm{key}}\le2^{28}$ it is below $2^{-201}$.
 The guessing-space size is $L=4,16,99,848$ for a single generation with $(n,t)=(3,2),(5,3),(7,5),(10,7)$, $256$ for two $(5,3)$ generations, and $970{,}299$ for three $(7,5)$ generations. $L$ multiplies every term. The bound is affordable for a few target generations and small committees, and vacuous for many refreshes of a long-lived seed unless exposure is forward-ordered or the reachable pattern set is much smaller.
 \end{corollary}
@@ -888,10 +882,7 @@ For a fixed target epoch, masking up to $n$ recipient capsules is the capsule ho
 \subsection{Symbolic failure budget}
 For a chosen finite experiment, the union of named control failures is bounded by
 \begin{equation}\label{eq:budget}
-\begin{split}
- B_{\mathrm{all}}={}&\delta_{\mathrm{log}}+\delta_{\mathrm{erase}}+\delta_{\mathrm{chan}}+\delta_{\mathrm{clock}}\\
- &+\delta_{\mathrm{boot}}+K_{\mathrm{sig}}\varepsilon_{\mathrm{sig}}+\varepsilon_H+\varepsilon_{\mathrm{DL}}.
-\end{split}
+ B_{\mathrm{all}}=\delta_{\mathrm{log}}+\delta_{\mathrm{erase}}+\delta_{\mathrm{chan}}+\delta_{\mathrm{clock}}+\delta_{\mathrm{boot}}+K_{\mathrm{sig}}\varepsilon_{\mathrm{sig}}+\varepsilon_H+\varepsilon_{\mathrm{DL}}.
 \end{equation}
 Here $\delta_{\mathrm{log}}$ covers freshness, finality and durability; $\delta_{\mathrm{erase}}$ honest cleanup and anti-rollback, including in-flight worker state; $\delta_{\mathrm{chan}}$ endpoint binding and cleanup; $\delta_{\mathrm{clock}}$ monotone and rate-bound time; $\delta_{\mathrm{boot}}$ authentic enrollment. $K_{\mathrm{sig}}\varepsilon_{\mathrm{sig}}$ is a union of per-key EUF-CMA bounds, $\varepsilon_H$ collisions of the typed encodings, and $\varepsilon_{\mathrm{DL}}$ the first accepted distinct false opening. A reference pair $(a,b)$ and a distinct accepted $(a',b')$ satisfy $a+\beta b=a'+\beta b'$ with $b\ne b'$, which gives $\beta=(a-a')/(b'-b)$. This requires an honest reference sharing, not malicious-dealer agreement. Without platform or behavioral models the $\delta$ terms have no asserted value. Equation~\eqref{eq:budget} is therefore a symbolic decomposition, not a quantified end-to-end guarantee: its terms cannot be summed into a deployment number until each has been measured or bounded (Table~\ref{tab:budget}). The human false-approval probability $\alpha$ is outside it and unconstrained.
 
@@ -1124,7 +1115,7 @@ Samarjeet Malik and Shaurya Pratap Singh: conceptualization, methodology, formal
 This manuscript reports formal analysis, finite model checks and a reference implementation. It involves no human participants or personal data.
 
 \bmhead{Data and code availability}
-The Python reference implementation, TLA+ specifications and configurations, test suite, reproduction scripts, raw benchmark measurements and recorded evidence supporting this manuscript form the version 4.1.1 artifact. It is released as tag v4.1.1 of \url{https://github.com/SamarjeetMalik/threshold-backup-capability-accounting} and archived on Zenodo at \url{https://doi.org/10.5281/zenodo.24060229}. The artifact code is licensed under the MIT licence; the manuscript, figures and reports are licensed under CC BY 4.0. This manuscript is version 4.1.7. Relative to version 4.1.1 it changes only layout and wording; its results are unchanged, and every result in it is reproduced by the version 4.1.1 artifact. That artifact's changelog lists what it adds to its predecessor, the version 4.0.7 artifact (\url{https://doi.org/10.5281/zenodo.24048192}, tag v4.0.7).
+The Python reference implementation, TLA+ specifications and configurations, test suite, reproduction scripts, raw benchmark measurements and recorded evidence supporting this manuscript form the version 4.1.1 artifact. It is released as tag v4.1.1 of \url{https://github.com/SamarjeetMalik/threshold-backup-capability-accounting} and archived on Zenodo at \url{https://doi.org/10.5281/zenodo.24060229}. The artifact code is licensed under the MIT licence; the manuscript, figures and reports are licensed under CC BY 4.0. This manuscript is version 4.1.8. Relative to version 4.1.1 it changes only layout and wording; its results are unchanged, and every result in it is reproduced by the version 4.1.1 artifact. That artifact's changelog lists what it adds to its predecessor, the version 4.0.7 artifact (\url{https://doi.org/10.5281/zenodo.24048192}, tag v4.0.7).
 
 \bmhead{Preprint}
 A preprint of this manuscript (version 4.0.7) is archived with the artifact at \url{https://doi.org/10.5281/zenodo.24048192} under CC BY 4.0.

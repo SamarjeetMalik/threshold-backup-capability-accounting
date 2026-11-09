@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.1.8 (9 November 2026), manuscript layout only; artifact remains v4.1.1
+- Single column: the class options are now `[pdflatex,sn-mathphys-num]`, exactly as in the official Springer Nature template sample (sn-jnl.cls and sn-mathphys-num.bst are byte-identical to the current template download). The `twocolumn` option had split the template's single-column text area (131 x 194 mm) into two narrow columns.
+- Display equations that had been broken for narrow columns are set on one or two lines: Corollary 2, eq. (2), eq. (5), Lemma 24 (statement displayed, proof mixture on one line), Theorem 25 eq. (7), Corollary 26, eq. (8). No symbol or term changed.
+- Fig. 15 panels enlarged to fill the text width (350 of 372 pt); still 8 pt, unscaled, numbered 15, in Appendix C before the References. Tables 1 and 5: narrow columns set ragged-right.
+- Theorem 25 review packet regenerated for the new page numbers: pp. 24-34 (THEOREM25_REVIEW_PACKET_pp24-34.pdf).
+- 56 pp. styled, 55 pp. submission. No theorem, number, caption text, data file or artifact file changed. Previous text: manuscript/main_v4.1.7.tex, figures_v4.1.7/plot_minholders.tex.
+- Approved by both authors 9 Nov 2026; released as tag v4.1.8, Zenodo DOI 10.5281/zenodo.24089585.
+
 ## 4.1.7 (9 November 2026), manuscript layout only; artifact remains v4.1.1
 - Fig. 15 is now non-floating and sits in Appendix C after its heading and paragraph, before the References. In v4.1.6 it floated to p. 48 ahead of the Appendix B heading. It is single-column with three compact panels, still 8 pt and unscaled, and still numbered 15.
 - Documentation: AUTHOR_CHECKLIST.md records the completed co-author confirmations and the public records; REPRODUCIBILITY.md now names manuscript v4.1.7 and the v4.1.1 artifact as the source of every result.

@@ -1,0 +1,16 @@
+% Minimum holder-committee size n = 3f + c + 2u + 1 (Proposition 17).
+% v4.1.7: single-column, three compact panels, so the figure sits in Appendix C (non-floating) after its heading.
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=3 by 1,horizontal sep=0.24cm,yticklabels at=edge left,ylabels at=edge left},
+  scale only axis,width=1.52cm,height=2.3cm,view={0}{90},ylabel={Byzantine $f$},xtick={0,...,3},ytick={0,...,4},
+  colormap={nb}{color(0)=(white) color(1)=(cnavy!38)},point meta min=1,point meta max=20,
+  enlargelimits=false,xmin=-0.5,xmax=3.5,ymin=-0.5,ymax=4.5,axis on top,tick align=outside,major tick length=2pt,xtick pos=bottom,ytick pos=left,
+  title style={yshift=-3pt},nodes near coords style={font=\figfont,text=black,anchor=center}]
+\nextgroupplot[title={$u=0$}]
+\addplot[matrix plot*,mesh/cols=4,point meta=explicit,nodes near coords={\pgfmathprintnumber[fixed,assume math mode=true]{\pgfplotspointmeta}}] table[x=c,y=f,meta=n]{data/minholders_u0.dat};
+\nextgroupplot[title={$u=1$},xlabel={prior copies $c$},ytick style={draw=none}]
+\addplot[matrix plot*,mesh/cols=4,point meta=explicit,nodes near coords={\pgfmathprintnumber[fixed,assume math mode=true]{\pgfplotspointmeta}}] table[x=c,y=f,meta=n]{data/minholders_u1.dat};
+\nextgroupplot[title={$u=2$},ytick style={draw=none}]
+\addplot[matrix plot*,mesh/cols=4,point meta=explicit,nodes near coords={\pgfmathprintnumber[fixed,assume math mode=true]{\pgfplotspointmeta}}] table[x=c,y=f,meta=n]{data/minholders_u2.dat};
+\end{groupplot}
+\end{tikzpicture}

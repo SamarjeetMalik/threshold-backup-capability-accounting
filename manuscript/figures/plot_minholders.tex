@@ -1,8 +1,9 @@
 % Minimum holder-committee size n = 3f + c + 2u + 1 (Proposition 17).
-% v4.1.7: single-column, three compact panels, so the figure sits in Appendix C (non-floating) after its heading.
+% v4.1.7: three compact panels, so the figure sits in Appendix C (non-floating) after its heading.
+% v4.1.8: single-column page (372 pt); panels enlarged to fill the text width.
 \begin{tikzpicture}
-\begin{groupplot}[group style={group size=3 by 1,horizontal sep=0.24cm,yticklabels at=edge left,ylabels at=edge left},
-  scale only axis,width=1.52cm,height=2.3cm,view={0}{90},ylabel={Byzantine $f$},xtick={0,...,3},ytick={0,...,4},
+\begin{groupplot}[group style={group size=3 by 1,horizontal sep=0.5cm,yticklabels at=edge left,ylabels at=edge left},
+  scale only axis,width=3.4cm,height=3.6cm,view={0}{90},ylabel={Byzantine $f$},xtick={0,...,3},ytick={0,...,4},
   colormap={nb}{color(0)=(white) color(1)=(cnavy!38)},point meta min=1,point meta max=20,
   enlargelimits=false,xmin=-0.5,xmax=3.5,ymin=-0.5,ymax=4.5,axis on top,tick align=outside,major tick length=2pt,xtick pos=bottom,ytick pos=left,
   title style={yshift=-3pt},nodes near coords style={font=\figfont,text=black,anchor=center}]
