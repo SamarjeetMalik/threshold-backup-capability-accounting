@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.1.9 (9 November 2026), manuscript wording and structure; artifact remains v4.1.1
+- Version history removed from the paper (it stays in this changelog and the REVISION files). The paragraph "Corrections to earlier versions" is replaced by a paragraph on selective exposure and why the PRF/key and AE counts are separate; sentences naming v2.0.0, v3, v4, v4.0.x or v4.1.x are restated plainly (Theorem 3 part (4), Proposition 8 remark, Section 6.2 title and remark, Theorem 15 testing, eq. (3) truncation remark, deadline bound remark, profile table, G2'->G3 hop, lifecycle and conformance text, figure text of the truncation and lifecycle figures). The baseline kernel in the conformance test is now described as such. The domain tag CEAB-v2-Pedersen-H is a wire constant and stays.
+- New supplement, Online Resource 1 (manuscript/supplement.tex, 11 pp.): data-layer tests, measurements, Table and Figs. of the measurements, the nonce-guard table, the data-layer and truncation figures, every TLC configuration, liveness counterexamples, the manual lifecycle induction (former Appendix A), conformance step statistics, supervisor tests and cost table, the model-correspondence table, an evidence map from each check to its script, the failure-budget table, binding records (former Appendix B) and the committee figures (former Appendix C and the feasible-threshold figure). The main text keeps a summary of each with a pointer.
+- Section 10 is one de-versioned list of checks; every number matches artifact/expected/*.json. The data statement names the v4.1.1 artifact only; the preprint statement points to the all-versions DOI.
+- Abstract 250 words. Main text 48 pp. (submission and styled; was 55/56), no appendices. Previous text: manuscript/main_v4.1.8.tex, figures_v4.1.8/.
+- Theorem 25 review packet: pp. 23-34 (THEOREM25_REVIEW_PACKET_pp23-34.pdf).
+- Approved by both authors 9 Nov 2026; released as tag v4.1.9, Zenodo DOI 10.5281/zenodo.24090414.
+
 ## 4.1.8 (9 November 2026), manuscript layout only; artifact remains v4.1.1
 - Single column: the class options are now `[pdflatex,sn-mathphys-num]`, exactly as in the official Springer Nature template sample (sn-jnl.cls and sn-mathphys-num.bst are byte-identical to the current template download). The `twocolumn` option had split the template's single-column text area (131 x 194 mm) into two narrow columns.
 - Display equations that had been broken for narrow columns are set on one or two lines: Corollary 2, eq. (2), eq. (5), Lemma 24 (statement displayed, proof mixture on one line), Theorem 25 eq. (7), Corollary 26, eq. (8). No symbol or term changed.

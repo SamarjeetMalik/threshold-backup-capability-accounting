@@ -22,5 +22,5 @@
 \draw[flow,cslate] (que.south) -- ([xshift=-2mm]can.north);
 \draw[flow,cslate] (send.south) |- (can.east);
 \node[font=\figfont,text=cslate,anchor=west,align=left] at (9.25,-1.0) {expiry, config.\\change or crash};
-\draw[dflow] (ab.south) -- ++(0,-0.6) node[below right=0pt and -6pt,text=cburg,font=\figfont]{v2 defect: receipt signed while aborting (now blocked by the guard)};
+\draw[dflow] (ab.south) -- ++(0,-0.6) node[below right=0pt and -6pt,text=cburg,font=\figfont]{without the in-flight guard: receipt signed while aborting (blocked)};
 \end{tikzpicture}

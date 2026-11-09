@@ -1,12 +1,12 @@
-# Reproducibility manifest: manuscript v4.1.8, artifact v4.1.1 (9 November 2026)
+# Reproducibility manifest: manuscript v4.1.9, artifact v4.1.1 (9 November 2026)
 
-Every result in manuscript v4.1.8 comes from the version 4.1.1 artifact. Manuscript versions 4.1.2 to 4.1.8 changed wording, layout and figures only; `artifact/` has not changed since v4.1.1.
+Every result in manuscript v4.1.9 and its Online Resource 1 comes from the version 4.1.1 artifact. Manuscript versions 4.1.2 to 4.1.9 changed wording, layout and figures only; `artifact/` has not changed since v4.1.1.
 
 ## Versions and identifiers
 | Item | Value |
 |---|---|
-| Manuscript | v4.1.8, `manuscript/main.tex` (SHA-256 `3fb98994b21e5143382c93bf892c8928dcba6be3e9bdafeb306fdd741bdc9938`) |
-| Compiled PDFs | v4.1.8: styled `99ec23a970ae07e8bc66c5a26c547576b3a43221d8e941426b7b3d099e9ec82c`; submission `8b2ce86b3068ba231e38f9a3c8a6c382a81d5ac6d051f00ca8c70f3430aae393` (also in `REVISION_V4.1.8.md`). Published v4.1.7 PDFs: GitHub release v4.1.7 and Zenodo 10.5281/zenodo.24088767. Published v4.1.6 PDFs: GitHub release v4.1.6 and Zenodo 10.5281/zenodo.24084300. Published v4.1.1 PDFs: full hashes in the v4.1.1 SHA256SUMS. |
+| Manuscript | v4.1.9, `manuscript/main.tex` (SHA-256 `8f06924cfa768b032329a75fe5d958f6096f7acbf774de11bca4fdd3aea8e727`) and Online Resource 1, `manuscript/supplement.tex` (SHA-256 `f6be334dca05748a56492f178cbd9593841feed414cfefc4ab86758d51f178c1`) |
+| Compiled PDFs | v4.1.9: styled `2d9ed4516bcb3526a48fb06438142b72bc633031db4af8d4c00fa9f335cb7a70`; submission `c0968eaee32e6f930c43a69b3e424e08c3b644cefb893c225bc68b8e2b133135`; Online Resource 1 `8ec64eff43b19e58ce9233e6c0e54ef8a68f3ddfd384e78939cfc32d24d5f186` (also in `REVISION_V4.1.9.md`). Published v4.1.8 PDFs: GitHub release v4.1.8 and Zenodo 10.5281/zenodo.24089585. Published v4.1.7 PDFs: GitHub release v4.1.7 and Zenodo 10.5281/zenodo.24088767. Published v4.1.6 PDFs: GitHub release v4.1.6 and Zenodo 10.5281/zenodo.24084300. Published v4.1.1 PDFs: full hashes in the v4.1.1 SHA256SUMS. |
 | Artifact (source of all results) | v4.1.1: Zenodo DOI 10.5281/zenodo.24060229 (published 9 Nov 2026; its artifact zip has MD5 688235160ab9ef19731d4810e034152c); GitHub tag `v4.1.1`. The v4.1.6 release archives the same `artifact/` byte for byte. |
 | Archived predecessor | v4.0.7: Zenodo DOI 10.5281/zenodo.24048192; GitHub tag `v4.0.7` → commit `80d40a8c83b13e25712839327de45b144de83b52` |
 | All versions | Zenodo concept DOI 10.5281/zenodo.24048191 |
@@ -29,7 +29,7 @@ python3 fetch_tlc.py
 .venv/bin/python bench_memory_v410.py evidence_v411/mac_m5_memory
 .venv/bin/python bench_supervisor_v411.py evidence_v411/mac_m5_supervisor
 python3 make_plot_data.py                                       # defaults read evidence_v411
-cd ../manuscript && latexmk -pdf -halt-on-error main.tex && latexmk -pdf -halt-on-error main_submission.tex
+cd ../manuscript && latexmk -pdf -halt-on-error main.tex && latexmk -pdf -halt-on-error main_submission.tex && latexmk -pdf -halt-on-error supplement.tex
 ```
 
 ## Executed runs
