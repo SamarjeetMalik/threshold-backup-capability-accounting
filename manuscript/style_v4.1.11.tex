@@ -1,0 +1,86 @@
+% v4.0.4 presentation layer. One source, two builds:
+%   main.tex            styled research version (boxes, accents)
+%   main_submission.tex sets \submissionmode before \input{main}; same text,
+%                       same statements, same figures, conservative styling.
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,decorations.pathreplacing}
+\usepackage{microtype}
+
+% Palette (shared by both builds, so figures are identical)
+\definecolor{cnavy}{HTML}{1F3A5F}
+\definecolor{ccobalt}{HTML}{2F5D8A}
+\definecolor{cburg}{HTML}{A93226}
+\definecolor{cslate}{HTML}{5E6670}
+\definecolor{cpaleblue}{HTML}{F3F6F9}
+\definecolor{cpalered}{HTML}{FBEFED}
+\definecolor{clightgray}{HTML}{F1F1F1}
+\definecolor{cgrid}{HTML}{E4E4E4}
+
+\newif\ifstyled
+\ifdefined\submissionmode \styledfalse \else \styledtrue \fi
+
+\ifstyled
+  \hypersetup{colorlinks=true,linkcolor=cnavy,citecolor=ccobalt,urlcolor=cnavy}
+  \newtcolorbox{keyresult}{enhanced,breakable,colback=cpaleblue,colframe=cnavy,boxrule=0pt,
+    leftrule=2.2pt,arc=0pt,outer arc=0pt,left=6pt,right=6pt,top=3pt,bottom=3pt,before skip=8pt,after skip=8pt}
+  \newtcolorbox{warnbox}[1]{enhanced,breakable,colback=cpalered,colframe=cburg,boxrule=0.4pt,arc=1pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,fonttitle=\bfseries\small,coltitle=white,colbacktitle=cburg,
+    title={#1},before skip=8pt,after skip=8pt}
+  \newtcolorbox{implbox}[1]{enhanced,breakable,colback=clightgray,colframe=cslate,boxrule=0.4pt,arc=1pt,
+    left=6pt,right=6pt,top=3pt,bottom=3pt,fonttitle=\bfseries\small,coltitle=white,colbacktitle=cslate,
+    title={#1},before skip=8pt,after skip=8pt}
+  \newtcolorbox{insightbox}{enhanced,breakable,colback=white,colframe=ccobalt,boxrule=0pt,leftrule=1.2pt,
+    arc=0pt,outer arc=0pt,left=6pt,right=4pt,top=2pt,bottom=2pt,before skip=6pt,after skip=6pt}
+  \newcommand{\thead}[1]{\textcolor{cnavy}{\textbf{#1}}}
+  \newcommand{\altrows}{\rowcolors{2}{white}{clightgray}}
+  \newcommand{\pos}[1]{\textcolor{cnavy}{#1}}
+  \newcommand{\negv}[1]{\textcolor{cburg}{#1}}
+\else
+  \hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black}
+  \newenvironment{keyresult}{\par}{\par}
+  \newenvironment{warnbox}[1]{\par\noindent\textbf{#1.}\ }{\par}
+  \newenvironment{implbox}[1]{\par\noindent\textbf{#1.}\ }{\par}
+  \newenvironment{insightbox}{\par}{\par}
+  \newcommand{\thead}[1]{\textbf{#1}}
+  \newcommand{\altrows}{}
+  \newcommand{\pos}[1]{#1}
+  \newcommand{\negv}[1]{#1}
+\fi
+
+% Figure lettering (v4.1.5): IJIS asks for 8-12 pt sans-serif lettering, so every figure uses
+% Helvetica (URW Nimbus Sans) at 8 pt or larger and no figure is scaled down (see \figbox).
+\newcommand{\figfont}{\fontfamily{phv}\fontsize{8}{9.6}\selectfont}
+\newcommand{\figtiny}{\figfont}% kept as an alias; nothing in a figure is set below 8 pt
+\newcommand{\figsmall}{\figfont}
+\newcommand{\figlarge}{\fontfamily{phv}\fontsize{8.5}{10}\selectfont}
+% \figbox{<tikz>}: typesets a figure at natural size. If it is wider than the line it is scaled
+% down and the log records FIGSCALE, which the build check treats as an error.
+\newsavebox{\figsavebox}
+\newcommand{\figbox}[1]{\sbox{\figsavebox}{#1}%
+  \typeout{FIGWIDTH \the\wd\figsavebox\space of \the\linewidth}%
+  \ifdim\wd\figsavebox>\linewidth
+    \typeout{FIGSCALE needed: \the\wd\figsavebox\space > \the\linewidth}%
+    \resizebox{\linewidth}{!}{\usebox{\figsavebox}}%
+  \else\usebox{\figsavebox}\fi}
+\pgfplotsset{every axis/.append style={font=\figfont,
+  tick label style={font=\figfont},label style={font=\figfont},
+  title style={font=\figlarge\bfseries},legend style={font=\figfont},
+  grid style={cgrid,line width=0.3pt},axis line style={black!75},tick style={black!75}}}
+% tick numbers in the figure font (sans), including powers on log axes
+\pgfplotsset{/pgf/number format/assume math mode=true,
+  log number format basis/.code 2 args={#1\textsuperscript{\pgfmathprintnumber[assume math mode=true]{#2}}}}
+% Shared TikZ styles
+\tikzset{
+  node/.style={draw=cnavy,line width=0.6pt,rounded corners=1pt,fill=white,align=center,font=\figfont,inner sep=3pt},
+  adv/.style={draw=cburg,line width=0.6pt,rounded corners=1pt,fill=cpalered,align=center,font=\figfont,inner sep=3pt},
+  neut/.style={draw=cslate,line width=0.6pt,rounded corners=1pt,fill=clightgray,align=center,font=\figfont,inner sep=3pt},
+  andgate/.style={draw=cnavy,line width=0.6pt,circle,fill=white,font=\figtiny\bfseries,inner sep=1pt,minimum size=13pt},
+  flow/.style={-{Stealth[length=4pt]},cnavy,thick},
+  aflow/.style={-{Stealth[length=4pt]},cburg,thick},
+  dflow/.style={-{Stealth[length=4pt]},cburg,thick,dashed},
+  layer/.style={font=\figlarge\bfseries,text=black},
+  every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}
+}

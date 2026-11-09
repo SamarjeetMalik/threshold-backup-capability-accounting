@@ -73,14 +73,16 @@
 \pgfplotsset{/pgf/number format/assume math mode=true,
   log number format basis/.code 2 args={#1\textsuperscript{\pgfmathprintnumber[assume math mode=true]{#2}}}}
 % Shared TikZ styles
+\usetikzlibrary{patterns}
 \tikzset{
   node/.style={draw=cnavy,line width=0.6pt,rounded corners=1pt,fill=white,align=center,font=\figfont,inner sep=3pt},
-  adv/.style={draw=cburg,line width=0.6pt,rounded corners=1pt,fill=cpalered,align=center,font=\figfont,inner sep=3pt},
+  % v4.1.12: adversary-retained material has a heavy outline as well as red, so it reads in grayscale
+  adv/.style={draw=cburg,line width=1.3pt,rounded corners=1pt,fill=cpalered,align=center,font=\figfont,inner sep=3pt},
   neut/.style={draw=cslate,line width=0.6pt,rounded corners=1pt,fill=clightgray,align=center,font=\figfont,inner sep=3pt},
   andgate/.style={draw=cnavy,line width=0.6pt,circle,fill=white,font=\figtiny\bfseries,inner sep=1pt,minimum size=13pt},
   flow/.style={-{Stealth[length=4pt]},cnavy,thick},
-  aflow/.style={-{Stealth[length=4pt]},cburg,thick},
-  dflow/.style={-{Stealth[length=4pt]},cburg,thick,dashed},
+  aflow/.style={-{Stealth[length=4.5pt]},cburg,line width=1.2pt},
+  dflow/.style={-{Stealth[length=4.5pt]},cburg,line width=1.2pt,dashed},
   layer/.style={font=\figlarge\bfseries,text=black},
   every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}
 }

@@ -1,12 +1,12 @@
-# Reproducibility manifest: manuscript v4.1.11, artifact v4.1.1 (9 November 2026)
+# Reproducibility manifest: manuscript v4.1.12, artifact v4.1.1 (9 November 2026)
 
-Every result in manuscript v4.1.11 and its Online Resource 1 comes from the version 4.1.1 artifact. Manuscript versions 4.1.2 to 4.1.11 changed wording, layout and figures only; `artifact/` has not changed since v4.1.1.
+Every result in manuscript v4.1.12 and its Online Resource 1 comes from the version 4.1.1 artifact. Manuscript versions 4.1.2 to 4.1.12 changed wording, layout and figures only; `artifact/` has not changed since v4.1.1.
 
 ## Versions and identifiers
 | Item | Value |
 |---|---|
-| Manuscript | v4.1.11, `manuscript/main.tex` (SHA-256 `cdf5cbe499d283d182950a350671d98cf84522da9cce8c32325b1815d8955d8d`) and Online Resource 1, `manuscript/supplement.tex` (SHA-256 `9274733a06f70ad1ff8abf2a211c6fb91cb517c033610ece7638f6648745fba0`) |
-| Compiled PDFs | v4.1.11: styled `2a882ea97958b3f91eca6f67d562c82e1ec0432c5bac6bf50a60ecd0ccb41dc4`; submission `dda7b95fec0bf577a83985c3734f6a5f31a6b40fb5f2317257733e9876465877`; Online Resource 1 `ef64f6b7745e1e5e4d125e4a708f11b11186876e652448d69b36d78ad1b1644f` (also in `REVISION_V4.1.11.md`). Published v4.1.10 PDFs: GitHub release v4.1.10 and Zenodo 10.5281/zenodo.24090614. Published v4.1.9 PDFs: GitHub release v4.1.9 and Zenodo 10.5281/zenodo.24090414. Published v4.1.8 PDFs: GitHub release v4.1.8 and Zenodo 10.5281/zenodo.24089585. Published v4.1.7 PDFs: GitHub release v4.1.7 and Zenodo 10.5281/zenodo.24088767. Published v4.1.6 PDFs: GitHub release v4.1.6 and Zenodo 10.5281/zenodo.24084300. Published v4.1.1 PDFs: full hashes in the v4.1.1 SHA256SUMS. |
+| Manuscript | v4.1.12, `manuscript/main.tex` (SHA-256 `6700fb2e832d566905f3e63025bd5e4c4b50d16b472e6c099dad37d8825a887e`) and Online Resource 1, `manuscript/supplement.tex` (SHA-256 `d7b3941c7c3d1a66fc4464efd74085b2d86d22514784ace49dd25ccb3500b0eb`) |
+| Compiled PDFs | v4.1.12: styled `4d1e0f63e484a46cf522abe2df0bcaa4e7bd19a690617d15f23ebabf8d937ce6`; submission `ad9d1db1c6246e6f7529f38b12157118160a26dfd63d18a80c24fb59d886e700`; Online Resource 1 `ae4066d5cf0dbbf55df0d9e49185a5410a4eeb351cb9dcaadb5b9d24fac3005f` (also in `REVISION_V4.1.12.md`). Published v4.1.11 PDFs: GitHub release v4.1.11 and Zenodo 10.5281/zenodo.24091137. Published v4.1.10 PDFs: GitHub release v4.1.10 and Zenodo 10.5281/zenodo.24090614. Published v4.1.9 PDFs: GitHub release v4.1.9 and Zenodo 10.5281/zenodo.24090414. Published v4.1.8 PDFs: GitHub release v4.1.8 and Zenodo 10.5281/zenodo.24089585. Published v4.1.7 PDFs: GitHub release v4.1.7 and Zenodo 10.5281/zenodo.24088767. Published v4.1.6 PDFs: GitHub release v4.1.6 and Zenodo 10.5281/zenodo.24084300. Published v4.1.1 PDFs: full hashes in the v4.1.1 SHA256SUMS. |
 | Artifact (source of all results) | v4.1.1: Zenodo DOI 10.5281/zenodo.24060229 (published 9 Nov 2026; its artifact zip has MD5 688235160ab9ef19731d4810e034152c); GitHub tag `v4.1.1`. The v4.1.6 release archives the same `artifact/` byte for byte. |
 | Archived predecessor | v4.0.7: Zenodo DOI 10.5281/zenodo.24048192; GitHub tag `v4.0.7` → commit `80d40a8c83b13e25712839327de45b144de83b52` |
 | All versions | Zenodo concept DOI 10.5281/zenodo.24048191 |

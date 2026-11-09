@@ -32,11 +32,12 @@
 \draw[cburg,dashed,thick] (0,2.75) -- (3.75,2.75) node[anchor=west,text=cburg] {$t$};
 \foreach \g/\r/\n in {1/5/4,2/5/1,3/5/0} {
   \fill[cburg!90] (\g*1.2-0.9,0) rectangle (\g*1.2-0.52,\r*0.55);
+  \fill[pattern=north east lines,pattern color=white] (\g*1.2-0.9,0) rectangle (\g*1.2-0.52,\r*0.55);% v4.1.12: hatched for grayscale
   \fill[cnavy] (\g*1.2-0.48,0) rectangle (\g*1.2-0.1,\n*0.55);
-  \node[anchor=north,text=white,inner sep=1.5pt] at (\g*1.2-0.71,\r*0.55) {\r};
+  \node[anchor=north,text=white,fill=cburg!90,inner sep=1.2pt] at (\g*1.2-0.71,\r*0.55-0.02) {\r};
   \node[anchor=south] at (\g*1.2-0.29,\n*0.55) {\n};
   \node[anchor=north] at (\g*1.2-0.5,-0.02) {$g_\g$};}
-\fill[cburg!90] (0.15,-0.82) rectangle (0.4,-0.62); \node[anchor=west] at (0.42,-0.72) {reused};
+\fill[cburg!90] (0.15,-0.82) rectangle (0.4,-0.62); \fill[pattern=north east lines,pattern color=white] (0.15,-0.82) rectangle (0.4,-0.62); \node[anchor=west] at (0.42,-0.72) {reused};
 \fill[cnavy] (1.9,-0.82) rectangle (2.15,-0.62); \node[anchor=west] at (2.17,-0.72) {renewed};
 % v4.1.11: the outcome, formerly panel (d), stated under the counts
 \node[anchor=north west,align=left,text=cburg] at (-0.75,-1.05) {reused: $5\ge t$ in every $g$,\\seed reconstructible};

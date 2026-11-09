@@ -1,5 +1,30 @@
 # Changelog
 
+## 4.1.12 (10 November 2026), figures and presentation; artifact remains v4.1.1
+- Introduction rebuilt around one question, a short gap paragraph and the running example, with its figure (now Fig. 1) beside it. The research-questions paragraph is folded into the question, and the contributions are one or two lines each. "Not full adaptive security" stays in contribution 4.
+- Moved to Online Resource 1, Section S6, with a summary left in the paper:
+  - the full proofs of Lemmas 22–23, Theorem 24 and Proposition 26 (Lemmas 23–24, Theorem 25 and Proposition 27 before this version); the paper keeps a proof sketch of Theorem 24 with every hop's loss;
+  - the proofs of Propositions 9–11 (erasure complexity) and 18–19 (committees);
+  - the committee-size table and the conditional recovery deadline (now Proposition S2);
+  - the derived-key collision figure and the counting-conventions table;
+  - the Section 10 checks table, now merged with the script map as Tables S7–S8; Section 10 keeps a summary paragraph;
+  - lifecycle details (multi-holder and renewal models, transcription and abstraction function, supervisor mechanism).
+- One meaning per symbol:
+  - the retention window is ω (was W, which also named witnesses);
+  - weighted-threshold weights are w_tot and w_del (were W and R, which also named witnesses and the mask vector);
+  - the domain budget is φ (was F, which also names the bad-event formula);
+  - in the proof of Theorem 24 the freshness and win events are Fr and Win;
+  - "guardian" is "holder" throughout the prose (module names unchanged), and the abstract says "holder" instead of "custodian".
+- Figures:
+  - one rule set in style.tex for all figures: adversary-retained material is red with a heavy outline, and its arrows are heavier, so it reads in grayscale;
+  - reused-bank bars in Fig. 1 are hatched; legends say "navy" and "red, heavy outline";
+  - the colour code is stated once in the introduction;
+  - every caption is at most three lines, and explanations moved into the text (Fig. 5's late-exposure detail now opens "Operational reading").
+- 39 pp. (body 34 pp. plus references; was 46). Online Resource 1: 21 pp. Abstract 235 words. No theorem, bound, proof step or number changed. Previous text: manuscript/main_v4.1.11.tex, supplement_v4.1.11.tex, style_v4.1.11.tex, figures_v4.1.11/.
+- Renumbering: moving the deadline proposition shifts Section 8 by one (Definitions 21–22 → 20–21, Lemmas 23–24 → 22–23, Theorem 25 → 24, Corollary 26 → 25, Proposition 27 → 26).
+- Approved by both authors 10 Nov 2026; released as tag v4.1.12, Zenodo DOI 10.5281/zenodo.24091781.
+- Theorem 24 review packet: THEOREM25_REVIEW_PACKET_pp21-28_and_OR1_pp17-21.pdf (paper statements and sketch plus the supplement's full proofs, pp. 17–21).
+
 ## 4.1.11 (9 November 2026), manuscript presentation, references and reproducibility; artifact remains v4.1.1
 - Results at a glance: new Table 1 after the contributions, one row per main result with its section.
 - Running example: the introduction's history (three 5-of-7 generations, copied bank roots) is named as such and used in Sections 6.3 and 8.2.
