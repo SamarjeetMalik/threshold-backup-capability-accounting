@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.1.13 (10 November 2026), Figs. 2 and 6 simplified; artifact remains v4.1.1
+- Fig. 2 (capability exposure):
+  - source labels shortened ("honest slot", "compromised archive key"); two of the six now take two lines;
+  - the fourth outcome, "erasure succeeds iff every minimal witness is hit", removed; erasure is Fig. 4's subject, and the text after Fig. 2 now points there;
+  - three outcomes fed through one bus;
+  - the colour legend dropped (stated once in the introduction); boxes no longer touch.
+- Fig. 6 (game sequence of Theorem 24):
+  - one chain with each hop's step and loss under its own arrow; hop 1 is red because its factor L multiplies, hops 2–6 are navy because their losses add;
+  - the separate hop table, the query line and the forward-ordered box removed; the theorem statement and the caption carry them;
+  - the bound written once below the chain.
+- Both figures at natural size (366.6 and 365.9 of 372 pt), 8 pt, grayscale-safe. 39 pp., Online Resource 1 21 pp., abstract 235 words; numbering unchanged (Theorem 24). Previous figure sources: manuscript/figures_v4.1.12/; previous text: manuscript/main_v4.1.12.tex.
+- Approved by both authors 10 Nov 2026; released as tag v4.1.13, Zenodo DOI 10.5281/zenodo.24092482.
+
 ## 4.1.12 (10 November 2026), figures and presentation; artifact remains v4.1.1
 - Introduction rebuilt around one question, a short gap paragraph and the running example, with its figure (now Fig. 1) beside it. The research-questions paragraph is folded into the question, and the contributions are one or two lines each. "Not full adaptive security" stays in contribution 4.
 - Moved to Online Resource 1, Section S6, with a summary left in the paper:

@@ -1,4 +1,4 @@
-% Capability Exposure Accounting, version 4.1.12 (figures and presentation pass: introduction around the running example, proofs of the composition theorem (now Theorem 24) and of Sections 5 and 7 and lifecycle detail moved to Online Resource 1, one symbol per concept, grayscale-safe figures, captions of at most three lines; artifact v4.1.1).
+% Capability Exposure Accounting, version 4.1.13 (Figs. 2 and 6 simplified; otherwise as 4.1.12; artifact v4.1.1).
 \PassOptionsToPackage{table}{xcolor}
 \documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% single column, as in the official Springer Nature template sample
 \usepackage[T1]{fontenc}
@@ -202,7 +202,7 @@ For a finite atom universe and fixed typed rules and linear decoders, $v\in\Cl_{
 Every added Horn conclusion has a derivation from already derived premises, and every linear-decoder step has a row-combination certificate; induction over rounds gives soundness. Conversely, induction over a finite derivation tree places its root in the fixed point. Each productive round adds an atom of the finite universe. Monotonicity holds because every operation's enabling condition is monotone in the available atoms: a premise set remains present, and a row span only grows.
 \end{proof}
 
-Completeness is relative to the inventory: an unlisted disk root or unmodeled client side effect is not excluded by calling the closure complete. Fig.~\ref{fig:capabilities} shows the whole pipeline, from capability sources to outcomes.
+Completeness is relative to the inventory: an unlisted disk root or unmodeled client side effect is not excluded by calling the closure complete. Fig.~\ref{fig:capabilities} shows the whole pipeline, from capability sources to outcomes; erasure, which removes sources from it, is the subject of Section~\ref{sec:erasure} and Fig.~\ref{fig:witness}.
 
 \begin{figure*}[t]
 \centering
