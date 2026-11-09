@@ -1,4 +1,4 @@
-% Worked temporal exposure history (derived from Theorem 15, not measured). v4.1.5: 8 pt sans, natural size.
+% Worked temporal exposure history (derived from Theorem 15, not measured). v4.1.5: 8 pt sans, natural size. v4.1.11: panel (d) folded into (c).
 % n = 7, t = 5, G = 3; roots of h1..h4 copied after g1 is published, root of h5 after g2.
 \begin{tikzpicture}[x=1cm,y=1cm,font=\figfont,
   cell/.style={draw=cslate,minimum width=6mm,minimum height=4.2mm,inner sep=0pt},
@@ -38,11 +38,8 @@
   \node[anchor=north] at (\g*1.2-0.5,-0.02) {$g_\g$};}
 \fill[cburg!90] (0.15,-0.82) rectangle (0.4,-0.62); \node[anchor=west] at (0.42,-0.72) {reused};
 \fill[cnavy] (1.9,-0.82) rectangle (2.15,-0.62); \node[anchor=west] at (2.17,-0.72) {renewed};
+% v4.1.11: the outcome, formerly panel (d), stated under the counts
+\node[anchor=north west,align=left,text=cburg] at (-0.75,-1.05) {reused: $5\ge t$ in every $g$,\\seed reconstructible};
+\node[anchor=north west,align=left,text=cnavy] at (-0.75,-1.85) {renewed: all $<t$,\\seed private};
 \end{scope}
-% ---- outcome
-\node[layer,anchor=west] at (-0.6,-3.25) {(d) Outcome};
-\node[adv,align=left,anchor=north west] at (-0.6,-3.6)
-  {reused bank: $|I_g|=5\ge t$ in every $g$;\\condition (ii) fails; the seed is reconstructible};
-\node[node,align=left,anchor=north east] at (12.15,-3.6)
-  {renewed banks: counts $(4,1,0)$, all $<t$;\\the seed is private (no seed-level route)};
 \end{tikzpicture}

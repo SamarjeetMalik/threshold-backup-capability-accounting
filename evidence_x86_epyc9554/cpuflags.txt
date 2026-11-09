@@ -1,0 +1,6 @@
+aes
+avx2
+avx512f
+pclmulqdq
+vaes
+vpclmulqdq

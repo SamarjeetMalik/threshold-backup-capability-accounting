@@ -1,4 +1,4 @@
-% Figure 1: end-to-end capability-exposure architecture (four layers). v4.1.5: 8 pt sans, natural size.
+% Figure 1: end-to-end capability-exposure architecture (four layers). v4.1.5: 8 pt sans, natural size. v4.1.11: bus routing to outcomes.
 \begin{tikzpicture}[x=1cm,y=1cm,src/.style={text width=24mm,minimum height=8mm}]
 \node[layer] at (1.35,5.75) {1. Sources};
 \node[layer] at (5.05,5.75) {2. Derivation};
@@ -26,8 +26,11 @@
 \node[adv,minimum width=25mm] (o2) at (11.45,3.55) {partial leakage:\\$U\neq0$};
 \node[node,minimum width=25mm] (o3) at (11.45,2.35) {privacy: $U=0$};
 \node[neut,minimum width=25mm] (o4) at (11.45,0.95) {erasure succeeds iff\\every minimal\\witness is hit};
-\draw[aflow] (U.east) -- (o1.west); \draw[aflow] (U.east) -- (o2.west); \draw[flow] (U.east) -- (o3.west);
-\draw[flow,cslate,dashed] (U.east) -- (o4.west);
+% v4.1.11: outcomes fed through a short vertical bus, every arrow enters its box horizontally
+\coordinate (bus) at (9.95,2.35);
+\draw[cnavy,thick] (U.east) -- (bus);
+\draw[aflow] (bus) |- (o1.west); \draw[aflow] (bus) |- (o2.west); \draw[flow] (bus) -- (o3.west);
+\draw[flow,cslate,dashed] (bus) |- (o4.west);
 \node[font=\figfont,text=cslate,anchor=north west,align=left] at (0.0,-1.0) {AND: every premise is needed (a hyperedge), unlike edge reachability.\\
 \textcolor{cnavy}{blue}: honest\quad \textcolor{cburg}{red}: adversary-retained\quad grey: public};
 \end{tikzpicture}

@@ -1,0 +1,48 @@
+% Worked temporal exposure history (derived from Theorem 15, not measured). v4.1.5: 8 pt sans, natural size.
+% n = 7, t = 5, G = 3; roots of h1..h4 copied after g1 is published, root of h5 after g2.
+\begin{tikzpicture}[x=1cm,y=1cm,font=\figfont,
+  cell/.style={draw=cslate,minimum width=6mm,minimum height=4.2mm,inner sep=0pt},
+  hit/.style={cell,fill=cburg!90,draw=cburg},
+  ev/.style={node,inner sep=2.5pt},
+  cp/.style={adv,inner sep=2.5pt}]
+% ---- event order
+\node[layer,anchor=west] at (-0.6,3.3) {Order of events};
+\node[ev] (e1) at (0.5,2.7) {publish $g_1$};
+\node[cp] (e2) at (3.2,2.7) {copy roots of $h_1$--$h_4$};
+\node[ev] (e3) at (5.95,2.7) {publish $g_2$};
+\node[cp] (e4) at (8.35,2.7) {copy root of $h_5$};
+\node[ev] (e5) at (10.75,2.7) {publish $g_3$};
+\foreach \a/\b in {e1/e2,e2/e3,e3/e4,e4/e5} \draw[flow] (\a) -- (\b);
+% ---- grids
+\newcommand{\wgrid}[3]{% #1 x-offset, #2 title, #3 list of g/h touched
+  \node[layer,anchor=west] at (#1-0.6,1.75) {#2};
+  \foreach \g in {1,2,3} \node at (#1+\g*0.7,1.25) {$g_\g$};
+  \foreach \h in {1,...,7} {\node[anchor=east] at (#1+0.3,1.2-\h*0.46) {$h_\h$};
+    \foreach \g in {1,2,3} \node[cell] at (#1+\g*0.7,1.2-\h*0.46) {};}
+  \foreach \g/\h in {#3} \node[hit] at (#1+\g*0.7,1.2-\h*0.46) {};}
+\wgrid{0}{(a) Reused bank}{1/1,1/2,1/3,1/4,1/5,2/1,2/2,2/3,2/4,2/5,3/1,3/2,3/3,3/4,3/5}
+\wgrid{3.7}{(b) Renewed banks}{1/1,1/2,1/3,1/4,2/5}
+\node[text=cslate,anchor=west] at (-0.6,-2.6) {red cell: capsule opened by a copied root (index touched)};
+% ---- counts
+\begin{scope}[shift={(8.1,-2.05)}]
+\node[layer,anchor=west] at (-0.75,3.8) {(c) Touched indices $|I_g|$};
+\draw[cslate] (0,0) -- (4.0,0);
+\draw[cslate] (0,0) -- (0,3.25);
+\foreach \y in {0,1,...,5} {\node[anchor=east] at (-0.05,\y*0.55) {\y}; \draw[cslate] (-0.05,\y*0.55)--(0,\y*0.55);}
+\draw[cburg,dashed,thick] (0,2.75) -- (3.75,2.75) node[anchor=west,text=cburg] {$t$};
+\foreach \g/\r/\n in {1/5/4,2/5/1,3/5/0} {
+  \fill[cburg!90] (\g*1.2-0.9,0) rectangle (\g*1.2-0.52,\r*0.55);
+  \fill[cnavy] (\g*1.2-0.48,0) rectangle (\g*1.2-0.1,\n*0.55);
+  \node[anchor=north,text=white,inner sep=1.5pt] at (\g*1.2-0.71,\r*0.55) {\r};
+  \node[anchor=south] at (\g*1.2-0.29,\n*0.55) {\n};
+  \node[anchor=north] at (\g*1.2-0.5,-0.02) {$g_\g$};}
+\fill[cburg!90] (0.15,-0.82) rectangle (0.4,-0.62); \node[anchor=west] at (0.42,-0.72) {reused};
+\fill[cnavy] (1.9,-0.82) rectangle (2.15,-0.62); \node[anchor=west] at (2.17,-0.72) {renewed};
+\end{scope}
+% ---- outcome
+\node[layer,anchor=west] at (-0.6,-3.25) {(d) Outcome};
+\node[adv,align=left,anchor=north west] at (-0.6,-3.6)
+  {reused bank: $|I_g|=5\ge t$ in every $g$;\\condition (ii) fails; the seed is reconstructible};
+\node[node,align=left,anchor=north east] at (12.15,-3.6)
+  {renewed banks: counts $(4,1,0)$, all $<t$;\\the seed is private (no seed-level route)};
+\end{tikzpicture}

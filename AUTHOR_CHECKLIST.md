@@ -12,7 +12,8 @@ Public records. GitHub: SamarjeetMalik/threshold-backup-capability-accounting. Z
 - 9 Nov 2026: both authors approved v4.1.7, which changes only the position and shape of Fig. 15 (REVISION_V4.1.7.md); it replaced v4.1.6 as the version to submit.
 - 9 Nov 2026: both authors approved v4.1.8, which switches to the single-column layout of the official template's sample (REVISION_V4.1.8.md); it replaced v4.1.7 as the version to submit.
 - 9 Nov 2026: both authors approved v4.1.9, which removes the paper's own version history and moves measurement, model-checking and test detail to Online Resource 1 (REVISION_V4.1.9.md); it replaced v4.1.8 as the version to submit.
-- 9 Nov 2026: both authors approved v4.1.10, which consolidates the caveats (each limitation stated once), turns Section 10 into a table and makes Fig. 6 taller (REVISION_V4.1.10.md); it replaces v4.1.9 as the version to submit.
+- 9 Nov 2026: both authors approved v4.1.10, which consolidates the caveats (each limitation stated once), turns Section 10 into a table and makes Fig. 6 taller (REVISION_V4.1.10.md); it replaced v4.1.9 as the version to submit.
+- v4.1.11 adds a results-at-a-glance table, a running example, a trimmed notation table, redrawn Figs. 1, 4 and 9, moves Sections 8.4–8.5 to Online Resource 1, adds DOIs to seven references and reports a second machine (REVISION_V4.1.11.md); it needs both authors' approval before it replaces v4.1.10.
 
 ## Declarations (confirmed by Samarjeet Malik in chat, 9 Nov 2026; in v4.1.0)
 - Competing interests: none for either author.
@@ -22,7 +23,7 @@ Public records. GitHub: SamarjeetMalik/threshold-backup-capability-accounting. Z
 - **Co-author:** on 9 Nov 2026 Samarjeet Malik reported in chat that Shaurya Pratap Singh agreed to these declarations as published in v4.1.1.
 - v4.1.3 rewords the LLM statement without changing its scope: the figure work is described as TikZ/pgfplots source drawn from artifact data, and it states that no figure is an AI-generated image. Both authors approved this wording with v4.1.3.
 
-## Before IJIS submission (v4.1.10)
+## Before IJIS submission (v4.1.11)
 Done:
 - Artifact v4.1.1 published (GitHub tag and release; Zenodo 10.5281/zenodo.24060229). No placeholder remains in the manuscript.
 - Manuscript v4.1.6 published (GitHub tag and release v4.1.6; Zenodo 10.5281/zenodo.24084300) after both authors approved it.
@@ -35,10 +36,12 @@ Done:
 - Figures at 8 pt sans serif, none scaled (v4.1.5-v4.1.6). Fig. 15 anchored in Appendix C after its heading (v4.1.7). Single column, as in the official Springer Nature sample (v4.1.8).
 
 Still open (author actions):
-0. At submission, upload `Capability_Exposure_Accounting_v4.1.10_Online_Resource_1.pdf` as supplementary material ("Online Resource 1").
+0. Both authors approve v4.1.11. At submission, upload `Capability_Exposure_Accounting_v4.1.11_Online_Resource_1.pdf` as supplementary material ("Online Resource 1").
 1. In the submission system, enter Competing interests, Author contributions and Funding in the interface as well: IJIS uses only the interface entries for publication.
 2. APC: IJIS is fully open access, APC US$3,690 / GBP 2,690 / EUR 2,990 (+VAT), set at acceptance. IJIS is not in Springer Nature's ONOS APC-funded journal list (checked 9 Nov 2026). Discretionary waivers are case-by-case and must be requested at submission.
 3. Recommended: independent review of Theorem 25 (THEOREM25_REVIEW_REQUEST.md + THEOREM25_REVIEW_PACKET_pp23-34.pdf). Until then the paper keeps its statement that the audit is the authors' own, keeps the factor L, does not claim full adaptive security and does not broaden Proposition 27.
 4. Optional: model version and dates of use in the LLM statement.
-5. Optional: x86 benchmark (Slurm job 8081). Not a prerequisite.
-6. ORCID iDs are optional (`\orcid` not set).
+5. Done 9 Nov 2026: x86 benchmark (Slurm job 8081) completed; reported in v4.1.11 (evidence_x86_epyc9554/).
+7. Optional: build the container (`docker build -t cea-artifact .`) and record the result; it has not been built yet.
+8. Recommended: Shaurya re-runs `artifact/reproduce_all.py` on his own machine and the log is added to the repository.
+6. ORCID iDs: not set. Send them and they will be added (`\orcid`); they are optional for IJIS.

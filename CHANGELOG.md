@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.1.11 (9 November 2026), manuscript presentation, references and reproducibility; artifact remains v4.1.1
+- Results at a glance: new Table 1 after the contributions, one row per main result with its section.
+- Running example: the introduction's history (three 5-of-7 generations, copied bank roots) is named as such and used in Sections 6.3 and 8.2.
+- Notation table: only symbols used across sections (seven single-section symbols are defined where they appear).
+- Sections 8.4 (independent-slot component, now Lemma S1) and 8.5 (symbolic failure budget, now eq. (S1) and Table S8) moved to Online Resource 1, Section S5; a short paragraph in Section 8.3 states both results.
+- Section 6.2: "What Theorem 14 establishes" and "Scope of the exponent view" merged (the efficient-adversary remark was stated twice).
+- Figures redrawn: Fig. 1 outcome arrows through a bus; Fig. 4 panel (d) folded into (c); Fig. 9 as panels (a) path and (b) request with orthogonal routing. A side-by-side layout for Fig. 9 does not fit the 13 cm text width.
+- References: DOIs added to seven entries (Herzberg et al. 1995, Zhou et al. 2005, Marsh-Schneider 2004, Reardon et al. 2013, Mauw-Oostdijk 2006, Panjwani 2007, Hazay et al. 2015), each checked on Crossref for title, authors, venue and pages. The remaining eight entries without a DOI have none (USENIX, NDSS, arXiv, ePrint, SECG, book). The Crossref DOI for Perlman's assured-delete paper belongs to a 2005 workshop version, not the cited NDSS 2007 paper, and was not used.
+- Second machine: the x86 benchmark (Slurm job 8081, 2-socket AMD EPYC 9554) completed; evidence in evidence_x86_epyc9554/ (lab paths and host name redacted), reported in Section 8.3 and Online Resource 1, Table S3. Limitations now say the data-layer measurements come from two machines and the supervisor costs from one.
+- Container: Dockerfile and CONTAINER.md (pinned by digest; not yet built).
+- Not done here: ORCID iDs (need the authors' iDs); independent review of Theorem 25; Shaurya's re-run; new mathematical results.
+- Main text 46 pp. (submission; styled 47), Online Resource 1 12 pp.; abstract 235 words. Previous text: manuscript/main_v4.1.10.tex, supplement_v4.1.10.tex, references_v4.1.10.bib, figures_v4.1.10/.
+
 ## 4.1.10 (9 November 2026), manuscript presentation; artifact remains v4.1.1
 - Caveats consolidated: each limitation is stated once where it matters and once in Section 11. Removed repeats: the selective-opening remark in the abstract and in contribution 5 (kept in the Theorem 25 box, Section 8.2 and Section 11), "testing, not a refinement proof" in contribution 7 (kept in Section 9.3 and Table 12), two hedges in Section 2, the duplicate efficiency remark after Theorem 14, "not a measurement" after Fig. 4 (kept in its caption), two remarks after Proposition 27 (kept in the "Reused banks are not safer" box), "no asserted value" before eq. (8), the logical-state remark in Section 9.3, and the selective-opening clause of the conclusion. "Not full adaptive security" still appears in the abstract, contribution 5, the Theorem 25 box, Section 11 and the conclusion; L is unchanged.
 - Section 9.3: the state-count caveat is one sentence instead of two.

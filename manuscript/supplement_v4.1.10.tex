@@ -1,0 +1,284 @@
+% Online Resource 1 (electronic supplementary material) for "Capability Exposure Accounting for
+% Threshold-Based Encrypted Backup Recovery", manuscript version 4.1.10. Compiler: pdfLaTeX.
+% Build main_submission.tex first: references to the paper (M-...) are read from main_submission.aux (xr).
+\def\submissionmode{1}
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx,booktabs,tabularx,array,longtable}
+\usepackage{fvextra,tikz,xurl,needspace,capt-of}
+\usepackage{xr}
+\externaldocument[M-]{main_submission}
+\usetikzlibrary{arrows.meta,positioning}
+\input{style}
+\usepgfplotslibrary{groupplots}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\fpath}[1]{\nolinkurl{#1}}% breakable file names
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\emergencystretch=3em
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@maketitle}{Corresponding author(s). E-mail(s):}{Corresponding author. E-mail:}{}{\typeout{CORRESP-PATCH-FAILED}}
+\makeatother
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\theHsection}{S\arabic{section}}
+\renewcommand{\theHfigure}{S\arabic{figure}}
+\renewcommand{\theHtable}{S\arabic{table}}
+\hypersetup{hidelinks,bookmarksdepth=2,pdftitle={Online Resource 1: Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery},pdfauthor={Samarjeet Malik and Shaurya Pratap Singh}}
+\begin{document}
+\raggedbottom
+\title[Online Resource 1]{Online Resource 1 for ``Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery''}
+\author*[1]{\fnm{Samarjeet} \sur{Malik}}\email{samarjeet.malik\_tf@ashoka.edu.in}
+\author[2]{\fnm{Shaurya Pratap} \sur{Singh}}
+\affil[1]{\orgname{Ashoka University}}
+\affil[2]{\orgname{Indian Institute of Science}}
+\abstract{\unboldmath This supplement gives the material that the paper cites as Online Resource~1: the full measurements of the reference data layer, every TLC configuration with its state count, the liveness counterexamples, the manual lifecycle induction, the conformance step statistics, the process-supervisor tests and costs, the correspondence between the models, a map from each check of the paper's Table~\ref{M-tab:evidence} to the artifact script that produces it, and reference material on records, failure terms and committee sizes. Theorem, section and observation numbers refer to the paper. Every number here is reproduced by the version 4.1.1 artifact (\url{https://doi.org/10.5281/zenodo.24060229}); measurements describe one machine and enter no proof.}
+\keywords{Capability exposure, encrypted backup, threshold recovery, TLA+, reference implementation}
+\maketitle
+
+\section{Reference data layer}\label{sec:s-datalayer}
+
+Fig.~\ref{fig:datalayer} shows the reference implementation of the data interface of Definition~\ref{M-def:adaptivegame} in the paper, and Fig.~\ref{fig:truncation} the truncation experiment behind the final-chunk flag (Section~\ref{M-sec:datalayer}). Table~\ref{tab:nonce} separates what the nonce guard establishes from what it does not.
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/fig_datalayer}}
+\caption{The implemented data layer. The epoch seed keys HMAC-SHA256 over the canonical context; the output is one 256-bit key instance per context. Each chunk uses the nonce $0^{32}\Vert\mathrm{u64}(i)$ and associated data $(\mathrm{H}(\mathit{ctx}),i,\mathit{final})$. The red dashed route is the bad event of Lemma~\ref{M-lem:keycoll}: two distinct contexts with equal key bytes would reuse the chunk-0 nonce.}\label{fig:datalayer}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/fig_truncation}}
+\caption{The truncation experiment (an executed test, not a probability). A four-chunk object with its last two chunks removed is accepted as a 20-byte object when the associated data has no final flag, and rejected with the flag.}\label{fig:truncation}
+\end{figure}
+
+\begin{table}[htbp]
+\caption{Nonce and key-reuse properties of the data layer.}\label{tab:nonce}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.46\linewidth}Y@{}}\toprule
+Property & Status\\\midrule
+Nonce uniqueness per key instance in the profile & assumed by the model; respected by the chunk-index rule\\
+Accidental reuse inside one data-layer instance & detected by the in-memory guard (tested)\\
+Uniqueness across processes or service instances & not provided by the guard\\
+Uniqueness across a restart & not provided by the guard\\
+Coincidence of derived keys for distinct contexts & bounded in the proof (Lemma~\ref{M-lem:keycoll})\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Tests.}
+Twenty-seven tests in three files (\fpath{test_datalayer.py}, \fpath{test_datalayer_v404.py} and \fpath{test_datalayer_v409.py}) cover the following:
+\begin{itemize}
+\item round trips, including the empty object;
+\item tampered, reordered, duplicated, appended and cross-object chunks;
+\item truncation with and without the flag; missing, duplicated and early final markers;
+\item partial failures, which release no plaintext;
+\item abandonment, retry and identifier re-sampling;
+\item canonical-encoding aliasing and malformed or foreign records;
+\item the counts of Table~\ref{M-tab:counts};
+\item a forced derived-key coincidence, which the key-byte guard reports as nonce reuse;
+\item removal of one, two or three final chunks; removal of every chunk of a non-empty object, distinguished from the legitimate empty object; a modified immutable header; a forged final chunk in a non-final position and a non-final chunk in the final position;
+\item forty objects stored concurrently from eight threads, with no key-nonce pair reused and every object round-tripping, and the per-instance scope of the guard.
+\end{itemize}
+
+\paragraph{Measurements.}
+Wall-clock measurements of one Python process on one machine: Apple M5, 24~GiB, macOS 26.5.1, Python 3.12.14, pyca/cryptography 50.0.2 with OpenSSL 4.0.3.
+\begin{itemize}
+\item Inputs are seeded and identical across ciphers.
+\item Each measurement follows five warm-up runs, with 40 repetitions per microbenchmark and 12 trials per object operation.
+\item We report medians with interquartile ranges; raw samples are in the artifact.
+\item These figures describe this machine only and enter no proof.
+\end{itemize}
+The timings come from \fpath{bench_v404.py}; raw samples are in \fpath{artifact/evidence_v411/mac_m5}. HMAC derivation took $0.96\,\mu$s (median; IQR $0.92$--$1.00$). ChaCha20-Poly1305 reaches $2.0$--$2.2$~GiB/s from 16~KiB chunks upwards (Fig.~\ref{fig:latency}). AES-256-GCM, measured on identical inputs as an engineering comparison, reaches $8.4$--$8.9$~GiB/s from 64~KiB upwards on this processor, which reports the ARMv8 AES and polynomial-multiply instructions (FEAT\_AES, FEAT\_PMULL); ChaCha20 has no dedicated instructions. This comparison is about speed on one machine, not about relative security, and the profile is unchanged: the paper's analysis is for ChaCha20-Poly1305, and a change of AEAD would need its own multi-key bound. Store and Open scale linearly with object size, about $124$ and $129$~ms for 256~MiB (Fig.~\ref{fig:objects}). An independent run of the same script on the same machine, kept in \code{artifact/evidence\_v404}, agrees within $8\%$ for ChaCha20-Poly1305 throughput from 16~KiB and AES-256-GCM throughput from 64~KiB; Store and Open at 256~MiB were $8$--$10\%$ slower there. Below 64~KiB the AES-256-GCM medians of the two runs differ by up to a factor of two, so small-chunk AES values are not stable on this machine. The measured ciphertext overhead equals the analytical 16 bytes per chunk.
+
+Memory was measured with seven independent trials per object size (\fpath{bench_memory_v410.py}; raw data in \fpath{evidence_v411/mac_m5_memory}). In each trial one fresh process stores the object and writes the record to a file, and a second fresh process loads the record, starts \code{tracemalloc}, opens the object once and reads \code{getrusage(RUSAGE\_SELF).ru\_maxrss}. Python heap is the \code{tracemalloc} peak during Open. Resident set size is the peak over the opening process's lifetime, not a sampled value, and includes the interpreter and imported modules (an idle process peaks at $28.7$~MiB) and the loaded ciphertext. All memory figures are in MiB ($2^{20}$ bytes) and give the median with minimum and maximum over the seven trials; times give the median with interquartile range. Python heap was identical in every trial: $1.00$~MiB for a 1~MiB object and exactly twice the object size from 4~MiB upwards. The factor of two is the reference's Open path, which keeps the list of decrypted chunks and then joins them into one plaintext; the ciphertext was loaded before tracing started and is not in this figure. Peak resident set size was $807.9$~MiB in the median for 256~MiB (range $807.8$--$808.2$), consistent with interpreter, ciphertext and two plaintext copies. This is a property of the in-memory reference, not a lower bound for the design. All timings and memory figures in this section are for direct calls; they exclude the process supervisor, whose cost is in Section~\ref{sec:s-supervisor}. Concurrent and streaming measurements were not made.
+
+\begin{table}[htbp]
+\caption{Recorded measurements on one Apple M5. Times: median with interquartile range in brackets (raw samples in \code{artifact/evidence\_v411/mac\_m5}); throughput is chunk size over median time. Memory (\code{artifact/evidence\_v411/mac\_m5\_memory}): peak Python heap during Open (\code{tracemalloc}, identical in all seven trials) and peak resident set size of the opening process (\code{ru\_maxrss}), median with minimum and maximum over seven trials, in MiB; RSS includes the interpreter (about 29~MiB idle) and the loaded ciphertext. Direct calls, without the process supervisor.}\label{tab:bench}
+\centering\footnotesize
+\begin{tabular}{@{}rrrrr@{}}\toprule
+& \multicolumn{2}{c}{ChaCha20-Poly1305} & \multicolumn{2}{c}{AES-256-GCM}\\
+KiB & enc.\ $\mu$s & GiB/s & enc.\ $\mu$s & GiB/s\\\midrule
+1 & 0.92 [0.88, 0.92] & 1.04 & 0.67 [0.63, 0.71] & 1.43\\
+4 & 2.17 [2.17, 2.21] & 1.76 & 1.13 [0.91, 1.14] & 3.39\\
+16 & 7.54 [7.42, 7.55] & 2.02 & 2.21 [2.21, 2.25] & 6.91\\
+64 & 29.0 [27.6, 29.1] & 2.11 & 7.29 [7.25, 7.29] & 8.37\\
+256 & 112 [108, 116] & 2.18 & 27.9 [27.9, 28.3] & 8.74\\
+1024 & 454 [451, 506] & 2.15 & 110 [109, 110] & 8.86\\\midrule
+MiB & Store ms & Open ms & heap MiB & RSS MiB\\\midrule
+1 & 0.44 [0.43, 0.47] & 0.45 [0.43, 0.47] & 1.00 & 31.3 [31.1, 31.5]\\
+4 & 1.85 [1.81, 1.91] & 1.87 [1.84, 1.93] & 8.00 & 41.4 [41.3, 41.6]\\
+16 & 7.54 [7.48, 7.62] & 7.50 [7.47, 7.59] & 32.0 & 78.0 [78.0, 78.1]\\
+64 & 30.1 [29.8, 30.4] & 36.5 [34.0, 48.5] & 128 & 224 [224, 224]\\
+256 & 124 [124, 125] & 129 [126, 131] & 512 & 808 [808, 808]\\\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/plot_chunks}}
+\caption{Per-chunk encryption on identical seeded inputs, Apple M5, 40 repetitions after 5 warm-ups. (a) Median time with interquartile range. (b) Throughput, chunk size over median time; the bars map the time quartiles through the same formula. ChaCha20-Poly1305 is the profile; AES-256-GCM is an engineering comparison on one processor, not a statement about security.}\label{fig:latency}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/plot_objects}}
+\caption{(a) Object-level Store and Open with 1~MiB chunks (median and IQR over 12 trials). (b) Peak memory during Open (seven trials per size in fresh processes): Python heap by \code{tracemalloc} and the process's peak resident set size, median with range. The dashed line is twice the object size; from 4~MiB it coincides with the heap curve. Measured on one machine.}\label{fig:objects}
+\end{figure}
+
+\section{Lifecycle model checking and conformance}\label{sec:s-formal}
+
+\paragraph{TLC configurations.}
+TLC2~2.19 (release 1.7.4) is pinned by SHA-256 and run with one breadth-first worker, seed 1 and fingerprint index 0. Table~\ref{tab:tlc} lists the configurations of the four TLA+ modules used in the paper; ``Lifecycle V3'' and ``Lifecycle V4'' are the modules \code{RecoveryLifecycleV3} and \code{RecoveryLifecycleV4}, and the configuration names are the artifact's file names. \code{RecoveryLifecycleV3} has a switch for the in-flight guard (configurations \code{V3V2GuardsOnly} and \code{V3UnsafeInflight} turn it off; Observation~\ref{M-obs:inflight}). \code{RecoveryLifecycleV4} adds \code{WorkerAbandons} and the fairness conditions of Observation~\ref{M-obs:liveness}; it is the module that the Python transcription and the reference kernel follow. The configurations of the base module \code{RecoveryLifecycle.tla} reproduce their recorded counts as well. ``Pass'' means every listed invariant, and any listed temporal property under the stated fairness, holds in all reachable states. Unsafe counts are states explored before the first violation.
+
+\begin{table}[htbp]
+\caption{TLC runs of \code{RecoveryLifecycleV3}, \code{RecoveryLifecycleV4}, \code{MultiGuardianErasure} and \code{MultiGenerationRenewal}.}\label{tab:tlc}
+\centering\scriptsize
+\altrows
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.14\linewidth}Y>{\raggedright\arraybackslash}p{.22\linewidth}>{\raggedright\arraybackslash}p{.25\linewidth}@{}}\toprule
+\thead{Module} & \thead{Configuration} & \thead{Distinct states} & \thead{Outcome}\\\midrule
+Lifecycle V3 & V3SafeOneEpoch / TwoEpoch / Combined / Generations & 27,888 / 5,584 / 140,356 / 160,984 & Pass\\
+ & V3V2GuardsOnly; V3UnsafeInflight & 149,844; 520 & Pass (in-flight guard off, other invariants); Receipt\-After\-Workers violated\\
+Lifecycle V4 & V4SafeOneEpoch / TwoEpoch / Combined / Generations & 27,904 / 5,584 / 140,404 / 161,032 & Pass\\
+ & V4LiveExpiry; V401WorkerWF & 27,904; 27,904 & Pass incl.\ liveness\\
+ & V4LiveNoWorkerFairness; V401NoWorkerMin & 27,904; 1,084 & Liveness violated\\
+ & V401AllWF / NoErase / NoReceipt / NoRestart & 27,904 each & Liveness violated\\
+Multi-guardian & MGSafe / TwoFaults / Outage & 4,325 / 21,987 / 146,706 & Pass incl.\ liveness\\
+ & MGUnsafeQuorum; MGUnsafeReceipt & 3,086; 4,103 & ErasureSafe violated\\
+ & MGNoProgress; MGUnrecoverable & 1,120; initial & Liveness; Recoverable\-Before\-Barrier violated\\
+Renewal & MGRenew & 775 & Pass\\
+ & MGReuse; MGRenewKeepOld & 84; 116 & GenPrivate violated\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Liveness counterexamples.}
+Observation~\ref{M-obs:liveness} states that each fairness assumption is necessary. With weak fairness everywhere (\code{V401AllWF}), crashes and restarts alternate forever, so \code{SignReceipt} is never continuously enabled. Without fairness for \code{Erase}, \code{SignReceipt} or \code{Restart} (\code{V401NoErase}, \code{V401NoReceipt}, \code{V401NoRestart}), the respective step is never taken. Without fairness for \code{WorkerReturns}, an aborting worker never returns; with one request (\code{V401NoWorkerMin}), the essential steps are \code{Request}, \code{HoldCompletes}, \code{OfferCertificate}, \code{BeginDecrypt}, \code{BeginExpiry}, \code{Erase}, then stuttering. TLC does not minimize liveness traces, and the printed lassos also contain irrelevant environment steps.
+
+\paragraph{Lifecycle induction.}
+The safety invariants of the lifecycle also follow by a manual induction for arbitrary finite positive path and request domains.
+\emph{Helper facts.} Receipts imply tombstones, absent slots, no buffers and no aborting or decrypting work on the path. A committed barrier requires its receipt and the barriers of earlier epochs. Buffers belong only to queued or sending jobs. Tombstones grow, and activated configurations do not decrease.
+\emph{Cases.} Initialization has no work, receipts or barriers. \code{Request}, \code{OfferCertificate}, \code{HoldCompletes}, endpoint mutation and identity compromise transfer no data, and request identifiers are not reused. \code{BeginDecrypt} checks liveness, exact binding, configuration and hold; \code{FinishDecrypt} and \code{Transfer} recheck them. \code{BeginExpiry} persists the tombstone and moves owned work to cancelled, or to aborting if it is decrypting, and removes buffers, all atomically. \code{WorkerReturns} moves aborting to cancelled, and \code{WorkerAbandons} moves decrypting to cancelled; neither produces output or changes buffers. \code{SignReceipt} requires slot absence, no buffers and no aborting work; since decryption cannot begin on a tombstoned path, no decrypting work exists either, so the receipt helper fact is preserved. \code{Commit} requires the receipt and all earlier-epoch barriers, so the floor cannot decrease or advance prematurely. \code{ConfigUpdate} cancels or aborts work before changing the version. \code{Crash} ends all workers and buffers while preserving durable state. With the guard, \code{RollbackRestart} is admitted only before any tombstone, configuration or floor progress. \code{Transfer} is the only release, and its guard gives both release properties.
+These cases establish the invariants under the abstract certificate, log and anchor contracts. This is a manual induction, not a TLAPS proof; TLC checks the instances in Table~\ref{tab:tlc}.
+
+\paragraph{Conformance step statistics.}
+One kernel call can perform what the specification models as consecutive actions, so a call is matched by a short sequence of specification steps rather than exactly one. The bound of three is a search depth, not a tolerance: the post-call abstract state must \emph{equal} a state reached from the pre-call state by legal specification actions. Every matched call is therefore a legal stuttering or multi-step move of the specification, and the safety invariants that TLC checks on all reachable specification states hold after it. Of the 80,000 calls of the reference kernel, 69,987 left the abstract state unchanged, 9,987 matched one step and 26 matched two; none needed three. Of the 77,126 calls of the baseline kernel (Observation~\ref{M-obs:conformance}), 67,289 left it unchanged, 9,588 matched one step and 34 matched two, and none needed three. The baseline kernel's 215 divergent schedules split into 212 certificate acceptances on a cancelled request, one duplicate completion, one stale abandon and one out-of-order barrier commit.
+
+\section{Process supervisor and model correspondence}\label{sec:s-supervisor}
+
+\paragraph{Tests.}
+Ten tests (\fpath{test_worker_supervisor.py} and \fpath{test_worker_supervisor_v411.py}) cover:
+\begin{itemize}
+\item a normal completion; a hung worker that blocks the receipt until it is terminated; termination after a grace period; a crashing worker;
+\item a late completion after termination, and a completion arriving after expiry, both rejected and discarded;
+\item a terminated worker's token presented for a later request, and a duplicate completion, both rejected;
+\item a kernel crash followed by restart and receipt;
+\item an operating-system \code{SIGKILL} of the supervising process: the worker exits within the test's deadline, the restarted kernel holds no receipt, rejects the stale token, and accepts a receipt only after expiry and erasure;
+\item a file opened by the parent is not inherited by the worker.
+\end{itemize}
+
+\paragraph{Cost of supervision.}
+Table~\ref{tab:supervisor} compares a direct in-process AEAD open with the same open through the supervisor (\code{bench\_supervisor\_v411.py}; 21 trials per size, one Apple M5). Starting a fresh worker process, passing the result back and joining it costs about $47$~ms whatever the size, measured with an empty task; the rest grows with the data copied across the pipe. At 1~MiB this fixed cost dominates (about $50$~ms against $0.5$~ms direct); at 64~MiB supervised decryption takes about $3.8$ times as long as direct decryption ($137$ against $36$~ms). The table reports the worker's own peak resident set size; the combined peak of supervising and worker processes was not measured.
+
+\begin{table}[htbp]
+\caption{Direct versus process-supervised decryption: median and 95th percentile (ms), and the worker's peak resident set size (MiB, median). 21 trials per size; one machine.}\label{tab:supervisor}
+\centering\footnotesize
+\begin{tabular}{@{}rrrrr@{}}\toprule
+Size & direct & supervised & empty task & worker RSS\\\midrule
+1 KiB & 0.02 / 0.03 & 47.9 / 59.1 & 46.5 / 54.2 & 29\\
+1 MiB & 0.51 / 0.55 & 50.4 / 61.9 & 46.7 / 54.5 & 31\\
+16 MiB & 7.76 / 9.19 & 70.7 / 84.6 & 47.5 / 50.2 & 61\\
+64 MiB & 35.8 / 39.0 & 137 / 170 & 48.4 / 53.2 & 157\\\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Correspondence between the models.}
+Table~\ref{tab:refine} records how the capability model, the TLA+ specifications and the kernel correspond, and the gap that remains for each concept.
+
+\begin{table}[htbp]
+\caption{Correspondence between the capability model, the TLA+ specifications and the kernel.}\label{tab:refine}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.22\linewidth}YY@{}}\toprule
+Concept & Correspondence & Remaining gap\\\midrule
+Disclosure of $(e,g,x)$ & TLA \code{Transfer}; kernel \code{first\_byte\_transfer}; adds $x$ to $I_g$ & Lifecycle models one guardian; the index set is implicit\\
+Barrier with $q_d$ receipts & MG \code{Commit}; lifecycle \code{Commit} after quorum & Composition of the one-guardian model with MG is argued manually\\
+Kernel $\leftrightarrow$ lifecycle & Abstraction function and Python transcription; tested (Observation~\ref{M-obs:conformance}) & Bounded schedules; no proof\\
+Floor ordering & Earlier epochs first, in both TLA and the reference kernel & ---\\
+Worker termination & \code{WorkerReturns}/\code{WorkerAbandons}; process supervisor terminates, observes exit, then abandons (tested) & termination is tested, not proved; no sandboxing or memory scrubbing\\
+Renewal & Renewal model checks delivery-path counting & Algebra assumed, not modeled in TLA\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Evidence map and reproduction}\label{sec:s-evidence}
+
+Table~\ref{tab:evidence} maps each row of the paper's Table~\ref{M-tab:evidence}, in order, to the artifact script that produces it and the file holding its expected output. Every script is run by \code{artifact/reproduce\_all.py}, which compares each result with its saved expectation and fails on any difference. The 99 tests are \code{baseline/test\_extended\_model.py} (5), \code{test\_revision.py} (25), \code{test\_v3.py} (14), \code{test\_v4.py} (18), the data-layer tests (27) and the supervisor tests (10). Script names carry the artifact's internal numbering; it plays no role in the paper.
+
+\begin{table}[htbp]
+\caption{Checks of the paper's Table~\ref{M-tab:evidence} and the artifact scripts that produce them. Expected outputs are in \code{artifact/expected/}.}\label{tab:evidence}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.06\linewidth}>{\raggedright\arraybackslash}p{.40\linewidth}Y@{}}\toprule
+Row & Check & Script (expected output)\\\midrule
+1 & leakage subspace, arbitrary domains; marginal and conditional leakage; subspace masks & \code{v3\_leakage.py} (\code{v3\_results.json}); \code{v4\_leakage.py} (\code{v4\_results.json})\\
+2 & touched indices (375 patterns); blockwise structure & \code{v3\_leakage.py}\\
+3 & read-once evaluation; vertex cover; renewed credentials; selection; weighted thresholds; few generations & \code{v3\_erasure.py}; \code{v4\_erasure.py}\\
+4 & random histories; healing classification & \code{v4\_temporal.py}; \code{v3\_temporal.py}\\
+5 & committees; domain-correlated corruption & \code{v3\_temporal.py}, \code{check\_parameters.py}; \code{v4\_quorum.py}\\
+6 & guessing space versus reachable patterns & \code{v401\_patterns.py}\\
+7 & reused-bank pattern count & \code{v402\_checks.py}; \code{v403\_checks.py}\\
+8 & counting interface; guessing loss arithmetic & \code{v402\_checks.py}; \code{v4\_quorum.py}\\
+9 & data layer; supervisor; conformance; TLC; measurements & data-layer and supervisor tests; \code{v4\_refinement.py}; \code{run\_tlc.py}, \code{run\_tlc\_v3.py}, \code{run\_tlc\_v4.py}; \code{bench\_v404.py}, \code{bench\_memory\_v410.py}, \code{bench\_supervisor\_v411.py}, \code{make\_plot\_data.py}\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Reproduction.}
+With CPython 3.12, the following commands, run in \fpath{artifact/}, execute every test and TLC configuration:
+\begin{Verbatim}[fontsize=\footnotesize]
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+python3 fetch_tlc.py
+.venv/bin/python reproduce_all.py --java "$(command -v java)" --jar .tools/tla2tools.jar
+\end{Verbatim}
+The measurement scripts are run separately, and \code{make\_plot\_data.py} regenerates the data of every plot. A fresh run on 9 November 2026 (CPython 3.12.14, pyca/cryptography 50.0.2 with OpenSSL 4.0.3, TLC2 2.19, OpenJDK 26.0.2.1) passed all 99 tests and every TLC configuration.
+
+\section{Reference material}\label{sec:s-reference}
+
+\paragraph{Failure terms.}
+Table~\ref{tab:budget} lists the terms of the symbolic failure budget~\eqref{M-eq:budget} and the evidence each would need. None has a numerical value in the paper.
+
+\begin{table}[htbp]
+\caption{Terms of the symbolic failure budget~(\ref{M-eq:budget}).}\label{tab:budget}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.17\linewidth}>{\raggedright\arraybackslash}p{.38\linewidth}Y@{}}\toprule
+Term & Failure event & Evidence needed\\\midrule
+$\delta_{\mathrm{log}}$ & log freshness, finality or durability & log protocol and operation\\
+$\delta_{\mathrm{erase}}$ & cleanup or anti-rollback, incl.\ in-flight worker state & storage and worker-isolation model\\
+$\delta_{\mathrm{chan}}$ & endpoint binding or cleanup & channel implementation and tests\\
+$\delta_{\mathrm{clock}}$ & monotone, rate-bound time & clock source and deployment\\
+$\delta_{\mathrm{boot}}$ & authentic enrollment & enrollment protocol\\
+$K_{\mathrm{sig}}\varepsilon_{\mathrm{sig}}$ & forgery under one of $K_{\mathrm{sig}}$ keys & EUF-CMA bound for Ed25519\\
+$\varepsilon_H$ & collision of typed encodings & SHA-256 collision resistance\\
+$\varepsilon_{\mathrm{DL}}$ & accepted distinct false opening & discrete logarithm in P-384\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Binding and inventory records.}
+Every signed object carries a domain label and format version. A recovery request binds account, request ID, active configuration, target birth epochs and generations, package/commitment digest, exact recipient key and channel binding, checkpoint reference and hold policy; approvals cover the whole object. A receipt binds account, configuration, bank, epoch, generation, holder index, capsule/commitment digest and cleanup-policy version. A checkpoint binds a fresh nonce, configuration, committed barrier digest and floor. The inventory schema records each atom's type, origin, epoch, generation, holder, bank version, disclosure interface, derivation premises and deletion contract, including worker memory as a location. The reference CBOR encoder accepts only integers, bytes, strings, arrays, maps, booleans and null, with definite lengths and bytewise encoded-key order. Certificates in the kernel are trusted verifier outputs, not signatures.
+
+\paragraph{Committee sizes.}
+Fig.~\ref{fig:feasible} shows the feasible thresholds of Proposition~\ref{M-prop:holders} for $n=13$, and Fig.~\ref{fig:minholders} plots the minimum holder-committee size $n=3f+c+2u+1$; both restate the proposition and Table~\ref{M-tab:sensitivity} as a reference for parameter choices.
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/fig_feasible}}
+\caption{Feasible thresholds for $n=13$ under Proposition~\ref{M-prop:holders}, $2f+c+u+1\le t\le n-f-u$: filled squares are feasible, open squares infeasible, for three settings of prior copies $c$ and outages $u$. Mathematical feasibility, not deployment guidance.}\label{fig:feasible}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/plot_minholders}}
+\caption{Minimum holder-committee size $n=3f+c+2u+1$ (Proposition~\ref{M-prop:holders}) as a function of Byzantine budget $f$ and prior copies $c$, for outages $u=0,1,2$. Exact values; mathematical minima, not recommendations.}\label{fig:minholders}
+\end{figure}
+
+\end{document}

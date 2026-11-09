@@ -1,5 +1,5 @@
 % Online Resource 1 (electronic supplementary material) for "Capability Exposure Accounting for
-% Threshold-Based Encrypted Backup Recovery", manuscript version 4.1.10. Compiler: pdfLaTeX.
+% Threshold-Based Encrypted Backup Recovery", manuscript version 4.1.11. Compiler: pdfLaTeX.
 % Build main_submission.tex first: references to the paper (M-...) are read from main_submission.aux (xr).
 \def\submissionmode{1}
 \PassOptionsToPackage{table}{xcolor}
@@ -26,18 +26,27 @@
 \renewcommand{\thesection}{S\arabic{section}}
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\theequation}{S\arabic{equation}}
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}
+\renewcommand{\thelemma}{S\arabic{lemma}}
 \renewcommand{\theHsection}{S\arabic{section}}
 \renewcommand{\theHfigure}{S\arabic{figure}}
 \renewcommand{\theHtable}{S\arabic{table}}
+\renewcommand{\theHequation}{S\arabic{equation}}
 \hypersetup{hidelinks,bookmarksdepth=2,pdftitle={Online Resource 1: Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery},pdfauthor={Samarjeet Malik and Shaurya Pratap Singh}}
+% ORCID: the class's \orcid links a logo file (Orcidlogo.eps) that the official template does not ship;
+% draw the standard green iD badge instead (ORCID green A6CE39). The class itself is unchanged.
+\definecolor{orcidgreen}{HTML}{A6CE39}
+\gdef\orcidlogo{\tikz[baseline=-0.55ex]{\fill[orcidgreen] (0,0) circle (0.78ex);\node[text=white,inner sep=0pt,font=\fontfamily{phv}\fontsize{4.2}{4.2}\selectfont\bfseries] at (0,0) {iD};}}
 \begin{document}
 \raggedbottom
 \title[Online Resource 1]{Online Resource 1 for ``Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery''}
-\author*[1]{\fnm{Samarjeet} \sur{Malik}}\email{samarjeet.malik\_tf@ashoka.edu.in}
-\author[2]{\fnm{Shaurya Pratap} \sur{Singh}}
+\author*[1]{\fnm{Samarjeet} \sur{Malik}\,\orcid{https://orcid.org/0009-0003-9924-7432}}\email{samarjeet.malik\_tf@ashoka.edu.in}
+\author[2]{\fnm{Shaurya Pratap} \sur{Singh}\,\orcid{https://orcid.org/0009-0009-0778-6038}}
 \affil[1]{\orgname{Ashoka University}}
 \affil[2]{\orgname{Indian Institute of Science}}
-\abstract{\unboldmath This supplement gives the material that the paper cites as Online Resource~1: the full measurements of the reference data layer, every TLC configuration with its state count, the liveness counterexamples, the manual lifecycle induction, the conformance step statistics, the process-supervisor tests and costs, the correspondence between the models, a map from each check of the paper's Table~\ref{M-tab:evidence} to the artifact script that produces it, and reference material on records, failure terms and committee sizes. Theorem, section and observation numbers refer to the paper. Every number here is reproduced by the version 4.1.1 artifact (\url{https://doi.org/10.5281/zenodo.24060229}); measurements describe one machine and enter no proof.}
+\abstract{\unboldmath This supplement gives the material that the paper cites as Online Resource~1: the full measurements of the reference data layer on two machines, every TLC configuration with its state count, the liveness counterexamples, the manual lifecycle induction, the conformance step statistics, the process-supervisor tests and costs, the correspondence between the models, a map from each check of the paper's Table~\ref{M-tab:evidence} to the artifact script that produces it, two supporting system-level results (an independent-slot lemma and a symbolic failure budget), and reference material on records and committee sizes. Theorem, section and observation numbers refer to the paper. Every number here is reproduced by the version 4.1.1 artifact (\url{https://doi.org/10.5281/zenodo.24060229}); measurements describe one machine and enter no proof.}
 \keywords{Capability exposure, encrypted backup, threshold recovery, TLA+, reference implementation}
 \maketitle
 
@@ -91,7 +100,7 @@ Wall-clock measurements of one Python process on one machine: Apple M5, 24~GiB, 
 \item Inputs are seeded and identical across ciphers.
 \item Each measurement follows five warm-up runs, with 40 repetitions per microbenchmark and 12 trials per object operation.
 \item We report medians with interquartile ranges; raw samples are in the artifact.
-\item These figures describe this machine only and enter no proof.
+\item These figures describe this machine only and enter no proof; a second machine is reported below.
 \end{itemize}
 The timings come from \fpath{bench_v404.py}; raw samples are in \fpath{artifact/evidence_v411/mac_m5}. HMAC derivation took $0.96\,\mu$s (median; IQR $0.92$--$1.00$). ChaCha20-Poly1305 reaches $2.0$--$2.2$~GiB/s from 16~KiB chunks upwards (Fig.~\ref{fig:latency}). AES-256-GCM, measured on identical inputs as an engineering comparison, reaches $8.4$--$8.9$~GiB/s from 64~KiB upwards on this processor, which reports the ARMv8 AES and polynomial-multiply instructions (FEAT\_AES, FEAT\_PMULL); ChaCha20 has no dedicated instructions. This comparison is about speed on one machine, not about relative security, and the profile is unchanged: the paper's analysis is for ChaCha20-Poly1305, and a change of AEAD would need its own multi-key bound. Store and Open scale linearly with object size, about $124$ and $129$~ms for 256~MiB (Fig.~\ref{fig:objects}). An independent run of the same script on the same machine, kept in \code{artifact/evidence\_v404}, agrees within $8\%$ for ChaCha20-Poly1305 throughput from 16~KiB and AES-256-GCM throughput from 64~KiB; Store and Open at 256~MiB were $8$--$10\%$ slower there. Below 64~KiB the AES-256-GCM medians of the two runs differ by up to a factor of two, so small-chunk AES values are not stable on this machine. The measured ciphertext overhead equals the analytical 16 bytes per chunk.
 
@@ -129,6 +138,31 @@ MiB & Store ms & Open ms & heap MiB & RSS MiB\\\midrule
 \figbox{\input{figures/plot_objects}}
 \caption{(a) Object-level Store and Open with 1~MiB chunks (median and IQR over 12 trials). (b) Peak memory during Open (seven trials per size in fresh processes): Python heap by \code{tracemalloc} and the process's peak resident set size, median with range. The dashed line is twice the object size; from 4~MiB it coincides with the heap curve. Measured on one machine.}\label{fig:objects}
 \end{figure}
+
+\paragraph{Second machine.}
+The same three scripts (byte-identical to the artifact's) were run on a 2-socket AMD EPYC 9554 server (x86-64 with AES-NI, VAES and VPCLMULQDQ), Linux 6.8.0, CPython 3.11.16, pyca/cryptography 50.0.2 with OpenSSL 4.0.3, as a batch job with 4 CPU threads on a node shared with other jobs (raw data and job script in \fpath{evidence_x86_epyc9554/} of the repository). Table~\ref{tab:bench-x86} reports the same quantities as Table~\ref{tab:bench}. HMAC derivation took $1.38\,\mu$s (median; IQR $1.35$--$1.45$). ChaCha20-Poly1305 reaches $2.8$--$3.4$~GiB/s from 16~KiB chunks upwards and AES-256-GCM $8.0$--$9.0$~GiB/s from 64~KiB. Python heap during Open is again twice the object size from 4~MiB upwards, and an idle process peaks at $26.25$~MiB. Unlike on the Apple M5, Store is slower than Open from 4 to 16~MiB, and Open is slower than Store from 64~MiB; the scripts do not isolate the cause, and we do not interpret it. The process-supervisor cost was not measured on this machine.
+
+\begin{table}[htbp]
+\caption{Recorded measurements on a 2-socket AMD EPYC 9554 server (same scripts and quantities as Table~\ref{tab:bench}; raw samples in \fpath{evidence_x86_epyc9554/}). Times: median with interquartile range; memory: median with minimum and maximum over seven trials, in MiB. Direct calls, without the process supervisor.}\label{tab:bench-x86}
+\centering\footnotesize
+\begin{tabular}{@{}rrrrr@{}}\toprule
+& \multicolumn{2}{c}{ChaCha20-Poly1305} & \multicolumn{2}{c}{AES-256-GCM}\\
+KiB & enc.\ $\mu$s & GiB/s & enc.\ $\mu$s & GiB/s\\\midrule
+1 & 1.29 [1.28, 1.33] & 0.74 & 1.04 [1.01, 1.06] & 0.92\\
+4 & 2.20 [2.17, 2.23] & 1.73 & 1.45 [1.43, 1.49] & 2.63\\
+16 & 5.54 [5.52, 5.56] & 2.75 & 2.72 [2.69, 2.75] & 5.60\\
+64 & 18.7 [18.6, 18.7] & 3.27 & 7.61 [7.60, 7.66] & 8.02\\
+256 & 71.4 [71.2, 71.5] & 3.42 & 27.2 [27.1, 27.2] & 8.99\\
+1024 & 286 [285, 291] & 3.42 & 109 [109, 109] & 8.96\\
+\midrule
+MiB & Store ms & Open ms & heap MiB & RSS MiB\\\midrule
+1 & 0.31 [0.31, 0.32] & 0.31 [0.31, 0.31] & 1.00 & 28.0 [28.0, 28.0]\\
+4 & 3.12 [3.11, 3.13] & 1.30 [1.30, 1.31] & 8.00 & 38.5 [38.5, 38.5]\\
+16 & 14.0 [13.9, 14.0] & 5.85 [5.85, 5.87] & 32.00 & 75.2 [75.2, 75.2]\\
+64 & 56.0 [55.9, 56.1] & 71.6 [71.4, 71.9] & 128.01 & 218.8 [217.0, 218.8]\\
+256 & 222 [222, 223] & 343 [340, 344] & 512.03 & 796.2 [796.2, 796.2]\\\bottomrule
+\end{tabular}
+\end{table}
 
 \section{Lifecycle model checking and conformance}\label{sec:s-formal}
 
@@ -229,7 +263,7 @@ Row & Check & Script (expected output)\\\midrule
 6 & guessing space versus reachable patterns & \code{v401\_patterns.py}\\
 7 & reused-bank pattern count & \code{v402\_checks.py}; \code{v403\_checks.py}\\
 8 & counting interface; guessing loss arithmetic & \code{v402\_checks.py}; \code{v4\_quorum.py}\\
-9 & data layer; supervisor; conformance; TLC; measurements & data-layer and supervisor tests; \code{v4\_refinement.py}; \code{run\_tlc.py}, \code{run\_tlc\_v3.py}, \code{run\_tlc\_v4.py}; \code{bench\_v404.py}, \code{bench\_memory\_v410.py}, \code{bench\_supervisor\_v411.py}, \code{make\_plot\_data.py}\\\bottomrule
+9 & data layer; supervisor; conformance; TLC; measurements & data-layer and supervisor tests; \code{v4\_refinement.py}; \code{run\_tlc.py}, \code{run\_tlc\_v3.py}, \code{run\_tlc\_v4.py}; \code{bench\_v404.py}, \code{bench\_memory\_v410.py}, \code{bench\_supervisor\_v411.py}, \code{make\_plot\_data.py}; second machine: \fpath{evidence_x86_epyc9554/}\\\bottomrule
 \end{tabularx}
 \end{table}
 
@@ -242,13 +276,29 @@ python3 fetch_tlc.py
 \end{Verbatim}
 The measurement scripts are run separately, and \code{make\_plot\_data.py} regenerates the data of every plot. A fresh run on 9 November 2026 (CPython 3.12.14, pyca/cryptography 50.0.2 with OpenSSL 4.0.3, TLC2 2.19, OpenJDK 26.0.2.1) passed all 99 tests and every TLC configuration.
 
-\section{Reference material}\label{sec:s-reference}
+\section{Supporting system-level analysis and reference material}\label{sec:s-reference}
 
-\paragraph{Failure terms.}
-Table~\ref{tab:budget} lists the terms of the symbolic failure budget~\eqref{M-eq:budget} and the evidence each would need. None has a numerical value in the paper.
+\paragraph{Independent-slot component.}
+The slot game creates $nT$ independent labeled PKE pairs, exposes every public key, records all capsules, and challenges one guardian/period key with an adversarially chosen pair. Freshness excludes every earlier target disclosure, including wrappers, secondary stores and rollback images; nonfresh outcomes are fair bits.
+
+\begin{lemma}[Independent-slot component]\label{lem:slot}
+Under labeled IND-CCA and actual target erasure, a selective guardian/period challenge reduces to one PKE challenge with loss $1$. An adaptive period among $T$ costs at most $T$, an adaptive guardian among $n$ costs $n$, and both together cost $nT$.
+\end{lemma}
+\begin{proof}
+Embed the challenge key at the fixed or uniformly guessed slot and generate all others. The directory has the honest distribution, and the guess is independent of the adversary's view until the target is named. Other-slot disclosures are answerable, and target decryptions go to the CCA oracle except on the challenge. A wrong guess or premature exposure yields a fair bit, so the advantage scales by exactly the guessing probability.
+\end{proof}
+
+For a fixed target epoch, masking up to $n$ recipient capsules is the capsule hop of Theorem~\ref{M-thm:adaptive}. An outer experiment that guesses one of $N$ epochs incurs a further factor of $N$ only if $N$ does not already enumerate the challenged periods; the factors are not to be multiplied twice. Independent data entropy cannot heal a stolen bank containing enough future slots (Corollary~\ref{M-cor:healing}).
+
+\paragraph{Symbolic failure budget.}
+For a chosen finite experiment, the union of named control failures is bounded by
+\begin{equation}\label{eq:budget}
+ B_{\mathrm{all}}=\delta_{\mathrm{log}}+\delta_{\mathrm{erase}}+\delta_{\mathrm{chan}}+\delta_{\mathrm{clock}}+\delta_{\mathrm{boot}}+K_{\mathrm{sig}}\varepsilon_{\mathrm{sig}}+\varepsilon_H+\varepsilon_{\mathrm{DL}}.
+\end{equation}
+Here $\delta_{\mathrm{log}}$ covers freshness, finality and durability; $\delta_{\mathrm{erase}}$ honest cleanup and anti-rollback, including in-flight worker state; $\delta_{\mathrm{chan}}$ endpoint binding and cleanup; $\delta_{\mathrm{clock}}$ monotone and rate-bound time; $\delta_{\mathrm{boot}}$ authentic enrollment. $K_{\mathrm{sig}}\varepsilon_{\mathrm{sig}}$ is a union of per-key EUF-CMA bounds, $\varepsilon_H$ collisions of the typed encodings, and $\varepsilon_{\mathrm{DL}}$ the first accepted distinct false opening. A reference pair $(a,b)$ and a distinct accepted $(a',b')$ satisfy $a+\beta b=a'+\beta b'$ with $b\ne b'$, which gives $\beta=(a-a')/(b'-b)$. This requires an honest reference sharing, not malicious-dealer agreement. Equation~\eqref{eq:budget} is therefore a symbolic decomposition, not a quantified end-to-end guarantee: its terms cannot be summed into a deployment number until each has been measured or bounded. Table~\ref{tab:budget} lists the evidence each term would need. The human false-approval probability $\alpha$ is outside it and unconstrained.
 
 \begin{table}[htbp]
-\caption{Terms of the symbolic failure budget~(\ref{M-eq:budget}).}\label{tab:budget}
+\caption{Terms of the symbolic failure budget~(\ref{eq:budget}). None has a numerical value in the paper.}\label{tab:budget}
 \centering\footnotesize
 \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.17\linewidth}>{\raggedright\arraybackslash}p{.38\linewidth}Y@{}}\toprule
 Term & Failure event & Evidence needed\\\midrule

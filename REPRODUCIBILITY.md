@@ -1,12 +1,12 @@
-# Reproducibility manifest: manuscript v4.1.10, artifact v4.1.1 (9 November 2026)
+# Reproducibility manifest: manuscript v4.1.11, artifact v4.1.1 (9 November 2026)
 
-Every result in manuscript v4.1.10 and its Online Resource 1 comes from the version 4.1.1 artifact. Manuscript versions 4.1.2 to 4.1.10 changed wording, layout and figures only; `artifact/` has not changed since v4.1.1.
+Every result in manuscript v4.1.11 and its Online Resource 1 comes from the version 4.1.1 artifact. Manuscript versions 4.1.2 to 4.1.11 changed wording, layout and figures only; `artifact/` has not changed since v4.1.1.
 
 ## Versions and identifiers
 | Item | Value |
 |---|---|
-| Manuscript | v4.1.10, `manuscript/main.tex` (SHA-256 `6a0116860771439abd7684da0515d35056b01b2d44678dd6ac0d2c24455ac276`) and Online Resource 1, `manuscript/supplement.tex` (SHA-256 `7acb49d09b2609d49947b6f2e5c7f03dc3ea0cc6d03ffd699d26c2ae84fbe6c6`) |
-| Compiled PDFs | v4.1.10: styled `4b63a1712cadfb5938d8b79091d7208c7596bfa1622c073bbff94911580b299c`; submission `906ad87a251783c712c6e356f7189915b294b063e35a83c3f9273af5b2354d36`; Online Resource 1 `7e165fb0a6e1fc14e5dce49dcafdb44c3d5d7ee044c9b0f440821d72aa0021c0` (also in `REVISION_V4.1.10.md`). Published v4.1.9 PDFs: GitHub release v4.1.9 and Zenodo 10.5281/zenodo.24090414. Published v4.1.8 PDFs: GitHub release v4.1.8 and Zenodo 10.5281/zenodo.24089585. Published v4.1.7 PDFs: GitHub release v4.1.7 and Zenodo 10.5281/zenodo.24088767. Published v4.1.6 PDFs: GitHub release v4.1.6 and Zenodo 10.5281/zenodo.24084300. Published v4.1.1 PDFs: full hashes in the v4.1.1 SHA256SUMS. |
+| Manuscript | v4.1.11, `manuscript/main.tex` (SHA-256 `c8aafbebe6251876290c4aaac5e0c3f86b264adfb2ee1c7e0f330d2c3b23e41e`) and Online Resource 1, `manuscript/supplement.tex` (SHA-256 `6dd118a56b332f7a23830f6ae03b64693c72dad866003862aa1ccc23b9644306`) |
+| Compiled PDFs | v4.1.11: styled `7bf6caad615563d1b933f52fbafa716b9bf97f80434a576f947103d350f9b22d`; submission `af662c88f6c0b28cc2904d734cdf1945f68515178e791c829a407e9f123d8d34`; Online Resource 1 `b58ab27360554830d4c072f503ec64904a3e5922c48605d5ca9c82f0efbc07f3` (also in `REVISION_V4.1.11.md`). Published v4.1.10 PDFs: GitHub release v4.1.10 and Zenodo 10.5281/zenodo.24090614. Published v4.1.9 PDFs: GitHub release v4.1.9 and Zenodo 10.5281/zenodo.24090414. Published v4.1.8 PDFs: GitHub release v4.1.8 and Zenodo 10.5281/zenodo.24089585. Published v4.1.7 PDFs: GitHub release v4.1.7 and Zenodo 10.5281/zenodo.24088767. Published v4.1.6 PDFs: GitHub release v4.1.6 and Zenodo 10.5281/zenodo.24084300. Published v4.1.1 PDFs: full hashes in the v4.1.1 SHA256SUMS. |
 | Artifact (source of all results) | v4.1.1: Zenodo DOI 10.5281/zenodo.24060229 (published 9 Nov 2026; its artifact zip has MD5 688235160ab9ef19731d4810e034152c); GitHub tag `v4.1.1`. The v4.1.6 release archives the same `artifact/` byte for byte. |
 | Archived predecessor | v4.0.7: Zenodo DOI 10.5281/zenodo.24048192; GitHub tag `v4.0.7` → commit `80d40a8c83b13e25712839327de45b144de83b52` |
 | All versions | Zenodo concept DOI 10.5281/zenodo.24048191 |
@@ -62,3 +62,7 @@ b0c33052dec813909b99b547aad012b87ab116e8f491e8cdfa884e3a68adc8e9  artifact/evide
 b677b3871b2c305f6aa77c508ba3dfc1f36d5381cd9343b8ad8f7027b50cc2bd  artifact/evidence_v411/mac_m5_supervisor/bench_supervisor_v411.json
 ```
 Every released file is listed in `SHA256SUMS`.
+
+## Second machine and container (v4.1.11)
+- `evidence_x86_epyc9554/`: the data-layer and memory benchmarks re-run unchanged on a 2-socket AMD EPYC 9554 server (Slurm job 8081, 9 Nov 2026; CPython 3.11.16, pyca/cryptography 50.0.2, OpenSSL 4.0.3). Its scripts are byte-identical to `artifact/`. Reported in Online Resource 1, Table S3. The supervisor benchmark was not run there.
+- `Dockerfile` / `CONTAINER.md`: pinned container (python:3.12.14-slim-bookworm by digest, cryptography 50.0.2, checksum-verified TLC 1.7.4). Not yet built or tested: no container runtime was available on the build machine.
