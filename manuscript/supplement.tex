@@ -1,5 +1,5 @@
 % Online Resource 1 (electronic supplementary material) for "Capability Exposure Accounting for
-% Threshold-Based Encrypted Backup Recovery", manuscript version 4.1.9. Compiler: pdfLaTeX.
+% Threshold-Based Encrypted Backup Recovery", manuscript version 4.1.10. Compiler: pdfLaTeX.
 % Build main_submission.tex first: references to the paper (M-...) are read from main_submission.aux (xr).
 \def\submissionmode{1}
 \PassOptionsToPackage{table}{xcolor}
@@ -37,7 +37,7 @@
 \author[2]{\fnm{Shaurya Pratap} \sur{Singh}}
 \affil[1]{\orgname{Ashoka University}}
 \affil[2]{\orgname{Indian Institute of Science}}
-\abstract{\unboldmath This supplement gives the material that the paper cites as Online Resource~1: the full measurements of the reference data layer, every TLC configuration with its state count, the liveness counterexamples, the manual lifecycle induction, the conformance step statistics, the process-supervisor tests and costs, the correspondence between the models, a map from each check of the paper's Section~\ref{M-sec:evidence} to the artifact script that produces it, and reference material on records, failure terms and committee sizes. Theorem, section and observation numbers refer to the paper. Every number here is reproduced by the version 4.1.1 artifact (\url{https://doi.org/10.5281/zenodo.24060229}); measurements describe one machine and enter no proof.}
+\abstract{\unboldmath This supplement gives the material that the paper cites as Online Resource~1: the full measurements of the reference data layer, every TLC configuration with its state count, the liveness counterexamples, the manual lifecycle induction, the conformance step statistics, the process-supervisor tests and costs, the correspondence between the models, a map from each check of the paper's Table~\ref{M-tab:evidence} to the artifact script that produces it, and reference material on records, failure terms and committee sizes. Theorem, section and observation numbers refer to the paper. Every number here is reproduced by the version 4.1.1 artifact (\url{https://doi.org/10.5281/zenodo.24060229}); measurements describe one machine and enter no proof.}
 \keywords{Capability exposure, encrypted backup, threshold recovery, TLA+, reference implementation}
 \maketitle
 
@@ -214,13 +214,13 @@ Renewal & Renewal model checks delivery-path counting & Algebra assumed, not mod
 
 \section{Evidence map and reproduction}\label{sec:s-evidence}
 
-Table~\ref{tab:evidence} maps each numbered item of the paper's Section~\ref{M-sec:evidence} to the artifact script that produces it and the file holding its expected output. Every script is run by \code{artifact/reproduce\_all.py}, which compares each result with its saved expectation and fails on any difference. The 99 tests are \code{baseline/test\_extended\_model.py} (5), \code{test\_revision.py} (25), \code{test\_v3.py} (14), \code{test\_v4.py} (18), the data-layer tests (27) and the supervisor tests (10). Script names carry the artifact's internal numbering; it plays no role in the paper.
+Table~\ref{tab:evidence} maps each row of the paper's Table~\ref{M-tab:evidence}, in order, to the artifact script that produces it and the file holding its expected output. Every script is run by \code{artifact/reproduce\_all.py}, which compares each result with its saved expectation and fails on any difference. The 99 tests are \code{baseline/test\_extended\_model.py} (5), \code{test\_revision.py} (25), \code{test\_v3.py} (14), \code{test\_v4.py} (18), the data-layer tests (27) and the supervisor tests (10). Script names carry the artifact's internal numbering; it plays no role in the paper.
 
 \begin{table}[htbp]
-\caption{Checks of the paper's Section~\ref{M-sec:evidence} and the artifact scripts that produce them. Expected outputs are in \code{artifact/expected/}.}\label{tab:evidence}
+\caption{Checks of the paper's Table~\ref{M-tab:evidence} and the artifact scripts that produce them. Expected outputs are in \code{artifact/expected/}.}\label{tab:evidence}
 \centering\footnotesize
 \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.06\linewidth}>{\raggedright\arraybackslash}p{.40\linewidth}Y@{}}\toprule
-Item & Check & Script (expected output)\\\midrule
+Row & Check & Script (expected output)\\\midrule
 1 & leakage subspace, arbitrary domains; marginal and conditional leakage; subspace masks & \code{v3\_leakage.py} (\code{v3\_results.json}); \code{v4\_leakage.py} (\code{v4\_results.json})\\
 2 & touched indices (375 patterns); blockwise structure & \code{v3\_leakage.py}\\
 3 & read-once evaluation; vertex cover; renewed credentials; selection; weighted thresholds; few generations & \code{v3\_erasure.py}; \code{v4\_erasure.py}\\

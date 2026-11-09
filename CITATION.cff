@@ -9,10 +9,10 @@ authors:
   - family-names: Singh
     given-names: Shaurya Pratap
     affiliation: Indian Institute of Science
-version: 4.1.9
+version: 4.1.10
 date-released: 2026-11-09
 license: MIT
-doi: "10.5281/zenodo.24090414"
+doi: "10.5281/zenodo.24090614"
 repository-code: "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting"
 url: "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting/"
 abstract: "Formal capability and affine-view accounting, temporal exposure exploration, checked lifecycle models and a critical-path reference kernel."
