@@ -1,0 +1,27 @@
+% Figure 2: reused versus renewed banks (same algebraic refresh in both panels)
+\begin{tikzpicture}[x=1cm,y=1cm]
+\foreach \panel/\yy/\title in {A/0/{(a) Reused bank $b$ for all generations},B/-3.3/{(b) Renewed banks $b_1,b_2,b_3$}}{
+  \node[anchor=west,font=\figfont\bfseries,text=cnavy] at (-0.3,\yy+0.95) {\title};
+  \draw[-{Stealth},cslate] (0,\yy) -- (10.6,\yy) node[right,font=\figtiny,text=cslate]{time};
+  \foreach \x/\g in {1.6/1,4.6/2,7.6/3}{
+    \draw[cnavy,thick] (\x,\yy-0.12) -- (\x,\yy+0.12);
+    \node[font=\figtiny,text=cnavy,above] at (\x,\yy+0.12) {publish $g_{\g}$};
+  }
+  \node[adv,font=\figtiny] (cp\panel) at (3.0,\yy-0.75) {copy root of $h_1$};
+  \draw[cburg,thick] (3.0,\yy) -- (cp\panel);
+}
+% panel A: one copied root opens capsules of all three generations
+\foreach \x/\g in {1.6/1,4.6/2,7.6/3}{\node[neut,font=\figtiny] (ca\g) at (\x,-1.55) {$h_1$ capsule, $g_{\g}$\\under $b$};}
+\draw[aflow] (cpA) -- (ca1.north east) node[midway,above,font=\figtiny,text=cburg,sloped]{late};
+\draw[aflow] (cpA) -- (ca2.north west);
+\draw[aflow] (cpA) .. controls (6,-1.0) .. (ca3.north west);
+\node[font=\figtiny,text=cburg,anchor=west] at (8.55,-1.55) {$h_1$ touched in $g_1,g_2,g_3$};
+\node[font=\figtiny,text=cslate,anchor=west] at (8.55,-1.85) {$\ell_{h_1}=1$: $\Lambda_1=\{h_1\}$, $\Lambda_2=\Lambda_3=\varnothing$};
+% panel B: renewed banks block later generations
+\foreach \x/\g in {1.6/1,4.6/2,7.6/3}{\node[neut,font=\figtiny] (cb\g) at (\x,-4.85) {$h_1$ capsule, $g_{\g}$\\under $b_{\g}$};}
+\draw[aflow] (cpB) -- (cb1.north east);
+\draw[dflow] (cpB) -- ($(cpB)!0.6!(cb2.north west)$) node[cburg,font=\figfont]{$\times$};
+\draw[dflow] (cpB) .. controls (6,-4.3) .. ($(cb3.north west)+(-0.5,0.25)$) node[cburg,font=\figfont]{$\times$};
+\node[font=\figtiny,text=cnavy,anchor=west] at (8.55,-4.85) {$h_1$ touched in $g_1$ only};
+\node[font=\figtiny,text=cslate,anchor=west] at (8.55,-5.15) {old root opens no new capsule};
+\end{tikzpicture}

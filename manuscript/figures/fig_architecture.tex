@@ -1,33 +1,33 @@
-% Figure 1: end-to-end capability-exposure architecture (four layers)
-\begin{tikzpicture}[x=1cm,y=1cm]
-\node[layer] at (0,4.6) {1. Capability sources};
-\node[layer] at (3.7,4.6) {2. Conjunctive derivation};
-\node[layer] at (7.5,4.6) {3. Affine analysis};
-\node[layer] at (11.2,4.6) {4. Outcome};
-\node[node,text width=24mm] (slot) at (0,3.95) {honest recipient slot};
-\node[adv,text width=24mm] (root) at (0,3.3) {copied bank root};
-\node[neut,text width=24mm] (cap) at (0,2.65) {recorded capsule (public)};
-\node[adv,text width=24mm] (pair) at (0,1.72) {cached pair, response or partial disclosure};
-\node[neut,text width=24mm] (env) at (0,0.92) {archive envelope};
-\node[adv,text width=24mm] (akey) at (0,0.27) {compromised archive key};
-\node[andgate] (a1) at (2.45,3.3) {AND};
-\node[andgate] (a2) at (2.45,0.6) {AND};
+% Figure 1: end-to-end capability-exposure architecture (four layers). v4.1.5: 8 pt sans, natural size.
+\begin{tikzpicture}[x=1cm,y=1cm,src/.style={text width=24mm,minimum height=8mm}]
+\node[layer] at (1.35,5.75) {1. Sources};
+\node[layer] at (5.05,5.75) {2. Derivation};
+\node[layer] at (8.05,5.75) {3. Affine analysis};
+\node[layer] at (11.45,5.75) {4. Outcome};
+\node[node,src] (slot) at (1.35,5.0) {honest recipient\\slot};
+\node[adv,src] (root) at (1.35,4.0) {copied bank root};
+\node[neut,src] (cap) at (1.35,3.0) {recorded capsule\\(public)};
+\node[adv,src] (pair) at (1.35,1.85) {cached pair,\\response or\\partial disclosure};
+\node[neut,src] (env) at (1.35,0.7) {archive envelope\\(public)};
+\node[adv,src] (akey) at (1.35,-0.3) {compromised\\archive key};
+\node[andgate] (a1) at (3.25,4.0) {AND};
+\node[andgate] (a2) at (3.25,0.2) {AND};
 \draw[flow] (slot.east) -- (a1); \draw[aflow] (root.east) -- (a1); \draw[flow,cslate] (cap.east) -- (a1);
 \draw[flow,cslate] (env.east) -- (a2); \draw[aflow] (akey.east) -- (a2);
-\node[node,text width=27mm] (coord) at (4.55,3.3) {coordinates of $(e,g,x)$ become rows};
-\node[adv,text width=27mm] (seedr) at (4.55,0.6) {seed route: $e_{S_e}$ row};
+\node[node,minimum width=22mm] (coord) at (5.05,4.0) {coordinates of\\$(e,g,x)$\\become rows};
+\node[adv,minimum width=22mm] (seedr) at (5.05,0.2) {seed route:\\an $e_{S_e}$ row};
 \draw[flow] (a1) -- (coord); \draw[aflow] (a2) -- (seedr);
-\draw[aflow] (pair.east) -- (3.0,1.72) -- (3.0,2.85) -- (coord.south west);
-\node[node,text width=30mm] (rows) at (7.9,3.3) {$Y=AS+BR$\\(all accessible rows)};
-\node[node,text width=30mm] (U) at (7.9,2.1) {$U=\{\lambda A:\lambda B=0\}$\\$\dim U=\mathrm{rk}[A\ B]-\mathrm{rk}\,B$};
+\draw[aflow] (pair.east) -- (3.75,1.85) |- ([yshift=1mm]coord.south west);
+\node[node,minimum width=31mm] (rows) at (8.05,4.0) {$Y=AS+BR$\\(all accessible rows)};
+\node[node,minimum width=31mm] (U) at (8.05,2.35) {$U=\{\lambda A:\lambda B=0\}$\\$\dim U=\mathrm{rk}[A\;B]-\mathrm{rk}\,B$};
 \draw[flow] (coord) -- (rows); \draw[flow] (rows) -- (U);
-\draw[aflow] (seedr.east) -- (6.15,0.6) |- (U.south west);
-\node[adv,text width=24mm] (o1) at (11.6,3.5) {reconstruction of $S_i$:\ $e_i\in U$};
-\node[adv,text width=24mm] (o2) at (11.6,2.65) {partial leakage:\ $U\neq0$};
-\node[node,text width=24mm] (o3) at (11.6,1.8) {privacy:\ $U=0$};
-\node[neut,text width=24mm] (o4) at (11.6,0.75) {erasure succeeds iff every minimal witness is hit};
+\draw[aflow] (seedr.east) -| (U.south);
+\node[adv,minimum width=25mm] (o1) at (11.45,4.75) {reconstruction\\of $S_i$: $e_i\in U$};
+\node[adv,minimum width=25mm] (o2) at (11.45,3.55) {partial leakage:\\$U\neq0$};
+\node[node,minimum width=25mm] (o3) at (11.45,2.35) {privacy: $U=0$};
+\node[neut,minimum width=25mm] (o4) at (11.45,0.95) {erasure succeeds iff\\every minimal\\witness is hit};
 \draw[aflow] (U.east) -- (o1.west); \draw[aflow] (U.east) -- (o2.west); \draw[flow] (U.east) -- (o3.west);
-\draw[flow,cslate,dashed] (U.south east) -- (o4.west);
-\node[font=\figtiny,text=cslate,anchor=west] at (-1.2,-0.4) {AND: every premise is needed (hyperedge), unlike edge reachability.\quad
+\draw[flow,cslate,dashed] (U.east) -- (o4.west);
+\node[font=\figfont,text=cslate,anchor=north west,align=left] at (0.0,-1.0) {AND: every premise is needed (a hyperedge), unlike edge reachability.\\
 \textcolor{cnavy}{blue}: honest\quad \textcolor{cburg}{red}: adversary-retained\quad grey: public};
 \end{tikzpicture}

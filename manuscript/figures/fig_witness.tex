@@ -1,24 +1,26 @@
-% Figure 4: witness hitting
-\begin{tikzpicture}[x=1cm,y=1cm,del/.style={adv,minimum width=7mm,dashed}]
-\node[layer] at (1.5,2.3) {(a) erasure possible};
-\node[node,minimum width=7mm] (h1) at (0,0) {$h_1$};
-\node[del] (h2) at (1,0) {$h_2$};
-\node[node,minimum width=7mm] (h3) at (2,0) {$h_3$};
-\node[del] (h4) at (3,0) {$h_4$};
-\node[neut,minimum width=7mm] (P) at (4,0) {$P$};
-\foreach \w/\x/\lab in {w1/0.5/W_1,w2/1.5/W_2,w3/3.5/W_3}{\node[draw=cnavy,rounded corners=1pt,font=\figtiny,fill=white] (\w) at (\x,1.4) {$\lab$};}
+% Figure 3: witness hitting. v4.1.5: 8 pt sans, natural size.
+\begin{tikzpicture}[x=1cm,y=1cm,root/.style={node,minimum width=8mm,minimum height=6mm},
+  del/.style={node,minimum width=8mm,minimum height=6mm,dashed,thick,fill=white},
+  wit/.style={draw=cnavy,rounded corners=1pt,fill=white,font=\figfont,minimum width=8mm,minimum height=5mm}]
+\node[layer,anchor=west] at (-0.4,2.35) {(a) Erasure possible};
+\node[root] (h1) at (0,0) {$h_1$};
+\node[del] (h2) at (1.1,0) {$h_2$};
+\node[root] (h3) at (2.2,0) {$h_3$};
+\node[del] (h4) at (3.3,0) {$h_4$};
+\node[neut,minimum width=8mm,minimum height=6mm] (P) at (4.4,0) {$P$};
+\foreach \w/\x/\lab in {w1/0.55/W_1,w2/1.65/W_2,w3/3.85/W_3}{\node[wit] (\w) at (\x,1.5) {$\lab$};}
 \draw[cnavy] (w1)--(h1) (w1)--(h2) (w2)--(h2) (w2)--(h3) (w3)--(h4) (w3)--(P);
-\node[font=\figtiny,text=cnavy,align=center] at (2,-0.7) {deleting $\{h_2,h_4\}$ (dashed) hits $W_1,W_2,W_3$: minimum cost 2};
-\begin{scope}[xshift=7.4cm]
-\node[layer] at (1.0,2.3) {(b) erasure impossible};
-\node[node,minimum width=7mm] (g1) at (0,0) {$h_1$};
-\node[adv,minimum width=7mm] (a0) at (1,0) {$a_0$};
-\node[neut,minimum width=7mm] (P2) at (2,0) {$P$};
-\node[draw=cburg,rounded corners=1pt,font=\figtiny,fill=white] (w4) at (1.5,1.4) {$W_4$};
-\node[draw=cnavy,rounded corners=1pt,font=\figtiny,fill=white] (w5) at (0.5,1.4) {$W_5$};
+\node[font=\figfont,text=cnavy,align=left,anchor=north west] at (-0.4,-0.55) {Deleting $\{h_2,h_4\}$ (dashed) hits $W_1$, $W_2$\\and $W_3$: minimum cost 2.};
+\begin{scope}[xshift=7.6cm]
+\node[layer,anchor=west] at (-0.4,2.35) {(b) Erasure impossible};
+\node[root] (g1) at (0,0) {$h_1$};
+\node[adv,minimum width=8mm,minimum height=6mm] (a0) at (1.1,0) {$a_0$};
+\node[neut,minimum width=8mm,minimum height=6mm] (P2) at (2.2,0) {$P$};
+\node[wit,draw=cburg] (w4) at (1.65,1.5) {$W_4$};
+\node[wit] (w5) at (0.55,1.5) {$W_5$};
 \draw[cburg,thick] (w4)--(a0) (w4)--(P2);
 \draw[cnavy] (w5)--(g1) (w5)--(a0);
-\node[font=\figtiny,text=cburg,align=center] at (1,-0.7) {$W_4\subseteq A_0\cup P$ contains no deletable root};
+\node[font=\figfont,text=cburg,align=left,anchor=north west] at (-0.4,-0.55) {$W_4\subseteq A_0\cup P$ contains no deletable\\root, so no deletion can hit it.};
 \end{scope}
-\node[font=\figtiny,text=cslate,anchor=west] at (-0.3,-1.2) {\textcolor{cnavy}{blue}: deletable honest root\quad \textcolor{cburg}{red}: immutable adversary copy\quad grey: public fact\quad dashed: deleted};
+\node[font=\figfont,text=cslate,anchor=north west,align=left] at (-0.4,-1.5) {\textcolor{cnavy}{blue}: deletable honest root\quad \textcolor{cburg}{red}: immutable adversary copy\quad grey: public fact\quad dashed: deleted};
 \end{tikzpicture}

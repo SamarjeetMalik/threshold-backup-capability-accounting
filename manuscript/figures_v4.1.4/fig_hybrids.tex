@@ -1,0 +1,16 @@
+% Figure 5: restricted-adaptive hybrid sequence (Theorem 25)
+\begin{tikzpicture}[x=1cm,y=1cm,g/.style={draw=cnavy,fill=cpaleblue,rounded corners=2pt,font=\footnotesize,minimum width=8mm,minimum height=6mm}]
+\foreach \n/\x/\lab in {G0/0/G_0,G1/2.1/G_1,G2/4.2/G_2,G2p/6.3/G_2',G3/8.4/G_3,G4/10.5/G_4,G5/12.6/G_5}{\node[g] (\n) at (\x,0) {$\lab$};}
+\foreach \a/\b/\top/\bot in {G0/G1/{guess $\Gamma\in\mathcal P$}/{$\mathrm{Adv}_0=L\,\mathrm{Adv}_1$},
+  G1/G2/{zero eligible capsules}/{$\varepsilon_{\mathrm{mu}}(N,M)$},
+  G2/G2p/{seed decoupling}/{$0$ (invariant I)},
+  G2p/G3/{HMAC $\to$ RF}/{$\varepsilon_{\mathrm{prf}}(q{+}r)$},
+  G3/G4/{identifier event}/{$q(q{-}1)/2^{257}$},
+  G4/G5/{AEAD real $\to$ ideal}/{$\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}(K_{\mathrm{key}},C,D_{\mathrm{dec}})$}}{
+  \draw[flow] (\a) -- (\b) node[midway,above=6pt,font=\figfont,text=cslate,align=center,text width=19mm]{\top} node[midway,below=6pt,font=\figfont,text=cnavy,align=center]{\bot};}
+\node[font=\figfont,text=cslate,right=0.08 of G5] {$\Pr=\tfrac12$};
+\node[font=\figfont,text=cslate] at (6.3,-1.3) {queries: $\le M$ challenges \quad $\le q{+}r$ PRF \quad $C$ chunk enc.\quad $D_{\mathrm{dec}}$ chunk dec.};
+\draw[decorate,decoration={brace,mirror,amplitude=5pt},cnavy] (2.1,-1.6) -- (12.6,-1.6);
+\node[font=\footnotesize,text=cnavy] at (6.6,-2.15) {$\mathrm{Adv}(\mathcal A)\le L\cdot\big[\varepsilon_{\mathrm{mu}}+\varepsilon_{\mathrm{prf}}+q(q{-}1)/2^{257}+\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}\big]$};
+\node[node,font=\figfont] at (6.6,-2.75) {forward-ordered exposure: $\mathcal P=\{\varnothing\}$, $L=1$};
+\end{tikzpicture}

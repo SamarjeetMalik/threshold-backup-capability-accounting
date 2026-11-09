@@ -1,0 +1,26 @@
+% Lifecycle state machine (paths and requests). v4.1.5: 8 pt sans, natural size, edge labels clear of the states.
+\begin{tikzpicture}[x=1cm,y=1cm,st/.style={node,minimum width=17mm,minimum height=6mm},bad/.style={adv,minimum width=17mm,minimum height=6mm},
+  lab/.style={font=\figfont,text=cnavy,fill=white,inner sep=1pt}]
+\node[layer,anchor=west] at (-0.15,2.95) {Path $(e,g)$};
+\node[st] (sealed) at (0.85,2.0) {sealed};
+\node[st] (exp) at (3.75,2.0) {expiring};
+\node[st] (er) at (7.6,2.0) {erased};
+\draw[flow] (sealed)--(exp) node[midway,lab,above=9pt]{BeginExpiry};
+\draw[flow] (exp)--(er) node[midway,lab,above=9pt]{Erase; SignReceipt; Commit};
+\node[neut,anchor=east,align=left] at (12.55,2.15) {SignReceipt guard:\\slot erased, no buffer,\\no \emph{aborting} worker};
+\node[layer,anchor=west] at (-0.15,1.2) {Request};
+\foreach \n/\x/\lab in {hold/0.85/holding,dec/3.6/decrypting,que/6.35/queued,send/9.1/sending,done/11.7/done}{\node[st] (\n) at (\x,0.2) {\lab};}
+\draw[flow] (hold)--(dec) node[midway,lab,above=9pt]{BeginDecrypt};
+\draw[flow] (dec)--(que) node[midway,lab,above=9pt]{FinishDecrypt};
+\draw[flow] (que)--(send) node[midway,lab,above=9pt]{StartSend};
+\draw[flow] (send)--(done) node[midway,lab,above=9pt]{Transfer};
+\node[bad] (ab) at (3.6,-1.85) {aborting};
+\node[st] (can) at (7.8,-1.85) {cancelled};
+\draw[aflow] (dec)--(ab) node[midway,left=2pt,text=cburg,font=\figfont,align=right]{expiry or\\config.\ change};
+\draw[flow] (ab)--(can) node[midway,lab,below=3pt]{WorkerReturns};
+\draw[flow] (dec.south east) -- (can.north west) node[pos=0.42,lab,sloped,above=1pt]{WorkerAbandons};
+\draw[flow,cslate] (que.south) -- (can.north);
+\draw[flow,cslate] (send.south) -- (can.north east);
+\node[font=\figfont,text=cslate,anchor=west,align=left] at (9.5,-1.0) {expiry, config.\\change or crash};
+\draw[dflow] (ab.south) -- ++(0,-0.6) node[below right=0pt and -6pt,text=cburg,font=\figfont]{v2 defect: receipt signed while aborting (now blocked by the guard)};
+\end{tikzpicture}

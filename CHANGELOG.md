@@ -1,5 +1,32 @@
 # Changelog
 
+## 4.1.6 (9 November 2026), manuscript figures only; artifact remains v4.1.1
+- Muted palette (deep blue 1F3A5F, brick red A93226, grey 5E6670), white boxes with thin 1 pt corners, lighter grid; layer titles in black.
+- Tick numbers and powers of ten on every axis now in the sans figure font.
+- Fig. 14 re-routed: no arrow crosses another. Fig. 9 callouts use leader lines and sit clear of the data; panel titles capitalised.
+- Fig. 7: adds the same birthday bound for hypothetical 128-bit key instances, for comparison only; caption updated.
+- 52 pp. No theorem, number, data file or artifact file changed. Previous text: manuscript/main_v4.1.5.tex, style_v4.1.5.tex, figures_v4.1.5/.
+
+## 4.1.5 (9 November 2026), manuscript figures only; artifact remains v4.1.1
+- All 15 figures: lettering is Helvetica (URW Nimbus Sans) at 8 pt, as IJIS asks (8-12 pt, sans serif); maths keeps the math font. No figure is scaled: `\figbox` typesets each at natural size and the build log records FIGSCALE if one would need shrinking (none does).
+- Layout fixes: Fig. 12 and 13 legends moved off the data; Fig. 14 edge labels clear of the states, grey arrows explained in the caption; Fig. 5 "late" label off its arrow; Fig. 8 now a game chain plus a hop/replacement/loss table; Figs. 1-5, 10, 11 re-laid out to fit at 8 pt; Fig. 6 lines drawn under the markers, distinct dash styles; Fig. 9 decade ticks and an aligned legend; Fig. 15 cells fill the axes.
+- Fig. 7 now shows the 2^-128 level of the profile's 128-bit target and where the bound meets it (K_key ~ 2^64.5). Captions of Figs. 7, 8, 9, 13 and 14 updated to match.
+- 52 pp. (was 51). No theorem, number, data file or artifact file changed. Previous text: manuscript/main_v4.1.4.tex, style_v4.1.4.tex, figures_v4.1.4/.
+
+## 4.1.4 (9 November 2026), manuscript only; artifact remains v4.1.1
+- IJIS compliance: the appendix figure is numbered Fig. 15 (consecutive with the main text) instead of Fig. C1; Section 10 now points to the LLM-use statement, since IJIS asks for LLM use to be documented in the methods part.
+- Data and code availability names the manuscript as version 4.1.4. 51 pp. Nothing else changed. Previous text: manuscript/main_v4.1.3.tex.
+
+## 4.1.3 (9 November 2026), manuscript only; artifact remains v4.1.1
+- Data and code availability names the v4.1.1 artifact (DOI 10.5281/zenodo.24060229, tag v4.1.1) as the one supporting the paper; v4.0.7 is named only as its predecessor. The duplicate archive paragraph is gone.
+- Fig. C1 is output before the References and no longer splits the bibliography.
+- Wording: the conclusion now states the integrated contribution in place of "the core mathematics is elementary". The introduction's "elementary linear algebra" sentence was reworded. The abstract says the reused-credential bound is XP but not FPT. The evidence list says how the 5,388 target seeds are counted. The LLM statement says what figure preparation means.
+- Root README corrected from 82 to 99 tests. REPRODUCIBILITY.md records the Zenodo record as published. Author checklist updated. Theorem 25 review request and page packet added.
+- 51 pp. No theorem, bound, number or artifact file changed. Previous texts: manuscript/main_v4.1.1.tex and main_v4.1.2.tex.
+
+## 4.1.2 (9 November 2026), layout only; not released
+- Appendix headings at full width; removed the \clearpage before the bibliography (52 → 51 pp).
+
 ## 4.1.1 (9 November 2026)
 - Release-consistency pass; details, Theorem 25 audit record and open items in REVISION_V4.1.1.md. Previous text preserved as manuscript/main_v4.1.0.tex.
 - Related work re-checked against the full texts of CKS, standard-model CKS and GKP. The GKP sentence was corrected (its security is selective only). CRYPTO and TCC proceedings citations.

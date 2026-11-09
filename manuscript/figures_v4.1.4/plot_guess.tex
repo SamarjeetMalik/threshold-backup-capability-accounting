@@ -1,0 +1,21 @@
+% Plot 1: guessing-space size (exact values from eq. (L) and Proposition 27)
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.4cm},width=0.44\linewidth,height=4.6cm,
+  ymode=log,xlabel={target generations $G$},xtick={1,...,6},grid=major,grid style={clightgray},
+  tick label style={font=\footnotesize},label style={font=\footnotesize},title style={font=\footnotesize\bfseries},
+  legend style={font=\footnotesize,draw=none,fill=none,at={(1.12,-0.3)},anchor=north,legend columns=3}]
+\nextgroupplot[title={equal thresholds},ylabel={guessing factor}]
+\addplot[cburg,mark=square*,mark size=1.3pt,thick] table[x=G,y=L75]{data/guess_equal.dat};
+\addplot[cnavy,mark=*,mark size=1.3pt,thick] table[x=G,y=R75]{data/guess_equal.dat};
+\addplot[cburg,mark=square,mark size=1.3pt,dashed] table[x=G,y=L53]{data/guess_equal.dat};
+\addplot[cnavy,mark=o,mark size=1.3pt,dashed] table[x=G,y=R53]{data/guess_equal.dat};
+\addplot[cslate,thick,domain=1:6,samples=2] {1};
+\legend{general $L$ (5-of-7),$L_{\mathrm{reuse}}$ (5-of-7),general $L$ (3-of-5),$L_{\mathrm{reuse}}$ (3-of-5),forward-ordered $L=1$}
+\node[coordinate,pin={[pin distance=6mm,pin edge={cburg,thin},font=\footnotesize,text=cburg]150:970{,}299}] at (axis cs:3,970299) {};
+\node[coordinate,pin={[pin distance=7mm,pin edge={cnavy,thin},font=\footnotesize,text=cnavy]-30:3{,}991}] at (axis cs:3,3991) {};
+\nextgroupplot[title={thresholds $6,5,4,4,3,3$ ($n=7$)}]
+\addplot[cburg,mark=square*,mark size=1.3pt,thick] table[x=G,y=L]{data/guess_unequal.dat};
+\addplot[cnavy,mark=*,mark size=1.3pt,thick] table[x=G,y=R]{data/guess_unequal.dat};
+\addplot[cslate,thick,domain=1:6,samples=2] {1};
+\end{groupplot}
+\end{tikzpicture}

@@ -1,0 +1,17 @@
+% v4.1.5: cells fill the axes; 8 pt sans numbers. Plot 8: minimum holder-committee size n = 3f + c + 2u + 1 (Proposition 17)
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=3 by 1,horizontal sep=0.55cm,yticklabels at=edge left},width=0.36\linewidth,height=4.7cm,
+  view={0}{90},xlabel={prior copies $c$},xtick={0,...,3},ytick={0,...,4},tick label style={font=\figfont},
+  label style={font=\figfont},title style={font=\figfont},colormap={nb}{color(0)=(cpaleblue) color(1)=(ccobalt!55)},
+  point meta min=1,point meta max=20,enlargelimits=false,xmin=-0.5,xmax=3.5,ymin=-0.5,ymax=4.5,axis on top,tick align=outside]
+\nextgroupplot[title={$u=0$},ylabel={Byzantine $f$}]
+\addplot[matrix plot*,mesh/cols=4,point meta=explicit,nodes near coords={\pgfmathprintnumber[fixed,assume math mode=true]{\pgfplotspointmeta}},
+  nodes near coords style={font=\figfont,text=black,anchor=center}] table[x=c,y=f,meta=n]{data/minholders_u0.dat};
+\nextgroupplot[title={$u=1$}]
+\addplot[matrix plot*,mesh/cols=4,point meta=explicit,nodes near coords={\pgfmathprintnumber[fixed,assume math mode=true]{\pgfplotspointmeta}},
+  nodes near coords style={font=\figfont,text=black,anchor=center}] table[x=c,y=f,meta=n]{data/minholders_u1.dat};
+\nextgroupplot[title={$u=2$}]
+\addplot[matrix plot*,mesh/cols=4,point meta=explicit,nodes near coords={\pgfmathprintnumber[fixed,assume math mode=true]{\pgfplotspointmeta}},
+  nodes near coords style={font=\figfont,text=black,anchor=center}] table[x=c,y=f,meta=n]{data/minholders_u2.dat};
+\end{groupplot}
+\end{tikzpicture}

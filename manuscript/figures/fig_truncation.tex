@@ -1,12 +1,12 @@
-% Figure: truncation experiment (executed test, not a probability)
-\begin{tikzpicture}[x=1cm,y=1cm,ch/.style={draw=cnavy,fill=cpaleblue,font=\figtiny,minimum width=14mm,minimum height=5mm},chx/.style={draw=cslate,dashed,font=\figtiny,minimum width=14mm,minimum height=5mm,text=cslate}]
-\node[layer,anchor=west] at (-0.7,1.0) {(a) AD without final flag (v4.0.2 profile)};
-\node[ch] at (0,0.4) {$c_0$}; \node[ch] at (1.6,0.4) {$c_1$};
-\node[chx] at (3.2,0.4) {$c_2$ removed}; \node[chx] at (4.8,0.4) {$c_3$ removed};
-\node[adv,font=\figtiny,anchor=west] at (5.8,0.4) {accepted: 20 of 40 bytes, no error};
-\node[layer,anchor=west] at (-0.7,-0.35) {(b) AD with final flag (v4.0.3 and later)};
-\node[ch] at (0,-0.95) {$c_0$}; \node[ch] at (1.6,-0.95) {$c_1$};
-\node[chx] at (3.2,-0.95) {$c_2$ removed}; \node[chx] at (4.8,-0.95) {$c_3$ removed};
-\node[node,font=\figtiny,anchor=west] at (5.8,-0.95) {rejected: $c_1$ was sealed with final $=0$};
-\node[neut,font=\figtiny,anchor=west,align=left] at (-0.7,-1.75) {release rule: plaintext is returned only if every chunk authenticates, with $\mathit{final}=1$ exactly on the last; any failure releases nothing};
+% Truncation experiment (executed test, not a probability). v4.1.5: 8 pt sans, natural size.
+\begin{tikzpicture}[x=1cm,y=1cm,ch/.style={node,minimum width=17mm,minimum height=6mm},
+  chx/.style={draw=cslate,dashed,font=\figfont,minimum width=17mm,minimum height=6mm,text=cslate,rounded corners=2pt}]
+\foreach \yy/\title in {0/{(a) Associated data without a final flag (v4.0.2 profile)},-1.75/{(b) Associated data with a final flag (v4.0.3 and later)}}{
+  \node[layer,anchor=west] at (-0.75,\yy+0.65) {\title};
+  \node[ch] at (0.1,\yy) {$c_0$}; \node[ch] at (1.95,\yy) {$c_1$};
+  \node[chx] at (3.8,\yy) {$c_2$ removed}; \node[chx] (last) at (5.65,\yy) {$c_3$ removed};
+  \draw[flow,cslate] (last.east) -- ++(0.45,0);}
+\node[adv,anchor=west] at (7.15,0) {accepted: 20 of 40 bytes, no error};
+\node[node,anchor=west] at (7.15,-1.75) {rejected: $c_1$ was sealed with $\mathit{final}=0$};
+\node[neut,anchor=north west,align=left] at (-0.75,-2.35) {Release rule: plaintext is returned only if every chunk authenticates, with $\mathit{final}=1$\\exactly on the last chunk; any failure releases nothing.};
 \end{tikzpicture}

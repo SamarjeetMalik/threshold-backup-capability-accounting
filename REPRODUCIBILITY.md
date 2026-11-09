@@ -4,8 +4,8 @@
 | Item | Value |
 |---|---|
 | Manuscript | v4.1.1, `manuscript/main.tex` (SHA-256 `53b90045468b316f9201bfa92e84ef1a0ce6d83519d5c87af7787851d8bcf156`) |
-| Compiled PDFs | `output/pdf/Capability_Exposure_Accounting_v4.1.1.pdf` (`20d655a31b0a8c5cb99cac5c36e2f3e656e39157ca7949c1f49e02a478c693a1`); `…_v4.1.1_submission.pdf` (`8a22345435ce2938512732b66fa4876d7522872b2d1263cfbd780d2fc97dbfc1`) |
-| Artifact | v4.1.1: Zenodo DOI 10.5281/zenodo.24060229 (reserved 9 Nov 2026; registered on publication); GitHub tag `v4.1.1` |
+| Compiled PDFs | v4.1.3 manuscript: `output/pdf/Capability_Exposure_Accounting_v4.1.3.pdf` (`429843b4f7dfb698d7bd005056f8237cebf2978b18282b88ff97df7b31a5e415`); `…_v4.1.3_submission.pdf` (`c0eadb802b0584eaba210ae72800b1bc0019d26e3718fb2d0a5aa9d5d66a0420`). Published v4.1.1 PDFs: `20d655a3…a1` and `8a223454…c1` (full hashes in the v4.1.1 SHA256SUMS). The v4.1.2 layout PDF: `9269f89c8d0b7a618ac0b23b49e41847198b590f3c2bcfe1e8ab492e4447ee91`. |
+| Artifact | v4.1.1: Zenodo DOI 10.5281/zenodo.24060229 (published 9 Nov 2026; record 24060229 lists Version 4.1.1 and its artifact zip has MD5 688235160ab9ef19731d4810e034152c, matching the local file); GitHub tag `v4.1.1` |
 | Archived predecessor | v4.0.7: Zenodo DOI 10.5281/zenodo.24048192; GitHub tag `v4.0.7` → commit `80d40a8c83b13e25712839327de45b144de83b52` |
 | Measurements in the paper | all from v4.1.1 runs on one Apple M5: `evidence_v411/mac_m5` (timings), `mac_m5_memory`, `mac_m5_supervisor`. Earlier evidence (`evidence_v404`, `evidence_v410`) is kept but no longer plotted. |
 

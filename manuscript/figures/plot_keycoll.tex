@@ -1,10 +1,21 @@
-% Plot 2: derived-key collision bad-event bound (not an observed frequency)
+% Derived-key collision bad-event bound K(K-1)/2^257 (Lemma 24; not an observed frequency), with the same
+% birthday bound for hypothetical 128-bit key instances, K(K-1)/2^129, for comparison only.
+% v4.1.6: data/keycoll.dat (artifact) for log2 K <= 64, the same exact formula beyond.
 \begin{tikzpicture}
-\begin{axis}[width=0.9\linewidth,height=4.4cm,xlabel={$\log_2K_{\mathrm{key}}$ (key instances)},ylabel={$\log_2$ of $K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{257}$},
-  grid=major,grid style={clightgray},tick label style={font=\footnotesize},label style={font=\footnotesize},xmin=1,xmax=64]
+\begin{axis}[width=0.94\linewidth,height=5.6cm,xmin=0,xmax=96,ymin=-262,ymax=0,xtick={0,32,64,96},ytick={-256,-192,-128,-64,0},
+  yticklabels={$-$256,$-$192,$-$128,$-$64,0},
+  xlabel={$\log_2 K_{\mathrm{key}}$ (number of key instances)},ylabel={$\log_2$ of the collision bound},
+  grid=major,legend style={draw=none,fill=none,at={(0.5,-0.3)},anchor=north,legend columns=1,legend cell align=left}]
 \addplot[cburg,thick] table[x=log2K,y=log2bound]{data/keycoll.dat};
-\addplot[cslate,dashed] coordinates {(28,-260) (28,-120)};
-\addplot[only marks,mark=*,mark size=1.6pt,cburg] coordinates {(28,-201.0)};
-\node[font=\footnotesize,text=cslate,anchor=west,align=left] at (axis cs:30,-205) {$K_{\mathrm{key}}=2^{28}$:\\ bound $<2^{-201}$};
+\addlegendentry{256-bit key instances (profile)}
+\addplot[cslate,thick,dashed,domain=1:64.5,samples=80] {x+ln(2^x-1)/ln(2)-129};
+\addlegendentry{128-bit, for comparison only}
+\addplot[cburg,thick,domain=64:96,samples=33,forget plot] {x+ln(2^x-1)/ln(2)-257};
+\addplot[black!60,densely dotted,thick,domain=0:96,samples=2,forget plot] {-128};
+\node[anchor=north east,align=right,text=black!70,font=\figfont,inner sep=1pt] at (axis cs:95,-132) {$2^{-128}$:\\128-bit target};
+\addplot[only marks,mark=*,mark size=1.8pt,cburg,forget plot] coordinates {(28,-201.0)};
+\node[anchor=north west,align=left,text=cburg,font=\figfont] at (axis cs:30,-203) {$2^{28}$ instances:\\bound $<2^{-201}$};
+\addplot[only marks,mark=*,mark size=1.8pt,draw=cburg,fill=white,forget plot] coordinates {(64.5,-128.0)};
+\node[anchor=south east,align=right,text=cburg,font=\figfont] at (axis cs:63,-124) {meets $2^{-128}$\\at $\approx2^{64.5}$};
 \end{axis}
 \end{tikzpicture}

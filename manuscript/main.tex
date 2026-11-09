@@ -1,4 +1,4 @@
-% Capability Exposure Accounting, version 4.1.1. Compiler: pdfLaTeX; bibliography: BibTeX.
+% Capability Exposure Accounting, version 4.1.6 (figure revision of 4.1.4: 8 pt sans-serif lettering and tick numbers, no scaled figures, muted palette; artifact v4.1.1). Compiler: pdfLaTeX; bibliography: BibTeX.
 \PassOptionsToPackage{table}{xcolor}
 \documentclass[pdflatex,sn-mathphys-num,twocolumn]{sn-jnl}
 \usepackage[T1]{fontenc}
@@ -44,7 +44,7 @@
 \author[2]{\fnm{Shaurya Pratap} \sur{Singh}}
 \affil[1]{\orgname{Ashoka University}}
 \affil[2]{\orgname{Indian Institute of Science}}
-\abstract{\unboldmath Deleting a custodian's local secret need not revoke an encrypted backup's recovery capability: copied credentials, recorded capsules, refreshed sharings and archive authorities can preserve access. We model surviving capabilities as a typed conjunctive closure over affine observations. A leakage subspace of dimension $\rk[A\ B]-\rk B$ decides reconstruction, privacy and exact marginal and conditional mutual information. Erasure planning is witness hitting: linear-time on read-once exposure formulas, NP-hard with weighted thresholds, solvable in $n^{O(2^G)}$ time for $G$ generations with reused credentials, and APX-hard when each reused credential serves at most three generations. For independent Pedersen-committed generations the budget counts touched indices. A temporal accounting theorem, checked against exact rank computation on 3,000 seeded histories with 5,388 target seeds, separates algebraic from delivery independence. Our main cryptographic result is a \emph{restricted-adaptive} composition theorem for the HPKE/HMAC/AEAD profile; it does not provide full adaptive security. The adversary may choose its exposures adaptively, but every term of the bound is multiplied by the size $L$ of a guessing space of late-exposure patterns: $L=1$ when exposure is forward-ordered, and $L$ grows exponentially with the number of renewed generations. Within this proof approach, removing $L$ would require a receiver selective-opening guarantee for the capsule encryption. Model checking shows that erasure progress requires terminating hung decryption workers; a process-isolated supervisor tests that termination. Conformance testing found four kernel divergence classes, now fixed. Results are relative to declared operations and affine views; they do not certify physical erasure.}
+\abstract{\unboldmath Deleting a custodian's local secret need not revoke an encrypted backup's recovery capability: copied credentials, recorded capsules, refreshed sharings and archive authorities can preserve access. We model surviving capabilities as a typed conjunctive closure over affine observations. A leakage subspace of dimension $\rk[A\ B]-\rk B$ decides reconstruction, privacy and exact marginal and conditional mutual information. Erasure planning is witness hitting: linear-time on read-once exposure formulas, NP-hard with weighted thresholds, XP but not FPT in the number $G$ of generations with reused credentials ($n^{O(2^G)}$ time), and APX-hard when each reused credential serves at most three generations. For independent Pedersen-committed generations the budget counts touched indices. A temporal accounting theorem, checked against exact rank computation on 3,000 seeded histories with 5,388 target seeds, separates algebraic from delivery independence. Our main cryptographic result is a \emph{restricted-adaptive} composition theorem for the HPKE/HMAC/AEAD profile; it does not provide full adaptive security. The adversary may choose its exposures adaptively, but every term of the bound is multiplied by the size $L$ of a guessing space of late-exposure patterns: $L=1$ when exposure is forward-ordered, and $L$ grows exponentially with the number of renewed generations. Within this proof approach, removing $L$ would require a receiver selective-opening guarantee for capsule encryption. Model checking shows that erasure progress requires terminating hung decryption workers; a process-isolated supervisor tests that termination. Conformance testing found four kernel divergence classes, now fixed. Results are relative to declared operations and affine views; they do not certify physical erasure.}
 \keywords{Capability exposure, encrypted backup, threshold recovery, cryptographic erasure, restricted-adaptive security, TLA+}
 \maketitle
 
@@ -66,7 +66,7 @@ A recovery seed is shared 5-of-7 three times, each time with fresh polynomials. 
 \paragraph{Contributions and their status.}
 We separate new results from specializations of known ones; the version history is in the artifact's changelog.
 \begin{enumerate}
-\item A leakage-subspace characterization of affine views (Theorem~\ref{thm:leakage}), with exact marginal and conditional leakage and a chain rule (Corollary~\ref{cor:condleak}). Uniform masks are necessary, and the adaptive corollary needs a transcript-measurable acceptance predicate (Corollary~\ref{cor:adaptive}). This is elementary linear algebra used as a single decision object.
+\item A leakage-subspace characterization of affine views (Theorem~\ref{thm:leakage}), with exact marginal and conditional leakage and a chain rule (Corollary~\ref{cor:condleak}). Uniform masks are necessary, and the adaptive corollary needs a transcript-measurable acceptance predicate (Corollary~\ref{cor:adaptive}). We use this one characterization as the decision object for reconstruction, privacy, marginal and conditional leakage, and the erasure analysis that follows; the linear algebra itself is standard.
 \item An erasure analysis (Section~\ref{sec:erasure}). Witness hitting and read-once evaluation are known from attack-tree analysis~\cite{mauw2005,lopuhaa2022}. We add linear-time evaluation with selection, NP-hardness and a pseudo-polynomial algorithm for weighted thresholds, an $n^{O(2^G)}$ algorithm for $G$ generations with reused credentials (XP in $G$, not FPT), and APX-hardness when each reused credential serves at most three generations.
 \item A joint-generation theorem counting touched indices (Theorem~\ref{thm:generations}) and a blockwise lemma (Lemma~\ref{lem:block}).
 \item A temporal exposure-accounting theorem and healing classification (Theorem~\ref{thm:temporal}), validated against exact rank computation on random multi-epoch histories; the independence hypothesis cannot be dropped.
@@ -193,7 +193,7 @@ Completeness is relative to the inventory: an unlisted disk root or unmodeled cl
 
 \begin{figure*}[t]
 \centering
-\resizebox{\linewidth}{!}{\input{figures/fig_architecture}}
+\figbox{\input{figures/fig_architecture}}
 \caption{End-to-end capability exposure. Sources (layer 1) combine only through conjunctive derivations (layer 2, AND hyperedges: every premise is required, unlike edge reachability). Derived coordinates and seed routes become affine rows (layer 3), whose leakage subspace $U$ decides the outcome (layer 4). Blue marks honest capabilities, red adversary-retained ones, grey public material.}\label{fig:capabilities}
 \end{figure*}
 
@@ -238,7 +238,7 @@ Part~(4) corrects a dimensional imprecision in the v2.0.0 statement. The target 
 
 \begin{figure*}[t]
 \centering
-\resizebox{\linewidth}{!}{\input{figures/fig_leakage}}
+\figbox{\input{figures/fig_leakage}}
 \caption{The leakage subspace over $\mathbb F_p$. Every left-kernel vector $\lambda$ of $B$ cancels the masks and exposes $u\cdot S$ with $u=\lambda A\in U$; nothing else about $S$ is revealed. The red panel shows leakage without reconstruction. The diagram is a dependency schematic, not a Euclidean picture of the subspaces.}\label{fig:leakage}
 \end{figure*}
 
@@ -301,7 +301,7 @@ Fig.~\ref{fig:witness} illustrates both cases. Without origin tagging the theore
 
 \begin{figure*}[t]
 \centering
-\resizebox{\linewidth}{!}{\input{figures/fig_witness}}
+\figbox{\input{figures/fig_witness}}
 \caption{Witness hitting (Theorem~\ref{thm:cuts}). A deletion prevents the bad predicate iff it intersects every inclusion-minimal witness. (a) Deleting $h_2$ and $h_4$ hits all three witnesses. (b) $W_4$ consists only of an immutable adversary copy and a public fact, so no permitted deletion can prevent it.}\label{fig:witness}
 \end{figure*}
 
@@ -435,7 +435,7 @@ Fig.~\ref{fig:worked} applies Theorem~\ref{thm:temporal} to the history of the i
 
 \begin{figure*}[t]
 \centering
-\resizebox{\linewidth}{!}{\input{figures/fig_worked}}
+\figbox{\input{figures/fig_worked}}
 \caption{A worked temporal exposure history (derived from Theorem~\ref{thm:temporal}, not measured). Seven holders, threshold $t=5$, three independently randomized generations of one seed; red marks are bank-root copies. (a) Reused bank: four roots copied after $g_1$ and one after $g_2$ open the copied holders' capsules in every generation. (b) Renewed banks $b_1,b_2,b_3$: the same copies touch only the generation whose bank they come from. (c) Touched-index counts against the threshold. (d) Outcome under Theorem~\ref{thm:temporal}: the reused bank reaches the threshold in every generation, so the seed is reconstructible; with renewed banks every count stays below $t$.}\label{fig:worked}
 \end{figure*}
 
@@ -464,7 +464,7 @@ Copied archive root & (old seed) & No\\\bottomrule
 
 \begin{figure*}[t]
 \centering
-\resizebox{\linewidth}{!}{\input{figures/fig_reuse_timeline}}
+\figbox{\input{figures/fig_reuse_timeline}}
 \caption{Algebraic refresh versus delivery independence. Both panels publish three independently randomized generations. (a) With a reused bank, one root copied after $g_1$ opens $h_1$'s capsule in every generation (late-exposed in $g_1$, exposed before publication in $g_2,g_3$). (b) With renewed banks and deleted old roots, the same copy touches $h_1$ in $g_1$ only.}\label{fig:reuse}
 \end{figure*}
 
@@ -527,7 +527,7 @@ $f$&$c$&$u$&$k$&Holders&$t=q_d$&Approvers&Log\\\midrule
 
 \begin{figure*}[t]
 \centering
-\input{figures/fig_feasible}
+\figbox{\input{figures/fig_feasible}}
 \caption{Feasible thresholds for $n=13$ under Proposition~\ref{prop:holders}, $2f+c+u+1\le t\le n-f-u$: filled squares are feasible, open squares infeasible, for three settings of prior copies $c$ and outages $u$. Mathematical feasibility, not deployment guidance.}\label{fig:feasible}
 \end{figure*}
 
@@ -652,8 +652,8 @@ HMAC outputs for distinct contexts are distinct only with high probability. Two 
 
 \begin{figure}[htbp]
 \centering
-\input{figures/plot_keycoll}
-\caption{The derived-key collision bound $K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{257}$ of Lemma~\ref{lem:keycoll}, on a $\log_2$ scale. This is a bound on the probability of a bad event, not an observed collision frequency.}\label{fig:keycoll}
+\figbox{\input{figures/plot_keycoll}}
+\caption{The derived-key collision bound $K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{257}$ of Lemma~\ref{lem:keycoll}, on a $\log_2$ scale, against the $2^{-128}$ level of the profile's 128-bit target (dotted). The bound stays below that level until $K_{\mathrm{key}}\approx2^{64.5}$ key instances. The dashed grey line, for comparison only, is the same birthday bound $K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{129}$ for hypothetical 128-bit key instances; it exceeds $2^{-128}$ for every $K_{\mathrm{key}}\ge3$. The identifier term $q(q-1)/2^{257}$ of Theorem~\ref{thm:adaptive} has the same form, with $q$ in place of $K_{\mathrm{key}}$. This is a bound on the probability of a bad event, not an observed collision frequency.}\label{fig:keycoll}
 \end{figure}
 
 \begin{keyresult}
@@ -690,8 +690,8 @@ Distinct contexts, equal key bytes & the key-instance event inside $\varepsilon^
 
 \begin{figure*}[t]
 \centering
-\resizebox{\linewidth}{!}{\input{figures/fig_hybrids}}
-\caption{The hybrid sequence of Theorem~\ref{thm:adaptive}. Each hop is labelled with its replacement and its distinguishing loss. Query counts appear below the arrows. The guessing step multiplies the whole accumulated bound by $L$; under forward-ordered exposure $L=1$.}\label{fig:hybrids}
+\figbox{\input{figures/fig_hybrids}}
+\caption{The hybrid sequence of Theorem~\ref{thm:adaptive}. The numbered hops are listed in the table with their replacement and distinguishing loss; the query counts and the resulting bound appear below the table. The guessing step multiplies the whole accumulated bound by $L$; under forward-ordered exposure $L=1$.}\label{fig:hybrids}
 \end{figure*}
 
 \begin{proof}
@@ -767,8 +767,8 @@ $L_{\mathrm{reuse}}\ll L$ only means that the \emph{proof} guesses fewer pattern
 
 \begin{figure*}[t]
 \centering
-\input{figures/plot_guess}
-\caption{Guessing factor versus the number of target generations: the general factor $L$ of~\eqref{eq:L}, the exact reused-bank count of Proposition~\ref{prop:patterns}, and forward-ordered exposure ($L=1$). Left: equal thresholds (5-of-7 and 3-of-5). Right: thresholds $6,5,4,4,3,3$ with $n=7$ and partial publication. Red squares: general $L$; navy circles: $L_{\mathrm{reuse}}$; solid lines 5-of-7, dashed lines 3-of-5; grey: forward-ordered, $L=1$. All values are exact.}\label{fig:guess}
+\figbox{\input{figures/plot_guess}}
+\caption{Guessing factor versus the number of target generations: the general factor $L$ of~\eqref{eq:L}, the exact reused-bank count of Proposition~\ref{prop:patterns}, and forward-ordered exposure ($L=1$). (a) Equal thresholds (5-of-7 and 3-of-5). (b) Thresholds $6,5,4,4,3,3$ with $n=7$ and partial publication. Red squares: general $L$; navy circles: $L_{\mathrm{reuse}}$; solid lines and filled markers 5-of-7, dashed lines and open markers 3-of-5; grey dotted line: forward-ordered, $L=1$. All values are exact.}\label{fig:guess}
 \end{figure*}
 
 \paragraph{Corrections to earlier versions (v3.0.0 Theorem~17; v4.0.0--v4.0.2 Theorem~24, now Theorem~\ref{thm:adaptive}).}
@@ -782,7 +782,7 @@ The artifact contains a reference implementation of the data interface of Defini
 
 \begin{figure*}[t]
 \centering
-\resizebox{\linewidth}{!}{\input{figures/fig_datalayer}}
+\figbox{\input{figures/fig_datalayer}}
 \caption{The implemented data layer. The epoch seed keys HMAC-SHA256 over the canonical context; the output is one 256-bit key instance per context. Each chunk uses the nonce $0^{32}\Vert\mathrm{u64}(i)$ and associated data $(\mathrm{H}(\mathit{ctx}),i,\mathit{final})$. The red dashed route is the bad event of Lemma~\ref{lem:keycoll}: two distinct contexts with equal key bytes would reuse the chunk-0 nonce.}\label{fig:datalayer}
 \end{figure*}
 
@@ -792,7 +792,7 @@ With one key per object and the chunk index as nonce, per-chunk authentication d
 
 \begin{figure*}[t]
 \centering
-\resizebox{\linewidth}{!}{\input{figures/fig_truncation}}
+\figbox{\input{figures/fig_truncation}}
 \caption{The truncation experiment (an executed test, not a probability). A four-chunk object with its last two chunks removed is accepted as a 20-byte object when the associated data has no final flag, and rejected with the flag.}\label{fig:truncation}
 \end{figure*}
 
@@ -863,14 +863,14 @@ MiB & Store ms & Open ms & heap MiB & RSS MiB\\\midrule
 
 \begin{figure*}[t]
 \centering
-\input{figures/plot_chunks}
+\figbox{\input{figures/plot_chunks}}
 \caption{Per-chunk encryption on identical seeded inputs, Apple M5 (v4.1.1 re-run), 40 repetitions after 5 warm-ups. (a) Median time with interquartile range. (b) Throughput, chunk size over median time; the bars map the time quartiles through the same formula. ChaCha20-Poly1305 is the profile; AES-256-GCM is an engineering comparison on one processor, not a statement about security.}\label{fig:latency}
 \end{figure*}
 
 \begin{figure*}[t]
 \centering
-\input{figures/plot_objects}
-\caption{Object-level Store and Open with 1~MiB chunks (left; v4.1.1 re-run, median and IQR over 12 trials) and peak memory during Open (right; v4.1.1, seven trials per size in fresh processes): Python heap by \code{tracemalloc} and the process's peak resident set size, median with range. The dashed line is twice the object size. Measured on one machine.}\label{fig:objects}
+\figbox{\input{figures/plot_objects}}
+\caption{(a) Object-level Store and Open with 1~MiB chunks (v4.1.1 re-run, median and IQR over 12 trials). (b) Peak memory during Open (v4.1.1, seven trials per size in fresh processes): Python heap by \code{tracemalloc} and the process's peak resident set size, median with range. The dashed line is twice the object size; from 4~MiB it coincides with the heap curve. Measured on one machine.}\label{fig:objects}
 \end{figure*}
 
 \subsection{Independent-slot component}\label{sec:slots}
@@ -919,8 +919,8 @@ Each path $(e,g)$ moves through sealed, expiring and erased states. Requests mov
 
 \begin{figure*}[t]
 \centering
-\resizebox{\linewidth}{!}{\input{figures/fig_lifecycle}}
-\caption{Lifecycle state machine of \code{RecoveryLifecycleV4}. Navy arrows are permitted transitions. The red state is cancelled work whose decryption worker has not returned. The dashed red arrow marks the v2 defect that the receipt guard now blocks.}\label{fig:lifecycle}
+\figbox{\input{figures/fig_lifecycle}}
+\caption{Lifecycle state machine of \code{RecoveryLifecycleV4}. Navy arrows are permitted transitions; grey arrows are cancellations by expiry, configuration change or crash. The red state is cancelled work whose decryption worker has not returned. The dashed red arrow marks the v2 defect that the receipt guard now blocks.}\label{fig:lifecycle}
 \end{figure*}
 
 \subsection{TLC results}
@@ -1029,7 +1029,7 @@ Renewal & Renewal model checks delivery-path counting & Algebra assumed, not mod
 
 \section{Experimental validation}\label{sec:evidence}
 
-Every count below comes from an executable checker with saved expected outputs, raw logs and a SHA-256 manifest. ``Exhaustive'' means every case in the finite family was enumerated. ``Seeded'' means a fixed pseudo-random family, each member of which was decided exactly. None of these numbers is a security probability.
+Every count below comes from an executable checker with saved expected outputs, raw logs and a SHA-256 manifest. ``Exhaustive'' means every case in the finite family was enumerated. ``Seeded'' means a fixed pseudo-random family, each member of which was decided exactly. None of these numbers is a security probability. How a large language model was used in writing the artifact code, the figure source and the text is stated under ``Use of large language models'' in the Statements and Declarations.
 
 \paragraph{Retained evidence.}
 All v2.0.0 and v3.0.0 checks reproduce exactly. That includes the v3 leakage (4,000 plus 4,000 seeded), partial-opening (375 exhaustive), block (3,000), read-once (2,500), vertex-cover (300), renewed-bank (300), healing (13 cells) and committee (5,427 exhaustive) checks, and all v2 and v3 TLC runs.
@@ -1042,7 +1042,7 @@ Each item is seeded unless stated otherwise.
 \item Selection versus sorting at threshold gates: 2,500 formulas agree.
 \item Weighted thresholds: 2,000 instances agree with brute force, and the subset-sum gadget is asserted.
 \item Few-generation algorithm: 400 instances with $n\le7$ and $G\le3$ agree with brute force; 93 of them are infeasible.
-\item Random histories: 3,000 histories give 5,388 target seeds with independent randomness, with no disagreement between Theorem~\ref{thm:temporal} and the exact rank test, and 639 target seeds with correlated randomness, with 5 disagreements, all in the unsafe direction.
+\item Random histories: 3,000 histories give 5,388 target seeds with independent randomness (each epoch seed of each history is checked once), with no disagreement between Theorem~\ref{thm:temporal} and the exact rank test, and 639 target seeds with correlated randomness, with 5 disagreements, all in the unsafe direction.
 \item Domain-correlated corruption: 3,000 instances agree with enumeration of failed-domain sets.
 \item Refinement conformance: Observation~\ref{obs:conformance}.
 \item The guessing loss $L$: arithmetic only (Corollary~\ref{cor:loss}).
@@ -1100,7 +1100,7 @@ The reference holds whole objects in memory and does not stream. Its nonce guard
 An inventory can omit disk roots, swap, dumps, snapshots, worker memory or external copies, and receipts do not certify that none exist. Separate committees help only under per-domain budgets (Propositions~\ref{prop:committees} and~\ref{prop:domains}). The symbolic failure terms are unquantified, and the human false-approval probability $\alpha$ is unconstrained.
 
 \paragraph{Strongest remaining weakness.}
-The adaptive theorem pays a factor exponential in the number of target generations. The core mathematics is elementary; the contribution is accounting and verification, not new cryptography.
+The adaptive theorem pays a guessing loss exponential in the number of renewed target generations. The contribution is not a new cryptographic primitive. It is the integration of capability closure, affine leakage accounting, temporal exposure analysis, erasure-complexity results and a checked lifecycle reference into one framework for analysing persistent recovery capabilities.
 
 
 \section{Conclusion}
@@ -1124,15 +1124,24 @@ Samarjeet Malik and Shaurya Pratap Singh: conceptualization, methodology, formal
 This manuscript reports formal analysis, finite model checks and a reference implementation. It involves no human participants or personal data.
 
 \bmhead{Data and code availability}
-The artifact (Python reference code, TLA+ models and configurations, tests and recorded evidence) is archived on Zenodo, \url{https://doi.org/10.5281/zenodo.24048192}, as version 4.0.7, and released as tag v4.0.7 of \url{https://github.com/SamarjeetMalik/threshold-backup-capability-accounting}. The artifact code is licensed under the MIT licence; the manuscript, figures and reports are licensed under CC BY 4.0. This manuscript is version 4.1.1, and every result in it is reproduced by the version 4.1.1 artifact. Relative to the archived version 4.0.7, that artifact adds data-layer regression tests, a process-isolated worker supervisor with ten tests, the memory, timing and supervision measurements of Section~\ref{sec:datalayer} and Section~\ref{sec:supervisor} with their raw data (\code{evidence\_v411/}), and a reproduction manifest; the full list is in its changelog. The version 4.1.1 artifact is archived on Zenodo, \url{https://doi.org/10.5281/zenodo.24060229}, and released as tag v4.1.1 of the same repository.
+The Python reference implementation, TLA+ specifications and configurations, test suite, reproduction scripts, raw benchmark measurements and recorded evidence supporting this manuscript form the version 4.1.1 artifact. It is released as tag v4.1.1 of \url{https://github.com/SamarjeetMalik/threshold-backup-capability-accounting} and archived on Zenodo at \url{https://doi.org/10.5281/zenodo.24060229}. The artifact code is licensed under the MIT licence; the manuscript, figures and reports are licensed under CC BY 4.0. This manuscript is version 4.1.6. Relative to version 4.1.1 it changes only layout and wording; its results are unchanged, and every result in it is reproduced by the version 4.1.1 artifact. That artifact's changelog lists what it adds to its predecessor, the version 4.0.7 artifact (\url{https://doi.org/10.5281/zenodo.24048192}, tag v4.0.7).
 
 \bmhead{Preprint}
 A preprint of this manuscript (version 4.0.7) is archived with the artifact at \url{https://doi.org/10.5281/zenodo.24048192} under CC BY 4.0.
 
 \bmhead{Use of large language models}
-Anthropic's Claude was used to help draft and revise text, write and test artifact code, prepare figures and check derivations. The authors reviewed, verified and take full responsibility for all content.
+Anthropic's Claude was used to help draft and revise text, write and test artifact code, write the TikZ and pgfplots source that draws the figures from the artifact's data files, and check derivations. No figure is an AI-generated image. The authors reviewed and verified all of this work and take full responsibility for all content, including every proof, measurement and interpretation.
+
+% Fig. 15 (Appendix C) is defined here so that it floats to the top of the next page, ahead of the references.
+% IJIS numbers appendix figures consecutively with the main text, so it is not numbered C1.
+\begin{figure*}[t]
+\centering
+\figbox{\input{figures/plot_minholders}}
+\caption{Minimum holder-committee size $n=3f+c+2u+1$ (Proposition~\ref{prop:holders}) as a function of Byzantine budget $f$ and prior copies $c$, for outages $u=0,1,2$. Exact values; mathematical minima, not recommendations.}\label{fig:minholders}
+\end{figure*}
 
 \begin{appendices}
+\makeatletter\def\@hangfrom#1{\noindent#1}\makeatother % run-in appendix headings at full column width
 \section{Lifecycle induction}\label{app:lifecycle}
 
 \paragraph{Helper facts.}
@@ -1149,13 +1158,7 @@ Every signed object carries a domain label and format version. A recovery reques
 \section{Committee-size reference}\label{app:params}
 Fig.~\ref{fig:minholders} plots the minimum holder-committee size of Proposition~\ref{prop:holders}. It restates $n=3f+c+2u+1$ and Table~\ref{tab:sensitivity} as a reference for parameter choices.
 
-\begin{figure*}[t]
-\centering
-\input{figures/plot_minholders}
-\caption{Minimum holder-committee size $n=3f+c+2u+1$ (Proposition~\ref{prop:holders}) as a function of Byzantine budget $f$ and prior copies $c$, for outages $u=0,1,2$. Exact values; mathematical minima, not recommendations.}\label{fig:minholders}
-\end{figure*}
 \end{appendices}
 
-\clearpage
 \bibliography{references}
 \end{document}

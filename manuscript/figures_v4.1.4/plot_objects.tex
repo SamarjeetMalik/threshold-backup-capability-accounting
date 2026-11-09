@@ -1,0 +1,21 @@
+% Plot 5: object store/open time (v4.0.4) and peak memory (v4.1.0, 7 trials per size; measured, 1 MiB chunks)
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.5cm},width=0.47\linewidth,height=4.6cm,
+  xmode=log,log basis x=2,xtick={1,4,16,64,256},xticklabels={1,4,16,64,256},xlabel={object size (MiB)},
+  grid=major,grid style={clightgray},tick label style={font=\footnotesize},label style={font=\footnotesize},
+  legend style={font=\footnotesize,draw=none,at={(0.02,0.98)},anchor=north west}]
+\nextgroupplot[ymode=log,ylabel={time (ms)}]
+\addplot[cnavy,thick,mark=*,mark size=1.2pt,error bars/.cd,y dir=both,y explicit] table[x=mib,y=store_med,
+  y error plus expr=\thisrow{store_q3}-\thisrow{store_med},y error minus expr=\thisrow{store_med}-\thisrow{store_q1}]{data/bench_objects.dat};
+\addplot[cburg,thick,mark=square*,mark size=1.2pt,error bars/.cd,y dir=both,y explicit] table[x=mib,y=open_med,
+  y error plus expr=\thisrow{open_q3}-\thisrow{open_med},y error minus expr=\thisrow{open_med}-\thisrow{open_q1}]{data/bench_objects.dat};
+\legend{Store,Open}
+\nextgroupplot[ymode=log,ylabel={peak memory (MiB)}]
+\addplot[cnavy,thick,mark=triangle*,mark size=1.4pt,error bars/.cd,y dir=both,y explicit] table[x=mib,y=tm_med,
+  y error plus expr=\thisrow{tm_max}-\thisrow{tm_med},y error minus expr=\thisrow{tm_med}-\thisrow{tm_min}]{data/bench_memory.dat};
+\addplot[cburg,thick,mark=diamond*,mark size=1.6pt,error bars/.cd,y dir=both,y explicit] table[x=mib,y=rss_med,
+  y error plus expr=\thisrow{rss_max}-\thisrow{rss_med},y error minus expr=\thisrow{rss_med}-\thisrow{rss_min}]{data/bench_memory.dat};
+\addplot[cslate,dashed,domain=1:256,samples=2] {2*x};
+\legend{Python heap,process RSS,$2\times$ object size}
+\end{groupplot}
+\end{tikzpicture}

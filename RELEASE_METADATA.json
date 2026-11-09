@@ -1,16 +1,16 @@
 {
-  "version": "4.1.1",
+  "version": "4.1.6",
   "date": "2026-11-09",
-  "status": "manuscript and artifact v4.1.1 for IJIS; Zenodo DOI 10.5281/zenodo.24060229 reserved; GitHub tag v4.1.1 and Zenodo publication pending; NOT submitted",
-  "supersedes": "4.1.0 (not released)",
+  "status": "manuscript v4.1.6 (approved by both authors 9 Nov 2026) with the unchanged v4.1.1 artifact; Zenodo DOI 10.5281/zenodo.24084300 reserved for this release; NOT submitted",
+  "supersedes": "4.1.1 (released); 4.1.2-4.1.5 not released",
   "repository": "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting",
   "python": "CPython 3.12.14; standard library only",
   "java": "OpenJDK 26.0.2.1 (Homebrew)",
   "tlc": "TLC2 2.19, official release v1.7.4",
   "tlc_jar_sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
-  "latex": "pdfLaTeX via latexmk, -halt-on-error, sn-jnl twocolumn; 0 overfull boxes, 0 undefined references (both builds)",
+  "latex": "pdfLaTeX via latexmk, -halt-on-error, sn-jnl twocolumn; 0 overfull boxes, 0 undefined references, 0 LaTeX warnings, no scaled figures (both builds)",
   "pdf_pages": 52,
-  "pdf_sha256": "20d655a31b0a8c5cb99cac5c36e2f3e656e39157ca7949c1f49e02a478c693a1",
+  "pdf_sha256": "11926751f2859529bdc1a7647bc42de9f88ad1a5d6c0ec7dce0eb3aa2312db8e",
   "validation": {
     "python_tests": {
       "v2_baseline": 5,
@@ -40,14 +40,14 @@
   },
   "scope": "declared symbolic/affine analysis; restricted-adaptive composition (guessing loss L, exponential in renewed generations; NOT full adaptive security); finite lifecycle, barrier and renewal checking; bounded refinement-conformance testing; no full adaptive theorem, refinement proof or physical-erasure certification",
   "python_dependencies": "cryptography==50.0.2 (data layer only), see artifact/requirements.txt",
-  "pdf_submission_sha256": "8a22345435ce2938512732b66fa4876d7522872b2d1263cfbd780d2fc97dbfc1",
+  "pdf_submission_sha256": "bd9617f96405b1b792621e492eab59be24802d1d70fc5a58ad0fadaeeb59c742",
   "benchmark_machine": "Apple M5, 24 GiB, macOS 26.5.1",
   "license": {
     "artifact": "MIT",
     "manuscript": "CC-BY-4.0",
     "excluded": "manuscript/sn-jnl.cls, manuscript/sn-mathphys-num.bst (upstream terms)"
   },
-  "doi": "10.5281/zenodo.24060229 (v4.1.1, reserved on Zenodo 9 Nov 2026; registered when the record is published); predecessor v4.0.7: 10.5281/zenodo.24048192",
+  "doi": "10.5281/zenodo.24084300 (v4.1.6, reserved 9 Nov 2026; registered when the record is published); artifact v4.1.1: 10.5281/zenodo.24060229; v4.0.7: 10.5281/zenodo.24048192; all versions: 10.5281/zenodo.24048191",
   "artifact_rerun": "9 Nov 2026: v4.1.1 reproduce_all.py exit 0 (99 tests, all TLC); benchmarks re-run on Apple M5 (evidence_v411); x86 server run (Slurm job 8081) not completed",
   "memory_measurement": "v4.1.1, 7 trials per size, evidence_v411/mac_m5_memory",
   "supervisor_measurement": "v4.1.1, 21 trials per size, evidence_v411/mac_m5_supervisor"

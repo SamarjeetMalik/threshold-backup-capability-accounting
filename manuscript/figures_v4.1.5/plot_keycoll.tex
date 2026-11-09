@@ -1,0 +1,16 @@
+% Derived-key collision bad-event bound K(K-1)/2^257 (Lemma 24; not an observed frequency).
+% v4.1.5: data/keycoll.dat (artifact) for log2 K <= 64, the same exact formula beyond; 128-bit reference line.
+\begin{tikzpicture}
+\begin{axis}[width=0.96\linewidth,height=5.4cm,xmin=0,xmax=96,ymin=-262,ymax=-64,xtick={0,32,64,96},ytick={-256,-224,...,-96},
+  xlabel={$\log_2 K_{\mathrm{key}}$ (number of key instances)},ylabel={$\log_2$ of the bound},
+  grid=major,grid style={clightgray}]
+\addplot[cslate,dashed,thick,domain=0:96,samples=2] {-128};
+\node[anchor=north east,align=right,text=cslate,font=\figfont] at (axis cs:95,-132) {$2^{-128}$:\\128-bit target};
+\addplot[cburg,thick] table[x=log2K,y=log2bound]{data/keycoll.dat};
+\addplot[cburg,thick,domain=64:96,samples=33] {x+ln(2^x-1)/ln(2)-257};
+\addplot[only marks,mark=*,mark size=1.8pt,cburg] coordinates {(28,-201.0)};
+\node[anchor=north west,align=left,text=cburg,font=\figfont] at (axis cs:30,-203) {$K_{\mathrm{key}}=2^{28}$:\\bound $<2^{-201}$};
+\addplot[only marks,mark=*,mark size=1.8pt,draw=cslate,fill=white] coordinates {(64.5,-128.0)};
+\node[anchor=south east,align=right,text=cslate,font=\figfont] at (axis cs:62,-122) {meets $2^{-128}$ at\\$K_{\mathrm{key}}\approx2^{64.5}$};
+\end{axis}
+\end{tikzpicture}
