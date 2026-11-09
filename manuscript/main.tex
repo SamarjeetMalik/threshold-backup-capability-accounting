@@ -1,11 +1,11 @@
-% Capability Exposure Accounting, version 4.1.6 (figure revision of 4.1.4: 8 pt sans-serif lettering and tick numbers, no scaled figures, muted palette; artifact v4.1.1). Compiler: pdfLaTeX; bibliography: BibTeX.
+% Capability Exposure Accounting, version 4.1.7 (layout revision of 4.1.6: Fig. 15 anchored in Appendix C; artifact v4.1.1). Compiler: pdfLaTeX; bibliography: BibTeX.
 \PassOptionsToPackage{table}{xcolor}
 \documentclass[pdflatex,sn-mathphys-num,twocolumn]{sn-jnl}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx,booktabs,tabularx,array,longtable}
-\usepackage{fvextra,tikz,xurl,needspace}
+\usepackage{fvextra,tikz,xurl,needspace,capt-of}
 \usetikzlibrary{arrows.meta,positioning}
 \input{style}
 \usepgfplotslibrary{groupplots}
@@ -1124,7 +1124,7 @@ Samarjeet Malik and Shaurya Pratap Singh: conceptualization, methodology, formal
 This manuscript reports formal analysis, finite model checks and a reference implementation. It involves no human participants or personal data.
 
 \bmhead{Data and code availability}
-The Python reference implementation, TLA+ specifications and configurations, test suite, reproduction scripts, raw benchmark measurements and recorded evidence supporting this manuscript form the version 4.1.1 artifact. It is released as tag v4.1.1 of \url{https://github.com/SamarjeetMalik/threshold-backup-capability-accounting} and archived on Zenodo at \url{https://doi.org/10.5281/zenodo.24060229}. The artifact code is licensed under the MIT licence; the manuscript, figures and reports are licensed under CC BY 4.0. This manuscript is version 4.1.6. Relative to version 4.1.1 it changes only layout and wording; its results are unchanged, and every result in it is reproduced by the version 4.1.1 artifact. That artifact's changelog lists what it adds to its predecessor, the version 4.0.7 artifact (\url{https://doi.org/10.5281/zenodo.24048192}, tag v4.0.7).
+The Python reference implementation, TLA+ specifications and configurations, test suite, reproduction scripts, raw benchmark measurements and recorded evidence supporting this manuscript form the version 4.1.1 artifact. It is released as tag v4.1.1 of \url{https://github.com/SamarjeetMalik/threshold-backup-capability-accounting} and archived on Zenodo at \url{https://doi.org/10.5281/zenodo.24060229}. The artifact code is licensed under the MIT licence; the manuscript, figures and reports are licensed under CC BY 4.0. This manuscript is version 4.1.7. Relative to version 4.1.1 it changes only layout and wording; its results are unchanged, and every result in it is reproduced by the version 4.1.1 artifact. That artifact's changelog lists what it adds to its predecessor, the version 4.0.7 artifact (\url{https://doi.org/10.5281/zenodo.24048192}, tag v4.0.7).
 
 \bmhead{Preprint}
 A preprint of this manuscript (version 4.0.7) is archived with the artifact at \url{https://doi.org/10.5281/zenodo.24048192} under CC BY 4.0.
@@ -1132,14 +1132,8 @@ A preprint of this manuscript (version 4.0.7) is archived with the artifact at \
 \bmhead{Use of large language models}
 Anthropic's Claude was used to help draft and revise text, write and test artifact code, write the TikZ and pgfplots source that draws the figures from the artifact's data files, and check derivations. No figure is an AI-generated image. The authors reviewed and verified all of this work and take full responsibility for all content, including every proof, measurement and interpretation.
 
-% Fig. 15 (Appendix C) is defined here so that it floats to the top of the next page, ahead of the references.
-% IJIS numbers appendix figures consecutively with the main text, so it is not numbered C1.
-\begin{figure*}[t]
-\centering
-\figbox{\input{figures/plot_minholders}}
-\caption{Minimum holder-committee size $n=3f+c+2u+1$ (Proposition~\ref{prop:holders}) as a function of Byzantine budget $f$ and prior copies $c$, for outages $u=0,1,2$. Exact values; mathematical minima, not recommendations.}\label{fig:minholders}
-\end{figure*}
 
+\newcounter{mainfigures}\setcounter{mainfigures}{\value{figure}}% IJIS: appendix figures continue the main numbering
 \begin{appendices}
 \makeatletter\def\@hangfrom#1{\noindent#1}\makeatother % run-in appendix headings at full column width
 \section{Lifecycle induction}\label{app:lifecycle}
@@ -1157,6 +1151,14 @@ Every signed object carries a domain label and format version. A recovery reques
 
 \section{Committee-size reference}\label{app:params}
 Fig.~\ref{fig:minholders} plots the minimum holder-committee size of Proposition~\ref{prop:holders}. It restates $n=3f+c+2u+1$ and Table~\ref{tab:sensitivity} as a reference for parameter choices.
+
+% v4.1.7: Fig. 15 is non-floating and anchored here, after its own heading and paragraph (it previously
+% floated ahead of Appendix B). Single-column, so it can sit in the text flow.
+\par\medskip\noindent\begin{minipage}{\linewidth}\centering
+\setcounter{figure}{\value{mainfigures}}\renewcommand\thefigure{\arabic{figure}}\renewcommand\theHfigure{\arabic{figure}}%
+\figbox{\input{figures/plot_minholders}}
+\captionof{figure}{Minimum holder-committee size $n=3f+c+2u+1$ (Proposition~\ref{prop:holders}) as a function of Byzantine budget $f$ and prior copies $c$, for outages $u=0,1,2$. Exact values; mathematical minima, not recommendations.}\label{fig:minholders}
+\end{minipage}
 
 \end{appendices}
 

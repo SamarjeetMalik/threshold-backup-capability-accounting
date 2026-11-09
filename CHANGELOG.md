@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.7 (9 November 2026), manuscript layout only; artifact remains v4.1.1
+- Fig. 15 is now non-floating and sits in Appendix C after its heading and paragraph, before the References. In v4.1.6 it floated to p. 48 ahead of the Appendix B heading. It is single-column with three compact panels, still 8 pt and unscaled, and still numbered 15.
+- Documentation: AUTHOR_CHECKLIST.md records the completed co-author confirmations and the public records; REPRODUCIBILITY.md now names manuscript v4.1.7 and the v4.1.1 artifact as the source of every result.
+- 52 pp. No theorem, number, caption text, data file or artifact file changed. Previous text: manuscript/main_v4.1.6.tex, figures_v4.1.6/plot_minholders.tex.
+- Approved by both authors 9 Nov 2026; released as tag v4.1.7, Zenodo DOI 10.5281/zenodo.24088767.
+
 ## 4.1.6 (9 November 2026), manuscript figures only; artifact remains v4.1.1
 - Muted palette (deep blue 1F3A5F, brick red A93226, grey 5E6670), white boxes with thin 1 pt corners, lighter grid; layer titles in black.
 - Tick numbers and powers of ten on every axis now in the sans figure font.

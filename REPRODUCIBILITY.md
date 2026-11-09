@@ -1,12 +1,15 @@
-# Reproducibility manifest, v4.1.1 (9 November 2026)
+# Reproducibility manifest: manuscript v4.1.7, artifact v4.1.1 (9 November 2026)
+
+Every result in manuscript v4.1.7 comes from the version 4.1.1 artifact. Manuscript versions 4.1.2 to 4.1.7 changed wording, layout and figures only; `artifact/` has not changed since v4.1.1.
 
 ## Versions and identifiers
 | Item | Value |
 |---|---|
-| Manuscript | v4.1.1, `manuscript/main.tex` (SHA-256 `53b90045468b316f9201bfa92e84ef1a0ce6d83519d5c87af7787851d8bcf156`) |
-| Compiled PDFs | v4.1.3 manuscript: `output/pdf/Capability_Exposure_Accounting_v4.1.3.pdf` (`429843b4f7dfb698d7bd005056f8237cebf2978b18282b88ff97df7b31a5e415`); `…_v4.1.3_submission.pdf` (`c0eadb802b0584eaba210ae72800b1bc0019d26e3718fb2d0a5aa9d5d66a0420`). Published v4.1.1 PDFs: `20d655a3…a1` and `8a223454…c1` (full hashes in the v4.1.1 SHA256SUMS). The v4.1.2 layout PDF: `9269f89c8d0b7a618ac0b23b49e41847198b590f3c2bcfe1e8ab492e4447ee91`. |
-| Artifact | v4.1.1: Zenodo DOI 10.5281/zenodo.24060229 (published 9 Nov 2026; record 24060229 lists Version 4.1.1 and its artifact zip has MD5 688235160ab9ef19731d4810e034152c, matching the local file); GitHub tag `v4.1.1` |
+| Manuscript | v4.1.7, `manuscript/main.tex` (SHA-256 `d7451bb9b131a37d2b995a26d0a40a38155deb5cb1a8cdaf5aeec0b283e03c59`) |
+| Compiled PDFs | v4.1.7: styled `a21772b64c8fc78bce10416a56dbbf28c3f75e645978340279a3a86df01febf6`; submission `70eb4ff9d2eadc06087e145c8ee423401b43e9e67527ea0d10847437c184b11c` (also in `REVISION_V4.1.7.md`). Published v4.1.6 PDFs: GitHub release v4.1.6 and Zenodo 10.5281/zenodo.24084300. Published v4.1.1 PDFs: full hashes in the v4.1.1 SHA256SUMS. |
+| Artifact (source of all results) | v4.1.1: Zenodo DOI 10.5281/zenodo.24060229 (published 9 Nov 2026; its artifact zip has MD5 688235160ab9ef19731d4810e034152c); GitHub tag `v4.1.1`. The v4.1.6 release archives the same `artifact/` byte for byte. |
 | Archived predecessor | v4.0.7: Zenodo DOI 10.5281/zenodo.24048192; GitHub tag `v4.0.7` → commit `80d40a8c83b13e25712839327de45b144de83b52` |
+| All versions | Zenodo concept DOI 10.5281/zenodo.24048191 |
 | Measurements in the paper | all from v4.1.1 runs on one Apple M5: `evidence_v411/mac_m5` (timings), `mac_m5_memory`, `mac_m5_supervisor`. Earlier evidence (`evidence_v404`, `evidence_v410`) is kept but no longer plotted. |
 
 ## Environment

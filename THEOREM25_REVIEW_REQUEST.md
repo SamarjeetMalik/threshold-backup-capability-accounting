@@ -1,6 +1,6 @@
 # Request: focused proof review of Theorem 25 (restricted-adaptive composition)
 
-Paper: *Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery* (Malik, Singh), manuscript v4.1.6. Pages to read: `THEOREM25_REVIEW_PACKET_pp22-32.pdf` (pp. 22–32 of the submission PDF: Definitions 21–22, Lemmas 23–24, Theorem 25 and its hybrids, Corollary 26, Proposition 27). Notation is in Table 2 of the full PDF.
+Paper: *Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery* (Malik, Singh), manuscript v4.1.7. Pages to read: `THEOREM25_REVIEW_PACKET_pp22-32.pdf` (pp. 22–32 of the submission PDF: Definitions 21–22, Lemmas 23–24, Theorem 25 and its hybrids, Corollary 26, Proposition 27). Notation is in Table 2 of the full PDF.
 
 The claim is restricted-adaptive security with a guessing factor L. It is not full adaptive security. Removing L is out of scope.
 
