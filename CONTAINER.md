@@ -9,7 +9,13 @@
 
 ```sh
 docker build -t cea-artifact .
-docker run --rm cea-artifact          # 99 tests and every TLC configuration
+docker run --rm --init cea-artifact      # 99 tests and every TLC configuration
 ```
 
-**Status: not yet built or tested.** No container runtime was available on the authors' build machine when v4.1.11 was released. The reproduction recorded in `REPRODUCIBILITY.md` was done without a container. Reports of a successful or failed build are welcome. Benchmarks are not run by default, because timings inside a container are not comparable with the recorded ones.
+**Use `--init`.** One test kills the supervising process with SIGKILL and checks that its decryption worker exits, by testing `os.kill(pid, 0)`. Without an init process the orphaned worker is reparented to the container's PID 1, the Python process running the checks, which never reaps it. The worker has exited but stays a zombie, and the check still counts it as alive. With `--init`, Docker's init reaps it. On a normal host the system's init reaps it, so the test passes without a container.
+
+## Recorded runs (GitHub Actions, `.github/workflows/container.yml`)
+- **Run 42676588599, 9 Nov 2026, x86-64 Linux, Docker 28.0.4: PASS.** All 99 tests and every TLC configuration match their expected outputs (`container_runs/gha_42676588599/reproduce.log`). The diagnostic step records the orphaned worker's `/proc` state 3 s after the supervisor is killed: `Z` (zombie) without `--init`, reaped with `--init` (`diagnostic.log`).
+- **Run 42676060145, 9 Nov 2026: 98 of 99 tests passed** (without `--init`); the supervisor-crash test failed for the reason above (`container_runs/gha_42676060145/reproduce.log`). Every TLC configuration and every other check passed.
+
+The workflow runs on every `v*` tag and can be started by hand. Benchmarks are not run in the container, because timings there are not comparable with the recorded ones.

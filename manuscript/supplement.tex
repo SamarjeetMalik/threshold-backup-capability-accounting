@@ -274,7 +274,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 python3 fetch_tlc.py
 .venv/bin/python reproduce_all.py --java "$(command -v java)" --jar .tools/tla2tools.jar
 \end{Verbatim}
-The measurement scripts are run separately, and \code{make\_plot\_data.py} regenerates the data of every plot. A fresh run on 9 November 2026 (CPython 3.12.14, pyca/cryptography 50.0.2 with OpenSSL 4.0.3, TLC2 2.19, OpenJDK 26.0.2.1) passed all 99 tests and every TLC configuration.
+The measurement scripts are run separately, and \code{make\_plot\_data.py} regenerates the data of every plot. A fresh run on 9 November 2026 (CPython 3.12.14, pyca/cryptography 50.0.2 with OpenSSL 4.0.3, TLC2 2.19, OpenJDK 26.0.2.1) passed all 99 tests and every TLC configuration. The repository also has a pinned container (\fpath{Dockerfile}: base image by digest, cryptography 50.0.2, checksum-verified TLC 1.7.4, OpenJDK 17). Built and run in GitHub Actions on 9 November 2026 (x86-64 Linux, run 42676588599) with \code{docker run --init}, it passes all 99 tests and every TLC configuration. Without an init process, one test fails: the supervisor-crash test kills the supervising process, and its exited worker is reparented to the container's PID 1, which never reaps it. The recorded \fpath{/proc} state of that worker is Z (zombie), and the test's liveness check counts a zombie as alive; with \code{--init} the worker is reaped. Logs are in \fpath{container_runs/} of the repository.
 
 \section{Supporting system-level analysis and reference material}\label{sec:s-reference}
 

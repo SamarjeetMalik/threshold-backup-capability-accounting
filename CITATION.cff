@@ -6,13 +6,15 @@ authors:
   - family-names: Malik
     given-names: Samarjeet
     affiliation: Ashoka University
+    orcid: "https://orcid.org/0009-0003-9924-7432"
   - family-names: Singh
     given-names: Shaurya Pratap
     affiliation: Indian Institute of Science
-version: 4.1.10
+    orcid: "https://orcid.org/0009-0009-0778-6038"
+version: 4.1.11
 date-released: 2026-11-09
 license: MIT
-doi: "10.5281/zenodo.24090614"
+doi: "10.5281/zenodo.24091137"
 repository-code: "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting"
 url: "https://github.com/SamarjeetMalik/threshold-backup-capability-accounting/"
 abstract: "Formal capability and affine-view accounting, temporal exposure exploration, checked lifecycle models and a critical-path reference kernel."

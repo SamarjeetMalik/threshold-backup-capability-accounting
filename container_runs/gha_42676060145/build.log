@@ -1,0 +1,433 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.04kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#2 ...
+
+#3 [auth] library/python:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#2 DONE 0.8s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 665.27kB 0.0s done
+#5 DONE 0.0s
+
+#6 [1/6] FROM docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
+#6 resolve docker.io/library/python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e done
+#6 sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e 6.55kB / 6.55kB done
+#6 sha256:1aaa65a85fda306ffb8b910824d4e93bdce61e212c7e87168123ea3073b41a1a 1.75kB / 1.75kB done
+#6 sha256:febd0be41adb897a0ab8f1f1c693d8912669ea60c4940e076e9946b60e210ef0 5.68kB / 5.68kB done
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 8.39MB / 28.24MB 0.1s
+#6 sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30 0B / 3.53MB 0.1s
+#6 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 0B / 13.67MB 0.1s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 28.24MB / 28.24MB 0.2s
+#6 sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30 3.53MB / 3.53MB 0.2s
+#6 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 10.49MB / 13.67MB 0.2s
+#6 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 13.67MB / 13.67MB 0.3s
+#6 sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 28.24MB / 28.24MB 0.4s done
+#6 sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30 3.53MB / 3.53MB 0.4s done
+#6 sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 13.67MB / 13.67MB 0.4s done
+#6 sha256:7c6fab1667eb7d9029684d783e4c127f11dd7ed5120829f875b799a0b9431558 0B / 249B 0.4s
+#6 extracting sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150
+#6 sha256:7c6fab1667eb7d9029684d783e4c127f11dd7ed5120829f875b799a0b9431558 249B / 249B 0.4s done
+#6 extracting sha256:774043ccc8ccd0d0833a9ee0792142ab7ad93df971e59dd248fbf82db16d0150 0.6s done
+#6 extracting sha256:1c5e03f304918f89aed0c098c8f4b6f163f7bf9d2702991696bf0132a2853e30 0.1s done
+#6 extracting sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8
+#6 extracting sha256:a2e58067964fcd8f46a6b5992975e9c8ab34e7620d96204e08e99bf0fdf4dab8 0.3s done
+#6 extracting sha256:7c6fab1667eb7d9029684d783e4c127f11dd7ed5120829f875b799a0b9431558
+#6 extracting sha256:7c6fab1667eb7d9029684d783e4c127f11dd7ed5120829f875b799a0b9431558 done
+#6 DONE 2.5s
+
+#7 [2/6] RUN apt-get update  && apt-get install -y --no-install-recommends openjdk-17-jre-headless ca-certificates  && rm -rf /var/lib/apt/lists/*
+#7 0.191 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#7 0.199 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#7 0.199 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+#7 0.239 Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]
+#7 0.278 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+#7 0.312 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [366 kB]
+#7 0.867 Fetched 9404 kB in 1s (12.8 MB/s)
+#7 0.867 Reading package lists...
+#7 1.184 Reading package lists...
+#7 1.500 Building dependency tree...
+#7 1.592 Reading state information...
+#7 1.679 The following additional packages will be installed:
+#7 1.679   ca-certificates-java fontconfig-config fonts-dejavu-core java-common
+#7 1.679   libasound2 libasound2-data libavahi-client3 libavahi-common-data
+#7 1.679   libavahi-common3 libbrotli1 libcups2 libdbus-1-3 libexpat1 libfontconfig1
+#7 1.680   libfreetype6 libglib2.0-0 libgraphite2-3 libharfbuzz0b libjpeg62-turbo
+#7 1.680   liblcms2-2 libnspr4 libnss3 libpcsclite1 libpng16-16
+#7 1.680 Suggested packages:
+#7 1.680   default-jre libasound2-plugins alsa-utils cups-common low-memory-monitor
+#7 1.680   liblcms2-utils pcscd libnss-mdns fonts-dejavu-extra fonts-ipafont-gothic
+#7 1.680   fonts-ipafont-mincho fonts-wqy-microhei | fonts-wqy-zenhei fonts-indic
+#7 1.680 Recommended packages:
+#7 1.680   alsa-ucm-conf alsa-topology-conf dbus libglib2.0-data shared-mime-info
+#7 1.680   xdg-user-dirs
+#7 1.720 The following NEW packages will be installed:
+#7 1.721   ca-certificates-java fontconfig-config fonts-dejavu-core java-common
+#7 1.721   libasound2 libasound2-data libavahi-client3 libavahi-common-data
+#7 1.721   libavahi-common3 libbrotli1 libcups2 libdbus-1-3 libexpat1 libfontconfig1
+#7 1.721   libfreetype6 libglib2.0-0 libgraphite2-3 libharfbuzz0b libjpeg62-turbo
+#7 1.721   liblcms2-2 libnspr4 libnss3 libpcsclite1 libpng16-16 openjdk-17-jre-headless
+#7 1.721 The following packages will be upgraded:
+#7 1.721   ca-certificates
+#7 1.750 1 upgraded, 25 newly installed, 0 to remove and 7 not upgraded.
+#7 1.750 Need to get 53.2 MB of archives.
+#7 1.750 After this operation, 217 MB of additional disk space will be used.
+#7 1.750 Get:1 http://deb.debian.org/debian-security bookworm-security/main amd64 ca-certificates all 20250419~deb12u2 [161 kB]
+#7 1.755 Get:2 http://deb.debian.org/debian bookworm/main amd64 ca-certificates-java all 20230710~deb12u1 [11.9 kB]
+#7 1.755 Get:3 http://deb.debian.org/debian bookworm/main amd64 fonts-dejavu-core all 2.37-6 [1068 kB]
+#7 1.759 Get:4 http://deb.debian.org/debian bookworm/main amd64 fontconfig-config amd64 2.14.1-4 [315 kB]
+#7 1.760 Get:5 http://deb.debian.org/debian bookworm/main amd64 java-common all 0.74 [6388 B]
+#7 1.760 Get:6 http://deb.debian.org/debian bookworm/main amd64 libasound2-data all 1.2.8-1 [20.5 kB]
+#7 1.761 Get:7 http://deb.debian.org/debian bookworm/main amd64 libasound2 amd64 1.2.8-1+b1 [362 kB]
+#7 1.762 Get:8 http://deb.debian.org/debian bookworm/main amd64 libavahi-common-data amd64 0.8-10+deb12u1 [107 kB]
+#7 1.762 Get:9 http://deb.debian.org/debian bookworm/main amd64 libavahi-common3 amd64 0.8-10+deb12u1 [42.1 kB]
+#7 1.763 Get:10 http://deb.debian.org/debian bookworm/main amd64 libdbus-1-3 amd64 1.14.10-1~deb12u1 [201 kB]
+#7 1.763 Get:11 http://deb.debian.org/debian bookworm/main amd64 libavahi-client3 amd64 0.8-10+deb12u1 [45.8 kB]
+#7 1.764 Get:12 http://deb.debian.org/debian-security bookworm-security/main amd64 libbrotli1 amd64 1.0.9-2+deb12u1 [275 kB]
+#7 1.766 Get:13 http://deb.debian.org/debian bookworm/main amd64 libcups2 amd64 2.4.2-3+deb12u9 [245 kB]
+#7 1.767 Get:14 http://deb.debian.org/debian-security bookworm-security/main amd64 libexpat1 amd64 2.5.0-1+deb12u5 [108 kB]
+#7 1.768 Get:15 http://deb.debian.org/debian-security bookworm-security/main amd64 libpng16-16 amd64 1.6.39-2+deb12u6 [277 kB]
+#7 1.768 Get:16 http://deb.debian.org/debian bookworm/main amd64 libfreetype6 amd64 2.12.1+dfsg-5+deb12u4 [398 kB]
+#7 1.770 Get:17 http://deb.debian.org/debian bookworm/main amd64 libfontconfig1 amd64 2.14.1-4 [386 kB]
+#7 1.773 Get:18 http://deb.debian.org/debian bookworm/main amd64 libglib2.0-0 amd64 2.74.6-2+deb12u9 [1403 kB]
+#7 1.777 Get:19 http://deb.debian.org/debian bookworm/main amd64 libgraphite2-3 amd64 1.3.14-1+deb12u1 [74.6 kB]
+#7 1.777 Get:20 http://deb.debian.org/debian bookworm/main amd64 libharfbuzz0b amd64 6.0.0+dfsg-3 [1945 kB]
+#7 1.782 Get:21 http://deb.debian.org/debian bookworm/main amd64 libjpeg62-turbo amd64 1:2.1.5-2 [166 kB]
+#7 1.783 Get:22 http://deb.debian.org/debian bookworm/main amd64 liblcms2-2 amd64 2.14-2+deb12u1 [154 kB]
+#7 1.783 Get:23 http://deb.debian.org/debian bookworm/main amd64 libnspr4 amd64 2:4.35-1 [113 kB]
+#7 1.784 Get:24 http://deb.debian.org/debian-security bookworm-security/main amd64 libnss3 amd64 2:3.87.1-1+deb12u4 [1331 kB]
+#7 1.785 Get:25 http://deb.debian.org/debian bookworm/main amd64 libpcsclite1 amd64 1.9.9-2 [49.7 kB]
+#7 1.786 Get:26 http://deb.debian.org/debian-security bookworm-security/main amd64 openjdk-17-jre-headless amd64 17.0.21+9-1~deb12u1 [44.0 MB]
+#7 2.123 debconf: delaying package configuration, since apt-utils is not installed
+#7 2.145 Fetched 53.2 MB in 0s (194 MB/s)
+#7 2.158 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6703 files and directories currently installed.)
+#7 2.163 Preparing to unpack .../00-ca-certificates_20250419~deb12u2_all.deb ...
+#7 2.165 Unpacking ca-certificates (20250419~deb12u2) over (20250419~deb12u1) ...
+#7 2.295 Selecting previously unselected package ca-certificates-java.
+#7 2.296 Preparing to unpack .../01-ca-certificates-java_20230710~deb12u1_all.deb ...
+#7 2.298 Unpacking ca-certificates-java (20230710~deb12u1) ...
+#7 2.311 Selecting previously unselected package fonts-dejavu-core.
+#7 2.312 Preparing to unpack .../02-fonts-dejavu-core_2.37-6_all.deb ...
+#7 2.313 Unpacking fonts-dejavu-core (2.37-6) ...
+#7 2.375 Selecting previously unselected package fontconfig-config.
+#7 2.376 Preparing to unpack .../03-fontconfig-config_2.14.1-4_amd64.deb ...
+#7 2.452 Unpacking fontconfig-config (2.14.1-4) ...
+#7 2.474 Selecting previously unselected package java-common.
+#7 2.475 Preparing to unpack .../04-java-common_0.74_all.deb ...
+#7 2.476 Unpacking java-common (0.74) ...
+#7 2.487 Selecting previously unselected package libasound2-data.
+#7 2.488 Preparing to unpack .../05-libasound2-data_1.2.8-1_all.deb ...
+#7 2.488 Unpacking libasound2-data (1.2.8-1) ...
+#7 2.508 Selecting previously unselected package libasound2:amd64.
+#7 2.508 Preparing to unpack .../06-libasound2_1.2.8-1+b1_amd64.deb ...
+#7 2.510 Unpacking libasound2:amd64 (1.2.8-1+b1) ...
+#7 2.536 Selecting previously unselected package libavahi-common-data:amd64.
+#7 2.537 Preparing to unpack .../07-libavahi-common-data_0.8-10+deb12u1_amd64.deb ...
+#7 2.538 Unpacking libavahi-common-data:amd64 (0.8-10+deb12u1) ...
+#7 2.555 Selecting previously unselected package libavahi-common3:amd64.
+#7 2.556 Preparing to unpack .../08-libavahi-common3_0.8-10+deb12u1_amd64.deb ...
+#7 2.556 Unpacking libavahi-common3:amd64 (0.8-10+deb12u1) ...
+#7 2.569 Selecting previously unselected package libdbus-1-3:amd64.
+#7 2.570 Preparing to unpack .../09-libdbus-1-3_1.14.10-1~deb12u1_amd64.deb ...
+#7 2.587 Unpacking libdbus-1-3:amd64 (1.14.10-1~deb12u1) ...
+#7 2.608 Selecting previously unselected package libavahi-client3:amd64.
+#7 2.609 Preparing to unpack .../10-libavahi-client3_0.8-10+deb12u1_amd64.deb ...
+#7 2.610 Unpacking libavahi-client3:amd64 (0.8-10+deb12u1) ...
+#7 2.623 Selecting previously unselected package libbrotli1:amd64.
+#7 2.623 Preparing to unpack .../11-libbrotli1_1.0.9-2+deb12u1_amd64.deb ...
+#7 2.624 Unpacking libbrotli1:amd64 (1.0.9-2+deb12u1) ...
+#7 2.648 Selecting previously unselected package libcups2:amd64.
+#7 2.649 Preparing to unpack .../12-libcups2_2.4.2-3+deb12u9_amd64.deb ...
+#7 2.649 Unpacking libcups2:amd64 (2.4.2-3+deb12u9) ...
+#7 2.672 Selecting previously unselected package libexpat1:amd64.
+#7 2.673 Preparing to unpack .../13-libexpat1_2.5.0-1+deb12u5_amd64.deb ...
+#7 2.674 Unpacking libexpat1:amd64 (2.5.0-1+deb12u5) ...
+#7 2.690 Selecting previously unselected package libpng16-16:amd64.
+#7 2.691 Preparing to unpack .../14-libpng16-16_1.6.39-2+deb12u6_amd64.deb ...
+#7 2.692 Unpacking libpng16-16:amd64 (1.6.39-2+deb12u6) ...
+#7 2.713 Selecting previously unselected package libfreetype6:amd64.
+#7 2.714 Preparing to unpack .../15-libfreetype6_2.12.1+dfsg-5+deb12u4_amd64.deb ...
+#7 2.714 Unpacking libfreetype6:amd64 (2.12.1+dfsg-5+deb12u4) ...
+#7 2.758 Selecting previously unselected package libfontconfig1:amd64.
+#7 2.759 Preparing to unpack .../16-libfontconfig1_2.14.1-4_amd64.deb ...
+#7 2.760 Unpacking libfontconfig1:amd64 (2.14.1-4) ...
+#7 2.779 Selecting previously unselected package libglib2.0-0:amd64.
+#7 2.781 Preparing to unpack .../17-libglib2.0-0_2.74.6-2+deb12u9_amd64.deb ...
+#7 2.781 Unpacking libglib2.0-0:amd64 (2.74.6-2+deb12u9) ...
+#7 2.854 Selecting previously unselected package libgraphite2-3:amd64.
+#7 2.855 Preparing to unpack .../18-libgraphite2-3_1.3.14-1+deb12u1_amd64.deb ...
+#7 2.855 Unpacking libgraphite2-3:amd64 (1.3.14-1+deb12u1) ...
+#7 2.871 Selecting previously unselected package libharfbuzz0b:amd64.
+#7 2.872 Preparing to unpack .../19-libharfbuzz0b_6.0.0+dfsg-3_amd64.deb ...
+#7 2.872 Unpacking libharfbuzz0b:amd64 (6.0.0+dfsg-3) ...
+#7 2.916 Selecting previously unselected package libjpeg62-turbo:amd64.
+#7 2.918 Preparing to unpack .../20-libjpeg62-turbo_1%3a2.1.5-2_amd64.deb ...
+#7 2.918 Unpacking libjpeg62-turbo:amd64 (1:2.1.5-2) ...
+#7 2.938 Selecting previously unselected package liblcms2-2:amd64.
+#7 2.939 Preparing to unpack .../21-liblcms2-2_2.14-2+deb12u1_amd64.deb ...
+#7 2.940 Unpacking liblcms2-2:amd64 (2.14-2+deb12u1) ...
+#7 2.958 Selecting previously unselected package libnspr4:amd64.
+#7 2.959 Preparing to unpack .../22-libnspr4_2%3a4.35-1_amd64.deb ...
+#7 2.959 Unpacking libnspr4:amd64 (2:4.35-1) ...
+#7 2.976 Selecting previously unselected package libnss3:amd64.
+#7 2.977 Preparing to unpack .../23-libnss3_2%3a3.87.1-1+deb12u4_amd64.deb ...
+#7 2.977 Unpacking libnss3:amd64 (2:3.87.1-1+deb12u4) ...
+#7 3.050 Selecting previously unselected package libpcsclite1:amd64.
+#7 3.052 Preparing to unpack .../24-libpcsclite1_1.9.9-2_amd64.deb ...
+#7 3.067 Unpacking libpcsclite1:amd64 (1.9.9-2) ...
+#7 3.081 Selecting previously unselected package openjdk-17-jre-headless:amd64.
+#7 3.082 Preparing to unpack .../25-openjdk-17-jre-headless_17.0.21+9-1~deb12u1_amd64.deb ...
+#7 3.083 Unpacking openjdk-17-jre-headless:amd64 (17.0.21+9-1~deb12u1) ...
+#7 3.990 Setting up libexpat1:amd64 (2.5.0-1+deb12u5) ...
+#7 3.992 Setting up libgraphite2-3:amd64 (1.3.14-1+deb12u1) ...
+#7 3.994 Setting up liblcms2-2:amd64 (2.14-2+deb12u1) ...
+#7 3.995 Setting up java-common (0.74) ...
+#7 4.019 Setting up libglib2.0-0:amd64 (2.74.6-2+deb12u9) ...
+#7 4.024 No schema files found: doing nothing.
+#7 4.027 Setting up libbrotli1:amd64 (1.0.9-2+deb12u1) ...
+#7 4.029 Setting up libasound2-data (1.2.8-1) ...
+#7 4.031 Setting up ca-certificates (20250419~deb12u2) ...
+#7 4.074 debconf: unable to initialize frontend: Dialog
+#7 4.074 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#7 4.074 debconf: falling back to frontend: Readline
+#7 4.075 debconf: unable to initialize frontend: Readline
+#7 4.075 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.36.0 /usr/local/share/perl/5.36.0 /usr/lib/x86_64-linux-gnu/perl5/5.36 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.36 /usr/share/perl/5.36 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+#7 4.075 debconf: falling back to frontend: Teletype
+#7 5.137 Updating certificates in /etc/ssl/certs...
+#7 5.760 rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
+#7 5.765 0 added, 2 removed; done.
+#7 5.775 Setting up libjpeg62-turbo:amd64 (1:2.1.5-2) ...
+#7 5.777 Setting up libnspr4:amd64 (2:4.35-1) ...
+#7 5.779 Setting up libavahi-common-data:amd64 (0.8-10+deb12u1) ...
+#7 5.781 Setting up libdbus-1-3:amd64 (1.14.10-1~deb12u1) ...
+#7 5.783 Setting up libpng16-16:amd64 (1.6.39-2+deb12u6) ...
+#7 5.784 Setting up fonts-dejavu-core (2.37-6) ...
+#7 5.793 Setting up libpcsclite1:amd64 (1.9.9-2) ...
+#7 5.795 Setting up libasound2:amd64 (1.2.8-1+b1) ...
+#7 5.797 Setting up ca-certificates-java (20230710~deb12u1) ...
+#7 5.805 No JRE found. Skipping Java certificates setup.
+#7 5.806 Setting up fontconfig-config (2.14.1-4) ...
+#7 5.845 debconf: unable to initialize frontend: Dialog
+#7 5.845 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#7 5.845 debconf: falling back to frontend: Readline
+#7 5.845 debconf: unable to initialize frontend: Readline
+#7 5.845 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.36.0 /usr/local/share/perl/5.36.0 /usr/lib/x86_64-linux-gnu/perl5/5.36 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.36 /usr/share/perl/5.36 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+#7 5.845 debconf: falling back to frontend: Teletype
+#7 5.944 Setting up libavahi-common3:amd64 (0.8-10+deb12u1) ...
+#7 5.946 Setting up libnss3:amd64 (2:3.87.1-1+deb12u4) ...
+#7 5.948 Setting up libfreetype6:amd64 (2.12.1+dfsg-5+deb12u4) ...
+#7 5.950 Setting up libharfbuzz0b:amd64 (6.0.0+dfsg-3) ...
+#7 5.951 Setting up libfontconfig1:amd64 (2.14.1-4) ...
+#7 5.953 Setting up libavahi-client3:amd64 (0.8-10+deb12u1) ...
+#7 5.955 Setting up libcups2:amd64 (2.4.2-3+deb12u9) ...
+#7 5.957 Setting up openjdk-17-jre-headless:amd64 (17.0.21+9-1~deb12u1) ...
+#7 5.981 update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/java to provide /usr/bin/java (java) in auto mode
+#7 5.983 update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/jpackage to provide /usr/bin/jpackage (jpackage) in auto mode
+#7 5.984 update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/keytool to provide /usr/bin/keytool (keytool) in auto mode
+#7 5.986 update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/bin/rmiregistry to provide /usr/bin/rmiregistry (rmiregistry) in auto mode
+#7 5.987 update-alternatives: using /usr/lib/jvm/java-17-openjdk-amd64/lib/jexec to provide /usr/bin/jexec (jexec) in auto mode
+#7 5.992 Processing triggers for libc-bin (2.36-9+deb12u14) ...
+#7 6.001 Processing triggers for ca-certificates (20250419~deb12u2) ...
+#7 6.004 Updating certificates in /etc/ssl/certs...
+#7 6.399 0 added, 0 removed; done.
+#7 6.399 Running hooks in /etc/ca-certificates/update.d...
+#7 6.403 done.
+#7 6.406 Processing triggers for ca-certificates-java (20230710~deb12u1) ...
+#7 6.573 Adding debian:ACCVRAIZ1.pem
+#7 6.575 Adding debian:AC_RAIZ_FNMT-RCM.pem
+#7 6.587 Adding debian:AC_RAIZ_FNMT-RCM_SERVIDORES_SEGUROS.pem
+#7 6.589 Adding debian:ANF_Secure_Server_Root_CA.pem
+#7 6.592 Adding debian:Actalis_Authentication_Root_CA.pem
+#7 6.593 Adding debian:AffirmTrust_Commercial.pem
+#7 6.594 Adding debian:AffirmTrust_Networking.pem
+#7 6.596 Adding debian:AffirmTrust_Premium.pem
+#7 6.597 Adding debian:AffirmTrust_Premium_ECC.pem
+#7 6.598 Adding debian:Amazon_Root_CA_1.pem
+#7 6.600 Adding debian:Amazon_Root_CA_2.pem
+#7 6.601 Adding debian:Amazon_Root_CA_3.pem
+#7 6.602 Adding debian:Amazon_Root_CA_4.pem
+#7 6.604 Adding debian:Atos_TrustedRoot_2011.pem
+#7 6.605 Adding debian:Atos_TrustedRoot_Root_CA_ECC_TLS_2021.pem
+#7 6.608 Adding debian:Atos_TrustedRoot_Root_CA_RSA_TLS_2021.pem
+#7 6.611 Adding debian:Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.pem
+#7 6.612 Adding debian:BJCA_Global_Root_CA1.pem
+#7 6.613 Adding debian:BJCA_Global_Root_CA2.pem
+#7 6.614 Adding debian:Baltimore_CyberTrust_Root.pem
+#7 6.617 Adding debian:Buypass_Class_2_Root_CA.pem
+#7 6.619 Adding debian:Buypass_Class_3_Root_CA.pem
+#7 6.621 Adding debian:CA_Disig_Root_R2.pem
+#7 6.623 Adding debian:CFCA_EV_ROOT.pem
+#7 6.625 Adding debian:COMODO_Certification_Authority.pem
+#7 6.626 Adding debian:COMODO_ECC_Certification_Authority.pem
+#7 6.628 Adding debian:COMODO_RSA_Certification_Authority.pem
+#7 6.629 Adding debian:Certainly_Root_E1.pem
+#7 6.631 Adding debian:Certainly_Root_R1.pem
+#7 6.633 Adding debian:Certigna.pem
+#7 6.635 Adding debian:Certigna_Root_CA.pem
+#7 6.636 Adding debian:Certum_EC-384_CA.pem
+#7 6.640 Adding debian:Certum_Trusted_Network_CA.pem
+#7 6.640 Adding debian:Certum_Trusted_Network_CA_2.pem
+#7 6.642 Adding debian:Certum_Trusted_Root_CA.pem
+#7 6.643 Adding debian:CommScope_Public_Trust_ECC_Root-01.pem
+#7 6.645 Adding debian:CommScope_Public_Trust_ECC_Root-02.pem
+#7 6.647 Adding debian:CommScope_Public_Trust_RSA_Root-01.pem
+#7 6.649 Adding debian:CommScope_Public_Trust_RSA_Root-02.pem
+#7 6.650 Adding debian:D-TRUST_BR_Root_CA_1_2020.pem
+#7 6.652 Adding debian:D-TRUST_BR_Root_CA_2_2023.pem
+#7 6.653 Adding debian:D-TRUST_EV_Root_CA_1_2020.pem
+#7 6.655 Adding debian:D-TRUST_EV_Root_CA_2_2023.pem
+#7 6.657 Adding debian:D-TRUST_Root_Class_3_CA_2_2009.pem
+#7 6.659 Adding debian:D-TRUST_Root_Class_3_CA_2_EV_2009.pem
+#7 6.660 Adding debian:DigiCert_Assured_ID_Root_CA.pem
+#7 6.662 Adding debian:DigiCert_Assured_ID_Root_G2.pem
+#7 6.662 Adding debian:DigiCert_Assured_ID_Root_G3.pem
+#7 6.664 Adding debian:DigiCert_Global_Root_CA.pem
+#7 6.665 Adding debian:DigiCert_Global_Root_G2.pem
+#7 6.666 Adding debian:DigiCert_Global_Root_G3.pem
+#7 6.668 Adding debian:DigiCert_High_Assurance_EV_Root_CA.pem
+#7 6.668 Adding debian:DigiCert_TLS_ECC_P384_Root_G5.pem
+#7 6.670 Adding debian:DigiCert_TLS_RSA4096_Root_G5.pem
+#7 6.673 Adding debian:DigiCert_Trusted_Root_G4.pem
+#7 6.674 Adding debian:Entrust.net_Premium_2048_Secure_Server_CA.pem
+#7 6.675 Adding debian:Entrust_Root_Certification_Authority.pem
+#7 6.677 Adding debian:Entrust_Root_Certification_Authority_-_EC1.pem
+#7 6.678 Adding debian:Entrust_Root_Certification_Authority_-_G2.pem
+#7 6.679 Adding debian:FIRMAPROFESIONAL_CA_ROOT-A_WEB.pem
+#7 6.681 Adding debian:GDCA_TrustAUTH_R5_ROOT.pem
+#7 6.683 Adding debian:GLOBALTRUST_2020.pem
+#7 6.685 Adding debian:GTS_Root_R1.pem
+#7 6.687 Adding debian:GTS_Root_R2.pem
+#7 6.688 Adding debian:GTS_Root_R3.pem
+#7 6.689 Adding debian:GTS_Root_R4.pem
+#7 6.690 Adding debian:GlobalSign_ECC_Root_CA_-_R4.pem
+#7 6.690 Adding debian:GlobalSign_ECC_Root_CA_-_R5.pem
+#7 6.691 Adding debian:GlobalSign_Root_CA.pem
+#7 6.693 Adding debian:GlobalSign_Root_CA_-_R3.pem
+#7 6.695 Adding debian:GlobalSign_Root_CA_-_R6.pem
+#7 6.696 Adding debian:GlobalSign_Root_E46.pem
+#7 6.699 Adding debian:GlobalSign_Root_R46.pem
+#7 6.700 Adding debian:Go_Daddy_Class_2_CA.pem
+#7 6.702 Adding debian:Go_Daddy_Root_Certificate_Authority_-_G2.pem
+#7 6.703 Adding debian:HARICA_TLS_ECC_Root_CA_2021.pem
+#7 6.706 Adding debian:HARICA_TLS_RSA_Root_CA_2021.pem
+#7 6.707 Adding debian:Hellenic_Academic_and_Research_Institutions_ECC_RootCA_2015.pem
+#7 6.709 Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2015.pem
+#7 6.711 Adding debian:HiPKI_Root_CA_-_G1.pem
+#7 6.714 Adding debian:Hongkong_Post_Root_CA_3.pem
+#7 6.717 Adding debian:ISRG_Root_X1.pem
+#7 6.718 Adding debian:ISRG_Root_X2.pem
+#7 6.720 Adding debian:IdenTrust_Commercial_Root_CA_1.pem
+#7 6.722 Adding debian:IdenTrust_Public_Sector_Root_CA_1.pem
+#7 6.725 Adding debian:Izenpe.com.pem
+#7 6.727 Adding debian:Microsec_e-Szigno_Root_CA_2009.pem
+#7 6.728 Adding debian:Microsoft_ECC_Root_Certificate_Authority_2017.pem
+#7 6.730 Adding debian:Microsoft_RSA_Root_Certificate_Authority_2017.pem
+#7 6.732 Adding debian:NAVER_Global_Root_Certification_Authority.pem
+#7 6.735 Adding debian:NetLock_Arany_=Class_Gold=_Főtanúsítvány.pem
+#7 6.737 Adding debian:OISTE_WISeKey_Global_Root_GB_CA.pem
+#7 6.738 Adding debian:OISTE_WISeKey_Global_Root_GC_CA.pem
+#7 6.739 Adding debian:QuoVadis_Root_CA_1_G3.pem
+#7 6.741 Adding debian:QuoVadis_Root_CA_2.pem
+#7 6.743 Adding debian:QuoVadis_Root_CA_2_G3.pem
+#7 6.745 Adding debian:QuoVadis_Root_CA_3.pem
+#7 6.747 Adding debian:QuoVadis_Root_CA_3_G3.pem
+#7 6.748 Adding debian:SSL.com_EV_Root_Certification_Authority_ECC.pem
+#7 6.749 Adding debian:SSL.com_EV_Root_Certification_Authority_RSA_R2.pem
+#7 6.750 Adding debian:SSL.com_Root_Certification_Authority_ECC.pem
+#7 6.752 Adding debian:SSL.com_Root_Certification_Authority_RSA.pem
+#7 6.753 Adding debian:SSL.com_TLS_ECC_Root_CA_2022.pem
+#7 6.755 Adding debian:SSL.com_TLS_RSA_Root_CA_2022.pem
+#7 6.757 Adding debian:SZAFIR_ROOT_CA2.pem
+#7 6.758 Adding debian:Sectigo_Public_Server_Authentication_Root_E46.pem
+#7 6.760 Adding debian:Sectigo_Public_Server_Authentication_Root_R46.pem
+#7 6.761 Adding debian:SecureSign_Root_CA12.pem
+#7 6.763 Adding debian:SecureSign_Root_CA14.pem
+#7 6.763 Adding debian:SecureSign_Root_CA15.pem
+#7 6.765 Adding debian:SecureTrust_CA.pem
+#7 6.766 Adding debian:Secure_Global_CA.pem
+#7 6.767 Adding debian:Security_Communication_ECC_RootCA1.pem
+#7 6.768 Adding debian:Security_Communication_RootCA2.pem
+#7 6.769 Adding debian:Starfield_Class_2_CA.pem
+#7 6.771 Adding debian:Starfield_Root_Certificate_Authority_-_G2.pem
+#7 6.772 Adding debian:Starfield_Services_Root_Certificate_Authority_-_G2.pem
+#7 6.774 Adding debian:SwissSign_Gold_CA_-_G2.pem
+#7 6.775 Adding debian:T-TeleSec_GlobalRoot_Class_2.pem
+#7 6.777 Adding debian:T-TeleSec_GlobalRoot_Class_3.pem
+#7 6.778 Adding debian:TUBITAK_Kamu_SM_SSL_Kok_Sertifikasi_-_Surum_1.pem
+#7 6.779 Adding debian:TWCA_CYBER_Root_CA.pem
+#7 6.781 Adding debian:TWCA_Global_Root_CA.pem
+#7 6.782 Adding debian:TWCA_Root_Certification_Authority.pem
+#7 6.783 Adding debian:Telekom_Security_TLS_ECC_Root_2020.pem
+#7 6.785 Adding debian:Telekom_Security_TLS_RSA_Root_2023.pem
+#7 6.786 Adding debian:TeliaSonera_Root_CA_v1.pem
+#7 6.788 Adding debian:Telia_Root_CA_v2.pem
+#7 6.790 Adding debian:TrustAsia_Global_Root_CA_G3.pem
+#7 6.791 Adding debian:TrustAsia_Global_Root_CA_G4.pem
+#7 6.792 Adding debian:Trustwave_Global_Certification_Authority.pem
+#7 6.793 Adding debian:Trustwave_Global_ECC_P256_Certification_Authority.pem
+#7 6.794 Adding debian:Trustwave_Global_ECC_P384_Certification_Authority.pem
+#7 6.796 Adding debian:TunTrust_Root_CA.pem
+#7 6.797 Adding debian:UCA_Extended_Validation_Root.pem
+#7 6.799 Adding debian:UCA_Global_G2_Root.pem
+#7 6.800 Adding debian:USERTrust_ECC_Certification_Authority.pem
+#7 6.802 Adding debian:USERTrust_RSA_Certification_Authority.pem
+#7 6.803 Adding debian:XRamp_Global_CA_Root.pem
+#7 6.804 Adding debian:certSIGN_ROOT_CA.pem
+#7 6.806 Adding debian:certSIGN_Root_CA_G2.pem
+#7 6.807 Adding debian:e-Szigno_Root_CA_2017.pem
+#7 6.808 Adding debian:ePKI_Root_Certification_Authority.pem
+#7 6.809 Adding debian:emSign_ECC_Root_CA_-_C3.pem
+#7 6.810 Adding debian:emSign_Root_CA_-_C1.pem
+#7 6.811 Adding debian:emSign_Root_CA_-_G1.pem
+#7 6.812 Adding debian:vTrus_ECC_Root_CA.pem
+#7 6.814 Adding debian:vTrus_Root_CA.pem
+#7 6.830 done.
+#7 DONE 8.0s
+
+#8 [3/6] WORKDIR /work
+#8 DONE 0.0s
+
+#9 [4/6] COPY artifact/ /work/artifact/
+#9 DONE 0.0s
+
+#10 [5/6] WORKDIR /work/artifact
+#10 DONE 0.0s
+
+#11 [6/6] RUN python -m pip install --no-cache-dir -r requirements.txt  && python fetch_tlc.py
+#11 1.064 Collecting cryptography==50.0.2 (from -r requirements.txt (line 1))
+#11 1.109   Downloading cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.4 kB)
+#11 1.168 Collecting cffi>=2.0.0 (from cryptography==50.0.2->-r requirements.txt (line 1))
+#11 1.171   Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+#11 1.178 Collecting pycparser (from cffi>=2.0.0->cryptography==50.0.2->-r requirements.txt (line 1))
+#11 1.180   Downloading pycparser-3.12-py3-none-any.whl.metadata (9.7 kB)
+#11 1.184 Downloading cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl (4.8 MB)
+#11 1.240    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.8/4.8 MB 120.5 MB/s eta 0:00:00
+#11 1.244 Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)
+#11 1.247 Downloading pycparser-3.12-py3-none-any.whl (62 kB)
+#11 1.257 Installing collected packages: pycparser, cffi, cryptography
+#11 1.428 Successfully installed cffi-2.1.1 cryptography-50.0.2 pycparser-3.12
+#11 1.428 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#11 1.512 
+#11 1.512 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#11 1.512 [notice] To update, run: pip install --upgrade pip
+#11 1.938 /work/artifact/.tools/tla2tools.jar
+#11 1.938 Verified SHA-256: 936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88
+#11 DONE 2.2s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 0.6s done
+#12 writing image sha256:7a05a8de45f3eeabbeab7ed6184feb044a7199a42be895f5acbfb44c6ba84631 done
+#12 naming to docker.io/library/cea-artifact done
+#12 DONE 0.6s

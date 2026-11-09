@@ -1,0 +1,4 @@
+== without --init
+PID 1 is python | worker state 3 s after supervisor SIGKILL: Z
+== with --init
+PID 1 is docker-init | worker state 3 s after supervisor SIGKILL: gone (reaped)

@@ -857,7 +857,7 @@ Online Resource~1 (Table~S6) records, concept by concept, how the capability mod
 
 Every count below comes from an executable checker with saved expected outputs, raw logs and a SHA-256 manifest. ``Exhaustive'' means every case in the finite family was enumerated. ``Seeded'' means a fixed pseudo-random family, each member of which was decided exactly. None of these numbers is a security probability. How a large language model was used in writing the artifact code, the figure source and the text is stated under ``Use of large language models'' in the Statements and Declarations.
 
-Table~\ref{tab:evidence} lists the checks; Online Resource~1 (Section~S4) maps each to its script. All 99 tests pass, together with every TLC configuration, in a fresh run of \code{reproduce\_all.py} on 9 November 2026 (CPython 3.12.14, pyca/cryptography 50.0.2 with OpenSSL 4.0.3, TLC2 2.19, OpenJDK 26.0.2.1).
+Table~\ref{tab:evidence} lists the checks; Online Resource~1 (Section~S4) maps each to its script. All 99 tests pass, together with every TLC configuration, in a fresh run of \code{reproduce\_all.py} on 9 November 2026 (CPython 3.12.14, pyca/cryptography 50.0.2 with OpenSSL 4.0.3, TLC2 2.19, OpenJDK 26.0.2.1), and again inside a pinned container on an x86-64 Linux machine (Online Resource~1, Section~S4).
 
 \begin{table}[htbp]
 \caption{Executable checks. Families are seeded unless marked exhaustive; each member is decided exactly.}\label{tab:evidence}

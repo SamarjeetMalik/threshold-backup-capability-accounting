@@ -1,18 +1,20 @@
 {
   "title": "Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery: research artifact",
-  "version": "4.1.10",
+  "version": "4.1.11",
   "upload_type": "software",
   "creators": [
     {
       "name": "Malik, Samarjeet",
-      "affiliation": "Ashoka University"
+      "affiliation": "Ashoka University",
+      "orcid": "0009-0003-9924-7432"
     },
     {
       "name": "Singh, Shaurya Pratap",
-      "affiliation": "Indian Institute of Science"
+      "affiliation": "Indian Institute of Science",
+      "orcid": "0009-0009-0778-6038"
     }
   ],
-  "description": "Release 4.1.10 of the research artifact and manuscript for \"Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery\" (Samarjeet Malik, Shaurya Pratap Singh), the version the authors are submitting for publication. Manuscript version 4.1.10 states each limitation once (caveats consolidated, Section 11 merged), presents the executable checks as a table and keeps measurement, model-checking and test detail in the supplement, Online Resource 1 (manuscript/supplement.tex); the main text is 47 pages. Results are unchanged since version 4.1.1. The artifact code (artifact/) is byte-identical to version 4.1.1 (10.5281/zenodo.24060229), which reproduces every result: Python checkers and reference kernel, a process-isolated worker supervisor, 99 unit tests, TLA+ models and TLC configurations, a reference data layer, benchmark scripts with raw measurements (evidence_v411) and plotting scripts; artifact/reproduce_all.py reruns all checks. The composition theorem is restricted-adaptive (guessing factor L, exponential in renewed generations), not fully adaptive. No physical erasure, refinement proof or production readiness is claimed. Measurements come from one machine and enter no proof. Source: https://github.com/SamarjeetMalik/threshold-backup-capability-accounting (tag v4.1.10). Previous version: 10.5281/zenodo.24090414 (v4.1.9).",
+  "description": "Release 4.1.11 of the research artifact and manuscript for \"Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery\" (Samarjeet Malik, Shaurya Pratap Singh), the version the authors are submitting for publication. Manuscript version 4.1.11 adds a results-at-a-glance table, a running example, redrawn figures, the authors' ORCID iDs and measurements on a second machine (an AMD EPYC 9554 server); the supplement, Online Resource 1, is manuscript/supplement.tex. A pinned container (Dockerfile) and a GitHub Actions workflow that builds it and reruns all checks are included. Results are unchanged since version 4.1.1. The artifact code (artifact/) is byte-identical to version 4.1.1 (10.5281/zenodo.24060229), which reproduces every result: Python checkers and reference kernel, a process-isolated worker supervisor, 99 unit tests, TLA+ models and TLC configurations, a reference data layer, benchmark scripts with raw measurements and plotting scripts; artifact/reproduce_all.py reruns all checks. The composition theorem is restricted-adaptive (guessing factor L, exponential in renewed generations), not fully adaptive. No physical erasure, refinement proof or production readiness is claimed. Source: https://github.com/SamarjeetMalik/threshold-backup-capability-accounting (tag v4.1.11). Previous version: 10.5281/zenodo.24090614 (v4.1.10).",
   "notes": "Code and artifact (artifact/) under MIT; the manuscript, figures and plot data under CC BY 4.0. Springer class and style files keep their upstream terms.",
   "keywords": [
     "threshold cryptography",
