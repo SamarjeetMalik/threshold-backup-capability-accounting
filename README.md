@@ -50,9 +50,9 @@ python3 artifact/run_tlc_v3.py --java java --jar artifact/.tools/tla2tools.jar
 python3 artifact/run_tlc_v4.py --java java --jar artifact/.tools/tla2tools.jar
 ```
 
-One command, `artifact/.venv/bin/python artifact/reproduce_all.py --java java --jar artifact/.tools/tla2tools.jar` (venv from `artifact/requirements.txt`), runs everything. All 82 Python tests pass (5 baseline, 25 v2, 14 v3, 18 v4, 20 data layer); the v3 and v4 checkers match `expected/v3_results.json` and `expected/v4_results.json`; the 8 v2, 13 v3 and 15 v4 TLC configurations (9 from v4.0.0, 6 fairness-map runs added in v4.0.1) reproduce their recorded outcomes and counts.
+One command, `artifact/.venv/bin/python artifact/reproduce_all.py --java java --jar artifact/.tools/tla2tools.jar` (venv from `artifact/requirements.txt`), runs everything. All 99 Python tests pass (5 baseline, 25 v2, 14 v3, 18 v4, 27 data layer, 10 worker supervisor); the v3 and v4 checkers match `expected/v3_results.json` and `expected/v4_results.json`; the 8 v2, 13 v3 and 15 v4 TLC configurations (9 from v4.0.0, 6 fairness-map runs added in v4.0.1) reproduce their recorded outcomes and counts (recorded run: `reproduction_logs_v411/reproduce_all_v4.1.1_tree.log`).
 
-The artifact DOI is 10.5281/zenodo.24048192. No journal acceptance is claimed. Public source availability does not establish novelty or production readiness. Springer class/style notices remain intact; see the licence section below.
+The current artifact is v4.1.1, DOI 10.5281/zenodo.24060229 (tag `v4.1.1`); its predecessor v4.0.7 is DOI 10.5281/zenodo.24048192. No journal acceptance is claimed. Public source availability does not establish novelty or production readiness. Springer class/style notices remain intact; see the licence section below.
 
 ## Licence
 
