@@ -1,5 +1,41 @@
 # Changelog
 
+## 4.1.19 (10 November 2026), compliance pass; artifact remains v4.1.1; Zenodo DOI 10.5281/zenodo.24112284
+- Reference [12] (Lopuhaä-Zwakenberg et al.): 2022 -> 2023, with volume 20(5) and pages 4169-4187 (Crossref; the DOI was already correct).
+- Online Resource 1 abstract: "Prepared for the International Journal of Information Security." (IJIS requires each supplementary file to name the journal.)
+- Re-ran the archived tag v4.1.1 from a clean extract: 99 tests and all TLC configurations pass; the 13 plot-data files are byte-identical; Tables S2, S3, S4 and S5 agree cell by cell. Logs are in `reproduction_logs_v4119/`.
+- REPRODUCIBILITY.md provenance table renumbered to the current figures and tables (it still used pre-supplement numbers such as "Fig. 12, Table 12").
+- Submission 39 pp., Online Resource 1 21 pp.; abstract and numbering unchanged. Approved by both authors 10 Nov 2026 and released.
+
+## 4.1.18 (10 November 2026), one cross-reference correction; artifact remains v4.1.1
+- Contribution 3 cited "Theorem 24, Section 9"; Theorem 24 is in Section 8.2. It now reads "Theorem 24, Section 8.2; lifecycle models, Section 9" (the item also covers the TLA+ models, which are in Section 9).
+- Contribution 2 now cites "Sections 5 and 6" (it named only Section 5, but Lemma 12 and Theorems 14-15 are in Section 6).
+- A script checked every "result, Section" pair in the source; these were the only two mismatches.
+- Submission 39 pp., Online Resource 1 21 pp.; numbering and abstract unchanged. Not yet approved by both authors.
+
+## 4.1.17 (10 November 2026), corrections only; artifact remains v4.1.1
+- Table 1: reused credentials are "NP-hard and APX-hard" (was "NP-hard").
+- Abstract: the touched-index result states its hypotheses (honest generation, independent coefficient blocks, pointwise disclosures); two details moved out to stay at 246 words.
+- Data availability statement and README: artifact v4.1.1 supports manuscript versions 4.1.1 to 4.1.17, unchanged since.
+- Submission 39 pp., Online Resource 1 21 pp.; numbering unchanged (Theorem 24). Includes the unreleased 4.1.15 and 4.1.16 changes.
+- Not yet approved by both authors.
+
+## 4.1.16 (10 November 2026), precision pass; artifact remains v4.1.1
+- XP/FPT: Section 5, abstract, contributions, Table 1 and conclusion no longer say the problem is "not FPT"; the bound is XP and FPT is open.
+- Weighted thresholds are "weakly NP-hard" everywhere (Proposition 9); reuse hardness (NP-hard, APX-hard) stated separately.
+- "Adaptively chosen observations" now reads "observations whose selection and stopping depend only on the visible transcript" (contributions, Table 1).
+- Introduction: each contribution opens with the question it answers; the Theorem 14 -> 15 -> 24 chain is stated. Section 8.2: new paragraph "What this means for a backup deployment".
+- Abstract 246 words. Submission 39 pp., Online Resource 1 21 pp.; numbering unchanged (Theorem 24). Includes all 4.1.15 changes (never released).
+- Not released; superseded by 4.1.17 before approval.
+
+## 4.1.15 (10 November 2026), contribution hierarchy and partial-disclosure scope; artifact remains v4.1.1
+- Abstract and introduction organized around three primary contributions (exposure accounting; temporal and erasure accounting; validation against a concrete profile); committee feasibility, data layer, supervisor and measurements marked as supporting. Abstract 237 words.
+- After Theorem 14: the efficient-extraction remark now shows the group operations and is restricted to disclosures that share one ratio α/γ (in particular A-only or B-only) or are complete; for mixed ratios no efficient-extraction claim is made. Results unchanged.
+- Related work: Huang, Lai, Zeng and Mu (Des. Codes Cryptogr. 2023) on multi-challenge receiver selective opening for IBE.
+- The quotation around "v2" in Section 8.1 closed.
+- 39 pp., Online Resource 1 21 pp.; numbering unchanged (Theorem 24). Previous sources: manuscript/main_v4.1.14.tex, manuscript/references_v4.1.14.bib.
+- Not released; superseded by 4.1.16 before approval.
+
 ## 4.1.14 (10 November 2026), Fig. 3 simplified; Online Resource 1 reference list; artifact remains v4.1.1
 - Fig. 3 (leakage subspace): one chain (seed and mask → view → mask-cancelling λ → exposed u·S); A and B folded into the view node; the "What the view reveals" panel, which restated Theorem 1(2),(5), removed; the red leakage-without-reconstruction example kept in two lines. Natural size (344.2 of 372 pt), grayscale-safe.
 - Fix: Online Resource 1 has its own reference list. Since v4.1.12 its Section S6 erasure-complexity proofs cited Karp 1972, Dinur-Safra 2005 and Alimonti-Kann 2000 without a bibliography, so v4.1.12 and v4.1.13 print "[? ]" in three places.

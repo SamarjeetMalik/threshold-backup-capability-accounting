@@ -98,7 +98,7 @@ v4.1.0 is unchanged; its text is kept as `manuscript/main_v4.1.0.tex`. Inputs to
 1. Co-author approves the declarations.
 2. Reserve the Zenodo DOI for v4.1.1, insert it and the tag, then rebuild (see `release_staging/RELEASE_NOTES_v4.1.1.md`).
 3. Publish the GitHub release and the Zenodo record. Re-run the fresh-unpack reproduction from the published files.
-4. Optional: let job 8081 finish and add the x86 data as v4.1.2. The job writes to `/scratch/samarjeet_malik/cea_bench411/`.
+4. Optional: let job 8081 finish and add the x86 data as v4.1.2. The job writes to the cluster's scratch space.
 5. Optional: an external cryptographer reviews G1→G2 and G2→G2′.
 6. APC decision; submit.
 

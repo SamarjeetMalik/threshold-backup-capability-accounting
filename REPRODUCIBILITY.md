@@ -1,12 +1,12 @@
-# Reproducibility manifest: manuscript v4.1.14, artifact v4.1.1 (9 November 2026)
+# Reproducibility manifest: manuscript v4.1.19, artifact v4.1.1 (9 November 2026)
 
-Every result in manuscript v4.1.14 and its Online Resource 1 comes from the version 4.1.1 artifact. Manuscript versions 4.1.2 to 4.1.14 changed wording, layout and figures only; `artifact/` has not changed since v4.1.1.
+Every result in manuscript v4.1.19 and its Online Resource 1 comes from the version 4.1.1 artifact. Manuscript versions 4.1.2 to 4.1.19 changed wording, layout and figures only; `artifact/` has not changed since v4.1.1.
 
 ## Versions and identifiers
 | Item | Value |
 |---|---|
-| Manuscript | v4.1.14, `manuscript/main.tex` (SHA-256 `cfceb3f19507076e3a31523ad6b6357f59683bf1009a17100d961e0891557472`) and Online Resource 1, `manuscript/supplement.tex` (SHA-256 `477e9cbab2b7997e2fbb204f7970ea3f97a455275785a9c89cc76166e6ff3bd4`) |
-| Compiled PDFs | v4.1.14: styled `337e8b4947a94b5df54b6457706db6d9b5ee8009139431fac94f3941814f1b2a`; submission `1210280ab7c06aff507d918488352a11dc9b050f8e47e09ff22481e4dc83cab6`; Online Resource 1 `3084a8641a5454861a8ad7afc4980af16566590704adc4ca7f1d3ef13dc6a5a7` (also in `REVISION_V4.1.14.md`). Published v4.1.13 PDFs: GitHub release v4.1.13 and Zenodo 10.5281/zenodo.24092482. Published v4.1.11 PDFs: GitHub release v4.1.11 and Zenodo 10.5281/zenodo.24091137. Published v4.1.10 PDFs: GitHub release v4.1.10 and Zenodo 10.5281/zenodo.24090614. Published v4.1.9 PDFs: GitHub release v4.1.9 and Zenodo 10.5281/zenodo.24090414. Published v4.1.8 PDFs: GitHub release v4.1.8 and Zenodo 10.5281/zenodo.24089585. Published v4.1.7 PDFs: GitHub release v4.1.7 and Zenodo 10.5281/zenodo.24088767. Published v4.1.6 PDFs: GitHub release v4.1.6 and Zenodo 10.5281/zenodo.24084300. Published v4.1.1 PDFs: full hashes in the v4.1.1 SHA256SUMS. |
+| Manuscript | v4.1.19, `manuscript/main.tex` (SHA-256 `14613127441c5557b5d6b8deb41b5bfc32bd4dc468dcc867f34e2356fa8332b8`) and Online Resource 1, `manuscript/supplement.tex` (SHA-256 `427bb1231bd0bce5e7d95bda1234a69404ded55525803d90657d93a565866c94`) |
+| Compiled PDFs | v4.1.19: styled `6967376101b96c41e1cc074d3df4f5ba6f9edabb52bb30b9e242c4c664f31bea`; submission `923e09d81449bd073829785c12519c8ee719e6b1f83b59578277d234b63733c8`; Online Resource 1 `f7c0189d8bddfca06037e293c6ab809420c334599b10a3c8171557a672613f63` (also in `REVISION_V4.1.19.md`). Published v4.1.14 PDFs: GitHub release v4.1.14 and Zenodo 10.5281/zenodo.24093096. Published v4.1.11 PDFs: GitHub release v4.1.11 and Zenodo 10.5281/zenodo.24091137. Published v4.1.10 PDFs: GitHub release v4.1.10 and Zenodo 10.5281/zenodo.24090614. Published v4.1.9 PDFs: GitHub release v4.1.9 and Zenodo 10.5281/zenodo.24090414. Published v4.1.8 PDFs: GitHub release v4.1.8 and Zenodo 10.5281/zenodo.24089585. Published v4.1.7 PDFs: GitHub release v4.1.7 and Zenodo 10.5281/zenodo.24088767. Published v4.1.6 PDFs: GitHub release v4.1.6 and Zenodo 10.5281/zenodo.24084300. Published v4.1.1 PDFs: full hashes in the v4.1.1 SHA256SUMS. |
 | Artifact (source of all results) | v4.1.1: Zenodo DOI 10.5281/zenodo.24060229 (published 9 Nov 2026; its artifact zip has MD5 688235160ab9ef19731d4810e034152c); GitHub tag `v4.1.1`. The v4.1.6 release archives the same `artifact/` byte for byte. |
 | Archived predecessor | v4.0.7: Zenodo DOI 10.5281/zenodo.24048192; GitHub tag `v4.0.7` → commit `80d40a8c83b13e25712839327de45b144de83b52` |
 | All versions | Zenodo concept DOI 10.5281/zenodo.24048191 |
@@ -33,16 +33,18 @@ cd ../manuscript && latexmk -pdf -halt-on-error main.tex && latexmk -pdf -halt-o
 ```
 
 ## Executed runs
-See `REVISION_V4.1.1.md` §6 and the logs in `reproduction_logs_v411/`.
+See `REVISION_V4.1.1.md` §6 and the logs in `reproduction_logs_v411/`. On 10 Nov 2026 the archived tag v4.1.1 was re-run from a clean extract against manuscript v4.1.19: 99 tests and all TLC configurations pass, all 13 plot-data files are byte-identical, and the hand-typed tables agree (`reproduction_logs_v4119/`). The authors ran this on their own machine, so it is not an independent reproduction.
 
 ## Provenance
 | Item | Source | Kind |
 |---|---|---|
-| Fig. 12, Table 12 (times) | `evidence_v411/mac_m5` | measured |
-| Fig. 13, Table 12 (memory) | `evidence_v411/mac_m5_memory` | measured |
-| Table 15 (supervision) | `evidence_v411/mac_m5_supervisor` | measured |
-| Figs. 6, 7, 9, C1; Table 10 | `make_plot_data.py` from the paper's formulas | analytical |
-| Fig. 4 | derived from Theorem 15 | derived |
+| Fig. S3, Table S2 (times) | `evidence_v411/mac_m5` | measured |
+| Fig. S4, Table S2 (memory) | `evidence_v411/mac_m5_memory` | measured |
+| Table S5 (supervision) | `evidence_v411/mac_m5_supervisor` | measured |
+| Fig. 7, Figs. S5-S7; Table S11 | `make_plot_data.py` from the paper's formulas | analytical |
+| Fig. 1 | derived from Theorem 15 | derived |
+| Table S3 (second machine) | `evidence_x86_epyc9554` | measured |
+| Table S4 (TLC state counts) | `reproduce_all.py` (run_tlc*.py) | model-checked |
 
 ## Hashes (SHA-256)
 ```
@@ -65,5 +67,5 @@ Every released file is listed in `SHA256SUMS`.
 
 ## Second machine and container (v4.1.11)
 - `evidence_x86_epyc9554/`: the data-layer and memory benchmarks re-run unchanged on a 2-socket AMD EPYC 9554 server (Slurm job 8081, 9 Nov 2026; CPython 3.11.16, pyca/cryptography 50.0.2, OpenSSL 4.0.3). Its scripts are byte-identical to `artifact/`. Reported in Online Resource 1, Table S3. The supervisor benchmark was not run there.
-- `Dockerfile` / `CONTAINER.md`: pinned container (python:3.12.14-slim-bookworm by digest, cryptography 50.0.2, checksum-verified TLC 1.7.4). Built and run in GitHub Actions (x86-64 Linux, run 42676588599, 9 Nov 2026) with `docker run --init`: all 99 tests and every TLC configuration pass. Logs in `container_runs/`. Without `--init`, the supervisor-crash test counts its exited, unreaped (zombie) worker as alive; see CONTAINER.md.
+- `Dockerfile` / `CONTAINER.md`: pinned container (python:3.12.14-slim-bookworm by digest, cryptography 50.0.2, checksum-verified TLC 1.7.4). Built and run in GitHub Actions (x86-64 Linux, run 42676588599, 9 Nov 2026) with `docker run --init`: all 99 tests and every TLC configuration pass. Logs in `container_runs/`. Every manuscript release tag since then re-ran the same container reproduction in CI from the tagged source, and all passed: v4.1.11 (run 42677418700), v4.1.12 (42683621318), v4.1.13 (42692218309), v4.1.14 (42699472006). Manuscript versions after v4.1.1 change only the paper; the numbers they report are the v4.1.1 artifact's. Without `--init`, the supervisor-crash test counts its exited, unreaped (zombie) worker as alive; see CONTAINER.md.
 - `scripts/rerun_and_log.sh` / `COAUTHOR_RERUN.md`: one-command independent re-run with a recorded log (self-tested on the authors' Mac; the co-author re-run is pending).
