@@ -22,6 +22,7 @@ Public records. GitHub: SamarjeetMalik/threshold-backup-capability-accounting. Z
 - v4.1.17 is corrections only on v4.1.16 (third outside review): Table 1 adds APX-hardness, the abstract states Theorem 14's hypotheses (honest generation, independent coefficient blocks, pointwise disclosures), and the availability statement and README map manuscript versions to artifact v4.1.1 (REVISION_V4.1.17.md). It needs both authors' approval before it replaces v4.1.14.
 - v4.1.18 corrects one cross-reference on v4.1.17 (fourth outside review): contribution 3 cited Section 9 for Theorem 24; it now cites Section 8.2 for Theorem 24 and Section 9 for the lifecycle models, and contribution 2 cites Sections 5 and 6. Nothing else changed.
 - v4.1.19 is a compliance pass on v4.1.18: the Lopuhaä-Zwakenberg et al. reference is TDSC 20(5), 4169-4187 (2023), not 2022; Online Resource 1 names the journal (IJIS requires each supplementary file to give the article title, journal, authors and the corresponding author's affiliation and e-mail); the archived v4.1.1 tag was re-run against this manuscript (`reproduction_logs_v4119/`). Nothing else changed.
+- v4.1.20 adds one sentence to the LLM-use statement, confirmed by the authors on 10 Nov 2026 (ChatGPT was used for review): "OpenAI's ChatGPT was used to provide critical manuscript feedback, identify potential inconsistencies and suggest editorial revisions; the authors independently evaluated its suggestions." Nothing else changed.
 
 ## Declarations (confirmed by Samarjeet Malik in chat, 9 Nov 2026; in v4.1.0)
 - Competing interests: none for either author.
@@ -31,7 +32,7 @@ Public records. GitHub: SamarjeetMalik/threshold-backup-capability-accounting. Z
 - **Co-author:** on 9 Nov 2026 Samarjeet Malik reported in chat that Shaurya Pratap Singh agreed to these declarations as published in v4.1.1.
 - v4.1.3 rewords the LLM statement without changing its scope: the figure work is described as TikZ/pgfplots source drawn from artifact data, and it states that no figure is an AI-generated image. Both authors approved this wording with v4.1.3.
 
-## Before IJIS submission (v4.1.19)
+## Before IJIS submission (v4.1.20)
 Done:
 - Artifact v4.1.1 published (GitHub tag and release; Zenodo 10.5281/zenodo.24060229). No placeholder remains in the manuscript.
 - Manuscript v4.1.6 published (GitHub tag and release v4.1.6; Zenodo 10.5281/zenodo.24084300) after both authors approved it.
@@ -44,13 +45,14 @@ Done:
 - Manuscript v4.1.13 and Online Resource 1 published (GitHub tag and release v4.1.13; Zenodo 10.5281/zenodo.24092482) after both authors approved them.
 - Manuscript v4.1.14 and Online Resource 1 published (GitHub tag and release v4.1.14; Zenodo 10.5281/zenodo.24093096) after both authors approved them.
 - Manuscript v4.1.19 and Online Resource 1 published (GitHub tag and release v4.1.19; Zenodo 10.5281/zenodo.24112284) after both authors approved them.
+- Manuscript v4.1.20 and Online Resource 1 published (GitHub tag and release v4.1.20; Zenodo 10.5281/zenodo.24115811): v4.1.19 plus the ChatGPT disclosure.
 - Root README reports 99 tests (main since commit f6ac66e; the frozen v4.1.1 tag still shows 82).
 - CKS/GKP re-audit (v4.1.1). IJIS format checks (v4.1.4): LLM-use pointer, consecutive figure numbering, 249-word abstract (250 in v4.1.9, 235 in v4.1.10), 6 keywords, sn-jnl twocolumn (single column from v4.1.8).
 - Figures at 8 pt sans serif, none scaled (v4.1.5-v4.1.6). Fig. 15 anchored in Appendix C after its heading (v4.1.7). Single column, as in the official Springer Nature sample (v4.1.8).
 
 Still open (author actions):
-0. Done: both authors approved v4.1.19 (10 Nov 2026). At submission, upload `Capability_Exposure_Accounting_v4.1.19_Online_Resource_1.pdf` as supplementary material, renamed `ESM_1.pdf` as IJIS asks, with the caption "Online Resource 1: supplementary measurements, TLC runs, proofs and evidence map".
-0a. Check the LLM-use statement against every AI tool that materially contributed (it currently names only Claude). If outside AI reviews (for example the reviews pasted on 10 Nov 2026) shaped revisions, decide whether the statement should mention them; IJIS/Springer Nature policy asks for documented LLM use.
+0. Done: both authors approved v4.1.19 (10 Nov 2026). At submission, upload `Capability_Exposure_Accounting_v4.1.20_Online_Resource_1.pdf` as supplementary material, renamed `ESM_1.pdf` as IJIS asks, with the caption "Online Resource 1: supplementary measurements, TLC runs, proofs and evidence map".
+0a. Done in v4.1.20 (ChatGPT named). Was: check the LLM-use statement against every AI tool that materially contributed (it currently names only Claude). If outside AI reviews (for example the reviews pasted on 10 Nov 2026) shaped revisions, decide whether the statement should mention them; IJIS/Springer Nature policy asks for documented LLM use.
 0b. Independent review of Theorem 24 (packet and request ready: THEOREM25_REVIEW_PACKET_pp21-28_and_OR1_pp17-21.pdf, THEOREM25_REVIEW_REQUEST.md); not a submission blocker, but it is the largest open assurance item.
 1. In the submission system, enter Competing interests, Author contributions and Funding in the interface as well: IJIS uses only the interface entries for publication.
 2. APC: IJIS is fully open access, APC US$3,690 / GBP 2,690 / EUR 2,990 (+VAT), set at acceptance. IJIS is not in Springer Nature's ONOS APC-funded journal list (checked 9 Nov 2026). Discretionary waivers are case-by-case and must be requested at submission.

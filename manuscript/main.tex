@@ -1,4 +1,4 @@
-% Capability Exposure Accounting, version 4.1.19 (compliance pass: one reference year corrected, Online Resource 1 names the journal; otherwise as 4.1.18; artifact v4.1.1).
+% Capability Exposure Accounting, version 4.1.20 (adds the ChatGPT review disclosure to the LLM statement; otherwise as 4.1.19; artifact v4.1.1).
 \PassOptionsToPackage{table}{xcolor}
 \documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% single column, as in the official Springer Nature template sample
 \usepackage[T1]{fontenc}
@@ -736,7 +736,7 @@ The kernel tracks a decryption worker only through its token. The artifact's \co
 
 \section{Experimental validation}\label{sec:evidence}
 
-Every count below comes from an executable checker with saved expected outputs, raw logs and a SHA-256 manifest. ``Exhaustive'' means every case in the finite family was enumerated. ``Seeded'' means a fixed pseudo-random family, each member of which was decided exactly. None of these numbers is a security probability. How a large language model was used in writing the artifact code, the figure source and the text is stated under ``Use of large language models'' in the Statements and Declarations.
+Every count below comes from an executable checker with saved expected outputs, raw logs and a SHA-256 manifest. ``Exhaustive'' means every case in the finite family was enumerated. ``Seeded'' means a fixed pseudo-random family, each member of which was decided exactly. None of these numbers is a security probability. How large language models were used in writing the artifact code, the figure source and the text is stated under ``Use of large language models'' in the Statements and Declarations.
 
 The checks cover every main result. The leakage subspace is checked by exact enumeration on 9,500 instances, and the touched-index criterion on all 375 partial-disclosure patterns over $\F_{11}$. Every erasure-planning result is checked against brute force. Theorem~\ref{thm:temporal} agrees with the exact rank test on all 5,388 target seeds with independent randomness from 3,000 random histories; with correlated randomness it fails in the unsafe direction, so the independence hypothesis is needed. The guessing space contains every reachable pattern in 300 exhaustively enumerated policies, and Proposition~\ref{prop:patterns} matches exhaustive enumeration in 500 policies. An executable model of $\mathsf{Store}$ and $\mathsf{Open}$ confirms the counts of Theorem~\ref{thm:adaptive}. Online Resource~1 (Section~S4, Table~S7) lists every check with its size, outcome and script. All 99 tests pass, together with every TLC configuration, in a fresh run of \code{reproduce\_all.py} on 9 November 2026 (CPython 3.12.14, pyca/cryptography 50.0.2 with OpenSSL 4.0.3, TLC2 2.19, OpenJDK 26.0.2.1), and again inside a pinned container on an x86-64 Linux machine (Online Resource~1, Section~S4).
 
@@ -795,7 +795,7 @@ Samarjeet Malik and Shaurya Pratap Singh: conceptualization, methodology, formal
 This manuscript reports formal analysis, finite model checks and a reference implementation. It involves no human participants or personal data.
 
 \bmhead{Data and code availability}
-The Python reference implementation, TLA+ specifications and configurations, test suite, reproduction scripts, raw benchmark measurements and recorded evidence that reproduce every result in this manuscript are released as tag v4.1.1 of \url{https://github.com/SamarjeetMalik/threshold-backup-capability-accounting} and archived on Zenodo at \url{https://doi.org/10.5281/zenodo.24060229}. The artifact has not changed since that release: later manuscript revisions, including this one (manuscript version 4.1.19), changed only text, figures and layout, and every number reported here is produced by the v4.1.1 artifact. The artifact code is licensed under the MIT licence; the manuscript, figures and reports are licensed under CC BY 4.0.
+The Python reference implementation, TLA+ specifications and configurations, test suite, reproduction scripts, raw benchmark measurements and recorded evidence that reproduce every result in this manuscript are released as tag v4.1.1 of \url{https://github.com/SamarjeetMalik/threshold-backup-capability-accounting} and archived on Zenodo at \url{https://doi.org/10.5281/zenodo.24060229}. The artifact has not changed since that release: later manuscript revisions, including this one (manuscript version 4.1.20), changed only text, figures and layout, and every number reported here is produced by the v4.1.1 artifact. The artifact code is licensed under the MIT licence; the manuscript, figures and reports are licensed under CC BY 4.0.
 
 \bmhead{Preprint}
 Preprint versions of this manuscript are archived with the artifact on Zenodo under CC BY 4.0 (all versions: \url{https://doi.org/10.5281/zenodo.24048191}).
@@ -804,7 +804,7 @@ Preprint versions of this manuscript are archived with the artifact on Zenodo un
 Online Resource~1 contains the supplementary tables, figures, proofs and evidence map cited in the text.
 
 \bmhead{Use of large language models}
-Anthropic's Claude was used to help draft and revise text, write and test artifact code, write the TikZ and pgfplots source that draws the figures from the artifact's data files, and check derivations. No figure is an AI-generated image. The authors reviewed and verified all of this work and take full responsibility for all content, including every proof, measurement and interpretation.
+Anthropic's Claude was used to help draft and revise text, write and test artifact code, write the TikZ and pgfplots source that draws the figures from the artifact's data files, and check derivations. OpenAI's ChatGPT was used to provide critical manuscript feedback, identify potential inconsistencies and suggest editorial revisions; the authors independently evaluated its suggestions. No figure is an AI-generated image. The authors reviewed and verified all of this work and take full responsibility for all content, including every proof, measurement and interpretation.
 
 
 

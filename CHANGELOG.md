@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.20 (10 November 2026), declaration only; artifact remains v4.1.1
+- "Use of large language models": adds that OpenAI's ChatGPT was used to provide critical manuscript feedback, identify potential inconsistencies and suggest editorial revisions, and that the authors independently evaluated its suggestions (authors confirmed this use 10 Nov 2026).
+- The Section 9 pointer to that statement now says "large language models" (plural).
+- Manuscript version string 4.1.19 -> 4.1.20 in the availability statement and Online Resource 1 source header.
+- Submission 39 pp., Online Resource 1 21 pp.; no other text, numbering, figure or reference changes. Zenodo DOI 10.5281/zenodo.24115811.
+
 ## 4.1.19 (10 November 2026), compliance pass; artifact remains v4.1.1; Zenodo DOI 10.5281/zenodo.24112284
 - Reference [12] (Lopuhaä-Zwakenberg et al.): 2022 -> 2023, with volume 20(5) and pages 4169-4187 (Crossref; the DOI was already correct).
 - Online Resource 1 abstract: "Prepared for the International Journal of Information Security." (IJIS requires each supplementary file to name the journal.)

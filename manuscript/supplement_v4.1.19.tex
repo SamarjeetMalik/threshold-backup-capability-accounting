@@ -1,0 +1,520 @@
+% Online Resource 1 (electronic supplementary material) for "Capability Exposure Accounting for
+% Threshold-Based Encrypted Backup Recovery", manuscript version 4.1.19. Compiler: pdfLaTeX.
+% v4.1.14: the supplement has its own reference list (its proofs cite works the paper no longer cites).
+% Build main_submission.tex first: references to the paper (M-...) are read from main_submission.aux (xr).
+\def\submissionmode{1}
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx,booktabs,tabularx,array,longtable}
+\usepackage{fvextra,tikz,xurl,needspace,capt-of}
+\usepackage{xr}
+\externaldocument[M-]{main_submission}
+\usetikzlibrary{arrows.meta,positioning}
+\input{style}
+\usepgfplotslibrary{groupplots}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\fpath}[1]{\nolinkurl{#1}}% breakable file names
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\emergencystretch=3em
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@maketitle}{Corresponding author(s). E-mail(s):}{Corresponding author. E-mail:}{}{\typeout{CORRESP-PATCH-FAILED}}
+\makeatother
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\theequation}{S\arabic{equation}}
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}
+\renewcommand{\thelemma}{S\arabic{lemma}}
+\newtheorem{proposition}[lemma]{Proposition}
+\newcommand{\Adv}{\operatorname{Adv}}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\Cl}{\operatorname{Cl}}
+\renewcommand{\theHsection}{S\arabic{section}}
+\renewcommand{\theHfigure}{S\arabic{figure}}
+\renewcommand{\theHtable}{S\arabic{table}}
+\renewcommand{\theHequation}{S\arabic{equation}}
+\hypersetup{hidelinks,bookmarksdepth=2,pdftitle={Online Resource 1: Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery},pdfauthor={Samarjeet Malik and Shaurya Pratap Singh}}
+% ORCID: the class's \orcid links a logo file (Orcidlogo.eps) that the official template does not ship;
+% draw the standard green iD badge instead (ORCID green A6CE39). The class itself is unchanged.
+\definecolor{orcidgreen}{HTML}{A6CE39}
+\gdef\orcidlogo{\tikz[baseline=-0.55ex]{\fill[orcidgreen] (0,0) circle (0.78ex);\node[text=white,inner sep=0pt,font=\fontfamily{phv}\fontsize{4.2}{4.2}\selectfont\bfseries] at (0,0) {iD};}}
+\begin{document}
+\raggedbottom
+\title[Online Resource 1]{Online Resource 1 for ``Capability Exposure Accounting for Threshold-Based Encrypted Backup Recovery''}
+\author*[1]{\fnm{Samarjeet} \sur{Malik}\,\orcid{https://orcid.org/0009-0003-9924-7432}}\email{samarjeet.malik\_tf@ashoka.edu.in}
+\author[2]{\fnm{Shaurya Pratap} \sur{Singh}\,\orcid{https://orcid.org/0009-0009-0778-6038}}
+\affil[1]{\orgname{Ashoka University}}
+\affil[2]{\orgname{Indian Institute of Science}}
+\abstract{\unboldmath This supplement gives the material that the paper cites as Online Resource~1: the full measurements of the reference data layer on two machines, every TLC configuration with its state count, the liveness counterexamples, the manual lifecycle induction, the conformance step statistics, the process-supervisor tests and costs, the correspondence between the models, every executable check with its size, outcome and script, two supporting system-level results (an independent-slot lemma and a symbolic failure budget), and reference material on records and committee sizes. Prepared for the International Journal of Information Security. Theorem, section and observation numbers refer to the paper. Every number here is reproduced by the version 4.1.1 artifact (\url{https://doi.org/10.5281/zenodo.24060229}); measurements describe one machine and enter no proof.}
+\keywords{Capability exposure, encrypted backup, threshold recovery, TLA+, reference implementation}
+\maketitle
+
+\section{Reference data layer}\label{sec:s-datalayer}
+
+Fig.~\ref{fig:datalayer} shows the reference implementation of the data interface of Definition~\ref{M-def:adaptivegame} in the paper, and Fig.~\ref{fig:truncation} the truncation experiment behind the final-chunk flag (Section~\ref{M-sec:datalayer}). Table~\ref{tab:nonce} separates what the nonce guard establishes from what it does not.
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/fig_datalayer}}
+\caption{The implemented data layer. The epoch seed keys HMAC-SHA256 over the canonical context; the output is one 256-bit key instance per context. Each chunk uses the nonce $0^{32}\Vert\mathrm{u64}(i)$ and associated data $(\mathrm{H}(\mathit{ctx}),i,\mathit{final})$. The red dashed route is the bad event of Lemma~\ref{M-lem:keycoll}: two distinct contexts with equal key bytes would reuse the chunk-0 nonce.}\label{fig:datalayer}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/fig_truncation}}
+\caption{The truncation experiment (an executed test, not a probability). A four-chunk object with its last two chunks removed is accepted as a 20-byte object when the associated data has no final flag, and rejected with the flag.}\label{fig:truncation}
+\end{figure}
+
+\begin{table}[htbp]
+\caption{Nonce and key-reuse properties of the data layer.}\label{tab:nonce}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.46\linewidth}Y@{}}\toprule
+Property & Status\\\midrule
+Nonce uniqueness per key instance in the profile & assumed by the model; respected by the chunk-index rule\\
+Accidental reuse inside one data-layer instance & detected by the in-memory guard (tested)\\
+Uniqueness across processes or service instances & not provided by the guard\\
+Uniqueness across a restart & not provided by the guard\\
+Coincidence of derived keys for distinct contexts & bounded in the proof (Lemma~\ref{M-lem:keycoll})\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Tests.}
+Twenty-seven tests in three files (\fpath{test_datalayer.py}, \fpath{test_datalayer_v404.py} and \fpath{test_datalayer_v409.py}) cover the following:
+\begin{itemize}
+\item round trips, including the empty object;
+\item tampered, reordered, duplicated, appended and cross-object chunks;
+\item truncation with and without the flag; missing, duplicated and early final markers;
+\item partial failures, which release no plaintext;
+\item abandonment, retry and identifier re-sampling;
+\item canonical-encoding aliasing and malformed or foreign records;
+\item the counts of Theorem~\ref{M-thm:adaptive} (Table~\ref{tab:counts});
+\item a forced derived-key coincidence, which the key-byte guard reports as nonce reuse;
+\item removal of one, two or three final chunks; removal of every chunk of a non-empty object, distinguished from the legitimate empty object; a modified immutable header; a forged final chunk in a non-final position and a non-final chunk in the final position;
+\item forty objects stored concurrently from eight threads, with no key-nonce pair reused and every object round-tripping, and the per-instance scope of the guard.
+\end{itemize}
+
+\paragraph{Measurements.}
+Wall-clock measurements of one Python process on one machine: Apple M5, 24~GiB, macOS 26.5.1, Python 3.12.14, pyca/cryptography 50.0.2 with OpenSSL 4.0.3.
+\begin{itemize}
+\item Inputs are seeded and identical across ciphers.
+\item Each measurement follows five warm-up runs, with 40 repetitions per microbenchmark and 12 trials per object operation.
+\item We report medians with interquartile ranges; raw samples are in the artifact.
+\item These figures describe this machine only and enter no proof; a second machine is reported below.
+\end{itemize}
+The timings come from \fpath{bench_v404.py}; raw samples are in \fpath{artifact/evidence_v411/mac_m5}. HMAC derivation took $0.96\,\mu$s (median; IQR $0.92$--$1.00$). ChaCha20-Poly1305 reaches $2.0$--$2.2$~GiB/s from 16~KiB chunks upwards (Fig.~\ref{fig:latency}). AES-256-GCM, measured on identical inputs as an engineering comparison, reaches $8.4$--$8.9$~GiB/s from 64~KiB upwards on this processor, which reports the ARMv8 AES and polynomial-multiply instructions (FEAT\_AES, FEAT\_PMULL); ChaCha20 has no dedicated instructions. This comparison is about speed on one machine, not about relative security, and the profile is unchanged: the paper's analysis is for ChaCha20-Poly1305, and a change of AEAD would need its own multi-key bound. Store and Open scale linearly with object size, about $124$ and $129$~ms for 256~MiB (Fig.~\ref{fig:objects}). An independent run of the same script on the same machine, kept in \code{artifact/evidence\_v404}, agrees within $8\%$ for ChaCha20-Poly1305 throughput from 16~KiB and AES-256-GCM throughput from 64~KiB; Store and Open at 256~MiB were $8$--$10\%$ slower there. Below 64~KiB the AES-256-GCM medians of the two runs differ by up to a factor of two, so small-chunk AES values are not stable on this machine. The measured ciphertext overhead equals the analytical 16 bytes per chunk.
+
+Memory was measured with seven independent trials per object size (\fpath{bench_memory_v410.py}; raw data in \fpath{evidence_v411/mac_m5_memory}). In each trial one fresh process stores the object and writes the record to a file, and a second fresh process loads the record, starts \code{tracemalloc}, opens the object once and reads \code{getrusage(RUSAGE\_SELF).ru\_maxrss}. Python heap is the \code{tracemalloc} peak during Open. Resident set size is the peak over the opening process's lifetime, not a sampled value, and includes the interpreter and imported modules (an idle process peaks at $28.7$~MiB) and the loaded ciphertext. All memory figures are in MiB ($2^{20}$ bytes) and give the median with minimum and maximum over the seven trials; times give the median with interquartile range. Python heap was identical in every trial: $1.00$~MiB for a 1~MiB object and exactly twice the object size from 4~MiB upwards. The factor of two is the reference's Open path, which keeps the list of decrypted chunks and then joins them into one plaintext; the ciphertext was loaded before tracing started and is not in this figure. Peak resident set size was $807.9$~MiB in the median for 256~MiB (range $807.8$--$808.2$), consistent with interpreter, ciphertext and two plaintext copies. This is a property of the in-memory reference, not a lower bound for the design. All timings and memory figures in this section are for direct calls; they exclude the process supervisor, whose cost is in Section~\ref{sec:s-supervisor}. Concurrent and streaming measurements were not made.
+
+\begin{table}[htbp]
+\caption{Recorded measurements on one Apple M5. Times: median with interquartile range in brackets (raw samples in \code{artifact/evidence\_v411/mac\_m5}); throughput is chunk size over median time. Memory (\code{artifact/evidence\_v411/mac\_m5\_memory}): peak Python heap during Open (\code{tracemalloc}, identical in all seven trials) and peak resident set size of the opening process (\code{ru\_maxrss}), median with minimum and maximum over seven trials, in MiB; RSS includes the interpreter (about 29~MiB idle) and the loaded ciphertext. Direct calls, without the process supervisor.}\label{tab:bench}
+\centering\footnotesize
+\begin{tabular}{@{}rrrrr@{}}\toprule
+& \multicolumn{2}{c}{ChaCha20-Poly1305} & \multicolumn{2}{c}{AES-256-GCM}\\
+KiB & enc.\ $\mu$s & GiB/s & enc.\ $\mu$s & GiB/s\\\midrule
+1 & 0.92 [0.88, 0.92] & 1.04 & 0.67 [0.63, 0.71] & 1.43\\
+4 & 2.17 [2.17, 2.21] & 1.76 & 1.13 [0.91, 1.14] & 3.39\\
+16 & 7.54 [7.42, 7.55] & 2.02 & 2.21 [2.21, 2.25] & 6.91\\
+64 & 29.0 [27.6, 29.1] & 2.11 & 7.29 [7.25, 7.29] & 8.37\\
+256 & 112 [108, 116] & 2.18 & 27.9 [27.9, 28.3] & 8.74\\
+1024 & 454 [451, 506] & 2.15 & 110 [109, 110] & 8.86\\\midrule
+MiB & Store ms & Open ms & heap MiB & RSS MiB\\\midrule
+1 & 0.44 [0.43, 0.47] & 0.45 [0.43, 0.47] & 1.00 & 31.3 [31.1, 31.5]\\
+4 & 1.85 [1.81, 1.91] & 1.87 [1.84, 1.93] & 8.00 & 41.4 [41.3, 41.6]\\
+16 & 7.54 [7.48, 7.62] & 7.50 [7.47, 7.59] & 32.0 & 78.0 [78.0, 78.1]\\
+64 & 30.1 [29.8, 30.4] & 36.5 [34.0, 48.5] & 128 & 224 [224, 224]\\
+256 & 124 [124, 125] & 129 [126, 131] & 512 & 808 [808, 808]\\\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/plot_chunks}}
+\caption{Per-chunk encryption on identical seeded inputs, Apple M5, 40 repetitions after 5 warm-ups. (a) Median time with interquartile range. (b) Throughput, chunk size over median time; the bars map the time quartiles through the same formula. ChaCha20-Poly1305 is the profile; AES-256-GCM is an engineering comparison on one processor, not a statement about security.}\label{fig:latency}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/plot_objects}}
+\caption{(a) Object-level Store and Open with 1~MiB chunks (median and IQR over 12 trials). (b) Peak memory during Open (seven trials per size in fresh processes): Python heap by \code{tracemalloc} and the process's peak resident set size, median with range. The dashed line is twice the object size; from 4~MiB it coincides with the heap curve. Measured on one machine.}\label{fig:objects}
+\end{figure}
+
+\paragraph{Second machine.}
+The same three scripts (byte-identical to the artifact's) were run on a 2-socket AMD EPYC 9554 server (x86-64 with AES-NI, VAES and VPCLMULQDQ), Linux 6.8.0, CPython 3.11.16, pyca/cryptography 50.0.2 with OpenSSL 4.0.3, as a batch job with 4 CPU threads on a node shared with other jobs (raw data and job script in \fpath{evidence_x86_epyc9554/} of the repository). Table~\ref{tab:bench-x86} reports the same quantities as Table~\ref{tab:bench}. HMAC derivation took $1.38\,\mu$s (median; IQR $1.35$--$1.45$). ChaCha20-Poly1305 reaches $2.8$--$3.4$~GiB/s from 16~KiB chunks upwards and AES-256-GCM $8.0$--$9.0$~GiB/s from 64~KiB. Python heap during Open is again twice the object size from 4~MiB upwards, and an idle process peaks at $26.25$~MiB. Unlike on the Apple M5, Store is slower than Open from 4 to 16~MiB, and Open is slower than Store from 64~MiB; the scripts do not isolate the cause, and we do not interpret it. The process-supervisor cost was not measured on this machine.
+
+\begin{table}[htbp]
+\caption{Recorded measurements on a 2-socket AMD EPYC 9554 server (same scripts and quantities as Table~\ref{tab:bench}; raw samples in \fpath{evidence_x86_epyc9554/}). Times: median with interquartile range; memory: median with minimum and maximum over seven trials, in MiB. Direct calls, without the process supervisor.}\label{tab:bench-x86}
+\centering\footnotesize
+\begin{tabular}{@{}rrrrr@{}}\toprule
+& \multicolumn{2}{c}{ChaCha20-Poly1305} & \multicolumn{2}{c}{AES-256-GCM}\\
+KiB & enc.\ $\mu$s & GiB/s & enc.\ $\mu$s & GiB/s\\\midrule
+1 & 1.29 [1.28, 1.33] & 0.74 & 1.04 [1.01, 1.06] & 0.92\\
+4 & 2.20 [2.17, 2.23] & 1.73 & 1.45 [1.43, 1.49] & 2.63\\
+16 & 5.54 [5.52, 5.56] & 2.75 & 2.72 [2.69, 2.75] & 5.60\\
+64 & 18.7 [18.6, 18.7] & 3.27 & 7.61 [7.60, 7.66] & 8.02\\
+256 & 71.4 [71.2, 71.5] & 3.42 & 27.2 [27.1, 27.2] & 8.99\\
+1024 & 286 [285, 291] & 3.42 & 109 [109, 109] & 8.96\\
+\midrule
+MiB & Store ms & Open ms & heap MiB & RSS MiB\\\midrule
+1 & 0.31 [0.31, 0.32] & 0.31 [0.31, 0.31] & 1.00 & 28.0 [28.0, 28.0]\\
+4 & 3.12 [3.11, 3.13] & 1.30 [1.30, 1.31] & 8.00 & 38.5 [38.5, 38.5]\\
+16 & 14.0 [13.9, 14.0] & 5.85 [5.85, 5.87] & 32.00 & 75.2 [75.2, 75.2]\\
+64 & 56.0 [55.9, 56.1] & 71.6 [71.4, 71.9] & 128.01 & 218.8 [217.0, 218.8]\\
+256 & 222 [222, 223] & 343 [340, 344] & 512.03 & 796.2 [796.2, 796.2]\\\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Lifecycle model checking and conformance}\label{sec:s-formal}
+
+\paragraph{TLC configurations.}
+TLC2~2.19 (release 1.7.4) is pinned by SHA-256 and run with one breadth-first worker, seed 1 and fingerprint index 0. Table~\ref{tab:tlc} lists the configurations of the four TLA+ modules used in the paper; ``Lifecycle V3'' and ``Lifecycle V4'' are the modules \code{RecoveryLifecycleV3} and \code{RecoveryLifecycleV4}, and the configuration names are the artifact's file names. \code{RecoveryLifecycleV3} has a switch for the in-flight guard (configurations \code{V3V2GuardsOnly} and \code{V3UnsafeInflight} turn it off; Observation~\ref{M-obs:inflight}). \code{RecoveryLifecycleV4} adds \code{WorkerAbandons} and the fairness conditions of Observation~\ref{M-obs:liveness}; it is the module that the Python transcription and the reference kernel follow. The configurations of the base module \code{RecoveryLifecycle.tla} reproduce their recorded counts as well. ``Pass'' means every listed invariant, and any listed temporal property under the stated fairness, holds in all reachable states. Unsafe counts are states explored before the first violation.
+
+\begin{table}[htbp]
+\caption{TLC runs of \code{RecoveryLifecycleV3}, \code{RecoveryLifecycleV4}, \code{MultiGuardianErasure} and \code{MultiGenerationRenewal}.}\label{tab:tlc}
+\centering\scriptsize
+\altrows
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.14\linewidth}Y>{\raggedright\arraybackslash}p{.22\linewidth}>{\raggedright\arraybackslash}p{.25\linewidth}@{}}\toprule
+\thead{Module} & \thead{Configuration} & \thead{Distinct states} & \thead{Outcome}\\\midrule
+Lifecycle V3 & V3SafeOneEpoch / TwoEpoch / Combined / Generations & 27,888 / 5,584 / 140,356 / 160,984 & Pass\\
+ & V3V2GuardsOnly; V3UnsafeInflight & 149,844; 520 & Pass (in-flight guard off, other invariants); Receipt\-After\-Workers violated\\
+Lifecycle V4 & V4SafeOneEpoch / TwoEpoch / Combined / Generations & 27,904 / 5,584 / 140,404 / 161,032 & Pass\\
+ & V4LiveExpiry; V401WorkerWF & 27,904; 27,904 & Pass incl.\ liveness\\
+ & V4LiveNoWorkerFairness; V401NoWorkerMin & 27,904; 1,084 & Liveness violated\\
+ & V401AllWF / NoErase / NoReceipt / NoRestart & 27,904 each & Liveness violated\\
+Multi-holder & MGSafe / TwoFaults / Outage & 4,325 / 21,987 / 146,706 & Pass incl.\ liveness\\
+ & MGUnsafeQuorum; MGUnsafeReceipt & 3,086; 4,103 & ErasureSafe violated\\
+ & MGNoProgress; MGUnrecoverable & 1,120; initial & Liveness; Recoverable\-Before\-Barrier violated\\
+Renewal & MGRenew & 775 & Pass\\
+ & MGReuse; MGRenewKeepOld & 84; 116 & GenPrivate violated\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Liveness counterexamples.}
+Observation~\ref{M-obs:liveness} states that each fairness assumption is necessary. With weak fairness everywhere (\code{V401AllWF}), crashes and restarts alternate forever, so \code{SignReceipt} is never continuously enabled. Without fairness for \code{Erase}, \code{SignReceipt} or \code{Restart} (\code{V401NoErase}, \code{V401NoReceipt}, \code{V401NoRestart}), the respective step is never taken. Without fairness for \code{WorkerReturns}, an aborting worker never returns; with one request (\code{V401NoWorkerMin}), the essential steps are \code{Request}, \code{HoldCompletes}, \code{OfferCertificate}, \code{BeginDecrypt}, \code{BeginExpiry}, \code{Erase}, then stuttering. TLC does not minimize liveness traces, and the printed lassos also contain irrelevant environment steps.
+
+\paragraph{Lifecycle induction.}
+The safety invariants of the lifecycle also follow by a manual induction for arbitrary finite positive path and request domains.
+\emph{Helper facts.} Receipts imply tombstones, absent slots, no buffers and no aborting or decrypting work on the path. A committed barrier requires its receipt and the barriers of earlier epochs. Buffers belong only to queued or sending jobs. Tombstones grow, and activated configurations do not decrease.
+\emph{Cases.} Initialization has no work, receipts or barriers. \code{Request}, \code{OfferCertificate}, \code{HoldCompletes}, endpoint mutation and identity compromise transfer no data, and request identifiers are not reused. \code{BeginDecrypt} checks liveness, exact binding, configuration and hold; \code{FinishDecrypt} and \code{Transfer} recheck them. \code{BeginExpiry} persists the tombstone and moves owned work to cancelled, or to aborting if it is decrypting, and removes buffers, all atomically. \code{WorkerReturns} moves aborting to cancelled, and \code{WorkerAbandons} moves decrypting to cancelled; neither produces output or changes buffers. \code{SignReceipt} requires slot absence, no buffers and no aborting work; since decryption cannot begin on a tombstoned path, no decrypting work exists either, so the receipt helper fact is preserved. \code{Commit} requires the receipt and all earlier-epoch barriers, so the floor cannot decrease or advance prematurely. \code{ConfigUpdate} cancels or aborts work before changing the version. \code{Crash} ends all workers and buffers while preserving durable state. With the guard, \code{RollbackRestart} is admitted only before any tombstone, configuration or floor progress. \code{Transfer} is the only release, and its guard gives both release properties.
+These cases establish the invariants under the abstract certificate, log and anchor contracts. This is a manual induction, not a TLAPS proof; TLC checks the instances in Table~\ref{tab:tlc}.
+
+\paragraph{Conformance step statistics.}
+One kernel call can perform what the specification models as consecutive actions, so a call is matched by a short sequence of specification steps rather than exactly one. The bound of three is a search depth, not a tolerance: the post-call abstract state must \emph{equal} a state reached from the pre-call state by legal specification actions. Every matched call is therefore a legal stuttering or multi-step move of the specification, and the safety invariants that TLC checks on all reachable specification states hold after it. Of the 80,000 calls of the reference kernel, 69,987 left the abstract state unchanged, 9,987 matched one step and 26 matched two; none needed three. Of the 77,126 calls of the baseline kernel (Observation~\ref{M-obs:conformance}), 67,289 left it unchanged, 9,588 matched one step and 34 matched two, and none needed three. The baseline kernel's 215 divergent schedules split into 212 certificate acceptances on a cancelled request, one duplicate completion, one stale abandon and one out-of-order barrier commit.
+
+\paragraph{Committee and renewal models.}
+\emph{Multi-holder barrier.} \code{MultiGuardianErasure.tla} models $n$ holders of one generation. Byzantine holders may sign receipts without erasing, or withhold. Up to $c$ honest slots may be copied before erasure, $u$ honest holders are offline, and a barrier commits on $q_d$ receipts; every Byzantine and offline placement is explored. Safety and fairness-conditioned liveness hold exactly at the boundary of Proposition~\ref{M-prop:holders}. One fewer receipt, or a receipt before erasure, violates safety, and $q_d>n-f-u$ violates liveness through permanent Byzantine withholding. This is liveness under weak fairness of honest holders, not progress in an asynchronous adversarial network.
+
+\emph{Mobile-adversary renewal.} \code{MultiGenerationRenewal.tla} publishes one new generation per period and lets the adversary copy at most $C$ current bank roots per period, with $F$ static Byzantine holders. With $n=5$, $t=3$, $F=C=1$ and three periods, every generation stays below threshold when banks are renewed and old roots are deleted. Reusing the bank fails within three steps, as does renewing without deleting old roots, which the adversary can still copy. This checks Corollary~\ref{M-cor:healing}(2) at the delivery-path level; algebraic independence is assumed, not modeled.
+
+\paragraph{Kernel, transcription and abstraction function.}
+The kernel implements generation-tagged durable state, request binding, distinct-signer counting, restricted deterministic CBOR, split decryption, queued buffers, atomic modeled first-byte transfer, expiry cancellation, in-flight worker tracking, and crash/restart with an assumed nonrollback anchor.
+
+The artifact includes a Python transcription of the TLA+ lifecycle module (\code{RecoveryLifecycleV4}) with all guards enabled. Breadth-first search over it reaches 1,084, 5,584 and 27,904 states for the (epochs, generations, requests) constants $(1,1,1)$, $(2,1,1)$ and $(1,1,2)$; the last two equal TLC's distinct-state counts. Only the counts are compared, because TLC does not export its state set; equal counts on several settings are evidence, not proof, that the transcription has the specification's semantics.
+
+An abstraction function maps each kernel state to an abstract state: tombstones, slots, receipts, proposals and commitments map directly; a job's stage maps to the request stage; a cancelled job with an outstanding worker token maps to aborting; delivered events map to \code{delivered}; and one history variable records when a hold elapsed while the request was active. 2,000 seeded random schedules of 40 kernel calls each, including rejected calls, duplicate completions, stale abandons, crashes and configuration changes, were executed. After every call, the abstract state had to be unchanged or reachable in at most three abstract steps.
+
+The bound of three is a search depth, not a tolerance: the post-call abstract state must \emph{equal} one reachable by legal specification actions, so TLC's invariants hold after every matched call. No call needed three steps (Online Resource~1, Section~S2).
+
+\section{Process supervisor and model correspondence}\label{sec:s-supervisor}
+
+\paragraph{Mechanism.}
+The kernel models a decryption worker only through its token, so it neither executes nor terminates one. The artifact's \code{worker\_supervisor.py} starts each decryption in a new operating-system process (spawn start method) that receives only the single key, nonce, ciphertext and associated data it needs. A returned result goes to \code{finish\_decrypt}. A crash, or a worker terminated after a grace period, is reported to \code{abandon\_decrypt}, but only after the supervisor has joined the process and observed its exit code. A kernel crash first terminates every worker process. Each worker also holds the read end of a lifeline pipe whose write end only the supervising process holds; if that process dies abruptly, the lifeline reaches end-of-file and the worker exits at once.
+
+
+\paragraph{Tests.}
+Ten tests (\fpath{test_worker_supervisor.py} and \fpath{test_worker_supervisor_v411.py}) cover:
+\begin{itemize}
+\item a normal completion; a hung worker that blocks the receipt until it is terminated; termination after a grace period; a crashing worker;
+\item a late completion after termination, and a completion arriving after expiry, both rejected and discarded;
+\item a terminated worker's token presented for a later request, and a duplicate completion, both rejected;
+\item a kernel crash followed by restart and receipt;
+\item an operating-system \code{SIGKILL} of the supervising process: the worker exits within the test's deadline, the restarted kernel holds no receipt, rejects the stale token, and accepts a receipt only after expiry and erasure;
+\item a file opened by the parent is not inherited by the worker.
+\end{itemize}
+
+\paragraph{Cost of supervision.}
+Table~\ref{tab:supervisor} compares a direct in-process AEAD open with the same open through the supervisor (\code{bench\_supervisor\_v411.py}; 21 trials per size, one Apple M5). Starting a fresh worker process, passing the result back and joining it costs about $47$~ms whatever the size, measured with an empty task; the rest grows with the data copied across the pipe. At 1~MiB this fixed cost dominates (about $50$~ms against $0.5$~ms direct); at 64~MiB supervised decryption takes about $3.8$ times as long as direct decryption ($137$ against $36$~ms). The table reports the worker's own peak resident set size; the combined peak of supervising and worker processes was not measured.
+
+\begin{table}[htbp]
+\caption{Direct versus process-supervised decryption: median and 95th percentile (ms), and the worker's peak resident set size (MiB, median). 21 trials per size; one machine.}\label{tab:supervisor}
+\centering\footnotesize
+\begin{tabular}{@{}rrrrr@{}}\toprule
+Size & direct & supervised & empty task & worker RSS\\\midrule
+1 KiB & 0.02 / 0.03 & 47.9 / 59.1 & 46.5 / 54.2 & 29\\
+1 MiB & 0.51 / 0.55 & 50.4 / 61.9 & 46.7 / 54.5 & 31\\
+16 MiB & 7.76 / 9.19 & 70.7 / 84.6 & 47.5 / 50.2 & 61\\
+64 MiB & 35.8 / 39.0 & 137 / 170 & 48.4 / 53.2 & 157\\\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Correspondence between the models.}
+Table~\ref{tab:refine} records how the capability model, the TLA+ specifications and the kernel correspond, and the gap that remains for each concept.
+
+\begin{table}[htbp]
+\caption{Correspondence between the capability model, the TLA+ specifications and the kernel.}\label{tab:refine}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.22\linewidth}YY@{}}\toprule
+Concept & Correspondence & Remaining gap\\\midrule
+Disclosure of $(e,g,x)$ & TLA \code{Transfer}; kernel \code{first\_byte\_transfer}; adds $x$ to $I_g$ & Lifecycle models one holder; the index set is implicit\\
+Barrier with $q_d$ receipts & MG \code{Commit}; lifecycle \code{Commit} after quorum & Composition of the one-holder model with MG is argued manually\\
+Kernel $\leftrightarrow$ lifecycle & Abstraction function and Python transcription; tested (Observation~\ref{M-obs:conformance}) & Bounded schedules; no proof\\
+Floor ordering & Earlier epochs first, in both TLA and the reference kernel & ---\\
+Worker termination & \code{WorkerReturns}/\code{WorkerAbandons}; process supervisor terminates, observes exit, then abandons (tested) & termination is tested, not proved; no sandboxing or memory scrubbing\\
+Renewal & Renewal model checks delivery-path counting & Algebra assumed, not modeled in TLA\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Evidence map and reproduction}\label{sec:s-evidence}
+
+Table~\ref{tab:checks} lists every check with its size and outcome; Table~\ref{tab:evidence} maps each of its rows, in order, to the artifact script that produces it.
+
+\begin{table}[htbp]
+\caption{Executable checks behind the paper's Section~\ref{M-sec:evidence}. Families are seeded unless marked exhaustive; each member is decided exactly.}\label{tab:checks}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.22\linewidth}>{\raggedright\arraybackslash}p{.22\linewidth}Y@{}}\toprule
+Result & Checked against & Size and outcome\\\midrule
+Leakage subspace (Theorem~\ref{M-thm:leakage}, Corollary~\ref{M-cor:condleak}) & exact joint enumeration over $\F_3$ & 8,000 instances, half on arbitrary domains; 1,500 for Corollary~\ref{M-cor:condleak}: both formulas and the chain rule hold, conditional exceeds marginal leakage in 504; masks uniform on a subspace: 1,000 agree with $B\mapsto BC$; the non-uniform-mask and acceptance-measurability counterexamples are asserted\\
+Touched indices (Theorem~\ref{M-thm:generations}) & rank test over $\F_{11}$, three indices & all 375 partial-disclosure patterns (exhaustive); blockwise structure: 3,000 instances\\
+Erasure planning (Propositions~\ref{M-prop:readonce}--\ref{M-prop:fewgen}) & brute force & read-once evaluation: 2,500 formulas; selection against sorting: 2,500; weighted thresholds: 2,000, subset-sum gadget asserted; vertex cover and renewed-credential minimum: 300 graphs each; few generations ($n\le7$, $G\le3$): 400, of which 93 infeasible\\
+Temporal accounting (Theorem~\ref{M-thm:temporal}) & exact rank test on random histories & 3,000 histories: 5,388 target seeds with independent randomness, no disagreement; 639 with correlated randomness, 5 disagreements, all in the unsafe direction; healing classification: 13 cells\\
+Committees (Propositions~\ref{M-prop:holders}--\ref{M-prop:domains}) & enumeration & 5,427 holder configurations (exhaustive); 3,000 domain-correlated instances against enumeration of failed-domain sets\\
+Guessing space $\mathcal P$ (Theorem~\ref{M-thm:adaptive}) & all exposure-time schedules (exhaustive) & 300 policies with $G\le3$, $n_g\le4$: every fresh pattern lies in $\mathcal P$; the reachable set is strictly smaller in 143, down to $1.7\%$ of $L$; two 2-of-2 generations on two slots: 5 of $L=9$ patterns reachable\\
+Reused-bank count (Proposition~\ref{M-prop:patterns}) & exhaustive enumeration & 200 reused-bank policies; 300 with partial publication (113 with unequal thresholds); telescoped form for all $n\le7$, $t\le n$, $G\le4$; partial publications stay inside the set in 100 policies, renewed banks reach all of $\mathcal P$ in 100\\
+Counting interface (Theorem~\ref{M-thm:adaptive}) & executable $\mathsf{Store}$/$\mathsf{Open}$ model, real HMAC-SHA256, counting AEAD stub & 300 workloads: $Q_{\mathrm{PRF}}\le q+r$, $K_{\mathrm{key}}\le q+r$, $C$ equal to the number of chunks, nonces unique per key; $D_{\mathrm{dec}}$ exceeds $r$ in 234, so the counts must be separate; $L$ itself is arithmetic only (Corollary~\ref{M-cor:loss})\\
+Implementation and models (Sections~\ref{M-sec:datalayer} and~\ref{M-sec:formal}) & tests, TLC, conformance & 27 data-layer and 10 supervisor tests; every TLC configuration, including six liveness runs for the fairness map of Observation~\ref{M-obs:liveness}; 2,000 conformance schedules\\\bottomrule
+\end{tabularx}
+\end{table}
+
+
+Table~\ref{tab:evidence} maps each row of Table~\ref{tab:checks}, in order, to the artifact script that produces it and the file holding its expected output. Every script is run by \code{artifact/reproduce\_all.py}, which compares each result with its saved expectation and fails on any difference. The 99 tests are \code{baseline/test\_extended\_model.py} (5), \code{test\_revision.py} (25), \code{test\_v3.py} (14), \code{test\_v4.py} (18), the data-layer tests (27) and the supervisor tests (10). Script names carry the artifact's internal numbering; it plays no role in the paper.
+
+\begin{table}[htbp]
+\caption{Artifact scripts for the rows of Table~\ref{tab:checks}. Expected outputs are in \code{artifact/expected/}.}\label{tab:evidence}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.06\linewidth}>{\raggedright\arraybackslash}p{.40\linewidth}Y@{}}\toprule
+Row & Check & Script (expected output)\\\midrule
+1 & leakage subspace, arbitrary domains; marginal and conditional leakage; subspace masks & \code{v3\_leakage.py} (\code{v3\_results.json}); \code{v4\_leakage.py} (\code{v4\_results.json})\\
+2 & touched indices (375 patterns); blockwise structure & \code{v3\_leakage.py}\\
+3 & read-once evaluation; vertex cover; renewed credentials; selection; weighted thresholds; few generations & \code{v3\_erasure.py}; \code{v4\_erasure.py}\\
+4 & random histories; healing classification & \code{v4\_temporal.py}; \code{v3\_temporal.py}\\
+5 & committees; domain-correlated corruption & \code{v3\_temporal.py}, \code{check\_parameters.py}; \code{v4\_quorum.py}\\
+6 & guessing space versus reachable patterns & \code{v401\_patterns.py}\\
+7 & reused-bank pattern count & \code{v402\_checks.py}; \code{v403\_checks.py}\\
+8 & counting interface; guessing loss arithmetic & \code{v402\_checks.py}; \code{v4\_quorum.py}\\
+9 & data layer; supervisor; conformance; TLC; measurements & data-layer and supervisor tests; \code{v4\_refinement.py}; \code{run\_tlc.py}, \code{run\_tlc\_v3.py}, \code{run\_tlc\_v4.py}; \code{bench\_v404.py}, \code{bench\_memory\_v410.py}, \code{bench\_supervisor\_v411.py}, \code{make\_plot\_data.py}; second machine: \fpath{evidence_x86_epyc9554/}\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Reproduction.}
+With CPython 3.12, the following commands, run in \fpath{artifact/}, execute every test and TLC configuration:
+\begin{Verbatim}[fontsize=\footnotesize]
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+python3 fetch_tlc.py
+.venv/bin/python reproduce_all.py --java "$(command -v java)" --jar .tools/tla2tools.jar
+\end{Verbatim}
+The measurement scripts are run separately, and \code{make\_plot\_data.py} regenerates the data of every plot. A fresh run on 9 November 2026 (CPython 3.12.14, pyca/cryptography 50.0.2 with OpenSSL 4.0.3, TLC2 2.19, OpenJDK 26.0.2.1) passed all 99 tests and every TLC configuration. The repository also has a pinned container (\fpath{Dockerfile}: base image by digest, cryptography 50.0.2, checksum-verified TLC 1.7.4, OpenJDK 17). Built and run in GitHub Actions on 9 November 2026 (x86-64 Linux, run 42676588599) with \code{docker run --init}, it passes all 99 tests and every TLC configuration. Without an init process, one test fails: the supervisor-crash test kills the supervising process, and its exited worker is reparented to the container's PID 1, which never reaps it. The recorded \fpath{/proc} state of that worker is Z (zombie), and the test's liveness check counts a zombie as alive; with \code{--init} the worker is reaped. Logs are in \fpath{container_runs/} of the repository.
+
+\section{Supporting system-level analysis and reference material}\label{sec:s-reference}
+
+\paragraph{Independent-slot component.}
+The slot game creates $nT$ independent labeled PKE pairs, exposes every public key, records all capsules, and challenges one holder/period key with an adversarially chosen pair. Freshness excludes every earlier target disclosure, including wrappers, secondary stores and rollback images; nonfresh outcomes are fair bits.
+
+\begin{lemma}[Independent-slot component]\label{lem:slot}
+Under labeled IND-CCA and actual target erasure, a selective holder/period challenge reduces to one PKE challenge with loss $1$. An adaptive period among $T$ costs at most $T$, an adaptive holder among $n$ costs $n$, and both together cost $nT$.
+\end{lemma}
+\begin{proof}
+Embed the challenge key at the fixed or uniformly guessed slot and generate all others. The directory has the honest distribution, and the guess is independent of the adversary's view until the target is named. Other-slot disclosures are answerable, and target decryptions go to the CCA oracle except on the challenge. A wrong guess or premature exposure yields a fair bit, so the advantage scales by exactly the guessing probability.
+\end{proof}
+
+For a fixed target epoch, masking up to $n$ recipient capsules is the capsule hop of Theorem~\ref{M-thm:adaptive}. An outer experiment that guesses one of $N$ epochs incurs a further factor of $N$ only if $N$ does not already enumerate the challenged periods; the factors are not to be multiplied twice. Independent data entropy cannot heal a stolen bank containing enough future slots (Corollary~\ref{M-cor:healing}).
+
+\paragraph{Symbolic failure budget.}
+For a chosen finite experiment, the union of named control failures is bounded by
+\begin{equation}\label{eq:budget}
+ B_{\mathrm{all}}=\delta_{\mathrm{log}}+\delta_{\mathrm{erase}}+\delta_{\mathrm{chan}}+\delta_{\mathrm{clock}}+\delta_{\mathrm{boot}}+K_{\mathrm{sig}}\varepsilon_{\mathrm{sig}}+\varepsilon_H+\varepsilon_{\mathrm{DL}}.
+\end{equation}
+Here $\delta_{\mathrm{log}}$ covers freshness, finality and durability; $\delta_{\mathrm{erase}}$ honest cleanup and anti-rollback, including in-flight worker state; $\delta_{\mathrm{chan}}$ endpoint binding and cleanup; $\delta_{\mathrm{clock}}$ monotone and rate-bound time; $\delta_{\mathrm{boot}}$ authentic enrollment. $K_{\mathrm{sig}}\varepsilon_{\mathrm{sig}}$ is a union of per-key EUF-CMA bounds, $\varepsilon_H$ collisions of the typed encodings, and $\varepsilon_{\mathrm{DL}}$ the first accepted distinct false opening. A reference pair $(a,b)$ and a distinct accepted $(a',b')$ satisfy $a+\beta b=a'+\beta b'$ with $b\ne b'$, which gives $\beta=(a-a')/(b'-b)$. This requires an honest reference sharing, not malicious-dealer agreement. Equation~\eqref{eq:budget} is therefore a symbolic decomposition, not a quantified end-to-end guarantee: its terms cannot be summed into a deployment number until each has been measured or bounded. Table~\ref{tab:budget} lists the evidence each term would need. The human false-approval probability $\alpha$ is outside it and unconstrained.
+
+\begin{table}[htbp]
+\caption{Terms of the symbolic failure budget~(\ref{eq:budget}). None has a numerical value in the paper.}\label{tab:budget}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{.17\linewidth}>{\raggedright\arraybackslash}p{.38\linewidth}Y@{}}\toprule
+Term & Failure event & Evidence needed\\\midrule
+$\delta_{\mathrm{log}}$ & log freshness, finality or durability & log protocol and operation\\
+$\delta_{\mathrm{erase}}$ & cleanup or anti-rollback, incl.\ in-flight worker state & storage and worker-isolation model\\
+$\delta_{\mathrm{chan}}$ & endpoint binding or cleanup & channel implementation and tests\\
+$\delta_{\mathrm{clock}}$ & monotone, rate-bound time & clock source and deployment\\
+$\delta_{\mathrm{boot}}$ & authentic enrollment & enrollment protocol\\
+$K_{\mathrm{sig}}\varepsilon_{\mathrm{sig}}$ & forgery under one of $K_{\mathrm{sig}}$ keys & EUF-CMA bound for Ed25519\\
+$\varepsilon_H$ & collision of typed encodings & SHA-256 collision resistance\\
+$\varepsilon_{\mathrm{DL}}$ & accepted distinct false opening & discrete logarithm in P-384\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Binding and inventory records.}
+Every signed object carries a domain label and format version. A recovery request binds account, request ID, active configuration, target birth epochs and generations, package/commitment digest, exact recipient key and channel binding, checkpoint reference and hold policy; approvals cover the whole object. A receipt binds account, configuration, bank, epoch, generation, holder index, capsule/commitment digest and cleanup-policy version. A checkpoint binds a fresh nonce, configuration, committed barrier digest and floor. The inventory schema records each atom's type, origin, epoch, generation, holder, bank version, disclosure interface, derivation premises and deletion contract, including worker memory as a location. The reference CBOR encoder accepts only integers, bytes, strings, arrays, maps, booleans and null, with definite lengths and bytewise encoded-key order. Certificates in the kernel are trusted verifier outputs, not signatures.
+
+\paragraph{Committee sizes.}
+Fig.~\ref{fig:feasible} shows the feasible thresholds of Proposition~\ref{M-prop:holders} for $n=13$, and Fig.~\ref{fig:minholders} plots the minimum holder-committee size $n=3f+c+2u+1$; both restate the proposition and Table~\ref{tab:sensitivity} as a reference for parameter choices.
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/fig_feasible}}
+\caption{Feasible thresholds for $n=13$ under Proposition~\ref{M-prop:holders}, $2f+c+u+1\le t\le n-f-u$: filled squares are feasible, open squares infeasible, for three settings of prior copies $c$ and outages $u$. Mathematical feasibility, not deployment guidance.}\label{fig:feasible}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/plot_minholders}}
+\caption{Minimum holder-committee size $n=3f+c+2u+1$ (Proposition~\ref{M-prop:holders}) as a function of Byzantine budget $f$ and prior copies $c$, for outages $u=0,1,2$. Exact values; mathematical minima, not recommendations.}\label{fig:minholders}
+\end{figure}
+
+
+\section{Proofs and details for Sections 5, 7 and 8}\label{sec:s-proofs}
+
+
+\paragraph{Proofs for Section 5.}
+\begin{proof}[Proof of Proposition~\ref{M-prop:weighted}]
+If $w_{\mathrm{del}}\le0$ the gate is already false (cost $0$); if $w_{\mathrm{del}}>w_{\mathrm{tot}}$ it cannot be falsified (cost $\infty$). Otherwise the problem is a covering knapsack: choose children of total weight at least $w_{\mathrm{del}}$ at minimum total cost. With $c_i=w_i$ the optimum equals $w_{\mathrm{del}}$ iff some subset of the weights sums exactly to $w_{\mathrm{del}}$, so an algorithm for the optimum decides subset sum, which is NP-complete~\cite{karp1972}; hence the problem is NP-hard. The dynamic program uses the state $F[x]$, the minimum cost of a chosen set with removed weight $\min(w_{\mathrm{del}},\cdot)=x$ for $0\le x\le w_{\mathrm{del}}$, with $F[0]=0$. Processing child $i$ updates $F[\min(w_{\mathrm{del}},x+w_i)]\leftarrow\min(F[\min(w_{\mathrm{del}},x+w_i)],F[x]+c_i)$ for $x$ in decreasing order, and the answer is $F[w_{\mathrm{del}}]$. This takes $O(m\,w_{\mathrm{del}})$ time and $O(w_{\mathrm{del}})$ space, which is pseudo-polynomial, so the hardness is weak. In a read-once formula each weighted gate uses its children's optima as item costs, because the children involve disjoint roots.
+\end{proof}
+\begin{proof}[Proof of Proposition~\ref{M-prop:hard}]
+Reduce from vertex cover~\cite{karp1972}. For a graph $G=(V,E)$, let holders be vertices, each with one bank root of unit cost. Each edge $\{u,v\}$ becomes a 2-of-2 generation of the target seed, delivered to $u$ and $v$ under their banks. By Theorem~\ref{M-thm:generations} the seed leaks iff some generation has both indices touched, iff both endpoint banks of some edge survive. A deletion set prevents leakage iff it is a vertex cover, with equal cost, so the reduction preserves approximation ratios. Vertex cover is NP-hard and APX-hard~\cite{karp1972,dinur2005}, and it remains APX-complete on cubic graphs~\cite{alimonti2000}. A vertex of degree three gives a root reused in three generations. With renewed banks every root occurs once and Proposition~\ref{M-prop:readonce} applies.
+\end{proof}
+\begin{proof}[Proof of Proposition~\ref{M-prop:fewgen}]
+Group holders by membership type $\mu(h)=\{g:h\in H_g\}$; there are at most $2^G$ types. Whether a deletion set suffices depends only on how many holders of each type it contains. Replacing a deleted holder by a cheaper undeleted holder of the same type keeps feasibility and does not raise the cost, so some optimum deletes the cheapest $x_\mu$ holders of each type. Enumerate all vectors $(x_\mu)$ with $0\le x_\mu\le|\{h:\mu(h)=\mu\}|$, check $\sum_{\mu\ni g}x_\mu\ge d_g$ for every $g$, and evaluate the cost from sorted prefix sums.
+\end{proof}
+
+\paragraph{Derived-key collisions and counting conventions.}
+Fig.~\ref{fig:keycoll} plots the derived-key collision term of Lemma~\ref{M-lem:keycoll}, and Table~\ref{tab:counts} fixes how each case of the data interface is counted in Theorem~\ref{M-thm:adaptive}.
+
+\begin{figure}[htbp]
+\centering
+\figbox{\input{figures/plot_keycoll}}
+\caption{The derived-key collision bound $K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{257}$ of Lemma~\ref{M-lem:keycoll}, on a $\log_2$ scale, against the $2^{-128}$ level of the profile's 128-bit target (dotted). The bound stays below that level until $K_{\mathrm{key}}\approx2^{64.5}$ key instances. The dashed grey line, for comparison only, is the same birthday bound $K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{129}$ for hypothetical 128-bit key instances; it exceeds $2^{-128}$ for every $K_{\mathrm{key}}\ge3$. The identifier term $q(q-1)/2^{257}$ of Theorem~\ref{M-thm:adaptive} has the same form, with $q$ in place of $K_{\mathrm{key}}$. This is a bound on the probability of a bad event, not an observed collision frequency.}\label{fig:keycoll}
+\end{figure}
+
+\begin{table}[htbp]
+\caption{Counting conventions for Theorem~\ref{M-thm:adaptive}, per case of the data interface. ``Context'' means a new HMAC evaluation and a new key instance.}\label{tab:counts}
+\centering\footnotesize
+\altrows
+\begin{tabularx}{\linewidth}{@{}p{.36\linewidth}Y@{}}\toprule
+\thead{Case} & \thead{Counted as}\\\midrule
+Honest object, one or $\ell$ chunks & one context in $q$; $\ell$ calls in $C$\\
+Abandoned creation and retry & two contexts in $q$; the partial and the full encryptions in $C$; the retry never reuses the old identifier\\
+$\mathsf{Open}$ of honest chunks for an honest context & nothing; answered from records\\
+$\mathsf{Open}$ with any non-honest chunk & one request in $r$; at most one new context (none if the context is cached); one call in $D_{\mathrm{dec}}$ per chunk attempted, including the failing one\\
+Repeated $\mathsf{Open}$ on a cached malicious context & one request in $r$; no new context\\
+Empty $\mathsf{Open}$ & rejected before key derivation; not counted\\
+Same identifier sampled twice by honest $\mathsf{Store}$ & the identifier event, $q(q-1)/2^{257}$\\
+Distinct contexts, equal key bytes & the key-instance event inside $\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}$, or $K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{257}$ via Lemma~\ref{M-lem:keycoll}\\\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Proofs of Propositions~\ref{M-prop:committees} and~\ref{M-prop:domains}.}
+\begin{proof}[Proof of Proposition~\ref{M-prop:committees}]
+The first two claims are the standard counting arguments: two $q_l$-quorums share at least $2q_l-n_l>f_l$ members. For the last, each committee's conditions depend only on its own corrupted and unavailable counts and are monotone in them. A universally quantified conjunction over placements is the conjunction of the separately quantified conditions, and each is tightest at its own worst case, which some placement attains.
+\end{proof}
+\begin{proof}[Proof of Proposition~\ref{M-prop:domains}]
+For a fixed set of failed domains, committee $X$ has $\sum_{d\in S}m_X(d)$ Byzantine members, maximized over $|S|\le\phi$ by its $F$ largest domains. The conditions are separate per committee and monotone in $f_X$, so the universally quantified conjunction holds iff each holds at its own maximum. Different committees may attain their maxima on different failed sets; this does not matter, because each condition is quantified over all sets.
+\end{proof}
+
+\paragraph{Minimum committee sizes.}
+Table~\ref{tab:sensitivity} lists the minimum committee sizes of Propositions~\ref{M-prop:holders} and~\ref{M-prop:committees} at equal budgets.
+
+\begin{table}[htbp]
+\caption{Minimum committee sizes at equal budgets. These are mathematical minima, not deployment recommendations.}\label{tab:sensitivity}
+\centering\footnotesize\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}rrrrrrrr@{}}\toprule
+$f$&$c$&$u$&$k$&Holders&$t=q_d$&Approvers&Log\\\midrule
+0&0&0&1&1&1&1&1\\
+1&0&0&1&4&3&3&4\\
+1&1&1&1&7&5&4&6\\
+2&1&1&1&10&7&6&9\\
+2&2&2&2&13&9&8&11\\
+3&1&0&2&11&8&8&10\\\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Conditional recovery deadline.}
+\begin{proposition}[Conditional recovery deadline]\label{prop:deadline}
+Consider this serial schedule: a nonce-bound checkpoint in one round trip $T_{\mathrm{rt}}$; package fetch in one $T_{\mathrm{rt}}$; the request committed and delivered to participating honest parties within one log call $T_{\mathrm{log}}$; approvals available within $T_{\mathrm{app}}$ of request observation; the approval certificate committed within one further $T_{\mathrm{log}}$; a bound channel in one $T_{\mathrm{rt}}$; responses in one $T_{\mathrm{rt}}$; local work $T_{\mathrm{loc}}$. Assume clock rates in $[1-\rho,1+\rho]$ with $0\le\rho<1$, and that each holder's hold of $(1+\rho)\tau$ local units starts when it observes the committed request. Then
+\begin{equation}\label{eq:deadline}
+\begin{split}
+ T_{\mathrm{restore}}&\le4T_{\mathrm{rt}}+T_{\mathrm{log}}+T_{\mathrm{loc}}+\max\!\left\{T_{\mathrm{app}}+T_{\mathrm{log}},\ \tfrac{1+\rho}{1-\rho}\tau\right\}\\
+ &\le4T_{\mathrm{rt}}+2T_{\mathrm{log}}+T_{\mathrm{loc}}+\max\!\left\{T_{\mathrm{app}},\ \tfrac{1+\rho}{1-\rho}\tau\right\}.
+\end{split}
+\end{equation}
+If instead the hold starts at certificate observation, the bound is $4T_{\mathrm{rt}}+2T_{\mathrm{log}}+T_{\mathrm{app}}+\frac{1+\rho}{1-\rho}\tau+T_{\mathrm{loc}}$. If the checkpoint and package fetches run concurrently, one $T_{\mathrm{rt}}$ can be removed from each bound.
+\end{proposition}
+\begin{proof}
+A local wait of $\ell$ units at rate $r\in[1-\rho,1+\rho]$ lasts $\ell/r$ real units, which lies in $[\tau,(1+\rho)\tau/(1-\rho)]$ for $\ell=(1+\rho)\tau$. After the request is observed, release needs both a committed certificate (by $T_{\mathrm{app}}+T_{\mathrm{log}}$) and an expired hold (by $(1+\rho)\tau/(1-\rho)$); these run concurrently. The other stages are serial. The second inequality holds because $\max(T_{\mathrm{app}}+T_{\mathrm{log}},x)\le\max(T_{\mathrm{app}},x)+T_{\mathrm{log}}$.
+\end{proof}
+
+The bound depends on that hold-start assumption. $T_{\mathrm{rt}},T_{\mathrm{log}},T_{\mathrm{app}},T_{\mathrm{loc}}$ are assumptions, not measured latencies, and permanent suppression yields failure, never timeout-created approval.
+
+\paragraph{Proof of Lemma~\ref{M-lem:mu}.}
+\begin{proof}
+In the multi-user game the adversary $\mathcal A'$ makes at most $M$ challenge queries $(i,m_0,m_1,\mathit{info})$, decryption queries $(i,c,\mathit{info})$ other than on challenge outputs, and corruptions of keys that have received no challenge. Order the challenge queries by time. Hybrid $H_j$ ($0\le j\le M$) answers the first $j$ challenge queries with encryptions of $m_1$ (zeros) and the remaining ones with encryptions of $m_0$, so $H_0$ and $H_M$ are the two worlds. Fix $j\ge1$; Table~\ref{tab:mu} specifies the reduction $B_j$.
+
+\begin{table}[htbp]
+\caption{The reduction $B_j$ for the hop $H_{j-1}\to H_j$ in Lemma~\ref{M-lem:mu}.}\label{tab:mu}
+\centering\footnotesize
+\begin{tabularx}{\linewidth}{@{}p{.24\linewidth}Y@{}}\toprule
+Item & Description\\\midrule
+Games & $H_{j-1}$ and $H_j$ differ only in the answer to the $j$-th challenge query: $m_0$ versus $m_1$.\\
+Reduction & Sample $i^*\in[N]$ uniformly. Use the single-key challenger's public key at $i^*$ and generate the other $N-1$ key pairs. Answer challenge queries before the $j$-th with self-made encryptions of $m_1$, and later ones with self-made encryptions of $m_0$. Forward the $j$-th query to the single-key challenge oracle if it is under $i^*$. Answer decryption under $i^*$ with the single-key oracle, and decryption under other keys with the known secret keys. Answer corruption of $i\ne i^*$ directly.\\
+Query bound & One challenge query; at most as many decryption queries as $\mathcal A'$ makes under $i^*$.\\
+Abort condition & Output a fair bit if the $j$-th query is not under $i^*$, or if $\mathcal A'$ corrupts $i^*$, which can then never receive the $j$-th query. If there is no $j$-th query, $H_{j-1}$ and $H_j$ coincide and $B_j$ outputs $\mathcal A'$'s output.\\
+Freshness & Decryptions of $B_j$'s own challenge outputs are excluded by the multi-user game. The single-key oracle refuses only the forwarded challenge, which is also excluded for $\mathcal A'$. Corruption of a challenged key is not allowed to $\mathcal A'$, so $B_j$ never has to reveal the embedded key after the $j$-th query.\\
+Advantage & Compare $B_j$ with the hybrid execution it imitates. The index $i^*$ is independent of that execution, so on runs with a $j$-th query the query is under $i^*$ with probability exactly $1/N$. On those runs $i^*$ was never corrupted (a corrupted key cannot be challenged), so $B_j$ simulates $H_{j-1}$ or $H_j$ perfectly to the end. On all other runs its output does not depend on the challenge bit. Hence $\varepsilon_{\mathrm{cca}}\ge\frac1N|\Pr[H_j=1]-\Pr[H_{j-1}=1]|$.\\\bottomrule
+\end{tabularx}
+\end{table}
+
+Summing the $M$ hops gives the lemma. Keys, capsules and generations are not counted separately: $N$ counts keys and $M$ counts challenge queries, and Theorem~\ref{M-thm:adaptive} makes at most one challenge query per eligible capsule.
+\end{proof}
+
+\paragraph{Proof of Lemma~\ref{M-lem:keycoll}.}
+\begin{proof}
+Fix a distinguisher $\mathcal A'$ and write $p^{\mathrm{iid}}_{\mathrm{real}}$, $p^{\mathrm{dist}}_{\mathrm{real}}$ and $p_{\mathrm{ideal}}$ for its probabilities of outputting $1$. The ideal world answers encryptions with fresh uniform strings and decryptions with $\bot$, per instance index. Its behaviour therefore does not depend on the key values, and it is the same distribution in both games. Let $\mathrm{Col}$ be the event that two of the $K_{\mathrm{key}}$ i.i.d.\ instances are equal, with probability $\delta=1-\prod_{i<K_{\mathrm{key}}}(1-i/2^{256})\le K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{257}$. Conditioned on $\neg\mathrm{Col}$, the i.i.d.\ tuple is uniform over tuples of distinct keys, which is exactly the distinct-key game. Writing $p^{\mathrm{col}}_{\mathrm{real}}$ for the real-world probability conditioned on $\mathrm{Col}$, the common mixture gives
+\[
+ p^{\mathrm{iid}}_{\mathrm{real}}-p_{\mathrm{ideal}}=(1-\delta)\big(p^{\mathrm{dist}}_{\mathrm{real}}-p_{\mathrm{ideal}}\big)+\delta\big(p^{\mathrm{col}}_{\mathrm{real}}-p_{\mathrm{ideal}}\big),
+\]
+where $p_{\mathrm{ideal}}$ is split by the same weights because it does not depend on the keys. The last bracket has absolute value at most $1$, so $|p^{\mathrm{iid}}_{\mathrm{real}}-p_{\mathrm{ideal}}|\le(1-\delta)\,|p^{\mathrm{dist}}_{\mathrm{real}}-p_{\mathrm{ideal}}|+\delta\le\varepsilon^{\mathrm{dist}}_{\mathrm{ae}}+\delta$. Taking the supremum over $\mathcal A'$ proves the lemma. Bounding the real and ideal probabilities separately would have given $2\delta$; the mixture avoids that. In the i.i.d.\ game a coincidence lets two instances, each nonce-respecting by index, use the same key bytes with the same nonce (chunk index $0$). That event is part of $\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}$, not something it excludes.
+\end{proof}
+
+\paragraph{Proof of Theorem~\ref{M-thm:adaptive}.}
+\begin{proof}
+Each hop names its games, reduction and loss; Fig.~\ref{M-fig:hybrids} shows the sequence.
+
+\emph{$G_0\to G_1$ (guess; exact factor $L$).} $G_1$ samples $\Gamma=(\Gamma_g)$ uniformly from $\mathcal P$. Its rule: output $\mathcal A$'s guess only if the run is fresh and $\Lambda=\Gamma$, and otherwise a fair bit. It stops with a fair bit as soon as a capsule outside $\Gamma$ is late-exposed, or as soon as the run becomes non-fresh: a target $\mathsf{SeedRoute}$, $\mathsf{Open}$ on the challenge, or some $|I_g|$ reaching $t_g$. Non-freshness is monotone, so stopping early does not change the output distribution, and later reductions never have to answer those queries. Runs with $\Lambda=\Gamma$ never trigger the pattern stop, so their outputs equal those of $G_0$. Write $\mathsf{Fr}$ for freshness and $\mathsf{Win}$ for $b'=b$. Then $\Pr_{G_0}[\mathsf{out}=1]-\tfrac12=\Pr[\mathsf{Fr}\wedge \mathsf{Win}]-\tfrac12\Pr[\mathsf{Fr}]$. Couple $G_1$ with a run of $G_0$ and an independent $\Gamma$. Every fresh run has $\Lambda\in\mathcal P$, so $\Pr[\Lambda=\Gamma\mid\text{run}]=1/L$ on fresh runs, and
+$\Pr_{G_1}[\mathsf{out}=1]-\tfrac12=\Pr[\mathsf{Fr}\wedge\Lambda{=}\Gamma\wedge \mathsf{Win}]-\tfrac12\Pr[\mathsf{Fr}\wedge\Lambda{=}\Gamma]=\tfrac1L\big(\Pr[\mathsf{Fr}\wedge \mathsf{Win}]-\tfrac12\Pr[\mathsf{Fr}]\big)$.
+Hence $\Adv_0=L\cdot\Adv_1$ exactly, for this $\mathcal P$ and for any other pattern set containing every fresh pattern. The equality is exact even if $\mathcal P$ contains unreachable patterns; such patterns only enlarge $L$, so the final bound is looser but still valid.
+
+\emph{$G_1\to G_2$ (capsules; $\varepsilon_{\mathrm{mu}}(N,M)$).} Call a target capsule \emph{eligible} if its index is outside $\Gamma_g$ and its slot is unexposed at publication. $G_2$ replaces every eligible capsule by an HPKE encryption of 96 zero bytes under the same key and $\mathit{info}$. The reduction against the multi-user game takes the directory from its challenger, samples $\Gamma$, and simulates everything else itself. It obtains each eligible capsule from the challenge oracle on (real pair, zeros), at most $M$ queries, and encrypts every other capsule itself. It answers $\mathsf{Dec}$ through its decryption oracle; capsules it created itself are honest capsules, which the game already excludes from $\mathsf{Dec}$. On $\mathsf{Expose}(s)$ it calls Corrupt unless $s$ holds an eligible capsule. In that case the exposure is a late exposure outside $\Gamma$, and both $G_1$ and $G_2$ stop with a fair bit, so the reduction never makes an inadmissible corruption. Its simulation is $G_1$ or $G_2$ according to the challenge bit, with identical stopping rules.
+
+\emph{$G_2\to G_2'$ (seed decoupling; loss $0$).} $G_2'$ shares an independent uniform $S'$ in the target generations while data encryption still uses $S$. The step rests on the following invariant. (I) On every run of $G_2$ that is fresh and has $\Lambda=\Gamma$, every real target capsule is at an index in $I_g$. Proof: a real target capsule is non-eligible. Either its slot was exposed at publication, so its index is touched; or its index lies in $\Gamma_g=\Lambda_g$, so its slot was exposed after publication and the index is again touched. (I) is conditional on $\Lambda=\Gamma$, which is exactly the condition under which $G_2$ outputs $\mathcal A$'s guess. Eligible capsules encrypt zeros. Fix all randomness other than the target coefficient blocks; the data answers then depend on $S$ only. The translation of Theorem~\ref{M-thm:generations} moves the shared value by any $\Delta$ while preserving commitments, every coordinate at indices in $I_g$, and hence every real capsule and every other answer. Acceptance is a function of the transcript and the independent $\Gamma$, so by the argument of Corollary~\ref{M-cor:adaptive} each accepted transcript has the same probability whatever value is shared. Therefore the joint law of (accepted transcript, $S$) is the same whether the sharing uses $S$ or $S'$, and other runs output fair bits. So $\Pr[G_2=1]=\Pr[G_2'=1]$.
+
+\emph{$G_2'\to G_3$ (PRF; $\varepsilon_{\mathrm{prf}}(q+r)$).} In $G_2'$, $S$ is used only as the HMAC key for target object keys. $G_3$ replaces HMAC$(S,\cdot)$ by a random function. The reduction queries its oracle once per distinct context: the $q$ honest contexts, and at most one new context per non-honest $\mathsf{Open}$ request, since each request names exactly one context and keys are memoized. That is at most $q+r$ adaptive queries. An $\mathsf{Open}$ consisting solely of honest chunks for an honest context needs no query, because the reduction answers it from its records. A request that reuses an honest context, including an honest identifier with the same header, gets the honest key consistently. Counting only $q$ would omit adversarial contexts; counting chunk decryptions would over-count the PRF queries and conflate them with chunk calls.
+
+\emph{$G_3\to G_4$ (identifiers; $q(q-1)/2^{257}$).} $G_4$ stops with a fair bit if two honest target objects receive the same uniformly random 32-byte identifier, which happens with probability at most $\binom q2 2^{-256}=q(q-1)/2^{257}$. Otherwise all honest contexts are distinct, so the honest object keys are independent and uniform. Keys derived for adversarial contexts are either an honest key, when the context equals an honest one, or further independent uniform keys. Adversarially chosen identifiers are not sampled and play no part in this probability. Distinct contexts receive independent uniform key instances under the random function, which is exactly the instance distribution of the i.i.d.\ AE game. Two instances may coincide, and because every object's chunk counter starts at $0$, a coincidence is a genuine reuse of key bytes with the same nonce. This event is not excluded here. It is carried by $\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}$, and it is charged explicitly as $K_{\mathrm{key}}(K_{\mathrm{key}}-1)/2^{257}$ when Lemma~\ref{M-lem:keycoll} converts to a distinct-key bound. The identifier event above concerns equal contexts, which give equal keys by construction; the key-instance event concerns distinct contexts with equal outputs. Identifiers are only relevant within the target epoch, because the context also binds account, configuration and birth epoch. The two games differ only on the collision event, and since the bound uses identifiers alone, it is conservative when headers also differ.
+
+\emph{$G_4\to G_5$ (AEAD; $\varepsilon^{\mathrm{iid}}_{\mathrm{ae}}(K_{\mathrm{key}},C,D_{\mathrm{dec}})$).} $G_5$ answers every target-object chunk encryption, including the challenge's, with uniform strings of the correct length, and every chunk decryption of a non-honest ciphertext with $\bot$. The reduction uses the i.i.d.\ multi-key all-in-one game, assigning one instance index to each distinct context, so at most $K_{\mathrm{key}}\le q+r$ instances, some used only for decryption. Its instances have exactly the distribution of the $G_4$ object keys, collisions included, so the simulation is perfect. It forwards the $C$ chunk encryptions and the $D_{\mathrm{dec}}$ chunk decryptions of non-honest ciphertexts, and answers honest chunks inside an $\mathsf{Open}$ from its records. A single $\mathsf{Open}$ may contribute several calls to $D_{\mathrm{dec}}$. Nonces are distinct under each key because each chunk index is used once, and the profile's limit of $2^{32}-1$ chunks keeps the 64-bit index from wrapping. An interrupted creation is abandoned under a fresh identifier, so no key and nonce pair is reused with different plaintext. It answers $\mathsf{Open}$ on honest non-challenge ciphertexts from its own record of the stored plaintext. In $G_5$ the challenge is independent of $b$, so $\Pr[G_5=1]=\tfrac12$.
+
+\emph{Normalization.} Each hop above bounds $|\Pr[G_i\Rightarrow1]-\Pr[G_{i+1}\Rightarrow1]|$ by the distinguishing advantage of its reduction. The reduction runs $\mathcal A$ and outputs the simulated game's $\mathsf{out}$ bit, and each primitive term is in the distinguishing form of Definition~\ref{M-def:assumptions}, so no factor of $2$ arises. The triangle inequality gives $\Adv_1=|\Pr[G_1\Rightarrow1]-\tfrac12|\le\sum_i|\Pr[G_i\Rightarrow1]-\Pr[G_{i+1}\Rightarrow1]|+|\Pr[G_5\Rightarrow1]-\tfrac12|$, and the last term is $0$. The same convention holds in Lemma~\ref{M-lem:mu}: $B_j$'s distinguishing advantage is exactly $\tfrac1N$ times the hybrid gap.
+
+Summing the hops bounds $\Adv_1$, and $\Adv_0=L\cdot\Adv_1$. Under forward-ordered exposure $\Lambda=\varnothing$ always holds, so the guess is trivial and $L=1$.
+\end{proof}
+
+\paragraph{Proof of Proposition~\ref{M-prop:patterns}.}
+\begin{proof}
+With one slot per holder, holder $x$ is characterized by the time of its slot's exposure: never, just before the $k$-th publication, or after the last. Its index is late-exposed in generation $g$ iff the exposure follows the $g$-th publication. With $\ell_x$ the number of generations published before the exposure (or $0$ if never exposed), $\Lambda_g=\{x:\ell_x\ge g\}$. The map $\ell\mapsto\Lambda$ is injective, because $\ell_x=\max\{g:x\in\Lambda_g\}$ or $0$. Every $x$ with $\ell_x\ge1$ is touched in every published generation. So when all $G$ generations are published, freshness forces $|\{x:\ell_x\ge1\}|<t_{\min}$. Conversely, any set $J$ of fewer than $t_{\min}$ holders with any levels in $\{1,\dots,G\}$ is realized by exposing exactly those slots at the corresponding times, which touches exactly $J$ in every generation, so the run is fresh. Counting by $|J|=j$ gives $\sum_{j<t_{\min}}\binom njG^j$ when all generations are published. Now let a run publish the first $G'$ generations. Every level satisfies $\ell_x\le G'$, and freshness requires $|J|<\tau_{G'}$. A pattern with maximum level $m\ge1$ is therefore realizable iff $|J|<\tau_{G'}$ for some $G'\ge m$, iff $|J|<\tau_m$, because $\tau$ is non-increasing; stopping after the $m$-th publication realizes it. Counting by maximum level $m$ and support size $j$, the level vectors on a fixed $J$ with values in $\{1,\dots,m\}$ and maximum exactly $m$ number $m^j-(m-1)^j$. Adding the empty pattern gives $L_{\mathrm{reuse}}$, and the common-threshold sum telescopes. Disclosures only enlarge the touched sets, so they cannot create new patterns. The theorem allows any covering pattern set. With disjoint slots the exposure times of different generations' slots are independent, so every $\Lambda\in\mathcal P$ is realized by exposing exactly its indices after the corresponding publications.
+\end{proof}
+
+\bibliography{references}
+
+\end{document}
